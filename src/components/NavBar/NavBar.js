@@ -5,10 +5,6 @@ import React from 'react';
 import RightDrawer from './RightDrawer';
 
 class NavBar extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
     return (
       <div className="navbar">
@@ -21,14 +17,14 @@ class NavBar extends React.Component {
                   src="https://avatars1.githubusercontent.com/u/10762218?s=460&v=4"
                   className="navbar-avatar"
                 />
-                <div className="navbar-brand">Lalit Kumar</div>
-              </div>
+                <div className="navbar-brand"> Lalit Kumar </div>{' '}
+              </div>{' '}
               <div className="navbar-content-right">
                 <RightDrawer />
-              </div>
-            </div>
-          </Toolbar>
-        </AppBar>
+              </div>{' '}
+            </div>{' '}
+          </Toolbar>{' '}
+        </AppBar>{' '}
       </div>
     );
   }
