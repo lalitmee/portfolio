@@ -1,6 +1,6 @@
 import Divider from '@material-ui/core/Divider';
 import Drawer from '@material-ui/core/Drawer';
-import Fab from '@material-ui/core/Fab';
+import IconButton from '@material-ui/core/IconButton';
 import List from '@material-ui/core/List';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
@@ -63,15 +63,15 @@ class RightDrawer extends React.Component {
 
     return (
       <div className="right-drawer">
-        <Fab
+        <IconButton
+          aria-label="Menu"
           size="small"
           color="primary"
-          variant="round"
           className="menu-button"
           onClick={this.toggleDrawer('right', true)}
         >
-          <MenuIcon />
-        </Fab>
+          <MenuIcon color="primary" />
+        </IconButton>
         <Drawer
           anchor="right"
           open={this.state.right}

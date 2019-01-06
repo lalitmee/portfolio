@@ -69,6 +69,15 @@ h6 {
 }
 
 .portfolio {
+  height: 800px;
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('./assets/images/coding-background.jpg'); */
+  background-size: cover; /* or contain depending on what you want */
+  background-position: center center;
+  background-repeat: no-repeat;
+  text-align: center;
+  margin: auto;
+  padding: 0;
 }
 
 /**********************
@@ -84,6 +93,10 @@ h6 {
  **************/
 .navbar {
   padding: 1%;
+}
+
+.appbar {
+  /* background-color: transparent !important; */
 }
 
 .navbar-content {
