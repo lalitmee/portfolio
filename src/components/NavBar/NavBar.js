@@ -2,6 +2,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
 import Toolbar from '@material-ui/core/Toolbar';
 import React from 'react';
+import RightDrawer from './RightDrawer';
 
 class NavBar extends React.Component {
   constructor(props) {
@@ -22,7 +23,9 @@ class NavBar extends React.Component {
                 />
                 <div className="navbar-brand">Lalit Kumar</div>
               </div>
-              <div className="navbar-content-right">Hello</div>
+              <div className="navbar-content-right">
+                <RightDrawer />
+              </div>
             </div>
           </Toolbar>
         </AppBar>
