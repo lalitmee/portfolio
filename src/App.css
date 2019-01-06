@@ -1,33 +1,108 @@
-.App {
-  text-align: center;
+/* -------------------- Resets --------------------- */
+body,
+form,
+fieldset,
+ol,
+ul,
+li,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0;
+  padding: 0;
 }
-
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
+img {
+  border: 0; /* kills Gecko bug when img's are placed inside links */
+  vertical-align: bottom; /* set vertical align to bottom for IE */
 }
-
-.App-header {
-  background-color: #222;
-  height: 150px;
-  padding: 20px;
-  color: white;
+/* ------------------- Defaults ------------------- */
+html {
+  height: 100%;
+  overflow: auto; /* triggers 100% height in Opera 9.5 */
+  overflow-y: scroll; /* creates a horizontal scrollbar, for a more consistent look & feel */
 }
-
-.App-title {
+body {
+  height: 100%; /* helps make height 100% */
+  font: 100%/1.5 Arial, Helvetica, sans-serif; /* 100% = 16px, 93.75% = 15px, 87.5% = 14px, 81.25% = 13px, 75% = 12px - font-size in % prevents IE's resize bug */
+  background: #fdfdfd;
+  color: #333;
+}
+/* ------------------ Typography ------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  margin: 0 0 1em;
+}
+p,
+ul,
+ol {
+  font-size: 1em;
+}
+ul {
+  margin: 0 0 1em 25px;
+  list-style: none;
+}
+h1 {
+  font-size: 1.6em;
+}
+h2 {
   font-size: 1.5em;
 }
-
-.App-intro {
-  font-size: large;
+h3 {
+  font-size: 1.4em;
+}
+h4 {
+  font-size: 1.3em;
+}
+h5 {
+  font-size: 1.2em;
+}
+h6 {
+  font-size: 1.1em;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
+.portfolio {
+}
 
-  to {
-    transform: rotate(360deg);
-  }
+/**********************
+ * MAIN CONTAINER CSS *
+ **********************/
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
+
+/**************
+ * NAVBAR CSS *
+ **************/
+.navbar {
+  padding: 1%;
+}
+
+.navbar-content {
+  display: flex;
+  width: 100%;
+}
+
+.navbar-content-left {
+  display: flex;
+  width: 50%;
+}
+
+.navbar-content-right {
+  width: 50%;
+  text-align: right;
+}
+
+.navbar-brand {
+  font-size: 30px;
+  margin-left: 0.5rem;
 }
