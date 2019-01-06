@@ -12,7 +12,7 @@ class NavBar extends React.Component {
   render() {
     return (
       <div className="navbar">
-        <AppBar position="static" color="default">
+        <AppBar className="appbar" position="static" color="default">
           <Toolbar>
             <div className="navbar-content">
               <div className="navbar-content-left">
