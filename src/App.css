@@ -160,13 +160,13 @@ h6 {
   color: transparent;
   background: -webkit-linear-gradient(#999, #999) center 1.09em no-repeat;
   background: linear-gradient(#999, #999) center 1.09em no-repeat;
-  background-size: 85% 3px;
+  background-size: 70% 3px;
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
 }
 
 .name-head:hover {
-  background-size: 95% 3px;
+  background-size: 97% 3px;
 }
 
 .main-wrapper-first-head {
