@@ -187,6 +187,19 @@ h6 {
   letter-spacing: 0.1em !important;
 }
 
+/******************
+ * TYPED-TEXT CSS *
+ ******************/
+.typed-text {
+  display: flex;
+  margin: 0;
+  position: absolute;
+  font-size: 45px;
+  top: 45%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+}
+
 /*********************************
  * OVERRIDING CSS OF MATERIAL-UI *
  *********************************/

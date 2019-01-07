@@ -2,6 +2,8 @@ import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
+import Typist from 'react-typist';
+import TypistLoop from 'react-typist-loop';
 
 const styles = theme => ({
   root: {
@@ -30,6 +32,22 @@ function HomePage() {
           >
             Kumar
           </Typography>
+        </div>
+        <div className="typed-text">
+          <TypistLoop interval={500}>
+            {[
+              'Software Developer',
+              'Front End Developer',
+              'Footballer',
+              'Music Lover'
+            ].map(text => (
+              <Typist key={text} startDelay={100}>
+                {text}
+                <Typist.Delay ms={500} />
+                <Typist.Backspace count={text.length} />
+              </Typist>
+            ))}
+          </TypistLoop>
         </div>
       </Paper>
     </div>
