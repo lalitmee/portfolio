@@ -8,7 +8,9 @@
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
     "react-dom": "^16.4.2",
-    "react-scripts": "1.1.5"
+    "react-scripts": "1.1.5",
+    "react-typist": "^2.0.5",
+    "react-typist-loop": "^0.0.5"
   },
   "scripts": {
     "start": "react-scripts start",

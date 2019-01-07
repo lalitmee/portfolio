@@ -1,8 +1,9 @@
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-import PropTypes from 'prop-types';
 import React from 'react';
+import Typist from 'react-typist';
+import TypistLoop from 'react-typist-loop';
 
 const styles = theme => ({
   root: {
@@ -12,25 +13,45 @@ const styles = theme => ({
   }
 });
 
-function HomePage(props) {
-  const { classes } = props;
+function HomePage() {
   return (
     <div className="main-wrapper">
       <Paper className="main-wrapper-paper" elevation={1}>
-        <Typography variant="h5" component="h3">
-          This is a sheet of paper.
-        </Typography>
-        <Typography component="p">
-          Paper can be used to build surface or other elements for your
-          application.
-        </Typography>
+        <div className="name-head ">
+          <Typography
+            className="main-wrapper-first-head"
+            variant="h2"
+            component="div"
+          >
+            Lalit
+          </Typography>
+          <Typography
+            variant="h1"
+            component="div"
+            className="main-wrapper-second-head"
+          >
+            Kumar
+          </Typography>
+        </div>
+        <div className="typed-text">
+          <TypistLoop interval={500}>
+            {[
+              'Software Developer',
+              'Front End Developer',
+              'Footballer',
+              'Music Lover'
+            ].map(text => (
+              <Typist key={text} startDelay={100}>
+                {text}
+                <Typist.Delay ms={500} />
+                <Typist.Backspace count={text.length} />
+              </Typist>
+            ))}
+          </TypistLoop>
+        </div>
       </Paper>
     </div>
   );
 }
-
-HomePage.propTypes = {
-  classes: PropTypes.object.isRequired
-};
 
 export default withStyles(styles)(HomePage);
