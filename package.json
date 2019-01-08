@@ -10,6 +10,7 @@
     "@material-ui/icons": "^3.0.1",
     "prop-types": "^15.6.2",
     "react": "^16.4.2",
+    "react-circular-progressbar": "^1.0.0",
     "react-dom": "^16.4.2",
     "react-fontawesome": "^1.6.1",
     "react-scripts": "1.1.5",

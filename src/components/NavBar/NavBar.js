@@ -16,7 +16,7 @@ function NavBar() {
                 src="https://avatars1.githubusercontent.com/u/10762218?s=460&v=4"
                 className="navbar-avatar"
               />
-              <div className="navbar-brand">Lalit Kumar</div>
+              {/* <div className="navbar-brand">Lalit Kumar</div> */}
             </div>
             <div className="navbar-content-right">
               <RightDrawer />

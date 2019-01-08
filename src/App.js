@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import HomePage from './components/HomePage/HomePage';
 import NavBar from './components/NavBar/NavBar';
+import Skills from './components/Skills/Skills';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -15,6 +16,7 @@ export default class App extends React.Component {
         <div className="container">
           <NavBar />
           <HomePage />
+          <Skills />
         </div>
       </div>
     );
