@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
-import NavBar from './components/NavBar/NavBar';
 import HomePage from './components/HomePage/HomePage';
+import NavBar from './components/NavBar/NavBar';
 
 export default class App extends React.Component {
   constructor(props) {
