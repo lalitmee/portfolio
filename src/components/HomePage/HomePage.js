@@ -6,6 +6,12 @@ import React from 'react';
 import Typist from 'react-typist';
 import TypistLoop from 'react-typist-loop';
 import 'react-typist/dist/Typist.css';
+import facebook from './../../assets/images/facebook-circle.png';
+import github from './../../assets/images/github.png';
+import instagram from './../../assets/images/instagram-circle.png';
+import linkedIn from './../../assets/images/linkedin-circle.png';
+import stackoverflow from './../../assets/images/stackoverflow-circle.png';
+import twitter from './../../assets/images/twitter-circle.png';
 
 const styles = theme => ({
   root: {
@@ -64,52 +70,88 @@ function HomePage() {
             <li>
               <a
                 href="https://www.facebook.com/iamlalitmee"
+                target="_blank"
                 className="social-square"
+                rel="noopener noreferrer"
               >
-                <img src="./../../assets/images/facebook-circle.png" alt="" />
+                <img
+                  src={facebook}
+                  alt="facebook-icon"
+                  className="social-icon"
+                />
               </a>
             </li>
             <li>
               <a
                 href="https://www.twitter.com/lalitmee/"
+                target="_blank"
                 className="social-square"
+                rel="noopener noreferrer"
               >
-                <i className="fa fa-twitter" />
+                <img src={twitter} alt="twitter-icon" className="social-icon" />
               </a>
             </li>
             <li>
               <a
                 href="https://www.linkedin.com/in/lalitmee/"
+                target="_blank"
                 className="social-square"
+                rel="noopener noreferrer"
               >
-                <i className="fa fa-linkedin" />
+                <img
+                  src={linkedIn}
+                  alt="linkedin-icon"
+                  className="social-icon"
+                />
               </a>
             </li>
             <li>
               <a
                 href="https://www.github.com/lalitmee/"
+                target="_blank"
                 className="social-square"
+                rel="noopener noreferrer"
               >
-                <i className="fa fa-github" />
+                <img src={github} alt="facebook-icon" className="social-icon" />
               </a>
             </li>
             <li>
               <a
                 href="https://stackoverflow.com/users/4515657/lalit-kumar?tab=profile"
+                target="_blank"
                 className="social-square"
+                rel="noopener noreferrer"
               >
-                <i className="fa fa-stack-overflow" />
+                <img
+                  src={stackoverflow}
+                  alt="stackeoverflow-icon"
+                  className="social-icon"
+                />
               </a>
             </li>
             <li>
               <a
                 href="https://www.instagram.com/lalitmee/"
+                target="_blank"
                 className="social-square"
+                rel="noopener noreferrer"
               >
-                <i className="fa fa-instagram" />
+                <img
+                  src={instagram}
+                  alt="instagram-icon"
+                  className="social-icon"
+                />
               </a>
             </li>
           </ul>
+        </div>
+        <div className="quote-wrapper">
+          <Typography className="quote-text" variant="h5" component="div">
+            Don't comment bad code - rewrite it.
+          </Typography>
+          <Typography className="quote-writer" variant="h5" component="div">
+            - Brian Kernighan
+          </Typography>
         </div>
       </Paper>
     </div>
