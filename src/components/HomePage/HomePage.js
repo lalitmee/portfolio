@@ -3,6 +3,7 @@ import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import Typist from 'react-typist';
+import 'react-typist/dist/Typist.css';
 import TypistLoop from 'react-typist-loop';
 
 const styles = theme => ({
@@ -38,6 +39,7 @@ function HomePage() {
             {[
               'Software Developer',
               'Front End Developer',
+              'Open Source Enthusiast',
               'Footballer',
               'Music Lover'
             ].map(text => (
