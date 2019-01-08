@@ -20,7 +20,7 @@ function HomePage() {
         <div className="name-head ">
           <Typography
             className="main-wrapper-first-head"
-            variant="h2"
+            variant="h1"
             component="div"
           >
             Lalit
