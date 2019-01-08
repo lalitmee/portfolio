@@ -97,7 +97,7 @@ h6 {
 }
 
 .appbar {
-  /* background-color: transparent !important; */
+  background-color: #d0cfdf !important;
 }
 
 .navbar-content {
@@ -108,6 +108,7 @@ h6 {
 .navbar-content-left {
   display: flex;
   width: 50%;
+  padding-top: 0.5rem;
 }
 
 .navbar-content-right {
@@ -267,7 +268,7 @@ h6 {
   height: 60px;
   border-radius: 100%;
   display: block;
-  background: linear-gradient(45deg, red, #f06d06);
+  background: linear-gradient(45deg, #c2ccf1, #d0cfdf);
   transition: all 265ms ease-out;
 }
 .social-icons a:hover:before {
@@ -279,13 +280,13 @@ h6 {
   -ms-transform: scale(2.2);
   -webkit-transform: scale(2.2);
   color: #ff003c;
-  background: -webkit-linear-gradient(45deg, red, #f06d06);
+  background: -webkit-linear-gradient(45deg, #c2ccf1, #d0cfdf);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   transition: all 265ms ease-in;
 }
 .social-icons a.social-square:before {
-  background: linear-gradient(45deg, #c2ccf1, #d2ff4d);
+  background: linear-gradient(45deg, #c2ccf1, #d0cfdf);
   border-radius: 10%;
 }
 .social-icons a.social-square:hover:before {
