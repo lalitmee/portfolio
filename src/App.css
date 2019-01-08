@@ -23,11 +23,13 @@ img {
 html {
   height: 100%;
   overflow: auto; /* triggers 100% height in Opera 9.5 */
+  font-size: 62.5%;
 }
 body {
   height: 100%; /* helps make height 100% */
   background: #f7f7f7 !important;
   color: #333;
+  font-size: 1.4rem;
 }
 /* ------------------ Typography ------------------- */
 h1,
@@ -147,11 +149,26 @@ h6 {
   padding: 0;
 }
 
+.avatar-image {
+  display: flex;
+  margin: 0;
+  position: absolute;
+  top: 15%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+}
+
+.main-avatar {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 0 !important;
+}
+
 .name-head {
   display: flex;
   margin: 0;
   position: absolute;
-  top: 30%;
+  top: 35%;
   left: 51%;
   transform: translate(-50%, -50%);
   font-family: 'Raleway', sans-serif;
@@ -170,7 +187,7 @@ h6 {
 }
 
 .main-wrapper-first-head {
-  font-size: 5rem !important;
+  font-size: 8rem !important;
   color: white !important;
   letter-spacing: 0.05em !important;
   font-family: 'Raleway', sans-serif !important;
@@ -179,7 +196,7 @@ h6 {
 .main-wrapper-second-head {
   font-weight: 900 !important;
   color: #fff !important;
-  font-size: 5rem !important;
+  font-size: 8rem !important;
   letter-spacing: 0.1em !important;
   text-shadow: 0 0 #fff, 0.04em 0 0 #fff, 0 0, -0.03em 0 0 #fff;
 }
@@ -192,9 +209,93 @@ h6 {
   margin: 0;
   position: absolute;
   font-size: 45px;
-  top: 45%;
+  top: 50%;
   left: 51%;
   transform: translate(-50%, -50%);
+}
+
+/********************
+ * SOCIAL-ICONS CSS *
+ ********************/
+.social-icons-wrapper {
+  display: flex;
+  margin: 0;
+  position: absolute;
+  top: 75%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+}
+
+.social-icon {
+  margin: 0% 11% 0% 0%;
+  border-radius: 50%;
+  /* background-color: #fff; */
+}
+
+.social-icons {
+  padding: 0;
+  list-style: none;
+  margin: 1em;
+}
+.social-icons li {
+  display: inline-block;
+  margin: 0.15em;
+  position: relative;
+  font-size: 1.2em;
+}
+.social-icons i {
+  color: #fff;
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  transition: all 265ms ease-out;
+}
+.social-icons a {
+  display: inline-block;
+}
+.social-icons a:before {
+  transform: scale(1);
+  -ms-transform: scale(1);
+  -webkit-transform: scale(1);
+  content: ' ';
+  width: 60px;
+  height: 60px;
+  border-radius: 100%;
+  display: block;
+  background: linear-gradient(45deg, #ff003c, #c648c8);
+  transition: all 265ms ease-out;
+}
+.social-icons a:hover:before {
+  transform: scale(0);
+  transition: all 265ms ease-in;
+}
+.social-icons a:hover i {
+  transform: scale(2.2);
+  -ms-transform: scale(2.2);
+  -webkit-transform: scale(2.2);
+  color: #ff003c;
+  background: -webkit-linear-gradient(45deg, #ff003c, #c648c8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: all 265ms ease-in;
+}
+.social-icons a.social-square:before {
+  background: linear-gradient(45deg, #7b00e0, #ae31d9);
+  border-radius: 10%;
+}
+.social-icons a.social-square:hover:before {
+  transform: rotate(-180deg);
+  -ms-transform: rotate(-180deg);
+  -webkit-transform: scale(-180deg);
+  border-radius: 100%;
+}
+.social-icons a.social-square:hover i {
+  transform: scale(1.6);
+  -ms-transform: scale(1.6);
+  -webkit-transform: scale(1.6);
+  color: #fff;
+  transform: scale(1.6);
+  -webkit-text-fill-color: #fff;
 }
 
 /*********************************
