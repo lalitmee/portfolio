@@ -69,30 +69,6 @@ function HomePage() {
           <ul className="social-icons">
             <li>
               <a
-                href="https://www.facebook.com/iamlalitmee"
-                target="_blank"
-                className="social-square"
-                rel="noopener noreferrer"
-              >
-                <img
-                  src={facebook}
-                  alt="facebook-icon"
-                  className="social-icon"
-                />
-              </a>
-            </li>
-            <li>
-              <a
-                href="https://www.twitter.com/lalitmee/"
-                target="_blank"
-                className="social-square"
-                rel="noopener noreferrer"
-              >
-                <img src={twitter} alt="twitter-icon" className="social-icon" />
-              </a>
-            </li>
-            <li>
-              <a
                 href="https://www.linkedin.com/in/lalitmee/"
                 target="_blank"
                 className="social-square"
@@ -127,6 +103,30 @@ function HomePage() {
                   alt="stackeoverflow-icon"
                   className="social-icon"
                 />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.facebook.com/iamlalitmee"
+                target="_blank"
+                className="social-square"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src={facebook}
+                  alt="facebook-icon"
+                  className="social-icon"
+                />
+              </a>
+            </li>
+            <li>
+              <a
+                href="https://www.twitter.com/lalitmee/"
+                target="_blank"
+                className="social-square"
+                rel="noopener noreferrer"
+              >
+                <img src={twitter} alt="twitter-icon" className="social-icon" />
               </a>
             </li>
             <li>
