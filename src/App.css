@@ -108,8 +108,6 @@ h6 {
 
 .portfolio {
   height: 800px;
-  /* background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/coding-background.jpg'); */
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-repeat: no-repeat;
@@ -137,6 +135,14 @@ h6 {
   background-color: transparent !important;
 }
 
+.appbar-background-img {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('./assets/images/coding-background.jpg');
+  background-size: cover; /* or contain depending on what you want */
+  background-position: center center;
+  background-repeat: no-repeat;
+}
+
 .navbar-content {
   display: flex;
   width: 100%;
@@ -153,6 +159,20 @@ h6 {
   text-align: right;
 }
 
+.navbar-avatar {
+  margin: 1rem;
+  animation: 0.5s slidein;
+}
+
+@keyframes slidein {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
 .navbar-brand {
   font-size: 5rem;
   font-weight: 600;
@@ -161,8 +181,17 @@ h6 {
   font-family: 'Alex-Brush';
 }
 
+.navbar-brand-animate {
+  font-size: 5rem;
+  font-weight: 600;
+  margin: 0.3rem;
+  color: #a3a8e1;
+  font-family: 'Alex-Brush';
+  animation: 0.5s slidein;
+}
+
 .menu-button {
-  margin: 0.1rem;
+  margin: 1rem !important;
 }
 
 /****************
@@ -193,7 +222,7 @@ h6 {
   display: flex;
   margin: 0;
   position: absolute;
-  top: 15%;
+  top: 20%;
   left: 51%;
   transform: translate(-50%, -50%);
 }
@@ -208,7 +237,7 @@ h6 {
   display: flex;
   margin: 0;
   position: absolute;
-  top: 35%;
+  top: 37%;
   left: 51%;
   transform: translate(-50%, -50%);
   font-family: 'Raleway', sans-serif;
@@ -417,6 +446,6 @@ h6 {
   margin: 5px !important;
 }
 
-.right-drawer .MuiSvgIcon-colorPrimary-54 {
+.right-drawer .MuiIconButton-colorPrimary-49 {
   color: #a3a8e1 !important;
 }
