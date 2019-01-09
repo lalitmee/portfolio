@@ -1,3 +1,40 @@
+@font-face {
+  font-family: 'Alex-Brush';
+  src: url('./assets/fonts/AlexBrush-Regular.ttf');
+}
+@font-face {
+  font-family: 'Flanella';
+  src: url('./assets/fonts/Flanella.ttf');
+}
+@font-face {
+  font-family: 'Sonnambula';
+  src: url('./assets/fonts/la-sonnambula-demo-ffp.ttf');
+}
+@font-face {
+  font-family: 'Valley';
+  src: url('./assets/fonts/Lily\ of\ the\ Valley.ttf');
+}
+@font-face {
+  font-family: 'Noelan';
+  src: url('./assets/fonts/NOELAN_1.ttf');
+}
+@font-face {
+  font-family: 'Woodlands';
+  src: url('./assets/fonts/TheWoodlands-Regular.otf');
+}
+@font-face {
+  font-family: 'Variane';
+  src: url('./assets/fonts/Variane\ Script.ttf');
+}
+@font-face {
+  font-family: 'Vegan';
+  src: url('./assets/fonts/Vegan\ Style\ Personal\ Use.ttf');
+}
+@font-face {
+  font-family: 'Youth';
+  src: url('./assets/fonts/Youth-Touch-PERSONAL\ USE\ ONLY.ttf');
+}
+
 /* -------------------- Resets --------------------- */
 body,
 form,
@@ -97,7 +134,7 @@ h6 {
 }
 
 .appbar {
-  background-color: #d0cfdf !important;
+  background-color: transparent !important;
 }
 
 .navbar-content {
@@ -117,9 +154,11 @@ h6 {
 }
 
 .navbar-brand {
-  font-size: 30px;
+  font-size: 5rem;
   font-weight: 600;
   margin: 0.3rem;
+  color: #a3a8e1;
+  font-family: 'Alex-Brush';
 }
 
 .menu-button {
@@ -131,11 +170,10 @@ h6 {
  ****************/
 .main-wrapper {
   position: relative;
-  padding: 0 0.9rem 0 0.9rem;
 }
 
 .main-wrapper-paper {
-  height: 700px;
+  height: 850px;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
     0px 4px 5px 0px rgba(0, 0, 0, 0.14), 0px 1px 10px 0px rgba(0, 0, 0, 0.12);
   color: #fff !important;
@@ -147,6 +185,7 @@ h6 {
   background-repeat: no-repeat;
   text-align: center;
   margin: auto;
+  border-radius: 0 !important;
   padding: 0;
 }
 
@@ -376,4 +415,8 @@ h6 {
  *********************************/
 .MuiTypography-root-79 {
   margin: 5px !important;
+}
+
+.right-drawer .MuiSvgIcon-colorPrimary-54 {
+  color: #a3a8e1 !important;
 }
