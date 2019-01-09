@@ -2,7 +2,6 @@ import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import CircularProgressbar from 'react-circular-progressbar';
@@ -14,37 +13,6 @@ import html from '../../assets/images/skills/html.png';
 import javascript from '../../assets/images/skills/javascript.png';
 import jquery from '../../assets/images/skills/jquery.png';
 import react from '../../assets/images/skills/react.png';
-
-const styles = theme => ({
-  root: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
-  },
-  card: {
-    display: 'flex'
-  },
-  details: {
-    display: 'flex',
-    flexDirection: 'column'
-  },
-  content: {
-    flex: '1 0 auto'
-  },
-  cover: {
-    width: 151
-  },
-  controls: {
-    display: 'flex',
-    alignItems: 'center',
-    paddingLeft: theme.spacing.unit,
-    paddingBottom: theme.spacing.unit
-  },
-  playIcon: {
-    height: 38,
-    width: 38
-  }
-});
 
 class Skills extends React.Component {
   constructor(props) {
@@ -71,7 +39,6 @@ class Skills extends React.Component {
   }
 
   render() {
-    const { classes, theme } = this.props;
     return (
       <div className="skills-wrapper">
         <Paper className="skills-wrapper-paper" elevation={1}>
@@ -275,4 +242,4 @@ class Skills extends React.Component {
   }
 }
 
-export default withStyles(styles)(Skills);
+export default Skills;
