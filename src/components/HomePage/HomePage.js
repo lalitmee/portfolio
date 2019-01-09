@@ -6,6 +6,7 @@ import React from 'react';
 import Typist from 'react-typist';
 import TypistLoop from 'react-typist-loop';
 import 'react-typist/dist/Typist.css';
+import NavBar from '../NavBar/NavBar';
 import facebook from './../../assets/images/facebook-circle.png';
 import github from './../../assets/images/github.png';
 import instagram from './../../assets/images/instagram-circle.png';
@@ -25,6 +26,7 @@ function HomePage() {
   return (
     <div className="main-wrapper">
       <Paper className="main-wrapper-paper" elevation={1}>
+        <NavBar />
         <div className="avatar-image">
           <Avatar
             alt="Lalit Kumar"
