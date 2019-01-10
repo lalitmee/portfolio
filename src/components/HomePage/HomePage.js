@@ -172,7 +172,7 @@ class HomePage extends React.Component {
             <OnScroll
               triggers={[
                 {
-                  top: -550,
+                  top: -580,
                   callback: visible => this.socialIconsHandle(visible)
                 }
               ]}

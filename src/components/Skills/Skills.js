@@ -1,19 +1,23 @@
+import fontawesome from '@fortawesome/fontawesome';
+import {
+  faAngular,
+  faCss3,
+  faHtml5,
+  faJsSquare,
+  faReact
+} from '@fortawesome/fontawesome-free-brands';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import CircularProgressbar from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
 import 'react-typist/dist/Typist.css';
-import angular from '../../assets/images/skills/angular.png';
-import css from '../../assets/images/skills/css.png';
-import html from '../../assets/images/skills/html.png';
-import javascript from '../../assets/images/skills/javascript.png';
 import jquery from '../../assets/images/skills/jquery.png';
-import react from '../../assets/images/skills/react.png';
 
+fontawesome.library.add(faAngular, faHtml5, faCss3, faJsSquare, faReact);
 class Skills extends React.Component {
   constructor(props) {
     super(props);
@@ -45,13 +49,25 @@ class Skills extends React.Component {
           <Grid container spacing={24}>
             <Grid className="grid-item" item xs={4}>
               <Card className="card">
-                <img className="card-image" src={angular} alt="Angular" />
+                <FontAwesomeIcon
+                  className="card-image"
+                  style={{
+                    color: '#c3002f'
+                  }}
+                  icon={['fab', 'angular']}
+                />
+                {/* <img className="card-image" src={angular} alt="Angular" /> */}
                 <div className="card-details">
                   <CardContent className="card-content">
                     <Typography component="div" variant="h3">
                       Angular
                     </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    {/* <Typography
+                      className="progress-bar"
+                      style={{ margin: '0 auto !important' }}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       <CircularProgressbar
                         percentage={this.state.angular}
                         text={`${this.state.angular}%`}
@@ -70,20 +86,32 @@ class Skills extends React.Component {
                           trail: { stroke: 'transparent' }
                         }}
                       />
-                    </Typography>
+                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
             </Grid>
             <Grid className="grid-item" item xs={4}>
               <Card className="card">
-                <img className="card-image" src={javascript} alt="JavaScript" />
+                <FontAwesomeIcon
+                  className="card-image"
+                  style={{
+                    color: '#f0db4f'
+                  }}
+                  icon={['fab', 'js-square']}
+                />
+                {/* <img className="card-image" src={javascript} alt="JavaScript" /> */}
                 <div className="card-details">
                   <CardContent className="card-content">
                     <Typography component="div" variant="h3">
                       JavaScript
                     </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    {/* <Typography
+                      className="progress-bar"
+                      style={{ margin: '0 auto !important' }}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       <CircularProgressbar
                         percentage={this.state.javascript}
                         text={`${this.state.javascript}%`}
@@ -102,20 +130,32 @@ class Skills extends React.Component {
                           trail: { stroke: 'transparent' }
                         }}
                       />
-                    </Typography>
+                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
             </Grid>
             <Grid className="grid-item" item xs={4}>
               <Card className="card">
-                <img className="card-image" src={react} alt="React" />
+                <FontAwesomeIcon
+                  className="card-image"
+                  style={{
+                    color: '#61dafb'
+                  }}
+                  icon={['fab', 'react']}
+                />
+                {/* <img className="card-image" src={react} alt="React" /> */}
                 <div className="card-details">
                   <CardContent className="card-content">
                     <Typography component="div" variant="h3">
                       React
                     </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    {/* <Typography
+                      className="progress-bar"
+                      style={{ margin: '0 auto !important' }}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       <CircularProgressbar
                         percentage={this.state.react}
                         text={`${this.state.react}%`}
@@ -134,20 +174,32 @@ class Skills extends React.Component {
                           trail: { stroke: 'transparent' }
                         }}
                       />
-                    </Typography>
+                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
             </Grid>
             <Grid className="grid-item" item xs={4}>
               <Card className="card">
-                <img className="card-image" src={html} alt="HTML" />
+                <FontAwesomeIcon
+                  className="card-image"
+                  style={{
+                    color: '#e44d26'
+                  }}
+                  icon={['fab', 'html5']}
+                />
+                {/* <img className="card-image" src={html} alt="HTML" /> */}
                 <div className="card-details">
                   <CardContent className="card-content">
                     <Typography component="div" variant="h3">
                       HTML
                     </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    {/* <Typography
+                      className="progress-bar"
+                      style={{ margin: '0 auto !important' }}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       <CircularProgressbar
                         percentage={this.state.html}
                         text={`${this.state.html}%`}
@@ -166,20 +218,32 @@ class Skills extends React.Component {
                           trail: { stroke: 'transparent' }
                         }}
                       />
-                    </Typography>
+                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
             </Grid>
             <Grid className="grid-item" item xs={4}>
               <Card className="card">
-                <img className="card-image" src={css} alt="CSS" />
+                <FontAwesomeIcon
+                  className="card-image"
+                  style={{
+                    color: '#379ad6'
+                  }}
+                  icon={['fab', 'css3']}
+                />
+                {/* <img className="card-image" src={css} alt="CSS" /> */}
                 <div className="card-details">
                   <CardContent className="card-content">
                     <Typography component="div" variant="h3">
                       CSS
                     </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    {/* <Typography
+                      className="progress-bar"
+                      style={{ margin: '0 auto !important' }}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       <CircularProgressbar
                         percentage={this.state.css}
                         text={`${this.state.css}%`}
@@ -198,20 +262,36 @@ class Skills extends React.Component {
                           trail: { stroke: 'transparent' }
                         }}
                       />
-                    </Typography>
+                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
             </Grid>
             <Grid className="grid-item" item xs={4}>
               <Card className="card">
-                <img className="card-image" src={jquery} alt="jQuery" />
+                {/* <FontAwesomeIcon
+                  className="card-image"
+                  style={{
+                    color: '#0077B5'
+                  }}
+                  icon={['fab', 'angular']}
+                /> */}
+                <img
+                  className="card-image jquery-img"
+                  src={jquery}
+                  alt="jQuery"
+                />
                 <div className="card-details">
                   <CardContent className="card-content">
                     <Typography component="div" variant="h3">
                       jQuery
                     </Typography>
-                    <Typography variant="subtitle1" color="textSecondary">
+                    {/* <Typography
+                      className="progress-bar"
+                      style={{ margin: '0 auto !important' }}
+                      variant="subtitle1"
+                      color="textSecondary"
+                    >
                       <CircularProgressbar
                         percentage={this.state.jquery}
                         text={`${this.state.jquery}%`}
@@ -230,7 +310,7 @@ class Skills extends React.Component {
                           trail: { stroke: 'transparent' }
                         }}
                       />
-                    </Typography>
+                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
