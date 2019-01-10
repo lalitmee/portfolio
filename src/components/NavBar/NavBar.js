@@ -7,6 +7,7 @@ import {
   faStackOverflow,
   faTwitter
 } from '@fortawesome/fontawesome-free-brands';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
 import { createMuiTheme } from '@material-ui/core/styles';
@@ -39,7 +40,7 @@ class NavBar extends React.Component {
   }
 
   render() {
-    const { avatar, fullName, wrapperDiv, typed } = this.props;
+    const { avatar, fullName, wrapperDiv, typed, social } = this.props;
     return (
       <div className="navbar">
         <AppBar
@@ -54,20 +55,25 @@ class NavBar extends React.Component {
                   <Avatar
                     alt="Lalit Kumar"
                     src="https://avatars1.githubusercontent.com/u/10762218?s=460&v=4"
-                    className="navbar-avatar"
+                    className="navbar-avatar-in"
                   />
                 ) : (
-                  ''
+                  <Avatar
+                    alt="Lalit Kumar"
+                    src="https://avatars1.githubusercontent.com/u/10762218?s=460&v=4"
+                    className="navbar-avatar-out"
+                  />
                 )}
-                {!fullName ? (
-                  <div
-                    className={avatar ? 'navbar-brand' : 'navbar-brand-animate'}
+                <div className="navbar-brand">
+                  Lalit
+                  <span
+                    className={
+                      !fullName ? 'navbar-brand-in' : 'navbar-brand-out'
+                    }
                   >
-                    Lalit Kumar
-                  </div>
-                ) : (
-                  <div className="navbar-brand">Lalit</div>
-                )}
+                    Kumar
+                  </span>
+                </div>
               </div>
               <div className="typed">
                 {!typed ? (
@@ -91,40 +97,209 @@ class NavBar extends React.Component {
                 )}
               </div>
               <div className="navbar-content-right">
-                {/* <div className="social-icons">
-                  <ul className="social-icons">
-                    <li>
-                      <a href="#">
-                        <FontAwesomeIcon icon={['fab', 'facebook']} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <FontAwesomeIcon icon={['fab', 'twitter']} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <FontAwesomeIcon icon={['fab', 'linkedin-in']} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <FontAwesomeIcon icon={['fab', 'github']} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <FontAwesomeIcon icon={['fab', 'stack-overflow']} />
-                      </a>
-                    </li>
-                    <li>
-                      <a href="#">
-                        <FontAwesomeIcon icon={['fab', 'instagram']} />
-                      </a>
-                    </li>
-                  </ul>
-                </div> */}
+                {!social ? (
+                  <div className="social-icons-nav-in">
+                    <ul className="social-icons">
+                      <li>
+                        <a
+                          href="https://www.linkedin.com/in/lalitmee/"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#0077B5'
+                            }}
+                            icon={['fab', 'linkedin-in']}
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.github.com/lalitmee/"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#24292e'
+                            }}
+                            icon={['fab', 'github']}
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://stackoverflow.com/users/4515657/lalit-kumar?tab=profile"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#F48024'
+                            }}
+                            icon={['fab', 'stack-overflow']}
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.facebook.com/iamlalitmee"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#4267b2'
+                            }}
+                            icon={['fab', 'facebook']}
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.twitter.com/lalitmee/"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#1da1f2'
+                            }}
+                            icon={['fab', 'twitter']}
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.instagram.com/lalitmee/"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#cb2c8a'
+                            }}
+                            icon={['fab', 'instagram']}
+                          />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                ) : (
+                  <div className="social-icons-nav-out">
+                    <ul className="social-icons">
+                      <li>
+                        <a
+                          href="https://www.linkedin.com/in/lalitmee/"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#0077B5'
+                            }}
+                            icon={['fab', 'linkedin-in']}
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.github.com/lalitmee/"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#24292e'
+                            }}
+                            icon={['fab', 'github']}
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://stackoverflow.com/users/4515657/lalit-kumar?tab=profile"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#F48024'
+                            }}
+                            icon={['fab', 'stack-overflow']}
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.facebook.com/iamlalitmee"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#4267b2'
+                            }}
+                            icon={['fab', 'facebook']}
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.twitter.com/lalitmee/"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#1da1f2'
+                            }}
+                            icon={['fab', 'twitter']}
+                          />
+                        </a>
+                      </li>
+                      <li>
+                        <a
+                          href="https://www.instagram.com/lalitmee/"
+                          target="_blank"
+                          className="social-square"
+                          rel="noopener noreferrer"
+                        >
+                          <FontAwesomeIcon
+                            className="social-nav-icon"
+                            style={{
+                              color: '#cb2c8a'
+                            }}
+                            icon={['fab', 'instagram']}
+                          />
+                        </a>
+                      </li>
+                    </ul>
+                  </div>
+                )}
                 <RightDrawer />
               </div>
             </div>
@@ -138,7 +313,9 @@ class NavBar extends React.Component {
 NavBar.propTypes = {
   avatar: PropTypes.bool.isRequired,
   fullName: PropTypes.bool.isRequired,
-  wrapperDiv: PropTypes.bool.isRequired
+  wrapperDiv: PropTypes.bool.isRequired,
+  typed: PropTypes.bool.isRequired,
+  social: PropTypes.bool.isRequired
 };
 
 export default NavBar;
