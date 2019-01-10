@@ -1,3 +1,13 @@
+import fontawesome from '@fortawesome/fontawesome';
+import {
+  faFacebook,
+  faGithub,
+  faInstagram,
+  faLinkedinIn,
+  faStackOverflow,
+  faTwitter
+} from '@fortawesome/fontawesome-free-brands';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
 import { withStyles } from '@material-ui/core/styles';
@@ -8,12 +18,15 @@ import Typist from 'react-typist';
 import TypistLoop from 'react-typist-loop';
 import 'react-typist/dist/Typist.css';
 import NavBar from '../NavBar/NavBar';
-import facebook from './../../assets/images/facebook-circle.png';
-import github from './../../assets/images/github.png';
-import instagram from './../../assets/images/instagram-circle.png';
-import linkedIn from './../../assets/images/linkedin-circle.png';
-import stackoverflow from './../../assets/images/stackoverflow-circle.png';
-import twitter from './../../assets/images/twitter-circle.png';
+
+fontawesome.library.add(
+  faFacebook,
+  faLinkedinIn,
+  faStackOverflow,
+  faTwitter,
+  faGithub,
+  faInstagram
+);
 
 const styles = theme => ({
   root: {
@@ -27,14 +40,17 @@ class HomePage extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      count: 0,
       avatarDiv: false,
       nameDiv: false,
-      mainWrapperDiv: false
+      mainWrapperDiv: false,
+      typedTextDiv: false,
+      socialIconsDiv: false
     };
   }
 
   avatarHandle = avatarDiv => {
-    this.setState({ avatarDiv });
+    this.setState({ avatarDiv, count: this.state.count + 1 });
   };
 
   nameHandle = nameDiv => {
@@ -45,8 +61,22 @@ class HomePage extends React.Component {
     this.setState({ mainWrapperDiv });
   };
 
+  typedTextHandle = typedTextDiv => {
+    this.setState({ typedTextDiv });
+  };
+
+  socialIconsHandle = socialIconsDiv => {
+    this.setState({ socialIconsDiv });
+  };
   render() {
-    const { nameDiv, avatarDiv, mainWrapperDiv } = this.state;
+    const {
+      nameDiv,
+      avatarDiv,
+      mainWrapperDiv,
+      typedTextDiv,
+      socialIconsDiv,
+      count
+    } = this.state;
     return (
       <div className="main-wrapper">
         <OnScroll
@@ -63,6 +93,9 @@ class HomePage extends React.Component {
               fullName={nameDiv}
               avatar={avatarDiv}
               wrapperDiv={mainWrapperDiv}
+              typed={typedTextDiv}
+              social={socialIconsDiv}
+              count={count}
             />
             <div className="avatar-image">
               <OnScroll
@@ -91,7 +124,7 @@ class HomePage extends React.Component {
                 }
               ]}
             >
-              <div className="name-head ">
+              <div className="name-head">
                 <Typography
                   className="main-wrapper-first-head"
                   variant="h1"
@@ -108,111 +141,143 @@ class HomePage extends React.Component {
                 </Typography>
               </div>
             </OnScroll>
-            <div className="typed-text">
-              <TypistLoop interval={500}>
-                {[
-                  'Software Developer',
-                  'Front End Developer',
-                  'Open Source Enthusiast',
-                  'Footballer',
-                  'Music Lover'
-                ].map(text => (
-                  <Typist key={text} startDelay={100}>
-                    {text}
-                    <Typist.Delay ms={500} />
-                    <Typist.Backspace count={text.length} />
-                  </Typist>
-                ))}
-              </TypistLoop>
-            </div>
-            <div className="social-icons-wrapper">
-              <ul className="social-icons">
-                <li>
-                  <a
-                    href="https://www.linkedin.com/in/lalitmee/"
-                    target="_blank"
-                    className="social-square"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={linkedIn}
-                      alt="linkedin-icon"
-                      className="social-icon"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.github.com/lalitmee/"
-                    target="_blank"
-                    className="social-square"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={github}
-                      alt="facebook-icon"
-                      className="social-icon"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://stackoverflow.com/users/4515657/lalit-kumar?tab=profile"
-                    target="_blank"
-                    className="social-square"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={stackoverflow}
-                      alt="stackeoverflow-icon"
-                      className="social-icon"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.facebook.com/iamlalitmee"
-                    target="_blank"
-                    className="social-square"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={facebook}
-                      alt="facebook-icon"
-                      className="social-icon"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.twitter.com/lalitmee/"
-                    target="_blank"
-                    className="social-square"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={twitter}
-                      alt="twitter-icon"
-                      className="social-icon"
-                    />
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href="https://www.instagram.com/lalitmee/"
-                    target="_blank"
-                    className="social-square"
-                    rel="noopener noreferrer"
-                  >
-                    <img
-                      src={instagram}
-                      alt="instagram-icon"
-                      className="social-icon"
-                    />
-                  </a>
-                </li>
-              </ul>
-            </div>
+
+            <OnScroll
+              triggers={[
+                {
+                  top: -780,
+                  callback: visible => this.typedTextHandle(visible)
+                }
+              ]}
+            >
+              <div className="typed-text">
+                <TypistLoop interval={500}>
+                  {[
+                    'Software Developer',
+                    'Front End Developer',
+                    'Open Source Enthusiast',
+                    'Footballer',
+                    'Music Lover'
+                  ].map(text => (
+                    <Typist key={text} startDelay={100}>
+                      {text}
+                      <Typist.Delay ms={500} />
+                      <Typist.Backspace count={text.length} />
+                    </Typist>
+                  ))}
+                </TypistLoop>
+              </div>
+            </OnScroll>
+
+            <OnScroll
+              triggers={[
+                {
+                  top: -550,
+                  callback: visible => this.socialIconsHandle(visible)
+                }
+              ]}
+            >
+              <div className="social-icons-wrapper">
+                <ul className="social-icons">
+                  <li>
+                    <a
+                      href="https://www.linkedin.com/in/lalitmee/"
+                      target="_blank"
+                      className="social-square"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon
+                        className="social-nav-icon"
+                        style={{
+                          color: '#0077B5'
+                        }}
+                        icon={['fab', 'linkedin-in']}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.github.com/lalitmee/"
+                      target="_blank"
+                      className="social-square"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon
+                        className="social-nav-icon"
+                        style={{
+                          color: '#24292e'
+                        }}
+                        icon={['fab', 'github']}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://stackoverflow.com/users/4515657/lalit-kumar?tab=profile"
+                      target="_blank"
+                      className="social-square"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon
+                        className="social-nav-icon"
+                        style={{
+                          color: '#F48024'
+                        }}
+                        icon={['fab', 'stack-overflow']}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.facebook.com/iamlalitmee"
+                      target="_blank"
+                      className="social-square"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon
+                        className="social-nav-icon"
+                        style={{
+                          color: '#4267b2'
+                        }}
+                        icon={['fab', 'facebook']}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.twitter.com/lalitmee/"
+                      target="_blank"
+                      className="social-square"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon
+                        className="social-nav-icon"
+                        style={{
+                          color: '#1da1f2'
+                        }}
+                        icon={['fab', 'twitter']}
+                      />
+                    </a>
+                  </li>
+                  <li>
+                    <a
+                      href="https://www.instagram.com/lalitmee/"
+                      target="_blank"
+                      className="social-square"
+                      rel="noopener noreferrer"
+                    >
+                      <FontAwesomeIcon
+                        className="social-nav-icon"
+                        style={{
+                          color: '#cb2c8a'
+                        }}
+                        icon={['fab', 'instagram']}
+                      />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </OnScroll>
             <div className="quote-wrapper">
               <Typography className="quote-text" variant="h5" component="div">
                 Don't comment bad code - rewrite it.
