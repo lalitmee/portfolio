@@ -54,19 +54,19 @@ class HomePage extends React.Component {
   };
 
   nameHandle = nameDiv => {
-    this.setState({ nameDiv });
+    this.setState({ nameDiv, count: this.state.count + 1 });
   };
 
   mainWrapperHandle = mainWrapperDiv => {
-    this.setState({ mainWrapperDiv });
+    this.setState({ mainWrapperDiv, count: this.state.count + 1 });
   };
 
   typedTextHandle = typedTextDiv => {
-    this.setState({ typedTextDiv });
+    this.setState({ typedTextDiv, count: this.state.count + 1 });
   };
 
   socialIconsHandle = socialIconsDiv => {
-    this.setState({ socialIconsDiv });
+    this.setState({ socialIconsDiv, count: this.state.count + 1 });
   };
   render() {
     const {
