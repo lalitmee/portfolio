@@ -304,6 +304,7 @@ h6 {
   font-size: 8rem !important;
   letter-spacing: 0.1em !important;
   text-shadow: 0 0 #fff, 0.04em 0 0 #fff, 0 0, -0.03em 0 0 #fff;
+  margin-left: 1rem !important;
 }
 
 /******************
@@ -527,6 +528,16 @@ h6 {
 
 .skills-wrapper-paper .card .card-details {
   width: 100%;
+}
+
+.skills-head {
+  font-size: 7rem !important;
+  font-family: 'Raleway', sans-serif !important;
+  letter-spacing: 0.1em !important;
+  font-weight: 600 !important;
+  text-transform: capitalize;
+  color: #6168b7 !important;
+  margin: 2rem !important;
 }
 
 /*********************************

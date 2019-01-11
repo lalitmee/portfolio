@@ -46,6 +46,9 @@ class Skills extends React.Component {
     return (
       <div className="skills-wrapper">
         <Paper className="skills-wrapper-paper" elevation={1}>
+          <Typography className="skills-head" variant="h3" component="div">
+            I am good at
+          </Typography>
           <Grid container spacing={24}>
             <Grid className="grid-item" item xs={4}>
               <Card className="card">
@@ -62,31 +65,6 @@ class Skills extends React.Component {
                     <Typography component="div" variant="h3">
                       Angular
                     </Typography>
-                    {/* <Typography
-                      className="progress-bar"
-                      style={{ margin: '0 auto !important' }}
-                      variant="subtitle1"
-                      color="textSecondary"
-                    >
-                      <CircularProgressbar
-                        percentage={this.state.angular}
-                        text={`${this.state.angular}%`}
-                        background
-                        backgroundPadding={6}
-                        styles={{
-                          background: {
-                            fill: '#323330'
-                          },
-                          text: {
-                            fill: '#b52e31'
-                          },
-                          path: {
-                            stroke: '#b52e31'
-                          },
-                          trail: { stroke: 'transparent' }
-                        }}
-                      />
-                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
@@ -106,31 +84,6 @@ class Skills extends React.Component {
                     <Typography component="div" variant="h3">
                       JavaScript
                     </Typography>
-                    {/* <Typography
-                      className="progress-bar"
-                      style={{ margin: '0 auto !important' }}
-                      variant="subtitle1"
-                      color="textSecondary"
-                    >
-                      <CircularProgressbar
-                        percentage={this.state.javascript}
-                        text={`${this.state.javascript}%`}
-                        background
-                        backgroundPadding={6}
-                        styles={{
-                          background: {
-                            fill: '#323330'
-                          },
-                          text: {
-                            fill: '#f0db4f'
-                          },
-                          path: {
-                            stroke: '#f0db4f'
-                          },
-                          trail: { stroke: 'transparent' }
-                        }}
-                      />
-                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
@@ -150,31 +103,6 @@ class Skills extends React.Component {
                     <Typography component="div" variant="h3">
                       React
                     </Typography>
-                    {/* <Typography
-                      className="progress-bar"
-                      style={{ margin: '0 auto !important' }}
-                      variant="subtitle1"
-                      color="textSecondary"
-                    >
-                      <CircularProgressbar
-                        percentage={this.state.react}
-                        text={`${this.state.react}%`}
-                        background
-                        backgroundPadding={6}
-                        styles={{
-                          background: {
-                            fill: '#323330'
-                          },
-                          text: {
-                            fill: '#00d8ff'
-                          },
-                          path: {
-                            stroke: '#00d8ff'
-                          },
-                          trail: { stroke: 'transparent' }
-                        }}
-                      />
-                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
@@ -194,31 +122,6 @@ class Skills extends React.Component {
                     <Typography component="div" variant="h3">
                       HTML
                     </Typography>
-                    {/* <Typography
-                      className="progress-bar"
-                      style={{ margin: '0 auto !important' }}
-                      variant="subtitle1"
-                      color="textSecondary"
-                    >
-                      <CircularProgressbar
-                        percentage={this.state.html}
-                        text={`${this.state.html}%`}
-                        background
-                        backgroundPadding={6}
-                        styles={{
-                          background: {
-                            fill: '#323330'
-                          },
-                          text: {
-                            fill: '#e44d26'
-                          },
-                          path: {
-                            stroke: '#e44d26'
-                          },
-                          trail: { stroke: 'transparent' }
-                        }}
-                      />
-                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
@@ -238,31 +141,6 @@ class Skills extends React.Component {
                     <Typography component="div" variant="h3">
                       CSS
                     </Typography>
-                    {/* <Typography
-                      className="progress-bar"
-                      style={{ margin: '0 auto !important' }}
-                      variant="subtitle1"
-                      color="textSecondary"
-                    >
-                      <CircularProgressbar
-                        percentage={this.state.css}
-                        text={`${this.state.css}%`}
-                        background
-                        backgroundPadding={6}
-                        styles={{
-                          background: {
-                            fill: '#323330'
-                          },
-                          text: {
-                            fill: '#379ad6'
-                          },
-                          path: {
-                            stroke: '#379ad6'
-                          },
-                          trail: { stroke: 'transparent' }
-                        }}
-                      />
-                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
@@ -286,31 +164,6 @@ class Skills extends React.Component {
                     <Typography component="div" variant="h3">
                       jQuery
                     </Typography>
-                    {/* <Typography
-                      className="progress-bar"
-                      style={{ margin: '0 auto !important' }}
-                      variant="subtitle1"
-                      color="textSecondary"
-                    >
-                      <CircularProgressbar
-                        percentage={this.state.jquery}
-                        text={`${this.state.jquery}%`}
-                        background
-                        backgroundPadding={6}
-                        styles={{
-                          background: {
-                            fill: '#323330'
-                          },
-                          text: {
-                            fill: '#58c0a7'
-                          },
-                          path: {
-                            stroke: '#58c0a7'
-                          },
-                          trail: { stroke: 'transparent' }
-                        }}
-                      />
-                    </Typography> */}
                   </CardContent>
                 </div>
               </Card>
