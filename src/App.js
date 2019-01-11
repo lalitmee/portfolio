@@ -13,9 +13,9 @@ export default class App extends React.Component {
     return (
       <div className="portfolio">
         <HomePage />
-        <Skills />
-        {/* <div className="container">
-        </div> */}
+        <div className="container">
+          <Skills />
+        </div>
       </div>
     );
   }

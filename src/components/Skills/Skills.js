@@ -6,7 +6,6 @@ import {
   faJsSquare,
   faReact
 } from '@fortawesome/fontawesome-free-brands';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
@@ -15,7 +14,10 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import 'react-circular-progressbar/dist/styles.css';
 import 'react-typist/dist/Typist.css';
-import jquery from '../../assets/images/skills/jquery.png';
+import webDesign from '../../assets/images/skills/web-design.svg';
+import teamWork from '../../assets/images/skills/team-work.svg';
+import problemSolving from '../../assets/images/skills/problem-solving.svg';
+import analytics from '../../assets/images/skills/research.svg';
 
 fontawesome.library.add(faAngular, faHtml5, faCss3, faJsSquare, faReact);
 class Skills extends React.Component {
@@ -50,119 +52,53 @@ class Skills extends React.Component {
             I am good at
           </Typography>
           <Grid container spacing={24}>
-            <Grid className="grid-item" item xs={4}>
+            <Grid className="grid-item" item xs={6}>
               <Card className="card">
-                <FontAwesomeIcon
-                  className="card-image"
-                  style={{
-                    color: '#c3002f'
-                  }}
-                  icon={['fab', 'angular']}
-                />
-                {/* <img className="card-image" src={angular} alt="Angular" /> */}
+                <img className="card-image" src={webDesign} alt="web-design" />
                 <div className="card-details">
                   <CardContent className="card-content">
                     <Typography component="div" variant="h3">
-                      Angular
+                      Web Designing
                     </Typography>
                   </CardContent>
                 </div>
               </Card>
             </Grid>
-            <Grid className="grid-item" item xs={4}>
+            <Grid className="grid-item" item xs={6}>
               <Card className="card">
-                <FontAwesomeIcon
-                  className="card-image"
-                  style={{
-                    color: '#f0db4f'
-                  }}
-                  icon={['fab', 'js-square']}
-                />
-                {/* <img className="card-image" src={javascript} alt="JavaScript" /> */}
+                <img className="card-image" src={analytics} alt="web-design" />
                 <div className="card-details">
                   <CardContent className="card-content">
                     <Typography component="div" variant="h3">
-                      JavaScript
+                      Research & Analytics
                     </Typography>
                   </CardContent>
                 </div>
               </Card>
             </Grid>
-            <Grid className="grid-item" item xs={4}>
+            <Grid className="grid-item" item xs={6}>
               <Card className="card">
-                <FontAwesomeIcon
-                  className="card-image"
-                  style={{
-                    color: '#61dafb'
-                  }}
-                  icon={['fab', 'react']}
-                />
-                {/* <img className="card-image" src={react} alt="React" /> */}
-                <div className="card-details">
-                  <CardContent className="card-content">
-                    <Typography component="div" variant="h3">
-                      React
-                    </Typography>
-                  </CardContent>
-                </div>
-              </Card>
-            </Grid>
-            <Grid className="grid-item" item xs={4}>
-              <Card className="card">
-                <FontAwesomeIcon
-                  className="card-image"
-                  style={{
-                    color: '#e44d26'
-                  }}
-                  icon={['fab', 'html5']}
-                />
-                {/* <img className="card-image" src={html} alt="HTML" /> */}
-                <div className="card-details">
-                  <CardContent className="card-content">
-                    <Typography component="div" variant="h3">
-                      HTML
-                    </Typography>
-                  </CardContent>
-                </div>
-              </Card>
-            </Grid>
-            <Grid className="grid-item" item xs={4}>
-              <Card className="card">
-                <FontAwesomeIcon
-                  className="card-image"
-                  style={{
-                    color: '#379ad6'
-                  }}
-                  icon={['fab', 'css3']}
-                />
-                {/* <img className="card-image" src={css} alt="CSS" /> */}
-                <div className="card-details">
-                  <CardContent className="card-content">
-                    <Typography component="div" variant="h3">
-                      CSS
-                    </Typography>
-                  </CardContent>
-                </div>
-              </Card>
-            </Grid>
-            <Grid className="grid-item" item xs={4}>
-              <Card className="card">
-                {/* <FontAwesomeIcon
-                  className="card-image"
-                  style={{
-                    color: '#0077B5'
-                  }}
-                  icon={['fab', 'angular']}
-                /> */}
                 <img
-                  className="card-image jquery-img"
-                  src={jquery}
-                  alt="jQuery"
+                  className="card-image"
+                  src={problemSolving}
+                  alt="web-design"
                 />
                 <div className="card-details">
                   <CardContent className="card-content">
                     <Typography component="div" variant="h3">
-                      jQuery
+                      Problem Solving
+                    </Typography>
+                  </CardContent>
+                </div>
+              </Card>
+            </Grid>
+            <Grid className="grid-item" item xs={6}>
+              <Card className="card">
+                <img className="card-image" src={teamWork} alt="web-design" />
+                <div className="card-details">
+                  <CardContent className="card-content">
+                    <Typography component="div" variant="h3">
+                      Team Work
                     </Typography>
                   </CardContent>
                 </div>
