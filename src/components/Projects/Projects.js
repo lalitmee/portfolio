@@ -1,41 +1,58 @@
-import fontawesome from '@fortawesome/fontawesome';
-import {
-  faAngular,
-  faCss3,
-  faHtml5,
-  faJsSquare,
-  faReact
-} from '@fortawesome/fontawesome-free-brands';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import 'react-circular-progressbar/dist/styles.css';
 import 'react-typist/dist/Typist.css';
-import webDesign from '../../assets/images/skills/web-design.svg';
-import teamWork from '../../assets/images/skills/team-work.svg';
-import problemSolving from '../../assets/images/skills/problem-solving.svg';
-import analytics from '../../assets/images/skills/research.svg';
-import document from '../../assets/images/skills/document.svg';
-import communication from '../../assets/images/skills/meeting.svg';
 
-fontawesome.library.add(faAngular, faHtml5, faCss3, faJsSquare, faReact);
 class Projects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      angular: 0,
-      react: 0,
-      html: 0,
-      css: 0,
-      jquery: 0,
-      javascript: 0
+      cardActive: false
     };
   }
 
-  componentDidMount() {}
+  handleCardActiveEvent = e => {
+    const card = e.target.parentElement;
+    const icon = card.querySelectorAll('i');
+    if (icon) {
+      icon.forEach((item, i) => {
+        if (
+          item.classList.contains('fa-bars') ||
+          item.classList.contains('fa-arrow-left')
+        ) {
+          icon[i].classList.add('fa-spin-fast');
+        }
+      });
+    }
+    if (card.classList.contains('mc-active')) {
+      card.classList.remove('mc-active');
+      window.setTimeout(() => {
+        if (icon) {
+          icon.forEach((item, i) => {
+            if (item.classList.contains('fa-arrow-left')) {
+              icon[i].classList.remove('fa-arrow-left');
+              icon[i].classList.remove('fa-spin-fast');
+              icon[i].classList.add('fa-bars');
+            }
+          });
+        }
+      }, 400);
+    } else {
+      card.classList.add('mc-active');
+      window.setTimeout(() => {
+        if (icon) {
+          icon.forEach((item, i) => {
+            if (item.classList.contains('fa-bars')) {
+              icon[i].classList.add('fa-arrow-left');
+              icon[i].classList.remove('fa-spin-fast');
+              icon[i].classList.remove('fa-bars');
+            }
+          });
+        }
+      }, 400);
+    }
+  };
 
   render() {
     return (
@@ -44,106 +61,268 @@ class Projects extends React.Component {
           <Typography className="skills-head" variant="h3" component="div">
             Projects
           </Typography>
-          <Grid
-            className="skills-grid"
-            container
-            justify="center"
-            alignItems="center"
-            spacing={24}
-          >
-            <Grid className="grid-item" item xs={4}>
-              <Card className="card">
-                <img className="card-image" src={webDesign} alt="web-design" />
-                <CardContent className="card-content">
-                  <Typography
-                    className="card-content-text"
-                    component="div"
-                    variant="h3"
+          <div className="skills-grid">
+            <Grid
+              className="skills-grid"
+              container
+              justify="center"
+              alignItems="center"
+              spacing={24}
+            >
+              <Grid item xs={4}>
+                <div className="material-card Red">
+                  <h2>
+                    <span>Christopher Walken</span>
+                    <strong>
+                      <i className="fa fa-fw fa-star" />
+                      The Deer Hunter
+                    </strong>
+                  </h2>
+                  <div className="mc-content">
+                    <div className="img-container">
+                      <img
+                        alt="card-img"
+                        className="img-responsive"
+                        src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg"
+                      />
+                    </div>
+                    <div className="mc-description">
+                      He has appeared in more than 100 films and television
+                      shows, including The Deer Hunter, Annie Hall, The Prophecy
+                      trilogy, The Dogs of War ...
+                    </div>
+                  </div>
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={e => {
+                      this.handleCardActiveEvent(e);
+                    }}
+                    className="mc-btn-action"
                   >
-                    Web Designing
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid className="grid-item" item xs={4}>
-              <Card className="card">
-                <img className="card-image" src={analytics} alt="web-design" />
-                <CardContent className="card-content">
-                  <Typography
-                    className="card-content-text"
-                    component="div"
-                    variant="h3"
+                    <i className="fa fa-bars" />
+                  </div>
+                  <div className="mc-footer">
+                    <h4>Social</h4>
+                    <a className="fa fa-fw fa-facebook" />
+                    <a className="fa fa-fw fa-twitter" />
+                    <a className="fa fa-fw fa-linkedin" />
+                    <a className="fa fa-fw fa-google-plus" />
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <div className="material-card Red">
+                  <h2>
+                    <span>Christopher Walken</span>
+                    <strong>
+                      <i className="fa fa-fw fa-star" />
+                      The Deer Hunter
+                    </strong>
+                  </h2>
+                  <div className="mc-content">
+                    <div className="img-container">
+                      <img
+                        alt="card-img"
+                        className="img-responsive"
+                        src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg"
+                      />
+                    </div>
+                    <div className="mc-description">
+                      He has appeared in more than 100 films and television
+                      shows, including The Deer Hunter, Annie Hall, The Prophecy
+                      trilogy, The Dogs of War ...
+                    </div>
+                  </div>
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={e => {
+                      this.handleCardActiveEvent(e);
+                    }}
+                    className="mc-btn-action"
                   >
-                    Research & Analysis
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid className="grid-item" item xs={4}>
-              <Card className="card">
-                <img
-                  className="card-image"
-                  src={problemSolving}
-                  alt="web-design"
-                />
-                <CardContent className="card-content">
-                  <Typography
-                    className="card-content-text"
-                    component="div"
-                    variant="h3"
+                    <i className="fa fa-bars" />
+                  </div>
+                  <div className="mc-footer">
+                    <h4>Social</h4>
+                    <a className="fa fa-fw fa-facebook" />
+                    <a className="fa fa-fw fa-twitter" />
+                    <a className="fa fa-fw fa-linkedin" />
+                    <a className="fa fa-fw fa-google-plus" />
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <div className="material-card Red">
+                  <h2>
+                    <span>Christopher Walken</span>
+                    <strong>
+                      <i className="fa fa-fw fa-star" />
+                      The Deer Hunter
+                    </strong>
+                  </h2>
+                  <div className="mc-content">
+                    <div className="img-container">
+                      <img
+                        alt="card-img"
+                        className="img-responsive"
+                        src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg"
+                      />
+                    </div>
+                    <div className="mc-description">
+                      He has appeared in more than 100 films and television
+                      shows, including The Deer Hunter, Annie Hall, The Prophecy
+                      trilogy, The Dogs of War ...
+                    </div>
+                  </div>
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={e => {
+                      this.handleCardActiveEvent(e);
+                    }}
+                    className="mc-btn-action"
                   >
-                    Problem Solving
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid className="grid-item" item xs={4}>
-              <Card className="card">
-                <img className="card-image" src={document} alt="web-design" />
-                <CardContent className="card-content">
-                  <Typography
-                    className="card-content-text"
-                    component="div"
-                    variant="h3"
+                    <i className="fa fa-bars" />
+                  </div>
+                  <div className="mc-footer">
+                    <h4>Social</h4>
+                    <a className="fa fa-fw fa-facebook" />
+                    <a className="fa fa-fw fa-twitter" />
+                    <a className="fa fa-fw fa-linkedin" />
+                    <a className="fa fa-fw fa-google-plus" />
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <div className="material-card Red">
+                  <h2>
+                    <span>Christopher Walken</span>
+                    <strong>
+                      <i className="fa fa-fw fa-star" />
+                      The Deer Hunter
+                    </strong>
+                  </h2>
+                  <div className="mc-content">
+                    <div className="img-container">
+                      <img
+                        alt="card-img"
+                        className="img-responsive"
+                        src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg"
+                      />
+                    </div>
+                    <div className="mc-description">
+                      He has appeared in more than 100 films and television
+                      shows, including The Deer Hunter, Annie Hall, The Prophecy
+                      trilogy, The Dogs of War ...
+                    </div>
+                  </div>
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={e => {
+                      this.handleCardActiveEvent(e);
+                    }}
+                    className="mc-btn-action"
                   >
-                    Documentation
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid className="grid-item" item xs={4}>
-              <Card className="card">
-                <img className="card-image" src={teamWork} alt="web-design" />
-                <CardContent className="card-content">
-                  <Typography
-                    className="card-content-text"
-                    component="div"
-                    variant="h3"
+                    <i className="fa fa-bars" />
+                  </div>
+                  <div className="mc-footer">
+                    <h4>Social</h4>
+                    <a className="fa fa-fw fa-facebook" />
+                    <a className="fa fa-fw fa-twitter" />
+                    <a className="fa fa-fw fa-linkedin" />
+                    <a className="fa fa-fw fa-google-plus" />
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <div className="material-card Red">
+                  <h2>
+                    <span>Christopher Walken</span>
+                    <strong>
+                      <i className="fa fa-fw fa-star" />
+                      The Deer Hunter
+                    </strong>
+                  </h2>
+                  <div className="mc-content">
+                    <div className="img-container">
+                      <img
+                        alt="card-img"
+                        className="img-responsive"
+                        src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg"
+                      />
+                    </div>
+                    <div className="mc-description">
+                      He has appeared in more than 100 films and television
+                      shows, including The Deer Hunter, Annie Hall, The Prophecy
+                      trilogy, The Dogs of War ...
+                    </div>
+                  </div>
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={e => {
+                      this.handleCardActiveEvent(e);
+                    }}
+                    className="mc-btn-action"
                   >
-                    Team Work
-                  </Typography>
-                </CardContent>
-              </Card>
-            </Grid>
-            <Grid className="grid-item" item xs={4}>
-              <Card className="card">
-                <img
-                  className="card-image"
-                  src={communication}
-                  alt="web-design"
-                />
-                <CardContent className="card-content">
-                  <Typography
-                    className="card-content-text"
-                    component="div"
-                    variant="h3"
+                    <i className="fa fa-bars" />
+                  </div>
+                  <div className="mc-footer">
+                    <h4>Social</h4>
+                    <a className="fa fa-fw fa-facebook" />
+                    <a className="fa fa-fw fa-twitter" />
+                    <a className="fa fa-fw fa-linkedin" />
+                    <a className="fa fa-fw fa-google-plus" />
+                  </div>
+                </div>
+              </Grid>
+              <Grid item xs={4}>
+                <div className="material-card Red">
+                  <h2>
+                    <span>Christopher Walken</span>
+                    <strong>
+                      <i className="fa fa-fw fa-star" />
+                      The Deer Hunter
+                    </strong>
+                  </h2>
+                  <div className="mc-content">
+                    <div className="img-container">
+                      <img
+                        alt="card-img"
+                        className="img-responsive"
+                        src="http://u.lorenzoferrara.net/marlenesco/material-card/thumb-christopher-walken.jpg"
+                      />
+                    </div>
+                    <div className="mc-description">
+                      He has appeared in more than 100 films and television
+                      shows, including The Deer Hunter, Annie Hall, The Prophecy
+                      trilogy, The Dogs of War ...
+                    </div>
+                  </div>
+                  <div
+                    role="button"
+                    tabIndex={0}
+                    onClick={e => {
+                      this.handleCardActiveEvent(e);
+                    }}
+                    className="mc-btn-action"
                   >
-                    Communication
-                  </Typography>
-                </CardContent>
-              </Card>
+                    <i className="fa fa-bars" />
+                  </div>
+                  <div className="mc-footer">
+                    <h4>Social</h4>
+                    <a className="fa fa-fw fa-facebook" />
+                    <a className="fa fa-fw fa-twitter" />
+                    <a className="fa fa-fw fa-linkedin" />
+                    <a className="fa fa-fw fa-google-plus" />
+                  </div>
+                </div>
+              </Grid>
             </Grid>
-          </Grid>
+          </div>
         </Paper>
       </div>
     );
