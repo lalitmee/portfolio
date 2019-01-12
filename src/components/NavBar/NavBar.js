@@ -78,28 +78,6 @@ class NavBar extends React.Component {
                     </span>
                   </div>
                 </div>
-                {/* NOTE it doesn't look good and anyways it stops when we scroll */}
-                {/* <div className="typed">
-                    {!typed ? (
-                    <TypistLoop interval={500}>
-                    {[
-                    'Software Developer',
-                    'Front End Developer',
-                    'Open Source Enthusiast',
-                    'Footballer',
-                    'Music Lover'
-                    ].map(text => (
-                    <Typist key={text} startDelay={100}>
-                    {text}
-                    <Typist.Delay ms={500} />
-                    <Typist.Backspace count={text.length} />
-                    </Typist>
-                    ))}
-                    </TypistLoop>
-                    ) : (
-                    ''
-                    )}
-                    </div> */}
                 <div className="navbar-content-right">
                   {!social ? (
                     <div className="social-icons-nav-in">

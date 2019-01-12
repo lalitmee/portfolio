@@ -63,6 +63,7 @@ class RightDrawer extends React.Component {
     return (
       <div className="right-drawer">
         <IconButton
+          style={{ color: '#1abc9ce6 !important' }}
           aria-label="Menu"
           size="small"
           color="primary"
