@@ -424,19 +424,24 @@ h6 {
   margin-top: 0.3rem;
   margin-bottom: 0;
   margin-right: 6rem;
-  opacity: 1;
-  animation: 0.5s slidein;
-  transition: all 0.35s ease;
+  position: absolute;
+  top: 0rem;
+  right: 10rem;
+  -webkit-transition: top 0.35s ease-in-out;
+  -moz-transition: top 0.35s ease-in-out;
+  transition: top 0.35s ease-in-out;
 }
 
 .social-icons-nav-out .social-icons {
   margin-top: 0.3rem;
   margin-bottom: 0;
   margin-right: 6rem;
-  opacity: 0;
-  display: none;
-  animation: 0.5s slideout;
-  transition: all 0.35s ease;
+  position: absolute;
+  top: -6rem;
+  right: 10rem;
+  -webkit-transition: top 0.35s ease-in-out;
+  -moz-transition: top 0.35s ease-in-out;
+  transition: top 0.35s ease-in-out;
 }
 
 .social-nav-icon {
