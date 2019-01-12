@@ -22,7 +22,7 @@ import document from '../../assets/images/skills/document.svg';
 import communication from '../../assets/images/skills/meeting.svg';
 
 fontawesome.library.add(faAngular, faHtml5, faCss3, faJsSquare, faReact);
-class Skills extends React.Component {
+class Projects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -39,10 +39,10 @@ class Skills extends React.Component {
 
   render() {
     return (
-      <div className="skills-wrapper" id="skills">
+      <div className="skills-wrapper" id="projects">
         <Paper className="skills-wrapper-paper" elevation={1}>
           <Typography className="skills-head" variant="h3" component="div">
-            I am good at
+            Projects
           </Typography>
           <Grid
             className="skills-grid"
@@ -150,4 +150,4 @@ class Skills extends React.Component {
   }
 }
 
-export default Skills;
+export default Projects;

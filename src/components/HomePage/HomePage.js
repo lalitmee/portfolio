@@ -78,7 +78,7 @@ class HomePage extends React.Component {
       count
     } = this.state;
     return (
-      <div className="main-wrapper">
+      <div className="main-wrapper" id="home">
         <OnScroll
           className="main-wrapper-paper"
           triggers={[

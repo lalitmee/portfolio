@@ -1,94 +1,116 @@
-import Divider from '@material-ui/core/Divider';
-import Drawer from '@material-ui/core/Drawer';
-import IconButton from '@material-ui/core/IconButton';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import { withStyles } from '@material-ui/core/styles';
-import MailIcon from '@material-ui/icons/Mail';
-import MenuIcon from '@material-ui/icons/Menu';
-import InboxIcon from '@material-ui/icons/MoveToInbox';
 import React from 'react';
-
-const styles = {
-  list: {
-    width: 250
-  },
-  fullList: {
-    width: 'auto'
-  }
-};
+import { Events, Link } from 'react-scroll';
 
 class RightDrawer extends React.Component {
-  state = {
-    right: false
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
+
+  componentDidMount() {
+    Events.scrollEvent.register('begin', () => {
+      /* console.log('begin', arguments); */
+    });
+
+    Events.scrollEvent.register('end', () => {
+      /* console.log('end', arguments); */
+    });
+  }
+
+  componentWillUnmount() {
+    Events.scrollEvent.remove('begin');
+    Events.scrollEvent.remove('end');
+  }
+
+  toggleNavClass = () => () => {
+    const button = document.getElementById('toggle');
+    const overlay = document.getElementById('overlay');
+    button.classList.toggle('active');
+    overlay.classList.toggle('open');
   };
 
-  toggleDrawer = (side, open) => () => {
-    this.setState({
-      [side]: open
-    });
+  navClick = () => {
+    const button = document.getElementById('toggle');
+    const overlay = document.getElementById('overlay');
+    button.classList.toggle('active');
+    overlay.classList.toggle('open');
   };
 
   render() {
-    const { classes } = this.props;
-
-    const sideList = (
-      <div className={classes.list}>
-        <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-      </div>
-    );
-
     return (
-      <div className="right-drawer">
-        <IconButton
-          style={{ color: '#1abc9ce6 !important' }}
-          aria-label="Menu"
-          size="small"
-          color="primary"
-          className="menu-button"
-          onClick={this.toggleDrawer('right', true)}
+      <div className="nav">
+        <div
+          role="button"
+          tabIndex={0}
+          className="button_container"
+          onClick={this.toggleNavClass()}
+          id="toggle"
         >
-          <MenuIcon color="primary" />
-        </IconButton>
-        <Drawer
-          anchor="right"
-          open={this.state.right}
-          onClose={this.toggleDrawer('right', false)}
-        >
-          <div
-            tabIndex={0}
-            role="button"
-            onClick={this.toggleDrawer('right', false)}
-            onKeyDown={this.toggleDrawer('right', false)}
-          >
-            {sideList}
-          </div>
-        </Drawer>
+          <span className="top" />
+          <span className="middle" />
+          <span className="bottom" />
+        </div>
+        <div className="overlay" id="overlay">
+          <nav className="overlay-menu">
+            <ul>
+              <li>
+                <Link
+                  onClick={() => {
+                    this.navClick();
+                  }}
+                  to="home"
+                  smooth
+                  duration={800}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Home
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => {
+                    this.navClick();
+                  }}
+                  to="skills"
+                  smooth
+                  duration={800}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Skills
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => {
+                    this.navClick();
+                  }}
+                  to="projects"
+                  smooth
+                  duration={800}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Projects
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => {
+                    this.navClick();
+                  }}
+                  to="contact"
+                  smooth
+                  duration={800}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Contact
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </div>
       </div>
     );
   }
 }
 
-export default withStyles(styles)(RightDrawer);
+export default RightDrawer;
