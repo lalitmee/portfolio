@@ -127,7 +127,7 @@ class Contact extends React.Component {
                     </Typography>
                   </div>
                   <div className="location-text">
-                    main 1st, 1st Cross Rd, Mico Layout, BTM Layout, Bangalore
+                    Mico Layout, BTM Layout, Bangalore, India
                   </div>
                 </div>
                 <div className="email-row ">
