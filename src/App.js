@@ -1,9 +1,11 @@
 import React from 'react';
 import { Element } from 'react-scroll';
 import './App.css';
+import Contact from './components/Contact/Contact';
+import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
-import Skills from './components/Skills/Skills';
 import Projects from './components/Projects/Projects';
+import Skills from './components/Skills/Skills';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -14,17 +16,21 @@ export default class App extends React.Component {
   render() {
     return (
       <div className="portfolio">
-        <Element name="home" className="element">
+        <Element name="home" className="homepage">
           <HomePage />
         </Element>
-        <Element name="skills" className="element">
+        <Element name="skills" className="skills">
           <Skills />
         </Element>
-        <Element name="projects" className="element">
+        <Element name="projects" className="projects">
           <Projects />
         </Element>
-        {/* <div className="container">
-        </div> */}
+        <Element name="contact" className="contact">
+          <Contact />
+        </Element>
+        <Element name="footer" className="footer">
+          <Footer />
+        </Element>
       </div>
     );
   }

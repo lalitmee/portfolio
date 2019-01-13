@@ -60,7 +60,7 @@ class RightDrawer extends React.Component {
                   }}
                   to="home"
                   smooth
-                  duration={800}
+                  duration={1200}
                   style={{ cursor: 'pointer' }}
                 >
                   Home
@@ -73,7 +73,7 @@ class RightDrawer extends React.Component {
                   }}
                   to="skills"
                   smooth
-                  duration={800}
+                  duration={1200}
                   style={{ cursor: 'pointer' }}
                 >
                   Skills
@@ -86,7 +86,7 @@ class RightDrawer extends React.Component {
                   }}
                   to="projects"
                   smooth
-                  duration={800}
+                  duration={1200}
                   style={{ cursor: 'pointer' }}
                 >
                   Projects
@@ -99,7 +99,7 @@ class RightDrawer extends React.Component {
                   }}
                   to="contact"
                   smooth
-                  duration={800}
+                  duration={1200}
                   style={{ cursor: 'pointer' }}
                 >
                   Contact

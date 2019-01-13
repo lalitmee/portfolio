@@ -56,14 +56,14 @@ class Projects extends React.Component {
 
   render() {
     return (
-      <div className="skills-wrapper" id="projects">
-        <Paper className="skills-wrapper-paper" elevation={1}>
-          <Typography className="skills-head" variant="h3" component="div">
+      <div className="projects-wrapper" id="projects">
+        <Paper className="projects-wrapper-paper" elevation={1}>
+          <Typography className="projects-head" variant="h3" component="div">
             Projects
           </Typography>
-          <div className="skills-grid">
+          <div className="projects-grid">
             <Grid
-              className="skills-grid"
+              className="projects-grid"
               container
               justify="center"
               alignItems="center"
