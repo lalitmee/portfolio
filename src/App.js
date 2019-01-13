@@ -1,9 +1,10 @@
 import React from 'react';
 import { Element } from 'react-scroll';
 import './App.css';
+import Contact from './components/Contact/Contact';
 import HomePage from './components/HomePage/HomePage';
-import Skills from './components/Skills/Skills';
 import Projects from './components/Projects/Projects';
+import Skills from './components/Skills/Skills';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -22,6 +23,9 @@ export default class App extends React.Component {
         </Element>
         <Element name="projects" className="element">
           <Projects />
+        </Element>
+        <Element name="contact" className="element">
+          <Contact />
         </Element>
         {/* <div className="container">
         </div> */}

@@ -712,41 +712,62 @@ h6 {
 
 .skills-head {
   font-size: 7rem !important;
-  font-family: 'Pacifico', sans-serif !important;
+  font-family: 'Open Sans', sans-serif !important;
   letter-spacing: 0.1em !important;
   font-weight: 500 !important;
   color: rgba(26, 188, 156, 0.9) !important;
   width: 50%;
   margin: 2rem auto !important;
-  text-transform: capitalize;
-  text-decoration: underline;
+  text-transform: uppercase;
+  /* text-decoration: underline; */
   color: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
-/* .skills-head:before { */
-/*   content: ''; */
-/*   position: absolute; */
-/*   width: 30%; */
-/*   height: 5px; */
-/*   bottom: 38rem; */
-/*   left: 60rem; */
-/*   background: rgba(26, 188, 156, 0.9) !important; */
-/*   visibility: hidden; */
-/*   border-radius: 5px; */
-/*   transform: scaleX(0); */
-/*   transition: 0.25s linear; */
-/* } */
-
-/* .skills-head:hover:before, */
-/* .skills-head:focus:before { */
-/*   visibility: visible; */
-/*   transform: scaleX(1); */
-/* } */
-
 /************************
  * PROJECTS SECTION CSS *
  ************************/
+.projects-wrapper {
+  position: relative;
+  padding: 8rem 1.9rem 0rem 0.9rem;
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), */
+  /*   url('./assets/images/skills-back.jpg'); */
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  margin-top: 1rem;
+}
+
+.projects-wrapper-paper {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.projects-grid {
+  margin: 1rem 1rem;
+}
+
+.projects-wrapper-paper .grid-item {
+  padding: 0 !important;
+}
+
+.projects-head {
+  font-size: 7rem !important;
+  font-family: 'Open Sans', sans-serif !important;
+  letter-spacing: 0.1em !important;
+  font-weight: 500 !important;
+  color: rgba(26, 188, 156, 0.9) !important;
+  width: 50%;
+  margin: 2rem auto !important;
+  text-transform: uppercase;
+  /* text-decoration: underline; */
+  color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
 .fa-spin-fast {
   -webkit-animation: fa-spin-fast 0.2s infinite linear;
   animation: fa-spin-fast 0.2s infinite linear;
@@ -1088,6 +1109,143 @@ div.mc-btn-action > i {
 }
 .material-card.Red.mc-active .mc-btn-action {
   border-color: #ffebee;
+}
+
+/***********************
+ * CONTACT SECTION CSS *
+ ***********************/
+
+.contacts-wrapper {
+  position: relative;
+  padding: 8rem 1.9rem 0rem 0.9rem;
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), */
+  /*   url('./assets/images/skills-back.jpg'); */
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  margin-top: 1rem;
+}
+
+.contacts-wrapper-paper {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  width: 70%;
+  margin: 0 auto;
+}
+
+.contacts-grid {
+  margin-top: 5rem;
+  align-items: normal !important;
+}
+
+.contacts-wrapper-paper .grid-item {
+  padding: 0 !important;
+}
+
+.contacts-head {
+  font-size: 7rem !important;
+  font-family: 'Open Sans', sans-serif !important;
+  letter-spacing: 0.1em !important;
+  font-weight: 500 !important;
+  color: rgba(26, 188, 156, 0.9) !important;
+  width: 50%;
+  margin: 2rem auto !important;
+  text-transform: uppercase;
+  /* text-decoration: underline; */
+  color: rgba(0, 0, 0, 0.4);
+  z-index: 1;
+}
+
+.contact-icon {
+  margin: 2% !important;
+  transition: all ease 0.4s;
+}
+
+.contact-icon:hover {
+  background-color: #e6f8ed !important;
+  transition: all ease 0.4s;
+}
+
+.contact-icons {
+  font-size: 2rem !important;
+  color: white;
+  transition: all ease 0.4s;
+}
+
+.contact-icon:hover .linkedin {
+  color: #0077b5 !important;
+  transition: all ease 0.4s;
+}
+.contact-icon:hover .facebook {
+  color: #4267b2 !important;
+  transition: all ease 0.4s;
+}
+.contact-icon:hover .github {
+  color: #24292e !important;
+  transition: all ease 0.4s;
+}
+.contact-icon:hover .twitter {
+  color: #1da1f2 !important;
+  transition: all ease 0.4s;
+}
+
+.contact-row {
+  text-align: left;
+  margin: 5%;
+}
+
+.location-head {
+  display: flex;
+}
+
+.location-icon {
+  font-size: 3rem;
+  margin: 1%;
+  color: #30c3a6;
+}
+
+.location {
+  margin: 1% !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.location-text {
+  margin: 2% !important;
+  font-size: 2rem;
+  color: #30c3a6;
+}
+.email-row {
+  text-align: left;
+  margin: 5%;
+}
+
+.email-head {
+  display: flex;
+}
+
+.email-icon {
+  font-size: 3rem;
+  margin: 1%;
+  color: #30c3a6;
+}
+
+.email {
+  margin: 1% !important;
+  font-family: 'Raleway', sans-serif !important;
+  font-weight: 500 !important;
+}
+
+.email-text {
+  margin: 2% !important;
+  font-size: 2rem;
+  color: #30c3a6;
+}
+
+.email-text a {
+  color: #30c3a6;
+  text-decoration: none;
 }
 
 /*********************************
