@@ -2,14 +2,13 @@ import fontawesome from '@fortawesome/fontawesome';
 import {
   faFacebook,
   faGithub,
-  faInstagram,
   faLinkedinIn,
-  faStackOverflow,
   faTwitter
 } from '@fortawesome/fontawesome-free-brands';
 import {
   faEnvelope,
-  faMapMarkerAlt
+  faMapMarkerAlt,
+  faMobileAlt
 } from '@fortawesome/fontawesome-free-solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Fab from '@material-ui/core/Fab';
@@ -23,12 +22,11 @@ import Map from '../Map/Map';
 fontawesome.library.add(
   faFacebook,
   faLinkedinIn,
-  faStackOverflow,
   faTwitter,
   faGithub,
-  faInstagram,
   faMapMarkerAlt,
-  faEnvelope
+  faEnvelope,
+  faMobileAlt
 );
 
 class Contact extends React.Component {
@@ -111,6 +109,22 @@ class Contact extends React.Component {
                     />
                   </Fab>
                 </div>
+                <div className="contact-row ">
+                  <div className="location-head">
+                    <FontAwesomeIcon
+                      className="location-icon"
+                      icon={['fas', 'mobile-alt']}
+                    />
+                    <Typography
+                      className="location"
+                      variant="h3"
+                      component="div"
+                    >
+                      Phone
+                    </Typography>
+                  </div>
+                  <li className="location-text">(+91) 9712618438</li>
+                </div>
 
                 <div className="contact-row ">
                   <div className="location-head">
@@ -126,11 +140,11 @@ class Contact extends React.Component {
                       Location
                     </Typography>
                   </div>
-                  <div className="location-text">
+                  <li className="location-text">
                     Mico Layout, BTM Layout, Bangalore, India
-                  </div>
+                  </li>
                 </div>
-                <div className="email-row ">
+                <div className="contact-row ">
                   <div className="email-head">
                     <FontAwesomeIcon
                       className="email-icon"
@@ -140,11 +154,11 @@ class Contact extends React.Component {
                       Email
                     </Typography>
                   </div>
-                  <div className="email-text">
+                  <li className="email-text">
                     <a href="mailto:lalitkumar.meena.lk@gmail.com">
                       lalitkumar.meena.lk@gmail.com
                     </a>
-                  </div>
+                  </li>
                 </div>
               </Grid>
               <Grid item xs={6}>

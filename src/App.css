@@ -712,13 +712,13 @@ h6 {
 
 .skills-head {
   font-size: 7rem !important;
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: 'Raleway', sans-serif !important;
   letter-spacing: 0.1em !important;
   font-weight: 500 !important;
   color: rgba(26, 188, 156, 0.9) !important;
   width: 50%;
   margin: 2rem auto !important;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   /* text-decoration: underline; */
   color: rgba(0, 0, 0, 0.4);
   z-index: 1;
@@ -729,8 +729,7 @@ h6 {
  ************************/
 .projects-wrapper {
   position: relative;
-  padding: 8rem 1.9rem 0rem 0.9rem;
-  margin-top: 1rem;
+  padding: 8rem 1.9rem 8rem 0.9rem;
   background: white;
 }
 
@@ -742,7 +741,7 @@ h6 {
 }
 
 .projects-grid {
-  margin: 1rem 1rem;
+  margin-top: 5rem;
 }
 
 .projects-wrapper-paper .grid-item {
@@ -751,13 +750,13 @@ h6 {
 
 .projects-head {
   font-size: 7rem !important;
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: 'Raleway', sans-serif !important;
   letter-spacing: 0.1em !important;
   font-weight: 500 !important;
   color: rgba(26, 188, 156, 0.9) !important;
   width: 50%;
   margin: 2rem auto !important;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   /* text-decoration: underline; */
   color: rgba(0, 0, 0, 0.4);
   z-index: 1;
@@ -1113,7 +1112,6 @@ div.mc-btn-action > i {
 .contacts-wrapper {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
-  margin-top: 1rem;
   background: #e3f7ec;
 }
 
@@ -1126,7 +1124,6 @@ div.mc-btn-action > i {
 
 .contacts-grid {
   margin-top: 5rem;
-  align-items: normal !important;
 }
 
 .contacts-wrapper-paper .grid-item {
@@ -1135,13 +1132,13 @@ div.mc-btn-action > i {
 
 .contacts-head {
   font-size: 7rem !important;
-  font-family: 'Open Sans', sans-serif !important;
+  font-family: 'Raleway', sans-serif !important;
   letter-spacing: 0.1em !important;
   font-weight: 500 !important;
   color: rgba(26, 188, 156, 0.9) !important;
   width: 50%;
   margin: 2rem auto !important;
-  text-transform: uppercase;
+  /* text-transform: uppercase; */
   /* text-decoration: underline; */
   color: rgba(0, 0, 0, 0.4);
   z-index: 1;
@@ -1182,7 +1179,7 @@ div.mc-btn-action > i {
 
 .contact-row {
   text-align: left;
-  margin: 5%;
+  margin: 3%;
 }
 
 .location-head {
