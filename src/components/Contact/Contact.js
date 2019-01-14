@@ -1,15 +1,6 @@
 import fontawesome from '@fortawesome/fontawesome';
-import {
-  faFacebook,
-  faGithub,
-  faLinkedinIn,
-  faTwitter
-} from '@fortawesome/fontawesome-free-brands';
-import {
-  faEnvelope,
-  faMapMarkerAlt,
-  faMobileAlt
-} from '@fortawesome/fontawesome-free-solid';
+import { faFacebook, faGithub, faLinkedinIn, faTwitter } from '@fortawesome/fontawesome-free-brands';
+import { faEnvelope, faMapMarkerAlt, faMobileAlt } from '@fortawesome/fontawesome-free-solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
@@ -126,7 +117,7 @@ class Contact extends React.Component {
                   <li className="location-text">(+91) 9712618438</li>
                 </div>
 
-                <div className="contact-row ">
+                {/* <div className="contact-row ">
                   <div className="location-head">
                     <FontAwesomeIcon
                       className="location-icon"
@@ -143,7 +134,7 @@ class Contact extends React.Component {
                   <li className="location-text">
                     Mico Layout, BTM Layout, Bangalore, India
                   </li>
-                </div>
+                </div> */}
                 <div className="contact-row ">
                   <div className="email-head">
                     <FontAwesomeIcon
