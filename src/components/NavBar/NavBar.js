@@ -14,8 +14,6 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import PropTypes from 'prop-types';
 import React from 'react';
-import Typist from 'react-typist';
-import TypistLoop from 'react-typist-loop';
 import RightDrawer from './RightDrawer';
 
 fontawesome.library.add(
@@ -40,7 +38,7 @@ class NavBar extends React.Component {
   }
 
   render() {
-    const { avatar, fullName, wrapperDiv, typed, social, count } = this.props;
+    const { avatar, fullName, wrapperDiv, social, count } = this.props;
     return (
       <div className="navbar">
         <AppBar
