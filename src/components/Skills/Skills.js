@@ -27,14 +27,7 @@ fontawesome.library.add(
 class Skills extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      angular: 0,
-      react: 0,
-      html: 0,
-      css: 0,
-      jquery: 0,
-      javascript: 0
-    };
+    this.state = {};
   }
 
   componentDidMount() {}
