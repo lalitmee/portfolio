@@ -1,6 +1,15 @@
 import fontawesome from '@fortawesome/fontawesome';
-import { faFacebook, faGithub, faLinkedinIn, faTwitter } from '@fortawesome/fontawesome-free-brands';
-import { faEnvelope, faMapMarkerAlt, faMobileAlt } from '@fortawesome/fontawesome-free-solid';
+import {
+  faFacebook,
+  faGithub,
+  faLinkedinIn,
+  faTwitter
+} from '@fortawesome/fontawesome-free-brands';
+import {
+  faEnvelope,
+  faMapMarkerAlt,
+  faMobileAlt
+} from '@fortawesome/fontawesome-free-solid';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Fab from '@material-ui/core/Fab';
 import Grid from '@material-ui/core/Grid';
@@ -33,6 +42,7 @@ class Contact extends React.Component {
           <Typography className="contacts-head" variant="h3" component="div">
             Contact
           </Typography>
+          <hr className="horizontal-rule" />
           <div className="contacts-grid">
             <Grid
               className="contacts-grid"
@@ -101,40 +111,18 @@ class Contact extends React.Component {
                   </Fab>
                 </div>
                 <div className="contact-row ">
-                  <div className="location-head">
+                  <div className="phone-head">
                     <FontAwesomeIcon
-                      className="location-icon"
+                      className="phone-icon"
                       icon={['fas', 'mobile-alt']}
                     />
-                    <Typography
-                      className="location"
-                      variant="h3"
-                      component="div"
-                    >
+                    <Typography className="phone" variant="h3" component="div">
                       Phone
                     </Typography>
                   </div>
-                  <li className="location-text">(+91) 9712618438</li>
+                  <li className="phone-text">(+91) 9712618438</li>
                 </div>
 
-                {/* <div className="contact-row ">
-                  <div className="location-head">
-                    <FontAwesomeIcon
-                      className="location-icon"
-                      icon={['fas', 'map-marker-alt']}
-                    />
-                    <Typography
-                      className="location"
-                      variant="h3"
-                      component="div"
-                    >
-                      Location
-                    </Typography>
-                  </div>
-                  <li className="location-text">
-                    Mico Layout, BTM Layout, Bangalore, India
-                  </li>
-                </div> */}
                 <div className="contact-row ">
                   <div className="email-head">
                     <FontAwesomeIcon

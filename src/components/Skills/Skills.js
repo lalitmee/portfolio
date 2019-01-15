@@ -46,6 +46,7 @@ class Skills extends React.Component {
           <Typography className="skills-head" variant="h3" component="div">
             Skills
           </Typography>
+          <hr className="horizontal-rule" />
           <Grid
             className="skills-grid"
             container

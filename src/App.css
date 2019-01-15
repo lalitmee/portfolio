@@ -116,6 +116,17 @@ h6 {
   text-align: center;
 }
 
+.horizontal-rule {
+  border: 0;
+  height: 1px;
+  background-image: linear-gradient(
+    to right,
+    rgba(0, 0, 0, 0),
+    #30c3a6,
+    rgba(0, 0, 0, 0)
+  );
+}
+
 /**********************
  * MAIN CONTAINER CSS *
  **********************/
@@ -704,7 +715,7 @@ h6 {
   font-weight: 600 !important;
   line-height: 1.04 !important;
   font-size: 3.5rem !important;
-  color: rgba(155, 173, 169, 0.9) !important;
+  color: #7e7e7e !important;
   transition: color 0.4s;
 }
 
@@ -713,7 +724,7 @@ h6 {
   line-height: 1.5 !important;
   font-size: 2rem !important;
   margin: 2rem 1rem 1rem 1rem !important;
-  color: #abbbb8 !important;
+  color: #7a8482 !important;
   transition: color 0.4s;
 }
 
@@ -1194,26 +1205,26 @@ div.mc-btn-action > i {
   margin: 3%;
 }
 
-.location-head {
+.phone-head {
   display: flex;
 }
 
-.location-icon {
+.phone-icon {
   font-size: 3rem;
   margin: 1%;
   color: #30c3a6;
 }
 
-.location {
+.phone {
   margin: 1% !important;
   font-family: 'Raleway', sans-serif !important;
   font-weight: 500 !important;
 }
 
-.location-text {
+.phone-text {
   margin: 2% !important;
   font-size: 2rem;
-  color: #30c3a6;
+  color: #6b7b78;
 }
 .email-row {
   text-align: left;
@@ -1239,12 +1250,19 @@ div.mc-btn-action > i {
 .email-text {
   margin: 2% !important;
   font-size: 2rem;
-  color: #30c3a6;
+  color: #6b7b78;
 }
 
 .email-text a {
+  color: #6b7b78;
+  text-decoration: none;
+  transition: all ease 0.3s;
+}
+
+.email-text a:hover {
   color: #30c3a6;
   text-decoration: none;
+  transition: all ease 0.3s;
 }
 
 /**********************
