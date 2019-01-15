@@ -37,7 +37,7 @@ class Skills extends React.Component {
       <div className="skills-wrapper" id="skills">
         <Paper className="skills-wrapper-paper" elevation={1}>
           <Typography className="skills-head" variant="h3" component="div">
-            Skills
+            Look What I can do
           </Typography>
           <hr className="horizontal-rule" />
           <Grid
