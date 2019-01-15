@@ -68,6 +68,7 @@ class HomePage extends React.Component {
   socialIconsHandle = socialIconsDiv => {
     this.setState({ socialIconsDiv, count: this.state.count + 1 });
   };
+
   render() {
     const {
       nameDiv,
