@@ -1,0 +1,674 @@
+{
+  "quotes": [
+    {
+      "tags": [
+        { "name": "complexity", "url": "/quotes-tagged-with/complexity/" }
+      ],
+      "body": "Code is like humor. When you have to explain it, it\u2019s bad.",
+      "authors": [
+        {
+          "name": "Cory House",
+          "avatar": null,
+          "url": "/quotes-by/cory-house/"
+        }
+      ],
+      "url": "/q/d34614db1b72/"
+    },
+    {
+      "tags": [
+        { "name": "education", "url": "/quotes-tagged-with/education/" }
+      ],
+      "body": "Formal education will make you a living. Self-education will make you a fortune.",
+      "authors": [
+        { "name": "Jim Rohn", "avatar": null, "url": "/quotes-by/jim-rohn/" }
+      ],
+      "url": "/q/e9b2d2056e8d/"
+    },
+    {
+      "tags": [
+        { "name": "programming", "url": "/quotes-tagged-with/programming/" }
+      ],
+      "body": "Programming is not easy like Sunday morning, it is silent poetry.",
+      "authors": [
+        {
+          "name": "Waseem Latif",
+          "avatar": null,
+          "url": "/quotes-by/waseem-latif/"
+        }
+      ],
+      "url": "/q/65a25a329466/"
+    },
+    {
+      "tags": [
+        { "name": "programmers", "url": "/quotes-tagged-with/programmers/" }
+      ],
+      "body": "The best way to get the right answer on the internet is not to ask a question; it's to post the wrong answer.",
+      "authors": [
+        {
+          "name": "Cunningham's Law",
+          "avatar": null,
+          "url": "/quotes-by/cunninghams-law/"
+        }
+      ],
+      "url": "/q/4413f2984cd3/"
+    },
+    {
+      "tags": [{ "name": "api", "url": "/quotes-tagged-with/api/" }],
+      "body": "A good API is not just easy to use but also hard to misuse.",
+      "authors": [{ "name": "JBD", "avatar": null, "url": "/quotes-by/jbd/" }],
+      "url": "/q/f1ec7b2ce219/"
+    },
+    {
+      "tags": [
+        { "name": "estimating", "url": "/quotes-tagged-with/estimating/" },
+        { "name": "planning", "url": "/quotes-tagged-with/planning/" },
+        { "name": "programming", "url": "/quotes-tagged-with/programming/" }
+      ],
+      "body": "In carpentry you measure twice and cut once. In software development you never measure and make cuts until you run out of time.",
+      "authors": [
+        {
+          "name": "Adam Morse",
+          "avatar": null,
+          "url": "/quotes-by/adam-morse/"
+        }
+      ],
+      "url": "/q/c7b40eb9dc48/"
+    },
+    {
+      "tags": [
+        { "name": "ideas", "url": "/quotes-tagged-with/ideas/" },
+        { "name": "innovation", "url": "/quotes-tagged-with/innovation/" }
+      ],
+      "body": "These days, the problem isn't how to innovate; it's how to get society to adopt the good ideas that already exist.",
+      "authors": [
+        {
+          "name": "Douglas Engelbart",
+          "avatar": null,
+          "url": "/quotes-by/douglas-engelbart/"
+        }
+      ],
+      "url": "/q/c9f58c58ff44/"
+    },
+    {
+      "tags": [
+        { "name": "programmers", "url": "/quotes-tagged-with/programmers/" }
+      ],
+      "body": "If you say \"I told you so\", you are the one who has failed. Because you knew, but did not manage to stop the train wreck.",
+      "authors": [
+        {
+          "name": "Robert C. Martin",
+          "avatar": "/media/cache/e2/15/e215ab4227c2e5b9c61544a94b3a7904.jpg",
+          "url": "/quotes-by/robert-c-martin/"
+        }
+      ],
+      "url": "/q/3f5c2fb98714/"
+    },
+    {
+      "tags": [
+        { "name": "productivity", "url": "/quotes-tagged-with/productivity/" },
+        { "name": "programmers", "url": "/quotes-tagged-with/programmers/" }
+      ],
+      "body": "What one programmer can do in one month, two programmers can do in two months.",
+      "authors": [
+        {
+          "name": "Frederick P. Brooks",
+          "avatar": null,
+          "url": "/quotes-by/frederick-p-brooks/"
+        }
+      ],
+      "url": "/q/96838dfba830/"
+    },
+    {
+      "tags": [
+        { "name": "programmers", "url": "/quotes-tagged-with/programmers/" }
+      ],
+      "body": "Programmers have to fight against the two most destructive forces in the universe: entropy and stupidity.",
+      "authors": [
+        {
+          "name": "Damian Conway",
+          "avatar": null,
+          "url": "/quotes-by/damian-conway/"
+        }
+      ],
+      "url": "/q/2801314a603c/"
+    },
+    {
+      "tags": [
+        { "name": "management", "url": "/quotes-tagged-with/management/" }
+      ],
+      "body": "Promoting a good developer to management is often a twofold bad move: you'll lose a good developer and get a poor manager.",
+      "authors": [
+        {
+          "name": "Mario Fusco",
+          "avatar": null,
+          "url": "/quotes-by/mario-fusco/"
+        }
+      ],
+      "url": "/q/fe202be7c152/"
+    },
+    {
+      "tags": [
+        { "name": "softwares", "url": "/quotes-tagged-with/softwares/" }
+      ],
+      "body": "Software being \"Done\" is like lawn being \"Mowed\".",
+      "authors": [
+        {
+          "name": "Jim Benson",
+          "avatar": null,
+          "url": "/quotes-by/jim-benson/"
+        }
+      ],
+      "url": "/q/a2f21fd89432/"
+    },
+    {
+      "tags": [
+        { "name": "planning", "url": "/quotes-tagged-with/planning/" },
+        { "name": "productivity", "url": "/quotes-tagged-with/productivity/" },
+        { "name": "releasing", "url": "/quotes-tagged-with/releasing/" }
+      ],
+      "body": "90% of the functionality delivered now is better than 100% delivered never.",
+      "authors": [
+        {
+          "name": "Brian W. Kernighan",
+          "avatar": null,
+          "url": "/quotes-by/brian-w-kernighan/"
+        },
+        {
+          "name": "P. J. Plaugher",
+          "avatar": null,
+          "url": "/quotes-by/p-j-plaugher/"
+        }
+      ],
+      "url": "/q/b47a7ced0a50/"
+    },
+    {
+      "tags": [
+        { "name": "data", "url": "/quotes-tagged-with/data/" },
+        { "name": "programmers", "url": "/quotes-tagged-with/programmers/" }
+      ],
+      "body": "Bad programmers worry about the code. Good programmers worry about data structures and their relationships.",
+      "authors": [
+        {
+          "name": "Linus Torvalds",
+          "avatar": "/media/cache/f1/41/f1415bd86144e5c69c30481b2b8b58ea.jpg",
+          "url": "/quotes-by/linus-torvalds/"
+        }
+      ],
+      "url": "/q/f75f5dee011f/"
+    },
+    {
+      "tags": [
+        { "name": "programmers", "url": "/quotes-tagged-with/programmers/" }
+      ],
+      "body": "The competent programmer is fully aware of the strictly limited size of his own skull; therefore he approaches the programming task in full humility, and among other things he avoids clever tricks like the plague.",
+      "authors": [
+        {
+          "name": "E. W. Dijkstra",
+          "avatar": "/media/cache/5a/af/5aafbef5df2a69d3965cdcee8eb35806.jpg",
+          "url": "/quotes-by/e-w-dijkstra/"
+        }
+      ],
+      "url": "/q/73155277cbdb/"
+    },
+    {
+      "tags": [
+        { "name": "collaboration", "url": "/quotes-tagged-with/collaboration/" }
+      ],
+      "body": "Almost every attempt at making something better will be regarded by someone else as a personal attack.",
+      "authors": [
+        {
+          "name": "Chris Sacca",
+          "avatar": null,
+          "url": "/quotes-by/chris-sacca/"
+        }
+      ],
+      "url": "/q/6a67c97890e0/"
+    },
+    {
+      "tags": [
+        { "name": "complexity", "url": "/quotes-tagged-with/complexity/" }
+      ],
+      "body": "An evolving system increases its complexity unless work is done to reduce it.",
+      "authors": [
+        {
+          "name": "Meir Lehman",
+          "avatar": null,
+          "url": "/quotes-by/meir-lehman/"
+        }
+      ],
+      "url": "/q/69d17c59dbb1/"
+    },
+    {
+      "tags": [
+        { "name": "complexity", "url": "/quotes-tagged-with/complexity/" },
+        { "name": "unix", "url": "/quotes-tagged-with/unix/" }
+      ],
+      "body": "UNIX is simple. It just takes a genius to understand its simplicity.",
+      "authors": [
+        {
+          "name": "Dennis M. Ritchie",
+          "avatar": null,
+          "url": "/quotes-by/dennis-m-ritchie/"
+        }
+      ],
+      "url": "/q/eeaa6a217652/"
+    },
+    {
+      "tags": [
+        { "name": "go", "url": "/quotes-tagged-with/go/" },
+        { "name": "javascript", "url": "/quotes-tagged-with/javascript/" }
+      ],
+      "body": "Go is the language JavaScript programmers retire to when they get old. Like the Florida of programming languages.",
+      "authors": [
+        {
+          "name": "Jed Schmidt",
+          "avatar": null,
+          "url": "/quotes-by/jed-schmidt/"
+        }
+      ],
+      "url": "/q/e8cbc93dbe41/"
+    },
+    {
+      "tags": [{ "name": "scrum", "url": "/quotes-tagged-with/scrum/" }],
+      "body": "I know testers who make good devs. I know devs who make good testers. I know Scrum Masters who make good coffee.",
+      "authors": [
+        {
+          "name": "David Evans",
+          "avatar": null,
+          "url": "/quotes-by/david-evans/"
+        }
+      ],
+      "url": "/q/6ed675f666c9/"
+    },
+    {
+      "tags": [
+        { "name": "ideas", "url": "/quotes-tagged-with/ideas/" },
+        { "name": "innovation", "url": "/quotes-tagged-with/innovation/" }
+      ],
+      "body": "We crave for new sensations but soon become indifferent to them. Wonders of yesterday are today common occurrences. ",
+      "authors": [
+        {
+          "name": "Nikola Tesla",
+          "avatar": null,
+          "url": "/quotes-by/nikola-tesla/"
+        }
+      ],
+      "url": "/q/a1629ea1e2f5/"
+    },
+    {
+      "tags": [
+        { "name": "hardware", "url": "/quotes-tagged-with/hardware/" },
+        { "name": "softwares", "url": "/quotes-tagged-with/softwares/" }
+      ],
+      "body": "Hardware eventually fails. Software eventually works.",
+      "authors": [
+        {
+          "name": "Michael Hartung",
+          "avatar": null,
+          "url": "/quotes-by/michael-hartung/"
+        }
+      ],
+      "url": "/q/d24ddfb1d2fe/"
+    },
+    {
+      "tags": [
+        { "name": "optimization", "url": "/quotes-tagged-with/optimization/" }
+      ],
+      "body": "That which optimizes one part of the system necessarily undermines the system as a whole.",
+      "authors": [
+        { "name": "Eric Ries", "avatar": null, "url": "/quotes-by/eric-ries/" }
+      ],
+      "url": "/q/056e012db22d/"
+    },
+    {
+      "tags": [
+        { "name": "programmers", "url": "/quotes-tagged-with/programmers/" }
+      ],
+      "body": "Every great developer you know got there by solving problems they were unqualified to solve until they actually did it.",
+      "authors": [
+        {
+          "name": "Patrick McKenzie",
+          "avatar": null,
+          "url": "/quotes-by/patrick-mckenzie/"
+        }
+      ],
+      "url": "/q/ed6c96b8688e/"
+    },
+    {
+      "tags": [{ "name": "teams", "url": "/quotes-tagged-with/teams/" }],
+      "body": "Teams are immutable. Every time someone leaves, or joins, you have a new team, not a changed team. ",
+      "authors": [
+        {
+          "name": "Richard Dalton",
+          "avatar": null,
+          "url": "/quotes-by/richard-dalton/"
+        }
+      ],
+      "url": "/q/e172ed567769/"
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/planning/", "name": "planning" },
+        { "url": "/quotes-tagged-with/specification/", "name": "specification" }
+      ],
+      "url": "/q/fded10ee743d/",
+      "body": "Start out with finding the right problem to solve. This is a combination of \u201cwhat customers are asking for\u201d, \u201cwhat customers don\u2019t even know they want yet\u201d and \u201cwhat can be solved with something simple to understand and manage\u201d",
+      "authors": [
+        {
+          "url": "/quotes-by/radia-perlman/",
+          "name": "Radia Perlman",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/creativity/", "name": "creativity" },
+        { "url": "/quotes-tagged-with/specification/", "name": "specification" }
+      ],
+      "url": "/q/ade82b8cff43/",
+      "body": "Like designers, if you give a programmer a problem with parameters, they\u2019ll apply every bit of genius they have to solve it in the best possible way. If you tell them how to do it, you\u2019ll suffer the wrath of an angry God.",
+      "authors": [
+        {
+          "url": "/quotes-by/derek-powazek/",
+          "name": "\u200aDerek Powazek",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/hacking/", "name": "hacking" },
+        { "url": "/quotes-tagged-with/maintenance/", "name": "maintenance" }
+      ],
+      "url": "/q/e69960948c0a/",
+      "body": "There's nothing more permanent than a temporary hack.",
+      "authors": [
+        {
+          "url": "/quotes-by/kyle-simpson/",
+          "name": "Kyle Simpson",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [{ "url": "/quotes-tagged-with/reusing/", "name": "reusing" }],
+      "url": "/q/c79b5a54431c/",
+      "body": "It can be better to copy a little code than to pull in a big library for one function.  Dependency hygiene trumps code reuse.",
+      "authors": [
+        {
+          "url": "/quotes-by/rob-pike/",
+          "name": "Rob Pike",
+          "avatar": "/media/cache/15/49/15490bde96192f634a9066ee676a3d98.jpg"
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/programmers/", "name": "programmers" }
+      ],
+      "url": "/q/6138712c7f91/",
+      "body": "A programmer does not primarily write code; rather, he primarily writes to another programmer about his problem solution. The understanding of this fact is the final step in his maturation as technician.",
+      "authors": [
+        { "url": "/quotes-by/anonymous/", "name": "anonymous", "avatar": null }
+      ]
+    },
+    {
+      "tags": [{ "url": "/quotes-tagged-with/reusing/", "name": "reusing" }],
+      "url": "/q/4f9eef0a6be3/",
+      "body": "Telling a programmer there's already a library to do X is like telling a songwriter there's already a song about love.",
+      "authors": [
+        {
+          "url": "/quotes-by/pete-cordell/",
+          "name": "Pete Cordell",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [{ "url": "/quotes-tagged-with/error/", "name": "error" }],
+      "url": "/q/375a0ac9e57b/",
+      "body": "The best error message is the one that never shows up.",
+      "authors": [
+        {
+          "url": "/quotes-by/thomas-fuchs/",
+          "name": "Thomas Fuchs",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/corporate/", "name": "corporate" }
+      ],
+      "url": "/q/2ce6816c577f/",
+      "body": "Almost without exception, the best products are developed by teams with desire to solve a problem; not a company's need to fulfil a strategy.",
+      "authors": [
+        {
+          "url": "/quotes-by/jeff-weiner/",
+          "name": "Jeff Weiner",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/refactoring/", "name": "refactoring" },
+        { "url": "/quotes-tagged-with/softwares/", "name": "softwares" }
+      ],
+      "url": "/q/486d7b07cec5/",
+      "body": "A Fallacy of Software: If it works, and we don't change anything, it will keep working.",
+      "authors": [
+        {
+          "url": "/quotes-by/jessica-kerr/",
+          "name": "Jessica Kerr",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/computers/", "name": "computers" }
+      ],
+      "url": "/q/7779227f02fc/",
+      "body": "(...) Thinking this way will teach you two things about computers: One, there\u2019s no magic, no matter how much it looks like there is. There\u2019s just work to make things look like magic. And two, it\u2019s crazy in there.",
+      "authors": [
+        { "url": "/quotes-by/paul-ford/", "name": "Paul Ford", "avatar": null }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/programmers/", "name": "programmers" }
+      ],
+      "url": "/q/15795d2d7461/",
+      "body": "Programmers are often angry because they\u2019re often scared.",
+      "authors": [
+        { "url": "/quotes-by/paul-ford/", "name": "Paul Ford", "avatar": null }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/complexity/", "name": "complexity" }
+      ],
+      "url": "/q/3cb9aed30f79/",
+      "body": "Well-designed components are easy to replace. Eventually, they will be replaced by ones that are not so easy to replace.",
+      "authors": [
+        {
+          "url": "/quotes-by/sustriks-law/",
+          "name": "Sustrik's Law",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/estimating/", "name": "estimating" },
+        { "url": "/quotes-tagged-with/planning/", "name": "planning" }
+      ],
+      "url": "/q/aa42eefd03ed/",
+      "body": "Things that are impossible just take longer.",
+      "authors": [
+        {
+          "url": "/quotes-by/ian-hickson/",
+          "name": "Ian Hickson",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/javascript/", "name": "javascript" }
+      ],
+      "url": "/q/043cf96383a9/",
+      "body": "Always bet on JavaScript.",
+      "authors": [
+        {
+          "url": "/quotes-by/brendan-eich/",
+          "name": "Brendan Eich",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/complexity/", "name": "complexity" }
+      ],
+      "url": "/q/e9b36c831b9b/",
+      "body": "Organizations which design systems are constrained to produce designs which are copies of the communication structures of these organizations.",
+      "authors": [
+        {
+          "url": "/quotes-by/conways-law/",
+          "name": "Conway's law",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/programmers/", "name": "programmers" }
+      ],
+      "url": "/q/d86f04835f65/",
+      "body": "Good engineers make solutions obsolete. Great engineers make themselves obsolete.",
+      "authors": [
+        { "url": "/quotes-by/jordan-w/", "name": "Jordan W", "avatar": null }
+      ]
+    },
+    {
+      "tags": [{ "url": "/quotes-tagged-with/data/", "name": "data" }],
+      "url": "/q/0d36454ff9f2/",
+      "body": "Big data is like teenage sex: everyone talks about it, nobody really knows how to do it, everyone thinks everyone else is doing it, so everyone claims they are doing it...",
+      "authors": [
+        {
+          "url": "/quotes-by/dan-ariely/",
+          "name": "Dan Ariely",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/languages/", "name": "languages" }
+      ],
+      "url": "/q/7889a22833c1/",
+      "body": "And the reason these things take a generation is because ultimately we do not change people's minds. We have to wait for the previous generation to retire or die before we can get critical mass on the next idea. So it's like we look around: \"Are they gone?\"",
+      "authors": [
+        {
+          "url": "/quotes-by/douglas-crockford/",
+          "name": "Douglas Crockford",
+          "avatar": "/media/cache/cf/ff/cfff5a222565d37026f73620bfc8f9de.jpg"
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/productivity/", "name": "productivity" }
+      ],
+      "url": "/q/676ccdf6cd58/",
+      "body": "There is no single development, in either technology or management\r\ntechnique, which by itself promises even one order-of-magnitude\r\nimprovement within a decade in productivity, in reliability, in simplicity.",
+      "authors": [
+        {
+          "url": "/quotes-by/frederick-p-brooks/",
+          "name": "Frederick P. Brooks",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/complexity/", "name": "complexity" }
+      ],
+      "url": "/q/f3f60a148687/",
+      "body": "Treat your code like poetry and take it to the edge of the bare minimum.",
+      "authors": [{ "url": "/quotes-by/ilyo/", "name": "Ilyo", "avatar": null }]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/documentation/", "name": "documentation" }
+      ],
+      "url": "/q/e63c78fffc10/",
+      "body": "The best reaction to \"this is confusing, where are the docs\" is to rewrite the feature to make it less confusing, not write more docs.",
+      "authors": [
+        {
+          "url": "/quotes-by/jeff-atwood/",
+          "name": "Jeff Atwood",
+          "avatar": "/media/cache/92/24/9224f6e9d787c38538af9525b653c728.jpg"
+        }
+      ]
+    },
+    {
+      "tags": [{ "url": "/quotes-tagged-with/data/", "name": "data" }],
+      "url": "/q/79afad17d469/",
+      "body": "Data dominates. If you\u2019ve chosen the right data structures and organized things well, the algorithms will almost always be self-evident. Data structures, not algorithms, are central to programming.\u200a",
+      "authors": [
+        {
+          "url": "/quotes-by/rob-pike/",
+          "name": "Rob Pike",
+          "avatar": "/media/cache/15/49/15490bde96192f634a9066ee676a3d98.jpg"
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/complexity/", "name": "complexity" }
+      ],
+      "url": "/q/c3c565580dd6/",
+      "body": "No code is faster than no code.",
+      "authors": [
+        {
+          "url": "/quotes-by/merb-motto/",
+          "name": "merb motto",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/complexity/", "name": "complexity" }
+      ],
+      "url": "/q/f0a9ec0f9a38/",
+      "body": "When in doubt, leave it out.",
+      "authors": [
+        {
+          "url": "/quotes-by/joshua-bloch/",
+          "name": "Joshua Bloch",
+          "avatar": null
+        }
+      ]
+    },
+    {
+      "tags": [
+        { "url": "/quotes-tagged-with/languages/", "name": "languages" }
+      ],
+      "url": "/q/619ce45c1432/",
+      "body": "Languages that try to disallow idiocy become themselves idiotic.",
+      "authors": [
+        {
+          "url": "/quotes-by/rob-pike/",
+          "name": "Rob Pike",
+          "avatar": "/media/cache/15/49/15490bde96192f634a9066ee676a3d98.jpg"
+        }
+      ]
+    }
+  ],
+  "hasNext": true
+}
