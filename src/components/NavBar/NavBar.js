@@ -196,7 +196,6 @@ NavBar.propTypes = {
   avatar: PropTypes.bool.isRequired,
   fullName: PropTypes.bool.isRequired,
   wrapperDiv: PropTypes.bool.isRequired,
-  typed: PropTypes.bool.isRequired,
   social: PropTypes.bool.isRequired,
   count: PropTypes.number.isRequired
 };
