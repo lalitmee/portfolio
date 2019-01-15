@@ -1,0 +1,84 @@
+{
+  "quotes": [
+    {
+      "quote": "The best error message is the one that never shows up.",
+      "author": "Thomas Fuchs"
+    },
+    {
+      "quote": "Code is like humor. When you have to explain it, it’s bad.",
+      "author": "Cory House"
+    },
+    {
+      "quote": "UNIX is simple. It just takes a genius to understand its simplicity.",
+      "author": "Dennis M. Ritchie"
+    },
+    {
+      "quote": "Formal education will make you a living. Self-education will make you a fortune.",
+      "author": "Jim Rohn"
+    },
+    {
+      "quote": "Programming is not easy like Sunday morning, it is silent poetry.",
+      "author": "Waseem Latif"
+    },
+    {
+      "quote": "Software being 'Done' is like lawn being 'Mowed'.",
+      "author": "Jim Benson"
+    },
+    {
+      "quote": "90% of the functionality delivered now is better than 100% delivered never.",
+      "author": "Brian W. Kernighan & P. J. Plaugher"
+    },
+    {
+      "quote": "A good API is not just easy to use but also hard to misuse.",
+      "author": "Jbd"
+    },
+    {
+      "quote": "Hardware eventually fails. Software eventually works.",
+      "author": "Michael Hurting"
+    },
+    {
+      "quote": "That which optimizes one part of the system necessarily undermines the system as a whole.",
+      "author": "Eric Ries"
+    },
+    {
+      "quote": "These days, the problem isn't how to innovate; it's how to get society to adopt the good ideas that already exist.",
+      "author": "Douglas Engelbart"
+    },
+    {
+      "quote": "Teams are immutable. Every time someone leaves, or joins, you have a new team, not a changed team.",
+      "author": "Richard Dalton"
+    },
+    {
+      "quote": "What one programmer can do in one month, two programmers can do in two months.",
+      "author": "Frederick P. Brooks"
+    },
+    {
+      "quote": "Treat your code like poetry and take it to the edge of the bare minimum.",
+      "author": "Ilyo"
+    },
+    {
+      "quote": "Things that are impossible just take longer.",
+      "author": "Ian Hickson"
+    },
+    {
+      "quote": "No code is faster than no code.",
+      "author": "Merb Motto"
+    },
+    {
+      "quote": "Good engineers make solutions obsolete. Great engineers make themselves obsolete.",
+      "author": "Jordan W"
+    },
+    {
+      "quote": "A program is like a poem: you cannot write a poem without writing it.",
+      "author": "E. W. Dijkstra"
+    },
+    {
+      "quote": "Blame the implementation, not the technique.",
+      "author": "Tim Kadlec"
+    },
+    {
+      "quote": " Simplicity is about subtracting the obvious and adding the meaningful. ",
+      "author": "John Maeda"
+    }
+  ]
+}

@@ -14,7 +14,7 @@ class Quotes extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('defprogramming.json').then(data => {
+    axios.get('quotes.json').then(data => {
       this.setState({
         quotes: data.data.quotes
       });
@@ -38,12 +38,8 @@ class Quotes extends React.Component {
           <Slider {...settings}>
             {this.state.quotes.map((item, i) => (
               <div className="quote" key={i}>
-                <div className="quotes-text">{item.body}</div>
-                {item.authors.map((auth, i) => (
-                  <div key={i} className="quotes-writer">
-                    - {auth.name}
-                  </div>
-                ))}
+                <div className="quotes-text">{item.quote}</div>
+                <div className="quotes-writer">- {item.author}</div>
               </div>
             ))}
           </Slider>
