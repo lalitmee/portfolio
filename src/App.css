@@ -122,7 +122,7 @@ h6 {
 
 .appbar-background-img {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/coding-background.jpg');
+    url('./assets/images/background/back5.png');
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-repeat: no-repeat;
@@ -386,7 +386,7 @@ h6 {
   color: #fff !important;
   background-color: #f5f5f5 !important;
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/coding-background.jpg');
+    url('./assets/images/background/back5.png');
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-attachment: fixed;
@@ -420,7 +420,7 @@ h6 {
   left: 51%;
   transform: translate(-50%, -50%);
   font-family: 'Raleway', sans-serif;
-  font-size: 70px;
+  font-size: 72px;
   color: #333;
   color: transparent;
   background: -webkit-linear-gradient(#999, #999) center 1.09em no-repeat;
