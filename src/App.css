@@ -123,7 +123,7 @@ h6 {
 .appbar-background-img {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('./assets/images/background/back5.png');
-  background-size: cover; /* or contain depending on what you want */
+  background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
 }
@@ -387,7 +387,7 @@ h6 {
   background-color: #f5f5f5 !important;
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
     url('./assets/images/background/back5.png');
-  background-size: cover; /* or contain depending on what you want */
+  background-size: cover;
   background-position: center center;
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -435,6 +435,7 @@ h6 {
 }
 
 .main-wrapper-first-head {
+  font-weight: 100 !important;
   font-size: 8rem !important;
   color: #30c3a6 !important;
   letter-spacing: 0.05em !important;
@@ -492,7 +493,6 @@ h6 {
   position: absolute;
   top: 5px;
   left: 4px;
-  /* background-color: #fff; */
 }
 
 .social-icons {
@@ -658,7 +658,6 @@ h6 {
   width: 430px;
   height: 280px;
   padding: 1rem 0 2rem 0;
-  /* background-color: #e6f8ed; */
   background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
   transition: all 0.8s ease;
   box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.15);
@@ -679,10 +678,6 @@ h6 {
   margin: 2rem 2rem;
   font-size: 5rem;
   color: rgba(26, 188, 156, 0.9) !important;
-}
-
-.card-content {
-  /* text-align: left; */
 }
 
 .card-content-text {
@@ -716,8 +711,6 @@ h6 {
   color: rgba(26, 188, 156, 0.9) !important;
   width: 50%;
   margin: 2rem auto !important;
-  /* text-transform: uppercase; */
-  /* text-decoration: underline; */
   color: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
@@ -728,7 +721,6 @@ h6 {
 .quotes-wrapper {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
-  /* background: #e6f8ed; */
   background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
   color: #7e7e7e;
 }
@@ -795,9 +787,6 @@ h6 {
   color: rgba(26, 188, 156, 0.9) !important;
   width: 50%;
   margin: 2rem auto !important;
-  /* text-transform: uppercase; */
-  /* text-decoration: underline; */
-  color: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
@@ -851,9 +840,6 @@ h6 {
   color: rgba(26, 188, 156, 0.9) !important;
   width: 50%;
   margin: 2rem auto !important;
-  /* text-transform: uppercase; */
-  /* text-decoration: underline; */
-  color: rgba(0, 0, 0, 0.4);
   z-index: 1;
 }
 
@@ -996,6 +982,9 @@ h6 {
   color: rgba(26, 188, 156, 0.9) !important;
 }
 
+/*******************************
+ * SLICK CARASOUL CSS OVERRIDE *
+ *******************************/
 .slick-prev:before,
 .slick-next:before {
   font-size: 30px !important;
