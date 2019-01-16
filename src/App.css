@@ -435,6 +435,7 @@ h6 {
 }
 
 .main-wrapper-first-head {
+  font-weight: 100 !important;
   font-size: 8rem !important;
   color: #30c3a6 !important;
   letter-spacing: 0.05em !important;
