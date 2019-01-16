@@ -1,7 +1,7 @@
 import React from 'react';
 import { Events, Link } from 'react-scroll';
 
-class RightDrawer extends React.Component {
+class OverlayNavigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -121,4 +121,4 @@ class RightDrawer extends React.Component {
   }
 }
 
-export default RightDrawer;
+export default OverlayNavigation;
