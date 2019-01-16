@@ -1,7 +1,7 @@
 import React from 'react';
 import { Events, Link } from 'react-scroll';
 
-class RightDrawer extends React.Component {
+class OverlayNavigation extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
@@ -59,7 +59,7 @@ class RightDrawer extends React.Component {
                     this.navClick();
                   }}
                   to="home"
-                  smooth
+                  smooth="easeInOutQuart"
                   delay={200}
                   isDynamic
                   duration={1200}
@@ -74,7 +74,7 @@ class RightDrawer extends React.Component {
                     this.navClick();
                   }}
                   to="skills"
-                  smooth
+                  smooth="easeInOutQuart"
                   delay={200}
                   isDynamic
                   duration={1200}
@@ -89,7 +89,7 @@ class RightDrawer extends React.Component {
                     this.navClick();
                   }}
                   to="projects"
-                  smooth
+                  smooth="easeInOutQuart"
                   delay={200}
                   isDynamic
                   duration={1200}
@@ -104,7 +104,7 @@ class RightDrawer extends React.Component {
                     this.navClick();
                   }}
                   to="contact"
-                  smooth
+                  smooth="easeInOutQuart"
                   delay={200}
                   isDynamic
                   duration={1200}
@@ -121,4 +121,4 @@ class RightDrawer extends React.Component {
   }
 }
 
-export default RightDrawer;
+export default OverlayNavigation;

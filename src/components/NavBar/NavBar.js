@@ -14,7 +14,7 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import PropTypes from 'prop-types';
 import React from 'react';
-import RightDrawer from './RightDrawer';
+import OverlayNavigation from './OverlayNavigation';
 
 fontawesome.library.add(
   faFacebook,
@@ -181,7 +181,7 @@ class NavBar extends React.Component {
                       </li>
                     </ul>
                   </div>
-                  <RightDrawer />
+                  <OverlayNavigation />
                 </div>
               </div>
             )}
