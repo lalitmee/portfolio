@@ -690,7 +690,7 @@ h6 {
 }
 
 .card-content-sub-text {
-  font-family: 'Montserrat', sans-serif !important;
+  font-family: 'Segoe UI', sans-serif !important;
   line-height: 1.5 !important;
   font-size: 2rem !important;
   margin: 2rem 1rem 1rem 1rem !important;
@@ -989,4 +989,13 @@ h6 {
 .slick-next:before {
   font-size: 30px !important;
   color: #7e7e7e !important;
+}
+
+/*****************************
+ * SPINNER ICON CSS OVERRIDE *
+ *****************************/
+
+.ball-scale-multiple > div {
+  width: 100px;
+  height: 100px;
 }
