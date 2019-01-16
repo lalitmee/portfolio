@@ -8685,6 +8685,13 @@ raf@3.4.0:
   dependencies:
     performance-now "^2.1.0"
 
+raf@^3.3.2:
+  version "3.4.1"
+  resolved "https://registry.yarnpkg.com/raf/-/raf-3.4.1.tgz#0742e99a4a6552f445d73e3ee0328af0ff1ede39"
+  integrity sha512-Sq4CW4QhwOHE8ucn6J34MqtZCeWFP2aQSmrlroYgqAV1PjStIhJXxYuTgUIfkEk7zTLjmIjLmU5q+fbD1NnOJA==
+  dependencies:
+    performance-now "^2.1.0"
+
 randomatic@^3.0.0:
   version "3.1.0"
   resolved "https://registry.yarnpkg.com/randomatic/-/randomatic-3.1.0.tgz#36f2ca708e9e567f5ed2ec01949026d50aa10116"
@@ -8744,6 +8751,13 @@ react-app-polyfill@^0.2.0:
     promise "8.0.2"
     raf "3.4.0"
     whatwg-fetch "3.0.0"
+
+react-background-slideshow@^1.0.4:
+  version "1.0.4"
+  resolved "https://registry.yarnpkg.com/react-background-slideshow/-/react-background-slideshow-1.0.4.tgz#999153862b0ece7cb39ea1fbd084a0b9b2554aca"
+  integrity sha512-p/9KbiqC9nWf2Hs5QIePOOQWF+jW/MENN+mmohAAf3t76LmFQcvS+jRtbeJpGH1pcrdHAfpJyJ76ploBX0kgXg==
+  dependencies:
+    raf "^3.3.2"
 
 react-dev-utils@^7.0.1:
   version "7.0.1"

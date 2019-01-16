@@ -121,8 +121,10 @@ h6 {
 }
 
 .appbar-background-img {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/coding-background.jpg');
+  background: #0d0d0c !important;
+  /* background-color: transparent !important; */
+  /* background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('./assets/images/background/back1.jpg'); */
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-repeat: no-repeat;
@@ -379,6 +381,10 @@ h6 {
   position: relative;
 }
 
+.background-slideshow {
+  position: relative;
+}
+
 .main-wrapper-paper {
   height: 920px;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
@@ -386,7 +392,7 @@ h6 {
   color: #fff !important;
   background-color: #f5f5f5 !important;
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/coding-background.jpg');
+    url('./assets/images/background/back2.jpg');
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-attachment: fixed;
@@ -636,6 +642,12 @@ h6 {
 .skills-wrapper {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('./assets/images/background/back2.jpg');
+  background-size: cover; /* or contain depending on what you want */
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .skills-wrapper-paper {
@@ -730,6 +742,13 @@ h6 {
   padding: 8rem 1.9rem 8rem 0.9rem;
   /* background: #e6f8ed; */
   background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
+
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('./assets/images/background/back2.jpg');
+  background-size: cover; /* or contain depending on what you want */
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   color: #7e7e7e;
 }
 
@@ -770,6 +789,12 @@ h6 {
 .projects-wrapper {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('./assets/images/background/back2.jpg');
+  background-size: cover; /* or contain depending on what you want */
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
 }
 
 .projects-wrapper-paper {
@@ -825,7 +850,13 @@ h6 {
 .contacts-wrapper {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
-  background: #e3f7ec;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('./assets/images/background/back2.jpg');
+  background-size: cover; /* or contain depending on what you want */
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  /* background: #e3f7ec; */
 }
 
 .contacts-wrapper-paper {
@@ -971,8 +1002,14 @@ h6 {
 }
 
 .footer {
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('./assets/images/background/back2.jpg');
+  background-size: cover; /* or contain depending on what you want */
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
   height: 100%;
-  background: linear-gradient(#3ed6b8, rgba(61, 74, 72, 0.9));
+  /* background: linear-gradient(#3ed6b8, rgba(61, 74, 72, 0.9)); */
 }
 
 .footer-text {

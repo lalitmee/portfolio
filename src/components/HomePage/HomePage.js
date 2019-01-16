@@ -89,6 +89,10 @@ class HomePage extends React.Component {
             }
           ]}
         >
+          {/* <BackgroundSlideshow
+            className="background-slideshow"
+            images={[back1, back2, back3, back4, back5, back6, back7, back8]}
+          /> */}
           <Paper className="main-wrapper-paper" elevation={1}>
             <NavBar
               fullName={nameDiv}
