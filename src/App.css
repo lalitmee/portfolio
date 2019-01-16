@@ -392,7 +392,7 @@ h6 {
   color: #fff !important;
   background-color: #f5f5f5 !important;
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/background/back2.jpg');
+    url('./assets/images/background/back1.jpg');
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-attachment: fixed;
@@ -643,7 +643,7 @@ h6 {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/background/back2.jpg');
+    url('./assets/images/background/back1.jpg');
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-attachment: fixed;
@@ -673,7 +673,7 @@ h6 {
   /* background-color: #e6f8ed; */
   background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
   transition: all 0.8s ease;
-  box-shadow: 12px 15px 20px 0 rgba(46, 61, 73, 0.15);
+  box-shadow: 12px 15px 20px 0 rgba(75, 99, 95, 0.9);
 }
 
 .skills-wrapper-paper .card:hover {
@@ -744,7 +744,7 @@ h6 {
   background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
 
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/background/back2.jpg');
+    url('./assets/images/background/back1.jpg');
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-attachment: fixed;
@@ -767,7 +767,7 @@ h6 {
   quotes: '“' '”' '‘' '’';
   font-size: 3rem;
   font-weight: 600;
-  color: #7e7e7e;
+  color: #30c3a6;
   letter-spacing: 0.05em;
   font-family: 'Raleway', sans-serif;
 }
@@ -777,7 +777,7 @@ h6 {
   font-size: 2rem;
   font-weight: 400;
   margin-top: 2rem;
-  color: #7e7e7e;
+  color: #fff;
   letter-spacing: 0.05em;
   font-style: italic;
   font-family: 'Raleway', sans-serif;
@@ -790,7 +790,7 @@ h6 {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/background/back2.jpg');
+    url('./assets/images/background/back1.jpg');
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-attachment: fixed;
@@ -851,7 +851,7 @@ h6 {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/background/back2.jpg');
+    url('./assets/images/background/back1.jpg');
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-attachment: fixed;
@@ -940,13 +940,22 @@ h6 {
   margin: 1% !important;
   font-family: 'Raleway', sans-serif !important;
   font-weight: 500 !important;
+  color: #fff !important;
 }
 
 .phone-text {
   margin: 2% !important;
   font-size: 2rem;
-  color: #6b7b78;
+  color: #30c3a6;
+  cursor: pointer;
 }
+
+.phone-text:hover {
+  color: #30c3a6;
+  text-decoration: none;
+  transition: all ease 0.3s;
+}
+
 .email-row {
   text-align: left;
   margin: 5%;
@@ -966,16 +975,17 @@ h6 {
   margin: 1% !important;
   font-family: 'Raleway', sans-serif !important;
   font-weight: 500 !important;
+  color: #fff !important;
 }
 
 .email-text {
   margin: 2% !important;
   font-size: 2rem;
-  color: #6b7b78;
+  color: #30c3a6;
 }
 
 .email-text a {
-  color: #6b7b78;
+  color: #30c3a6;
   text-decoration: none;
   transition: all ease 0.3s;
 }
@@ -1003,7 +1013,7 @@ h6 {
 
 .footer {
   background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/background/back2.jpg');
+    url('./assets/images/background/back1.jpg');
   background-size: cover; /* or contain depending on what you want */
   background-position: center center;
   background-attachment: fixed;
