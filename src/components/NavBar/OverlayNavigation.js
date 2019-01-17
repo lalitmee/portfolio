@@ -44,6 +44,7 @@ class OverlayNavigation extends React.Component {
           tabIndex={0}
           className="button_container"
           onClick={this.toggleNavClass()}
+          onKeyUp={this.toggleNavClass()}
           id="toggle"
         >
           <span className="top" />
