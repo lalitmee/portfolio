@@ -660,6 +660,7 @@ h6 {
   margin: 3rem auto;
   width: 430px;
   height: 280px;
+  cursor: pointer;
   padding: 1rem 0 2rem 0;
   background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
   transition: all 0.8s ease;
