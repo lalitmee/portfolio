@@ -1,5 +1,10 @@
+@font-face {
+  font-family: 'Proxima';
+  src: url('assets/fonts/proxima.ttf');
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: 'Raleway', 'Segoe UI', 'Cabin', sans-serif;
+  font-family: 'Raleway', 'Proxima', 'Segoe UI', 'Cabin', sans-serif;
 }
