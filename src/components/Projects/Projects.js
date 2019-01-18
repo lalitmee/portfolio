@@ -7,9 +7,9 @@ import {
   faTasks,
   faUsersCog
 } from '@fortawesome/fontawesome-free-solid';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Card from '@material-ui/core/Card';
-import CardContent from '@material-ui/core/CardContent';
+/* import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+ * import Card from '@material-ui/core/Card';
+ * import CardContent from '@material-ui/core/CardContent'; */
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -27,50 +27,15 @@ fontawesome.library.add(
 class Projects extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      cardActive: false
-    };
+    this.state = {};
   }
 
-  handleCardActiveEvent = e => {
-    const card = e.target.parentElement;
-    const icon = card.querySelectorAll('i');
-    if (icon) {
-      icon.forEach((item, i) => {
-        if (
-          item.classList.contains('fa-bars') ||
-          item.classList.contains('fa-arrow-left')
-        ) {
-          icon[i].classList.add('fa-spin-fast');
-        }
-      });
-    }
-    if (card.classList.contains('mc-active')) {
-      card.classList.remove('mc-active');
-      window.setTimeout(() => {
-        if (icon) {
-          icon.forEach((item, i) => {
-            if (item.classList.contains('fa-arrow-left')) {
-              icon[i].classList.remove('fa-arrow-left');
-              icon[i].classList.remove('fa-spin-fast');
-              icon[i].classList.add('fa-bars');
-            }
-          });
-        }
-      }, 400);
-    } else {
-      card.classList.add('mc-active');
-      window.setTimeout(() => {
-        if (icon) {
-          icon.forEach((item, i) => {
-            if (item.classList.contains('fa-bars')) {
-              icon[i].classList.add('fa-arrow-left');
-              icon[i].classList.remove('fa-spin-fast');
-              icon[i].classList.remove('fa-bars');
-            }
-          });
-        }
-      }, 400);
+  handleClick = e => {
+    const bottom = e.currentTarget.parentElement.parentElement;
+    if (e.currentTarget.className === 'buy') {
+      bottom.classList.add('clicked');
+    } else if (e.currentTarget.className === 'remove') {
+      bottom.classList.remove('clicked');
     }
   };
 
@@ -91,166 +56,526 @@ class Projects extends React.Component {
               spacing={24}
             >
               <Grid className="grid-item" item xs={4}>
-                <Card className="card">
-                  <div className="card-icon">
-                    <FontAwesomeIcon
-                      className="card-image"
-                      icon={['fas', 'desktop']}
-                    />
+                <div className="wrapper">
+                  <div className="container">
+                    <div className="top" />
+                    <div className="bottom">
+                      <div className="left">
+                        <div className="details">
+                          <h1>ud-myreads</h1>
+                          <p>Books Tracking Application</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="buy"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">add_shopping_cart</i>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div className="done">
+                          <i className="material-icons">done</i>
+                        </div>
+                        <div className="details">
+                          <h1>ud-myreads</h1>
+                          <p>Added to your cart</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="remove"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">clear</i>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <CardContent className="card-content">
-                    <Typography
-                      className="card-content-text"
-                      component="div"
-                      variant="h3"
-                    >
-                      Web Development
-                    </Typography>
-                    <Typography
-                      className="card-content-sub-text"
-                      component="div"
-                      variant="h5"
-                    >
-                      I love to build attractive and platform independent Web
-                      Applications
-                    </Typography>
-                  </CardContent>
-                </Card>
+                  <div className="inside">
+                    <div className="icon">
+                      <i className="material-icons">info_outline</i>
+                    </div>
+                    <div className="contents">
+                      <h1>Hello</h1>
+                    </div>
+                  </div>
+                </div>{' '}
               </Grid>
               <Grid className="grid-item" item xs={4}>
-                <Card className="card">
-                  <div className="card-icon">
-                    <FontAwesomeIcon
-                      className="card-image"
-                      icon={['fas', 'search']}
-                    />
+                <div className="wrapper">
+                  <div className="container">
+                    <div className="top" />
+                    <div className="bottom">
+                      <div className="left">
+                        <div className="details">
+                          <h1>ud-neighborhodd-map</h1>
+                          <p>Web Tour of India</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="buy"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">add_shopping_cart</i>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div className="done">
+                          <i className="material-icons">done</i>
+                        </div>
+                        <div className="details">
+                          <h1>ud-neighborhood-map</h1>
+                          <p>Added to your cart</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="remove"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">clear</i>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <CardContent className="card-content">
-                    <Typography
-                      className="card-content-text"
-                      component="div"
-                      variant="h3"
-                    >
-                      Research & Analysis
-                    </Typography>
-                    <Typography
-                      className="card-content-sub-text"
-                      component="div"
-                      variant="h5"
-                    >
-                      Before starting anything, I like to do my homework and
-                      complete analysis of the process
-                    </Typography>
-                  </CardContent>
-                </Card>
+                  <div className="inside">
+                    <div className="icon">
+                      <i className="material-icons">info_outline</i>
+                    </div>
+                    <div className="contents">
+                      <h1>Hello</h1>
+                    </div>
+                  </div>
+                </div>{' '}
               </Grid>
               <Grid className="grid-item" item xs={4}>
-                <Card className="card">
-                  <div className="card-icon">
-                    <FontAwesomeIcon
-                      className="card-image"
-                      icon={['fas', 'tasks']}
-                    />
+                <div className="wrapper">
+                  <div className="container">
+                    <div className="top" />
+                    <div className="bottom">
+                      <div className="left">
+                        <div className="details">
+                          <h1>ud-restaurant-review</h1>
+                          <p>Application for Restaurant Reviews </p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="buy"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">add_shopping_cart</i>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div className="done">
+                          <i className="material-icons">done</i>
+                        </div>
+                        <div className="details">
+                          <h1>ud-restaurant-review</h1>
+                          <p>Added to your cart</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="remove"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">clear</i>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <CardContent className="card-content">
-                    <Typography
-                      className="card-content-text"
-                      component="div"
-                      variant="h3"
-                    >
-                      Problem Solving
-                    </Typography>
-                    <Typography
-                      className="card-content-sub-text"
-                      component="div"
-                      variant="h5"
-                    >
-                      Give me a problem and I will give you a better and
-                      efficient solution
-                    </Typography>
-                  </CardContent>
-                </Card>
+                  <div className="inside">
+                    <div className="icon">
+                      <i className="material-icons">info_outline</i>
+                    </div>
+                    <div className="contents">
+                      <h1>Hello</h1>
+                    </div>
+                  </div>
+                </div>{' '}
               </Grid>
               <Grid className="grid-item" item xs={4}>
-                <Card className="card">
-                  <div className="card-icon">
-                    <FontAwesomeIcon
-                      className="card-image"
-                      icon={['fas', 'file-alt']}
-                    />
+                <div className="wrapper">
+                  <div className="container">
+                    <div className="top" />
+                    <div className="bottom">
+                      <div className="left">
+                        <div className="details">
+                          <h1>ud-feedreader-testing</h1>
+                          <p>Testing Using Jasmine</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="buy"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">add_shopping_cart</i>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div className="done">
+                          <i className="material-icons">done</i>
+                        </div>
+                        <div className="details">
+                          <h1>ud-feedreader-testing</h1>
+                          <p>Added to your cart</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="remove"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">clear</i>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <CardContent className="card-content">
-                    <Typography
-                      className="card-content-text"
-                      component="div"
-                      variant="h3"
-                    >
-                      Documentation
-                    </Typography>
-                    <Typography
-                      className="card-content-sub-text"
-                      component="div"
-                      variant="h5"
-                    >
-                      I like to maintain a good documentation, whether it is
-                      code comments or code documents
-                    </Typography>
-                  </CardContent>
-                </Card>
+                  <div className="inside">
+                    <div className="icon">
+                      <i className="material-icons">info_outline</i>
+                    </div>
+                    <div className="contents">
+                      <h1>Hello</h1>
+                    </div>
+                  </div>
+                </div>{' '}
               </Grid>
               <Grid className="grid-item" item xs={4}>
-                <Card className="card">
-                  <div className="card-icon">
-                    <FontAwesomeIcon
-                      className="card-image"
-                      icon={['fas', 'users-cog']}
-                    />
+                <div className="wrapper">
+                  <div className="container">
+                    <div className="top" />
+                    <div className="bottom">
+                      <div className="left">
+                        <div className="details">
+                          <h1>ud-portfolio</h1>
+                          <p>Simple and Clean Portfolio</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="buy"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">add_shopping_cart</i>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div className="done">
+                          <i className="material-icons">done</i>
+                        </div>
+                        <div className="details">
+                          <h1>ud-portfolio</h1>
+                          <p>Added to your cart</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="remove"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">clear</i>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <CardContent className="card-content">
-                    <Typography
-                      className="card-content-text"
-                      component="div"
-                      variant="h3"
-                    >
-                      Team Work
-                    </Typography>
-                    <Typography
-                      className="card-content-sub-text"
-                      component="div"
-                      variant="h5"
-                    >
-                      I believe that a team can do miracles, if all the players
-                      of that team are motivated and dedicated
-                    </Typography>
-                  </CardContent>
-                </Card>
+                  <div className="inside">
+                    <div className="icon">
+                      <i className="material-icons">info_outline</i>
+                    </div>
+                    <div className="contents">
+                      <h1>Hello</h1>
+                    </div>
+                  </div>
+                </div>{' '}
               </Grid>
               <Grid className="grid-item" item xs={4}>
-                <Card className="card">
-                  <div className="card-icon">
-                    <FontAwesomeIcon
-                      className="card-image"
-                      icon={['fas', 'comments']}
-                    />
+                <div className="wrapper">
+                  <div className="container">
+                    <div className="top" />
+                    <div className="bottom">
+                      <div className="left">
+                        <div className="details">
+                          <h1>ud-classic-arcade-game</h1>
+                          <p>Classic Game for Fun</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="buy"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">add_shopping_cart</i>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div className="done">
+                          <i className="material-icons">done</i>
+                        </div>
+                        <div className="details">
+                          <h1>ud-classic-arcade-game</h1>
+                          <p>Added to your cart</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="remove"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">clear</i>
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <CardContent className="card-content">
-                    <Typography
-                      className="card-content-text"
-                      component="div"
-                      variant="h3"
-                    >
-                      Communication
-                    </Typography>
-                    <Typography
-                      className="card-content-sub-text"
-                      component="div"
-                      variant="h5"
-                    >
-                      I also love to discuss and share my views with other
-                      people so that we can come up with something better
-                    </Typography>
-                  </CardContent>
-                </Card>
+                  <div className="inside">
+                    <div className="icon">
+                      <i className="material-icons">info_outline</i>
+                    </div>
+                    <div className="contents">
+                      <h1>Hello</h1>
+                    </div>
+                  </div>
+                </div>{' '}
+              </Grid>
+              <Grid className="grid-item" item xs={4}>
+                <div className="wrapper">
+                  <div className="container">
+                    <div className="top" />
+                    <div className="bottom">
+                      <div className="left">
+                        <div className="details">
+                          <h1>ud-memory-game</h1>
+                          <p>A memory Game for your mind</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="buy"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">add_shopping_cart</i>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div className="done">
+                          <i className="material-icons">done</i>
+                        </div>
+                        <div className="details">
+                          <h1>ud-feedreader-testing</h1>
+                          <p>Added to your cart</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="remove"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">clear</i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="inside">
+                    <div className="icon">
+                      <i className="material-icons">info_outline</i>
+                    </div>
+                    <div className="contents">
+                      <h1>Hello</h1>
+                    </div>
+                  </div>
+                </div>{' '}
+              </Grid>
+              <Grid className="grid-item" item xs={4}>
+                <div className="wrapper">
+                  <div className="container">
+                    <div className="top" />
+                    <div className="bottom">
+                      <div className="left">
+                        <div className="details">
+                          <h1>ud-pixel-art-maker</h1>
+                          <p>Pixel Art Maker Application</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="buy"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">add_shopping_cart</i>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div className="done">
+                          <i className="material-icons">done</i>
+                        </div>
+                        <div className="details">
+                          <h1>ud-feedreader-testing</h1>
+                          <p>Added to your cart</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="remove"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">clear</i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="inside">
+                    <div className="icon">
+                      <i className="material-icons">info_outline</i>
+                    </div>
+                    <div className="contents">
+                      <h1>Hello</h1>
+                    </div>
+                  </div>
+                </div>{' '}
+              </Grid>
+              <Grid className="grid-item" item xs={4}>
+                <div className="wrapper">
+                  <div className="container">
+                    <div className="top" />
+                    <div className="bottom">
+                      <div className="left">
+                        <div className="details">
+                          <h1>ud-feedreader-testing</h1>
+                          <p>Testing Using Jasmine</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="buy"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">add_shopping_cart</i>
+                        </div>
+                      </div>
+                      <div className="right">
+                        <div className="done">
+                          <i className="material-icons">done</i>
+                        </div>
+                        <div className="details">
+                          <h1>ud-feedreader-testing</h1>
+                          <p>Added to your cart</p>
+                        </div>
+                        <div
+                          tabIndex={0}
+                          role="button"
+                          className="remove"
+                          onClick={e => {
+                            this.handleClick(e);
+                          }}
+                          onKeyUp={e => {
+                            this.handleClick(e);
+                          }}
+                        >
+                          <i className="material-icons">clear</i>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="inside">
+                    <div className="icon">
+                      <i className="material-icons">info_outline</i>
+                    </div>
+                    <div className="contents">
+                      <h1>Hello</h1>
+                    </div>
+                  </div>
+                </div>{' '}
               </Grid>
             </Grid>
           </div>
