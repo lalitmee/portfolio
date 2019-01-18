@@ -4,7 +4,7 @@
   "block-indent": "  ",
   "color-shorthand": true,
   "element-case": "lower",
-  "eof-newline": false,
+  "eof-newline": true,
   "leading-zero": true,
   "quotes": "single",
   "sort-order-fallback": "abc",
