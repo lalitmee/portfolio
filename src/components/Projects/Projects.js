@@ -111,7 +111,7 @@ class Projects extends React.Component {
                       <h1>Hello</h1>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
@@ -169,7 +169,7 @@ class Projects extends React.Component {
                       <h1>Hello</h1>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
@@ -227,7 +227,7 @@ class Projects extends React.Component {
                       <h1>Hello</h1>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
@@ -285,7 +285,7 @@ class Projects extends React.Component {
                       <h1>Hello</h1>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
@@ -343,7 +343,7 @@ class Projects extends React.Component {
                       <h1>Hello</h1>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
@@ -401,7 +401,7 @@ class Projects extends React.Component {
                       <h1>Hello</h1>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
@@ -459,7 +459,7 @@ class Projects extends React.Component {
                       <h1>Hello</h1>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
@@ -517,7 +517,7 @@ class Projects extends React.Component {
                       <h1>Hello</h1>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
@@ -575,7 +575,7 @@ class Projects extends React.Component {
                       <h1>Hello</h1>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
             </Grid>
           </div>
