@@ -58,7 +58,12 @@ class Projects extends React.Component {
                             Books Tracking Application
                           </div>
                         </div>
-                        <div tabIndex={0} role="button" className="github-link">
+                        <div
+                          href="https://github.com/lalitmee/ud-myreads"
+                          tabIndex={0}
+                          role="button"
+                          className="github-link"
+                        >
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -122,7 +127,12 @@ class Projects extends React.Component {
                             Web Tour of India
                           </div>
                         </div>
-                        <div tabIndex={0} role="button" className="github-link">
+                        <div
+                          href="https://github.com/lalitmee/ud-neighborhood-map"
+                          tabIndex={0}
+                          role="button"
+                          className="github-link"
+                        >
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -186,7 +196,12 @@ class Projects extends React.Component {
                             Application for Restaurant Reviews{' '}
                           </div>
                         </div>
-                        <div tabIndex={0} role="button" className="github-link">
+                        <div
+                          href="https://github.com/lalitmee/ud-restaurant-rewiews-stage1"
+                          tabIndex={0}
+                          role="button"
+                          className="github-link"
+                        >
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -250,7 +265,12 @@ class Projects extends React.Component {
                             Testing Using Jasmine
                           </div>
                         </div>
-                        <div tabIndex={0} role="button" className="github-link">
+                        <div
+                          href="https://github.com/lalitmee/ud-feedreader-testing"
+                          tabIndex={0}
+                          role="button"
+                          className="github-link"
+                        >
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -312,7 +332,12 @@ class Projects extends React.Component {
                             Simple and Clean Portfolio
                           </div>
                         </div>
-                        <div tabIndex={0} role="button" className="github-link">
+                        <div
+                          href="https://github.com/lalitmee/ud-portfolio"
+                          tabIndex={0}
+                          role="button"
+                          className="github-link"
+                        >
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -343,7 +368,7 @@ class Projects extends React.Component {
                             }}
                             icon={['fab', 'css3']}
                           />
-                          <div className="icon-name">Javscript</div>
+                          <div className="icon-name">CSS3</div>
                         </div>
                       </div>
                     </div>
@@ -366,7 +391,12 @@ class Projects extends React.Component {
                             Classic Game for Fun
                           </div>
                         </div>
-                        <div tabIndex={0} role="button" className="github-link">
+                        <div
+                          href="https://github.com/lalitmee/ud-classic-arcade-game"
+                          tabIndex={0}
+                          role="button"
+                          className="github-link"
+                        >
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -428,7 +458,12 @@ class Projects extends React.Component {
                             A memory Game for your mind
                           </div>
                         </div>
-                        <div tabIndex={0} role="button" className="github-link">
+                        <div
+                          href="https://github.com/lalitmee/ud-memory-game"
+                          tabIndex={0}
+                          role="button"
+                          className="github-link"
+                        >
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -490,7 +525,12 @@ class Projects extends React.Component {
                             Pixel Art Maker Application
                           </div>
                         </div>
-                        <div tabIndex={0} role="button" className="github-link">
+                        <div
+                          href="https://github.com/lalitmee/Ud-Pixel-Art-Maker"
+                          tabIndex={0}
+                          role="button"
+                          className="github-link"
+                        >
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -554,7 +594,12 @@ class Projects extends React.Component {
                             Testing Using Jasmine
                           </div>
                         </div>
-                        <div tabIndex={0} role="button" className="github-link">
+                        <div
+                          href="https://github.com/lalitmee/ud-feedreader-testing"
+                          tabIndex={0}
+                          role="button"
+                          className="github-link"
+                        >
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
