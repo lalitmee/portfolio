@@ -891,6 +891,7 @@ h6 {
 
 .wrapper .container .bottom .left .github-link {
   float: right;
+  outline: none;
   width: calc(30% - 2px);
   height: 100%;
   background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
@@ -979,6 +980,11 @@ h6 {
   color: #7e7e7e;
   opacity: 1;
 }
+
+.material-icons {
+  font-weight: 500;
+}
+
 .wrapper .inside:hover {
   width: 100%;
   right: 0;
@@ -1033,7 +1039,7 @@ h6 {
 .contacts-wrapper {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
-  background: #e3f7ec;
+  background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
 }
 
 .contacts-wrapper-paper {
@@ -1207,7 +1213,7 @@ h6 {
 .slick-prev:before,
 .slick-next:before {
   font-size: 30px !important;
-  color: #7e7e7e !important;
+  color: #30c3a6 !important;
 }
 
 /*****************************

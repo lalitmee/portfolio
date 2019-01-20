@@ -28,15 +28,6 @@ class Projects extends React.Component {
     this.state = {};
   }
 
-  handleClick = e => {
-    const bottom = e.currentTarget.parentElement.parentElement;
-    if (e.currentTarget.className === 'github-link') {
-      bottom.classList.add('clicked');
-    } else if (e.currentTarget.className === 'remove') {
-      bottom.classList.remove('clicked');
-    }
-  };
-
   render() {
     return (
       <div className="projects-wrapper" id="projects">
@@ -67,17 +58,7 @@ class Projects extends React.Component {
                             Books Tracking Application
                           </div>
                         </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
+                        <div tabIndex={0} role="button" className="github-link">
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -94,7 +75,7 @@ class Projects extends React.Component {
                           <FontAwesomeIcon
                             className="icons"
                             style={{
-                              color: '#0077B5'
+                              color: '#5ed3f3'
                             }}
                             icon={['fab', 'react']}
                           />
@@ -141,17 +122,7 @@ class Projects extends React.Component {
                             Web Tour of India
                           </div>
                         </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
+                        <div tabIndex={0} role="button" className="github-link">
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -168,7 +139,7 @@ class Projects extends React.Component {
                           <FontAwesomeIcon
                             className="icons"
                             style={{
-                              color: '#0077B5'
+                              color: '#5ed3f3'
                             }}
                             icon={['fab', 'react']}
                           />
@@ -215,17 +186,7 @@ class Projects extends React.Component {
                             Application for Restaurant Reviews{' '}
                           </div>
                         </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
+                        <div tabIndex={0} role="button" className="github-link">
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -289,17 +250,7 @@ class Projects extends React.Component {
                             Testing Using Jasmine
                           </div>
                         </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
+                        <div tabIndex={0} role="button" className="github-link">
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -361,17 +312,7 @@ class Projects extends React.Component {
                             Simple and Clean Portfolio
                           </div>
                         </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
+                        <div tabIndex={0} role="button" className="github-link">
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -425,17 +366,7 @@ class Projects extends React.Component {
                             Classic Game for Fun
                           </div>
                         </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
+                        <div tabIndex={0} role="button" className="github-link">
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -497,17 +428,7 @@ class Projects extends React.Component {
                             A memory Game for your mind
                           </div>
                         </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
+                        <div tabIndex={0} role="button" className="github-link">
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -569,17 +490,7 @@ class Projects extends React.Component {
                             Pixel Art Maker Application
                           </div>
                         </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
+                        <div tabIndex={0} role="button" className="github-link">
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -643,17 +554,7 @@ class Projects extends React.Component {
                             Testing Using Jasmine
                           </div>
                         </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
+                        <div tabIndex={0} role="button" className="github-link">
                           <i className="material-icons">open_in_new</i>
                         </div>
                       </div>
@@ -670,7 +571,7 @@ class Projects extends React.Component {
                           <FontAwesomeIcon
                             className="icons"
                             style={{
-                              color: '#0077B5'
+                              color: '#5ed3f3'
                             }}
                             icon={['fab', 'react']}
                           />
