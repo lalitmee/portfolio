@@ -28,15 +28,6 @@ class Projects extends React.Component {
     this.state = {};
   }
 
-  handleClick = e => {
-    const bottom = e.currentTarget.parentElement.parentElement;
-    if (e.currentTarget.className === 'github-link') {
-      bottom.classList.add('clicked');
-    } else if (e.currentTarget.className === 'remove') {
-      bottom.classList.remove('clicked');
-    }
-  };
-
   render() {
     return (
       <div className="projects-wrapper" id="projects">
@@ -68,15 +59,10 @@ class Projects extends React.Component {
                           </div>
                         </div>
                         <div
+                          href="https://github.com/lalitmee/ud-myreads"
                           tabIndex={0}
                           role="button"
                           className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
                         >
                           <i className="material-icons">open_in_new</i>
                         </div>
@@ -94,7 +80,7 @@ class Projects extends React.Component {
                           <FontAwesomeIcon
                             className="icons"
                             style={{
-                              color: '#0077B5'
+                              color: '#5ed3f3'
                             }}
                             icon={['fab', 'react']}
                           />
@@ -142,15 +128,10 @@ class Projects extends React.Component {
                           </div>
                         </div>
                         <div
+                          href="https://github.com/lalitmee/ud-neighborhood-map"
                           tabIndex={0}
                           role="button"
                           className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
                         >
                           <i className="material-icons">open_in_new</i>
                         </div>
@@ -168,7 +149,7 @@ class Projects extends React.Component {
                           <FontAwesomeIcon
                             className="icons"
                             style={{
-                              color: '#0077B5'
+                              color: '#5ed3f3'
                             }}
                             icon={['fab', 'react']}
                           />
@@ -216,15 +197,10 @@ class Projects extends React.Component {
                           </div>
                         </div>
                         <div
+                          href="https://github.com/lalitmee/ud-restaurant-rewiews-stage1"
                           tabIndex={0}
                           role="button"
                           className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
                         >
                           <i className="material-icons">open_in_new</i>
                         </div>
@@ -290,15 +266,10 @@ class Projects extends React.Component {
                           </div>
                         </div>
                         <div
+                          href="https://github.com/lalitmee/ud-feedreader-testing"
                           tabIndex={0}
                           role="button"
                           className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
                         >
                           <i className="material-icons">open_in_new</i>
                         </div>
@@ -362,15 +333,10 @@ class Projects extends React.Component {
                           </div>
                         </div>
                         <div
+                          href="https://github.com/lalitmee/ud-portfolio"
                           tabIndex={0}
                           role="button"
                           className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
                         >
                           <i className="material-icons">open_in_new</i>
                         </div>
@@ -402,7 +368,7 @@ class Projects extends React.Component {
                             }}
                             icon={['fab', 'css3']}
                           />
-                          <div className="icon-name">Javscript</div>
+                          <div className="icon-name">CSS3</div>
                         </div>
                       </div>
                     </div>
@@ -426,15 +392,10 @@ class Projects extends React.Component {
                           </div>
                         </div>
                         <div
+                          href="https://github.com/lalitmee/ud-classic-arcade-game"
                           tabIndex={0}
                           role="button"
                           className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
                         >
                           <i className="material-icons">open_in_new</i>
                         </div>
@@ -498,15 +459,10 @@ class Projects extends React.Component {
                           </div>
                         </div>
                         <div
+                          href="https://github.com/lalitmee/ud-memory-game"
                           tabIndex={0}
                           role="button"
                           className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
                         >
                           <i className="material-icons">open_in_new</i>
                         </div>
@@ -570,15 +526,10 @@ class Projects extends React.Component {
                           </div>
                         </div>
                         <div
+                          href="https://github.com/lalitmee/Ud-Pixel-Art-Maker"
                           tabIndex={0}
                           role="button"
                           className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
                         >
                           <i className="material-icons">open_in_new</i>
                         </div>
@@ -644,15 +595,10 @@ class Projects extends React.Component {
                           </div>
                         </div>
                         <div
+                          href="https://github.com/lalitmee/ud-feedreader-testing"
                           tabIndex={0}
                           role="button"
                           className="github-link"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
                         >
                           <i className="material-icons">open_in_new</i>
                         </div>
@@ -670,7 +616,7 @@ class Projects extends React.Component {
                           <FontAwesomeIcon
                             className="icons"
                             style={{
-                              color: '#0077B5'
+                              color: '#5ed3f3'
                             }}
                             icon={['fab', 'react']}
                           />
