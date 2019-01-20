@@ -1,15 +1,12 @@
 import fontawesome from '@fortawesome/fontawesome';
 import {
-  faComments,
-  faDesktop,
-  faFileAlt,
-  faSearch,
-  faTasks,
-  faUsersCog
-} from '@fortawesome/fontawesome-free-solid';
-/* import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
- * import Card from '@material-ui/core/Card';
- * import CardContent from '@material-ui/core/CardContent'; */
+  faAngular,
+  faCss3,
+  faHtml5,
+  faJsSquare,
+  faReact
+} from '@fortawesome/fontawesome-free-brands';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
@@ -24,14 +21,7 @@ import pixel_art from '../../assets/images/projects/pixel_art.png';
 import portfolio from '../../assets/images/projects/portfolio.png';
 import reviews from '../../assets/images/projects/reviews.jpeg';
 
-fontawesome.library.add(
-  faComments,
-  faDesktop,
-  faSearch,
-  faTasks,
-  faFileAlt,
-  faUsersCog
-);
+fontawesome.library.add(faAngular, faCss3, faReact, faJsSquare, faHtml5);
 class Projects extends React.Component {
   constructor(props) {
     super(props);
@@ -98,7 +88,39 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0077B5'
+                            }}
+                            icon={['fab', 'react']}
+                          />
+                          <div className="icon-name">React</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -140,7 +162,39 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0077B5'
+                            }}
+                            icon={['fab', 'react']}
+                          />
+                          <div className="icon-name">React</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -182,7 +236,39 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#f0db4f'
+                            }}
+                            icon={['fab', 'js-square']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -224,7 +310,39 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#f0db4f'
+                            }}
+                            icon={['fab', 'js-square']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -264,7 +382,29 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -306,7 +446,39 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#f0db4f'
+                            }}
+                            icon={['fab', 'js-square']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -346,7 +518,39 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#f0db4f'
+                            }}
+                            icon={['fab', 'js-square']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -386,7 +590,39 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#f0db4f'
+                            }}
+                            icon={['fab', 'js-square']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -428,7 +664,19 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0077B5'
+                            }}
+                            icon={['fab', 'react']}
+                          />
+                          <div className="icon-name">React</div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>

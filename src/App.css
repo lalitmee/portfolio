@@ -876,6 +876,7 @@ h6 {
   padding: 20px;
   float: left;
   text-align: left;
+  color: #7e7e7e;
   width: calc(70% - 40px);
 }
 
@@ -899,7 +900,7 @@ h6 {
 .wrapper .container .bottom .left .github-link i {
   font-size: 3rem;
   padding: 3.3rem;
-  color: #254053;
+  color: #7e7e7e;
   transition: transform 0.5s;
 }
 .wrapper .container .bottom .left .github-link:hover {
@@ -975,7 +976,7 @@ h6 {
   position: absolute;
   right: 85px;
   top: 85px;
-  color: white;
+  color: #7e7e7e;
   opacity: 1;
 }
 .wrapper .inside:hover {
@@ -1006,13 +1007,23 @@ h6 {
   text-align: left;
   width: 100%;
 }
-.wrapper .inside .contents h1,
-.wrapper .inside .contents p,
-.wrapper .inside .contents table {
-  color: white;
+.wrapper .inside .contents .tech-head {
+  color: #7e7e7e;
+  font-size: 3rem;
 }
-.wrapper .inside .contents p {
-  font-size: 13px;
+
+.wrapper .inside .contents .technologies {
+  display: flex;
+  justify-content: center;
+}
+
+.technologies .icons {
+  font-size: 4rem;
+  margin: 1rem 4rem;
+}
+
+.icon-name {
+  font-size: 2rem;
 }
 
 /***********************
