@@ -904,7 +904,7 @@ h6 {
   transition: transform 0.5s;
 }
 .wrapper .container .bottom .left .github-link:hover {
-  background: #a6cdde;
+  background: #2ec6a8e6;
 }
 .wrapper .container .bottom .left .github-link:hover i {
   transform: translateY(5px);
