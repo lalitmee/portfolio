@@ -832,19 +832,25 @@ h6 {
 .wrapper .container {
   width: 100%;
   height: 100%;
+  cursor: pointer;
 }
 .wrapper .container .top {
   height: 80%;
   width: 100%;
-  background: url(https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3f1c7483093855ebca1b8ae2c4.jpg)
+  /* background: url(https://s-media-cache-ak0.pinimg.com/736x/49/80/6f/49806f3f1c7483093855ebca1b8ae2c4.jpg)
     no-repeat center center;
   -webkit-background-size: 100%;
   -moz-background-size: 100%;
   -o-background-size: 100%;
-  background-size: 100%;
+  background-size: 100%; */
 }
+
+.wrapper .container .top img {
+  max-height: 100%;
+}
+
 .wrapper .container .bottom {
-  width: 200%;
+  width: 100%;
   height: 20%;
   transition: transform 0.5s;
 }
@@ -861,34 +867,45 @@ h6 {
 }
 .wrapper .container .bottom .left {
   height: 100%;
-  width: 50%;
-  background: #f4f4f4;
+  width: 100%;
+  background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
   position: relative;
   float: left;
 }
 .wrapper .container .bottom .left .details {
   padding: 20px;
   float: left;
+  text-align: left;
   width: calc(70% - 40px);
 }
-.wrapper .container .bottom .left .buy {
+
+.details .project-name {
+  font-size: 2.5rem;
+  font-weight: 600;
+}
+
+.details .project-description {
+  font-size: 1.7rem;
+}
+
+.wrapper .container .bottom .left .github-link {
   float: right;
   width: calc(30% - 2px);
   height: 100%;
-  background: #f1f1f1;
+  background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
   transition: background 0.5s;
   border-left: solid thin rgba(0, 0, 0, 0.1);
 }
-.wrapper .container .bottom .left .buy i {
-  font-size: 30px;
-  padding: 30px;
+.wrapper .container .bottom .left .github-link i {
+  font-size: 3rem;
+  padding: 3.3rem;
   color: #254053;
   transition: transform 0.5s;
 }
-.wrapper .container .bottom .left .buy:hover {
+.wrapper .container .bottom .left .github-link:hover {
   background: #a6cdde;
 }
-.wrapper .container .bottom .left .buy:hover i {
+.wrapper .container .bottom .left .github-link:hover i {
   transform: translateY(5px);
   color: #00394b;
 }
@@ -943,7 +960,8 @@ h6 {
 }
 .wrapper .inside {
   z-index: 9;
-  background: #92879b;
+  cursor: pointer;
+  background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
   width: 140px;
   height: 140px;
   position: absolute;
