@@ -462,6 +462,11 @@ h6 {
   margin: 0;
   position: absolute;
   font-size: 5rem;
+  color: #30c3a6;
+  /* background: linear-gradient(to right, #30c3a6, #24d051);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone; */
   top: 50%;
   left: 51%;
   transform: translate(-50%, -50%);
@@ -712,8 +717,11 @@ h6 {
   font-size: 7rem !important;
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
-  font-weight: 500 !important;
-  color: rgba(26, 188, 156, 0.9) !important;
+  font-weight: 600 !important;
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
   width: 50%;
   margin: 2rem auto !important;
   color: rgba(0, 0, 0, 0.4);
@@ -788,8 +796,11 @@ h6 {
   font-size: 7rem !important;
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
-  font-weight: 500 !important;
-  color: rgba(26, 188, 156, 0.9) !important;
+  font-weight: 600 !important;
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
   width: 50%;
   margin: 2rem auto !important;
   z-index: 1;
@@ -905,7 +916,7 @@ h6 {
   transition: transform 0.5s;
 }
 .wrapper .container .bottom .left .github-link:hover {
-  background: #2ec6a8e6;
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
 }
 .wrapper .container .bottom .left .github-link:hover i {
   transform: translateY(5px);
@@ -1076,8 +1087,11 @@ h6 {
   font-size: 7rem !important;
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
-  font-weight: 500 !important;
-  color: rgba(26, 188, 156, 0.9) !important;
+  font-weight: 600 !important;
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
   width: 50%;
   margin: 2rem auto !important;
   z-index: 1;
