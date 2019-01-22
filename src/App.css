@@ -718,7 +718,7 @@ h6 {
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
   font-weight: 600 !important;
-  background: linear-gradient(to right, #30c3a6, #24d051);
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
@@ -797,7 +797,7 @@ h6 {
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
   font-weight: 600 !important;
-  background: linear-gradient(to right, #30c3a6, #24d051);
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
@@ -916,7 +916,7 @@ h6 {
   transition: transform 0.5s;
 }
 .wrapper .container .bottom .left .github-link:hover {
-  background: linear-gradient(to right, #30c3a6, #24d051);
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
 }
 .wrapper .container .bottom .left .github-link:hover i {
   transform: translateY(5px);
@@ -1088,7 +1088,7 @@ h6 {
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
   font-weight: 600 !important;
-  background: linear-gradient(to right, #30c3a6, #24d051);
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
