@@ -13,11 +13,11 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import 'react-typist/dist/Typist.css';
 import arcade from '../../assets/images/projects/arcade_game.png';
-import feed_reader from '../../assets/images/projects/feed_reader.png';
-import memory_game from '../../assets/images/projects/memory_game.png';
-import my_reads from '../../assets/images/projects/my_reads.png';
+import feedReader from '../../assets/images/projects/feed_reader.png';
+import memoryGame from '../../assets/images/projects/memory_game.png';
+import myReads from '../../assets/images/projects/my_reads.png';
 import neighborhood from '../../assets/images/projects/neighborhood.png';
-import pixel_art from '../../assets/images/projects/pixel_art.png';
+import pixelArt from '../../assets/images/projects/pixel_art.png';
 import portfolio from '../../assets/images/projects/portfolio.png';
 import reviews from '../../assets/images/projects/reviews.jpeg';
 
@@ -48,7 +48,7 @@ class Projects extends React.Component {
                 <div className="wrapper">
                   <div className="container">
                     <div className="top">
-                      <img src={my_reads} alt="my-reads" />
+                      <img src={myReads} alt="my-reads" />
                     </div>
                     <div className="bottom">
                       <div className="left">
@@ -58,14 +58,16 @@ class Projects extends React.Component {
                             Books Tracking Application
                           </div>
                         </div>
-                        <div
+                        <a
                           href="https://github.com/lalitmee/ud-myreads"
                           tabIndex={0}
                           role="button"
                           className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -106,6 +108,10 @@ class Projects extends React.Component {
                           />
                           <div className="icon-name">CSS3</div>
                         </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
                       </div>
                     </div>
                   </div>
@@ -127,14 +133,16 @@ class Projects extends React.Component {
                             Web Tour of India
                           </div>
                         </div>
-                        <div
+                        <a
                           href="https://github.com/lalitmee/ud-neighborhood-map"
                           tabIndex={0}
                           role="button"
                           className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -175,6 +183,10 @@ class Projects extends React.Component {
                           />
                           <div className="icon-name">CSS3</div>
                         </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
                       </div>
                     </div>
                   </div>
@@ -196,14 +208,16 @@ class Projects extends React.Component {
                             Application for Restaurant Reviews{' '}
                           </div>
                         </div>
-                        <div
+                        <a
                           href="https://github.com/lalitmee/ud-restaurant-rewiews-stage1"
                           tabIndex={0}
                           role="button"
                           className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -245,6 +259,10 @@ class Projects extends React.Component {
                           <div className="icon-name">CSS3</div>
                         </div>
                       </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -253,7 +271,7 @@ class Projects extends React.Component {
                 <div className="wrapper">
                   <div className="container">
                     <div className="top">
-                      <img src={feed_reader} alt="my-reads" />
+                      <img src={feedReader} alt="my-reads" />
                     </div>
                     <div className="bottom">
                       <div className="left">
@@ -265,14 +283,16 @@ class Projects extends React.Component {
                             Testing Using Jasmine
                           </div>
                         </div>
-                        <div
+                        <a
                           href="https://github.com/lalitmee/ud-feedreader-testing"
                           tabIndex={0}
                           role="button"
                           className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -313,6 +333,10 @@ class Projects extends React.Component {
                           />
                           <div className="icon-name">CSS3</div>
                         </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
                       </div>
                     </div>
                   </div>
@@ -332,14 +356,16 @@ class Projects extends React.Component {
                             Simple and Clean Portfolio
                           </div>
                         </div>
-                        <div
+                        <a
                           href="https://github.com/lalitmee/ud-portfolio"
                           tabIndex={0}
                           role="button"
                           className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -370,6 +396,10 @@ class Projects extends React.Component {
                           />
                           <div className="icon-name">CSS3</div>
                         </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
                       </div>
                     </div>
                   </div>
@@ -391,14 +421,16 @@ class Projects extends React.Component {
                             Classic Game for Fun
                           </div>
                         </div>
-                        <div
+                        <a
                           href="https://github.com/lalitmee/ud-classic-arcade-game"
                           tabIndex={0}
                           role="button"
                           className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -440,6 +472,10 @@ class Projects extends React.Component {
                           <div className="icon-name">CSS3</div>
                         </div>
                       </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -448,7 +484,7 @@ class Projects extends React.Component {
                 <div className="wrapper">
                   <div className="container">
                     <div className="top">
-                      <img src={memory_game} alt="my-reads" />
+                      <img src={memoryGame} alt="my-reads" />
                     </div>
                     <div className="bottom">
                       <div className="left">
@@ -458,14 +494,16 @@ class Projects extends React.Component {
                             A memory Game for your mind
                           </div>
                         </div>
-                        <div
+                        <a
                           href="https://github.com/lalitmee/ud-memory-game"
                           tabIndex={0}
                           role="button"
                           className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -507,6 +545,10 @@ class Projects extends React.Component {
                           <div className="icon-name">CSS3</div>
                         </div>
                       </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -515,7 +557,7 @@ class Projects extends React.Component {
                 <div className="wrapper">
                   <div className="container">
                     <div className="top">
-                      <img src={pixel_art} alt="my-reads" />
+                      <img src={pixelArt} alt="my-reads" />
                     </div>
                     <div className="bottom">
                       <div className="left">
@@ -525,14 +567,16 @@ class Projects extends React.Component {
                             Pixel Art Maker Application
                           </div>
                         </div>
-                        <div
+                        <a
                           href="https://github.com/lalitmee/Ud-Pixel-Art-Maker"
                           tabIndex={0}
                           role="button"
                           className="github-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
                           <i className="material-icons">open_in_new</i>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -574,6 +618,10 @@ class Projects extends React.Component {
                           <div className="icon-name">CSS3</div>
                         </div>
                       </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -582,7 +630,7 @@ class Projects extends React.Component {
                 <div className="wrapper">
                   <div className="container">
                     <div className="top">
-                      <img src={feed_reader} alt="my-reads" />
+                      <img src={feedReader} alt="my-reads" />
                     </div>
                     <div className="bottom">
                       <div className="left">
@@ -594,14 +642,16 @@ class Projects extends React.Component {
                             Testing Using Jasmine
                           </div>
                         </div>
-                        <div
+                        <a
                           href="https://github.com/lalitmee/ud-feedreader-testing"
                           tabIndex={0}
                           role="button"
                           className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
-                        </div>
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -622,6 +672,10 @@ class Projects extends React.Component {
                           />
                           <div className="icon-name">React</div>
                         </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
                       </div>
                     </div>
                   </div>
