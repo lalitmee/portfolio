@@ -462,6 +462,10 @@ h6 {
   margin: 0;
   position: absolute;
   font-size: 5rem;
+  background: linear-gradient(to right, #30c3a6, #24d051);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
   top: 50%;
   left: 51%;
   transform: translate(-50%, -50%);
