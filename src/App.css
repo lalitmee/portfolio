@@ -183,7 +183,10 @@ h6 {
   font-size: 5rem;
   font-weight: 600;
   margin: 0.3rem;
-  color: #30c3a6;
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
   font-family: 'Alex Brush';
 }
 
@@ -193,7 +196,10 @@ h6 {
   left: 19rem;
   font-size: 5rem;
   font-weight: 600;
-  color: #30c3a6;
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
   font-family: 'Alex Brush';
   -webkit-transition: top 0.35s ease-in-out;
   -moz-transition: top 0.35s ease-in-out;
@@ -206,7 +212,10 @@ h6 {
   left: 19rem;
   font-size: 5rem;
   font-weight: 600;
-  color: #30c3a6;
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
   font-family: 'Alex Brush';
   -webkit-transition: top 0.35s ease-in-out;
   -moz-transition: top 0.35s ease-in-out;
@@ -268,7 +277,7 @@ h6 {
 }
 .overlay {
   position: fixed;
-  background: #0c5d4d;
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
   top: 0;
   left: 0;
   width: 100%;
@@ -425,8 +434,8 @@ h6 {
   font-size: 72px;
   color: #333;
   color: transparent;
-  background: -webkit-linear-gradient(#999, #999) center 1.09em no-repeat;
-  background: linear-gradient(#999, #999) center 1.09em no-repeat;
+  background: linear-gradient(to right, #30c3a6, #8cc69b) center 1.09em
+    no-repeat;
   background-size: 80% 3px;
   -webkit-transition: 0.2s ease;
   transition: 0.2s ease;
@@ -462,11 +471,10 @@ h6 {
   margin: 0;
   position: absolute;
   font-size: 5rem;
-  color: #30c3a6;
-  /* background: linear-gradient(to right, #30c3a6, #24d051);
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  -webkit-box-decoration-break: clone; */
+  -webkit-box-decoration-break: clone;
   top: 50%;
   left: 51%;
   transform: translate(-50%, -50%);
@@ -667,7 +675,7 @@ h6 {
   padding: 1rem 0 2rem 0;
   border-radius: 10px !important;
   box-shadow: none;
-  background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
   transform: scale(0.95);
   transition: box-shadow 0.5s, -webkit-transform 0.5s;
   transition: box-shadow 0.5s, transform 0.5s;
@@ -687,7 +695,7 @@ h6 {
   height: 50px;
   margin: 2rem 2rem;
   font-size: 5rem;
-  color: rgba(26, 188, 156, 0.9) !important;
+  color: white !important;
 }
 
 .card-content-text {
@@ -695,7 +703,7 @@ h6 {
   font-weight: 600 !important;
   line-height: 1.04 !important;
   font-size: 3.5rem !important;
-  color: #7e7e7e !important;
+  color: #2a5b51 !important;
   transition: color 0.4s;
 }
 
@@ -704,7 +712,7 @@ h6 {
   line-height: 1.5 !important;
   font-size: 2rem !important;
   margin: 2rem 1rem 1rem 1rem !important;
-  color: #7a8482 !important;
+  color: #46615c !important;
   transition: color 0.4s;
 }
 
@@ -734,7 +742,7 @@ h6 {
 .quotes-wrapper {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
-  background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
   color: #7e7e7e;
 }
 
@@ -753,7 +761,7 @@ h6 {
   quotes: '“' '”' '‘' '’';
   font-size: 3rem;
   font-weight: 600;
-  color: #7e7e7e;
+  color: #2a5b51;
   letter-spacing: 0.05em;
   font-family: 'Proxima', sans-serif;
 }
@@ -763,7 +771,7 @@ h6 {
   font-size: 2rem;
   font-weight: 400;
   margin-top: 2rem;
-  color: #7e7e7e;
+  color: #fff;
   letter-spacing: 0.05em;
   font-style: italic;
   font-family: 'Proxima', sans-serif;
@@ -879,7 +887,7 @@ h6 {
 .wrapper .container .bottom .left {
   height: 100%;
   width: 100%;
-  background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
   position: relative;
   float: left;
 }
@@ -887,7 +895,7 @@ h6 {
   padding: 20px;
   float: left;
   text-align: left;
-  color: #7e7e7e;
+  color: #2a5b51;
   width: calc(70% - 40px);
 }
 
@@ -905,7 +913,7 @@ h6 {
   outline: none;
   width: calc(30% - 2px);
   height: 100%;
-  background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
   transition: background 0.5s;
   border-left: solid thin rgba(0, 0, 0, 0.1);
 }
@@ -974,7 +982,7 @@ h6 {
 .wrapper .inside {
   z-index: 9;
   cursor: pointer;
-  background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
   width: 140px;
   height: 140px;
   position: absolute;
@@ -988,7 +996,7 @@ h6 {
   position: absolute;
   right: 85px;
   top: 85px;
-  color: #7e7e7e;
+  color: #2a5b51;
   opacity: 1;
 }
 
@@ -1025,7 +1033,7 @@ h6 {
   width: 100%;
 }
 .wrapper .inside .contents .tech-head {
-  color: #7e7e7e;
+  color: #2a5b51;
   font-size: 3rem;
   font-weight: 600;
 }
@@ -1037,6 +1045,7 @@ h6 {
 
 .wrapper .inside .contents .category-head {
   color: #7e7e7e;
+  color: #2a5b51;
   margin: 4rem 0 1rem 0;
   font-size: 3rem;
   font-weight: 600;
@@ -1055,7 +1064,7 @@ h6 {
 .icon-name,
 .category-name {
   font-size: 2rem;
-  color: #7e7e7e;
+  color: #2a5b51;
 }
 
 /***********************
@@ -1212,7 +1221,7 @@ h6 {
 
 .footer {
   height: 100%;
-  background: linear-gradient(#3ed6b8, rgba(61, 74, 72, 0.9));
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
 }
 
 .footer-text {
@@ -1242,7 +1251,7 @@ h6 {
 .slick-prev:before,
 .slick-next:before {
   font-size: 30px !important;
-  color: #30c3a6 !important;
+  color: #2a5b51 !important;
 }
 
 /*****************************
