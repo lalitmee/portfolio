@@ -12,6 +12,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import 'react-typist/dist/Typist.css';
+import github from '../../assets/images/github-circle.png';
 import arcade from '../../assets/images/projects/arcade_game.png';
 import feedReader from '../../assets/images/projects/feed_reader.png';
 import memoryGame from '../../assets/images/projects/memory_game.png';
@@ -67,6 +68,11 @@ class Projects extends React.Component {
                           target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
                         </a>
                       </div>
                     </div>
@@ -142,6 +148,11 @@ class Projects extends React.Component {
                           target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
                         </a>
                       </div>
                     </div>
@@ -217,6 +228,11 @@ class Projects extends React.Component {
                           target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
                         </a>
                       </div>
                     </div>
@@ -292,6 +308,11 @@ class Projects extends React.Component {
                           target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
                         </a>
                       </div>
                     </div>
@@ -365,6 +386,11 @@ class Projects extends React.Component {
                           target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
                         </a>
                       </div>
                     </div>
@@ -430,6 +456,11 @@ class Projects extends React.Component {
                           target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
                         </a>
                       </div>
                     </div>
@@ -503,6 +534,11 @@ class Projects extends React.Component {
                           target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
                         </a>
                       </div>
                     </div>
@@ -576,6 +612,11 @@ class Projects extends React.Component {
                           rel="noopener noreferrer"
                         >
                           <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
                         </a>
                       </div>
                     </div>
@@ -651,6 +692,11 @@ class Projects extends React.Component {
                           target="_blank"
                         >
                           <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
                         </a>
                       </div>
                     </div>
