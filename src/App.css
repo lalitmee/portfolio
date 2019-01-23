@@ -1097,7 +1097,7 @@ h6 {
 .contacts-wrapper {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
-  background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9));
+  /* background: linear-gradient(#e6f8ed, rgba(170, 225, 216, 0.9)); */
 }
 
 .contacts-wrapper-paper {

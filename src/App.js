@@ -43,6 +43,9 @@ export default class App extends React.Component {
             <Element name="projects" className="projects">
               <Projects />
             </Element>
+            {/* <Element name="resume" className="resume">
+              <Quotes />
+            </Element> */}
             <Element name="contact" className="contact">
               <Contact />
             </Element>
