@@ -340,7 +340,7 @@ h6 {
 .overlay ul li a {
   display: block;
   position: relative;
-  color: #fff;
+  color: #2a5b51;
   text-decoration: none;
   overflow: hidden;
 }
@@ -358,7 +358,7 @@ h6 {
   -webkit-transform: translateX(-50%);
   transform: translateX(-50%);
   height: 3px;
-  background: #fff;
+  background: #2a5b51;
   transition: 0.35s;
 }
 
