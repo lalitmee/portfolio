@@ -22,6 +22,7 @@ class Quotes extends React.Component {
   }
 
   render() {
+    const {quotes} = this.state
     const settings = {
       dots: false,
       infinite: true,
@@ -30,13 +31,13 @@ class Quotes extends React.Component {
       slidesToScroll: 1,
       autoplay: true,
       autoplaySpeed: 15000,
-      initialSlide: Math.floor(Math.random(this.state.quotes.length) * 100)
+      initialSlide: Math.floor(Math.random(quotes.length) * 100)
     };
     return (
       <div className="quotes-wrapper" id="quotes">
         <Paper className="quotes-wrapper-paper" elevation={1}>
           <Slider {...settings}>
-            {this.state.quotes.map((item, i) => (
+            {quotes.map((item, i) => (
               <div className="quote" key={i}>
                 <div className="quotes-text">{item.quote}</div>
                 <div className="quotes-writer">- {item.author}</div>
