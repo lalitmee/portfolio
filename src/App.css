@@ -185,8 +185,10 @@ h6 {
   margin: 0.3rem;
   background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   font-family: 'Alex Brush';
 }
 
@@ -198,8 +200,10 @@ h6 {
   font-weight: 600;
   background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   font-family: 'Alex Brush';
   -webkit-transition: top 0.35s ease-in-out;
   -moz-transition: top 0.35s ease-in-out;
@@ -214,8 +218,10 @@ h6 {
   font-weight: 600;
   background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   font-family: 'Alex Brush';
   -webkit-transition: top 0.35s ease-in-out;
   -moz-transition: top 0.35s ease-in-out;
@@ -473,8 +479,10 @@ h6 {
   font-size: 5rem;
   background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   top: 50%;
   left: 51%;
   transform: translate(-50%, -50%);
@@ -555,6 +563,10 @@ h6 {
   color: #ff003c;
   background: -webkit-linear-gradient(45deg, #c2ccf1, #d0cfdf);
   -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   -webkit-text-fill-color: transparent;
   transition: all 265ms ease-in;
 }
@@ -728,8 +740,10 @@ h6 {
   font-weight: 600 !important;
   background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   width: 50%;
   margin: 2rem auto !important;
   color: rgba(0, 0, 0, 0.4);
@@ -807,8 +821,10 @@ h6 {
   font-weight: 600 !important;
   background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   width: 50%;
   margin: 2rem auto !important;
   z-index: 1;
@@ -1090,6 +1106,119 @@ h6 {
   color: #2a5b51;
 }
 
+/******************
+ * RESUME WRAPPER *
+ ******************/
+.resume-wrapper {
+  position: relative;
+  padding: 8rem 1.9rem 8rem 0.9rem;
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  color: #7e7e7e;
+}
+
+.resume-wrapper-paper {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  width: 80%;
+  margin: 0 auto;
+}
+
+.resume-head {
+  font-size: 7rem !important;
+  font-family: 'Proxima', sans-serif !important;
+  letter-spacing: 0.02em !important;
+  font-weight: 600 !important;
+  color: #2a5b51 !important;
+  width: 50%;
+  margin: 2rem auto !important;
+  z-index: 1;
+}
+
+.resume-button {
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.btn,
+button {
+  background: #2a5b51;
+  border-radius: 5px;
+  font-size: 2rem !important;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  font-family: 'Proxima';
+  border: 2px solid #2a5b51;
+  transition: color 0.1s cubic-bezier(0.16, 0.08, 0.355, 1),
+    background 0.1s cubic-bezier(0.16, 0.08, 0.355, 1);
+  display: inline-block;
+  cursor: pointer;
+  width: 100%;
+  min-width: 200px;
+  min-width: 20rem;
+  outline: none;
+  vertical-align: middle;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+@media (min-width: 400px) {
+  .btn,
+  button {
+    width: auto;
+  }
+}
+@media (min-width: 800px) {
+  .btn,
+  button {
+    font-size: 1.1rem;
+    padding: 1.6rem 2.8rem;
+  }
+}
+.btn:hover,
+button:hover {
+  background: #2a5b51;
+  border-color: #2a5b51;
+  color: #fff;
+}
+.btn-border {
+  background-color: transparent;
+  color: #2a5b51;
+}
+.btn-arrow {
+  position: relative;
+  transition: background-color 300ms ease-out;
+}
+.btn-arrow span {
+  display: inline-block;
+  position: relative;
+  transition: all 300ms ease-out;
+  will-change: transform;
+}
+.btn-arrow:hover span {
+  -webkit-transform: translate3d(-2rem, 0, 0);
+  transform: translate3d(-2rem, 0, 0);
+}
+.btn-arrow svg {
+  position: absolute;
+  width: 1.1em;
+  right: 0px;
+  right: 0rem;
+  opacity: 0;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+  transition: all 300ms ease-out;
+  will-change: right, opacity;
+}
+.btn-arrow svg * {
+  stroke-width: 5;
+  stroke-color: transparent;
+}
+.btn-arrow:hover svg {
+  opacity: 1;
+  right: -4rem;
+}
+
 /***********************
  * CONTACT SECTION CSS *
  ***********************/
@@ -1122,8 +1251,10 @@ h6 {
   font-weight: 600 !important;
   background: linear-gradient(to right, #30c3a6, #8cc69b);
   -webkit-background-clip: text;
+  background-clip: text;
   -webkit-text-fill-color: transparent;
   -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
   width: 50%;
   margin: 2rem auto !important;
   z-index: 1;

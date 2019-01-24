@@ -7,6 +7,7 @@ import Footer from './components/Footer/Footer';
 import HomePage from './components/HomePage/HomePage';
 import Projects from './components/Projects/Projects';
 import Quotes from './components/Quotes/Quotes';
+import Resume from './components/Resume/Resume';
 import Skills from './components/Skills/Skills';
 
 export default class App extends React.Component {
@@ -43,9 +44,9 @@ export default class App extends React.Component {
             <Element name="projects" className="projects">
               <Projects />
             </Element>
-            {/* <Element name="resume" className="resume">
-              <Quotes />
-            </Element> */}
+            <Element name="resume" className="resume">
+              <Resume />
+            </Element>
             <Element name="contact" className="contact">
               <Contact />
             </Element>

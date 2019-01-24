@@ -104,6 +104,21 @@ class OverlayNavigation extends React.Component {
                   onClick={() => {
                     this.navClick();
                   }}
+                  to="resume"
+                  smooth="easeInOutQuart"
+                  delay={200}
+                  isDynamic
+                  duration={1200}
+                  style={{ cursor: 'pointer' }}
+                >
+                  Resume
+                </Link>
+              </li>
+              <li>
+                <Link
+                  onClick={() => {
+                    this.navClick();
+                  }}
                   to="contact"
                   smooth="easeInOutQuart"
                   delay={200}
