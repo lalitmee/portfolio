@@ -20,7 +20,7 @@ class Resume extends React.Component {
           </Typography>
 
           <a href={resume} target="_blank" className="resume-button">
-            <button className="btn btn-arrow btn-border">
+            <button className="btn btn-arrow">
               <span>
                 Resume
                 <svg

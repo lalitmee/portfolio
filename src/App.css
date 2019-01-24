@@ -124,8 +124,8 @@ h6 {
 }
 
 .appbar-background-img {
-  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
-    url('./assets/images/background/back5.png');
+  background-image: linear-gradient(to right, #2a5b51, rgba(14, 83, 38, 0.8)),
+    url(/static/media/back5.c5241d54.png);
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
@@ -1139,14 +1139,15 @@ h6 {
   text-decoration: none;
 }
 
-.btn,
-button {
+button.btn {
   background: #2a5b51;
   border-radius: 5px;
   font-size: 2rem !important;
+  background-color: transparent;
   letter-spacing: 1.5px;
   text-transform: uppercase;
   font-family: 'Proxima';
+  position: relative;
   border: 2px solid #2a5b51;
   transition: color 0.1s cubic-bezier(0.16, 0.08, 0.355, 1),
     background 0.1s cubic-bezier(0.16, 0.08, 0.355, 1);
@@ -1161,37 +1162,45 @@ button {
   position: relative;
   overflow: hidden;
 }
+
 @media (min-width: 400px) {
-  .btn,
-  button {
+  button.btn {
     width: auto;
   }
 }
 @media (min-width: 800px) {
-  .btn,
-  button {
+  button.btn {
     font-size: 1.1rem;
     padding: 1.6rem 2.8rem;
   }
 }
-.btn:hover,
-button:hover {
-  background: #2a5b51;
+button.btn:hover {
+  background: linear-gradient(to right, #1b9980, #41c062);
   border-color: #2a5b51;
   color: #fff;
 }
-.btn-border {
-  background-color: transparent;
-  color: #2a5b51;
+
+button.btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: -1;
+  margin: -5px;
+  border-radius: inherit;
+  background: linear-gradient(to right, #1b9980, #41c062);
 }
+
 .btn-arrow {
   position: relative;
-  transition: background-color 300ms ease-out;
+  transition: background-color 0.3s ease-out;
 }
 .btn-arrow span {
   display: inline-block;
   position: relative;
-  transition: all 300ms ease-out;
+  transition: all 0.3s ease-out;
   will-change: transform;
 }
 .btn-arrow:hover span {
@@ -1207,7 +1216,7 @@ button:hover {
   top: 50%;
   -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
-  transition: all 300ms ease-out;
+  transition: all 0.3s ease-out;
   will-change: right, opacity;
 }
 .btn-arrow svg * {
