@@ -37,7 +37,7 @@ class Contact extends React.Component {
 
   render() {
     return (
-      <div className="contacts-wrapper" id="projects">
+      <div className="contacts-wrapper" id="contacts">
         <Paper className="contacts-wrapper-paper" elevation={1}>
           <Typography className="contacts-head" variant="h3" component="div">
             Contact
