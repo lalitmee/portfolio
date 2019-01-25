@@ -1198,12 +1198,14 @@ button.btn::before {
   transition: background-color 0.3s ease-out;
 }
 .btn-arrow span {
+  color: #2a5b51;
   display: inline-block;
   position: relative;
   transition: all 0.3s ease-out;
   will-change: transform;
 }
 .btn-arrow:hover span {
+  color: #fff;
   -webkit-transform: translate3d(-2rem, 0, 0);
   transform: translate3d(-2rem, 0, 0);
 }
@@ -1390,7 +1392,7 @@ button.btn::before {
 .footer-text {
   font-family: 'Proxima', sans-serif !important;
   margin-top: 1% !important;
-  color: white !important;
+  color: #2a5b51 !important;
 }
 
 /*********************************
