@@ -1,43 +1,33 @@
 import fontawesome from '@fortawesome/fontawesome';
 import {
-  faComments,
-  faDesktop,
-  faFileAlt,
-  faSearch,
-  faTasks,
-  faUsersCog
-} from '@fortawesome/fontawesome-free-solid';
-/* import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
- * import Card from '@material-ui/core/Card';
- * import CardContent from '@material-ui/core/CardContent'; */
+  faAngular,
+  faCss3,
+  faHtml5,
+  faJsSquare,
+  faReact
+} from '@fortawesome/fontawesome-free-brands';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import 'react-typist/dist/Typist.css';
+import github from '../../assets/images/github-circle.png';
+import arcade from '../../assets/images/projects/arcade_game.png';
+import feedReader from '../../assets/images/projects/feed_reader.png';
+import memoryGame from '../../assets/images/projects/memory_game.png';
+import myReads from '../../assets/images/projects/my_reads.png';
+import neighborhood from '../../assets/images/projects/neighborhood.png';
+import pixelArt from '../../assets/images/projects/pixel_art.png';
+import portfolio from '../../assets/images/projects/portfolio.png';
+import reviews from '../../assets/images/projects/reviews.jpeg';
 
-fontawesome.library.add(
-  faComments,
-  faDesktop,
-  faSearch,
-  faTasks,
-  faFileAlt,
-  faUsersCog
-);
+fontawesome.library.add(faAngular, faCss3, faReact, faJsSquare, faHtml5);
 class Projects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {};
   }
-
-  handleClick = e => {
-    const bottom = e.currentTarget.parentElement.parentElement;
-    if (e.currentTarget.className === 'buy') {
-      bottom.classList.add('clicked');
-    } else if (e.currentTarget.className === 'remove') {
-      bottom.classList.remove('clicked');
-    }
-  };
 
   render() {
     return (
@@ -58,48 +48,32 @@ class Projects extends React.Component {
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
                   <div className="container">
-                    <div className="top" />
+                    <div className="top">
+                      <img src={myReads} alt="my-reads" />
+                    </div>
                     <div className="bottom">
                       <div className="left">
                         <div className="details">
-                          <h1>ud-myreads</h1>
-                          <p>Books Tracking Application</p>
+                          <div className="project-name">ud-myreads</div>
+                          <div className="project-description">
+                            Books Tracking Application
+                          </div>
                         </div>
-                        <div
+                        <a
+                          href="https://github.com/lalitmee/ud-myreads"
                           tabIndex={0}
                           role="button"
-                          className="buy"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
+                          className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          <i className="material-icons">add_shopping_cart</i>
-                        </div>
-                      </div>
-                      <div className="right">
-                        <div className="done">
-                          <i className="material-icons">done</i>
-                        </div>
-                        <div className="details">
-                          <h1>ud-myreads</h1>
-                          <p>Added to your cart</p>
-                        </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="remove"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
-                          <i className="material-icons">clear</i>
-                        </div>
+                          <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -108,56 +82,78 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#5ed3f3'
+                            }}
+                            icon={['fab', 'react']}
+                          />
+                          <div className="icon-name">React</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
                   <div className="container">
-                    <div className="top" />
+                    <div className="top">
+                      <img src={neighborhood} alt="my-reads" />
+                    </div>
                     <div className="bottom">
                       <div className="left">
                         <div className="details">
-                          <h1>ud-neighborhodd-map</h1>
-                          <p>Web Tour of India</p>
+                          <div className="project-name">
+                            ud-neighborhood-map
+                          </div>
+                          <div className="project-description">
+                            Web Tour of India
+                          </div>
                         </div>
-                        <div
+                        <a
+                          href="https://github.com/lalitmee/ud-neighborhood-map"
                           tabIndex={0}
                           role="button"
-                          className="buy"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
+                          className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          <i className="material-icons">add_shopping_cart</i>
-                        </div>
-                      </div>
-                      <div className="right">
-                        <div className="done">
-                          <i className="material-icons">done</i>
-                        </div>
-                        <div className="details">
-                          <h1>ud-neighborhood-map</h1>
-                          <p>Added to your cart</p>
-                        </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="remove"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
-                          <i className="material-icons">clear</i>
-                        </div>
+                          <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -166,56 +162,78 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#5ed3f3'
+                            }}
+                            icon={['fab', 'react']}
+                          />
+                          <div className="icon-name">React</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
                   <div className="container">
-                    <div className="top" />
+                    <div className="top">
+                      <img src={reviews} alt="my-reads" />
+                    </div>
                     <div className="bottom">
                       <div className="left">
                         <div className="details">
-                          <h1>ud-restaurant-review</h1>
-                          <p>Application for Restaurant Reviews </p>
+                          <div className="project-name">
+                            ud-restaurant-review
+                          </div>
+                          <div className="project-description">
+                            Application for Restaurant Reviews{' '}
+                          </div>
                         </div>
-                        <div
+                        <a
+                          href="https://github.com/lalitmee/ud-restaurant-rewiews-stage1"
                           tabIndex={0}
                           role="button"
-                          className="buy"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
+                          className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          <i className="material-icons">add_shopping_cart</i>
-                        </div>
-                      </div>
-                      <div className="right">
-                        <div className="done">
-                          <i className="material-icons">done</i>
-                        </div>
-                        <div className="details">
-                          <h1>ud-restaurant-review</h1>
-                          <p>Added to your cart</p>
-                        </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="remove"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
-                          <i className="material-icons">clear</i>
-                        </div>
+                          <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -224,56 +242,78 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#f0db4f'
+                            }}
+                            icon={['fab', 'js-square']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
                   <div className="container">
-                    <div className="top" />
+                    <div className="top">
+                      <img src={feedReader} alt="my-reads" />
+                    </div>
                     <div className="bottom">
                       <div className="left">
                         <div className="details">
-                          <h1>ud-feedreader-testing</h1>
-                          <p>Testing Using Jasmine</p>
+                          <div className="project-name">
+                            ud-feedreader-testing
+                          </div>
+                          <div className="project-description">
+                            Testing Using Jasmine
+                          </div>
                         </div>
-                        <div
+                        <a
+                          href="https://github.com/lalitmee/ud-feedreader-testing"
                           tabIndex={0}
                           role="button"
-                          className="buy"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
+                          className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          <i className="material-icons">add_shopping_cart</i>
-                        </div>
-                      </div>
-                      <div className="right">
-                        <div className="done">
-                          <i className="material-icons">done</i>
-                        </div>
-                        <div className="details">
-                          <h1>ud-feedreader-testing</h1>
-                          <p>Added to your cart</p>
-                        </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="remove"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
-                          <i className="material-icons">clear</i>
-                        </div>
+                          <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -282,56 +322,76 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#f0db4f'
+                            }}
+                            icon={['fab', 'js-square']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
                   <div className="container">
-                    <div className="top" />
+                    <div className="top">
+                      <img src={portfolio} alt="my-reads" />
+                    </div>
                     <div className="bottom">
                       <div className="left">
                         <div className="details">
-                          <h1>ud-portfolio</h1>
-                          <p>Simple and Clean Portfolio</p>
+                          <div className="project-name">ud-portfolio</div>
+                          <div className="project-description">
+                            Simple and Clean Portfolio
+                          </div>
                         </div>
-                        <div
+                        <a
+                          href="https://github.com/lalitmee/ud-portfolio"
                           tabIndex={0}
                           role="button"
-                          className="buy"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
+                          className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          <i className="material-icons">add_shopping_cart</i>
-                        </div>
-                      </div>
-                      <div className="right">
-                        <div className="done">
-                          <i className="material-icons">done</i>
-                        </div>
-                        <div className="details">
-                          <h1>ud-portfolio</h1>
-                          <p>Added to your cart</p>
-                        </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="remove"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
-                          <i className="material-icons">clear</i>
-                        </div>
+                          <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -340,56 +400,68 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
                   <div className="container">
-                    <div className="top" />
+                    <div className="top">
+                      <img src={arcade} alt="my-reads" />
+                    </div>
                     <div className="bottom">
                       <div className="left">
                         <div className="details">
-                          <h1>ud-classic-arcade-game</h1>
-                          <p>Classic Game for Fun</p>
+                          <div className="project-name">
+                            ud-classic-arcade-game
+                          </div>
+                          <div className="project-description">
+                            Classic Game for Fun
+                          </div>
                         </div>
-                        <div
+                        <a
+                          href="https://github.com/lalitmee/ud-classic-arcade-game"
                           tabIndex={0}
                           role="button"
-                          className="buy"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
+                          className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          <i className="material-icons">add_shopping_cart</i>
-                        </div>
-                      </div>
-                      <div className="right">
-                        <div className="done">
-                          <i className="material-icons">done</i>
-                        </div>
-                        <div className="details">
-                          <h1>ud-classic-arcade-game</h1>
-                          <p>Added to your cart</p>
-                        </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="remove"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
-                          <i className="material-icons">clear</i>
-                        </div>
+                          <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -398,56 +470,76 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#f0db4f'
+                            }}
+                            icon={['fab', 'js-square']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
                   <div className="container">
-                    <div className="top" />
+                    <div className="top">
+                      <img src={memoryGame} alt="my-reads" />
+                    </div>
                     <div className="bottom">
                       <div className="left">
                         <div className="details">
-                          <h1>ud-memory-game</h1>
-                          <p>A memory Game for your mind</p>
+                          <div className="project-name">ud-memory-game</div>
+                          <div className="project-description">
+                            A memory Game for your mind
+                          </div>
                         </div>
-                        <div
+                        <a
+                          href="https://github.com/lalitmee/ud-memory-game"
                           tabIndex={0}
                           role="button"
-                          className="buy"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
+                          className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          <i className="material-icons">add_shopping_cart</i>
-                        </div>
-                      </div>
-                      <div className="right">
-                        <div className="done">
-                          <i className="material-icons">done</i>
-                        </div>
-                        <div className="details">
-                          <h1>ud-feedreader-testing</h1>
-                          <p>Added to your cart</p>
-                        </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="remove"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
-                          <i className="material-icons">clear</i>
-                        </div>
+                          <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -456,56 +548,76 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#f0db4f'
+                            }}
+                            icon={['fab', 'js-square']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
                   <div className="container">
-                    <div className="top" />
+                    <div className="top">
+                      <img src={pixelArt} alt="my-reads" />
+                    </div>
                     <div className="bottom">
                       <div className="left">
                         <div className="details">
-                          <h1>ud-pixel-art-maker</h1>
-                          <p>Pixel Art Maker Application</p>
+                          <div className="project-name">ud-pixel-art-maker</div>
+                          <div className="project-description">
+                            Pixel Art Maker Application
+                          </div>
                         </div>
-                        <div
+                        <a
+                          href="https://github.com/lalitmee/Ud-Pixel-Art-Maker"
                           tabIndex={0}
                           role="button"
-                          className="buy"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
+                          className="github-link"
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          <i className="material-icons">add_shopping_cart</i>
-                        </div>
-                      </div>
-                      <div className="right">
-                        <div className="done">
-                          <i className="material-icons">done</i>
-                        </div>
-                        <div className="details">
-                          <h1>ud-feedreader-testing</h1>
-                          <p>Added to your cart</p>
-                        </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="remove"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
-                          <i className="material-icons">clear</i>
-                        </div>
+                          <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -514,56 +626,78 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#f0db4f'
+                            }}
+                            icon={['fab', 'js-square']}
+                          />
+                          <div className="icon-name">Javscript</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#ff6d00'
+                            }}
+                            icon={['fab', 'html5']}
+                          />
+                          <div className="icon-name">HTML5</div>
+                        </div>
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#0374b7'
+                            }}
+                            icon={['fab', 'css3']}
+                          />
+                          <div className="icon-name">CSS3</div>
+                        </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
               <Grid className="grid-item" item xs={4}>
                 <div className="wrapper">
                   <div className="container">
-                    <div className="top" />
+                    <div className="top">
+                      <img src={feedReader} alt="my-reads" />
+                    </div>
                     <div className="bottom">
                       <div className="left">
                         <div className="details">
-                          <h1>ud-feedreader-testing</h1>
-                          <p>Testing Using Jasmine</p>
+                          <div className="project-name">
+                            ud-feedreader-testing
+                          </div>
+                          <div className="project_description">
+                            Testing Using Jasmine
+                          </div>
                         </div>
-                        <div
+                        <a
+                          href="https://github.com/lalitmee/ud-feedreader-testing"
                           tabIndex={0}
                           role="button"
-                          className="buy"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
+                          className="github-link"
+                          rel="noopener noreferrer"
+                          target="_blank"
                         >
-                          <i className="material-icons">add_shopping_cart</i>
-                        </div>
-                      </div>
-                      <div className="right">
-                        <div className="done">
-                          <i className="material-icons">done</i>
-                        </div>
-                        <div className="details">
-                          <h1>ud-feedreader-testing</h1>
-                          <p>Added to your cart</p>
-                        </div>
-                        <div
-                          tabIndex={0}
-                          role="button"
-                          className="remove"
-                          onClick={e => {
-                            this.handleClick(e);
-                          }}
-                          onKeyUp={e => {
-                            this.handleClick(e);
-                          }}
-                        >
-                          <i className="material-icons">clear</i>
-                        </div>
+                          <i className="material-icons">open_in_new</i>
+                          <img
+                            className="github-link-image"
+                            src={github}
+                            alt="github"
+                          />
+                        </a>
                       </div>
                     </div>
                   </div>
@@ -572,10 +706,26 @@ class Projects extends React.Component {
                       <i className="material-icons">info_outline</i>
                     </div>
                     <div className="contents">
-                      <h1>Hello</h1>
+                      <div className="tech-head">Build With</div>
+                      <div className="technologies">
+                        <div>
+                          <FontAwesomeIcon
+                            className="icons"
+                            style={{
+                              color: '#5ed3f3'
+                            }}
+                            icon={['fab', 'react']}
+                          />
+                          <div className="icon-name">React</div>
+                        </div>
+                      </div>
+                      <div className="category-head">Category</div>
+                      <div className="categories">
+                        <div className="category-name">Udacity</div>
+                      </div>
                     </div>
                   </div>
-                </div>{' '}
+                </div>
               </Grid>
             </Grid>
           </div>
