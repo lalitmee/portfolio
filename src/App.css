@@ -795,6 +795,16 @@ h6 {
     -webkit-transform 0.5s;
   transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
     -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
+    -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
+    -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
+    -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
+    -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
+    -webkit-transform 0.5s;
   transition: box-shadow 0.5s, transform 0.5s, -webkit-transform 0.5s;
 }
 
@@ -997,6 +1007,16 @@ h6 {
     -webkit-transform 0.5s;
   transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
     -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
+    -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
+    -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
+    -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
+    -webkit-transform 0.5s;
+  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
+    -webkit-transform 0.5s;
 }
 .wrapper:hover {
   -webkit-transform: scale(1);
@@ -1043,12 +1063,25 @@ h6 {
   position: relative;
   float: left;
 }
+
 .wrapper .container .bottom .left .details {
   padding: 20px;
   float: left;
   text-align: left;
   color: #2a5b51;
   width: calc(70% - 40px);
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
+}
+
+.details:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#235349), to(#185d2a));
+  background: linear-gradient(to right, #235349, #185d2a);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
 }
 
 .details .project-name {
@@ -1085,8 +1118,8 @@ h6 {
 .github-link:hover {
   background: -webkit-gradient(linear, left top, right top, from(#1b9980), to(#41c062));
   background: linear-gradient(to right, #1b9980, #41c062);
-  -webkit-transition: background 0s 0.3s;
-  transition: background 0s 0.3s;
+  -webkit-transition: background 0.3s;
+  transition: background 0.3s;
 }
 .github-link:hover i {
   -webkit-transform: translate3d(0, -100%, 0);
