@@ -19,7 +19,12 @@ class Resume extends React.Component {
             Wanna Hire Me
           </Typography>
 
-          <a href={resume} target="_blank" className="resume-button">
+          <a
+            href={resume}
+            rel="noopener noreferrer"
+            target="_blank"
+            className="resume-button"
+          >
             <button className="btn btn-arrow">
               <span>
                 Resume
