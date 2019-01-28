@@ -141,16 +141,8 @@ h6 {
 }
 
 .appbar-background-img {
-  background-image: -webkit-gradient(
-      linear,
-      left top,
-      right top,
-      from(#2a5b51),
-      to(rgba(14, 83, 38, 0.8))
-    ),
-    url(/static/media/back5.c5241d54.png);
-  background-image: linear-gradient(to right, #2a5b51, rgba(14, 83, 38, 0.8)),
-    url(/static/media/back5.c5241d54.png);
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('./assets/images/background/back5.png');
   background-size: cover;
   background-position: center center;
   background-repeat: no-repeat;
