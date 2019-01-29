@@ -943,14 +943,7 @@ h6 {
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
   font-weight: 600 !important;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#30c3a6),
-    to(#8cc69b)
-  );
-  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  background: linear-gradient(to right, #1b9980, #41c062);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1040,14 +1033,7 @@ h6 {
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
   font-weight: 600 !important;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#30c3a6),
-    to(#8cc69b)
-  );
-  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  background: linear-gradient(to right, #1b9980, #41c062);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1357,6 +1343,7 @@ h6 {
   color: #2a5b51;
   font-size: 3rem;
   font-weight: 600;
+  text-decoration: underline;
 }
 
 .wrapper .inside .contents .technologies {
@@ -1369,11 +1356,11 @@ h6 {
 }
 
 .wrapper .inside .contents .category-head {
-  color: #7e7e7e;
   color: #2a5b51;
   margin: 4rem 0 1rem 0;
   font-size: 3rem;
   font-weight: 600;
+  text-decoration: underline;
 }
 
 .wrapper .inside .contents .categories {
@@ -1387,7 +1374,7 @@ h6 {
 
 .technologies .icons {
   font-size: 4rem;
-  margin: 1rem 4rem;
+  margin: 1rem 3rem;
 }
 
 .icon-name,
@@ -1578,14 +1565,7 @@ button.btn::before {
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
   font-weight: 600 !important;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#30c3a6),
-    to(#8cc69b)
-  );
-  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  background: linear-gradient(to right, #1b9980, #41c062);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

@@ -63,14 +63,6 @@
       "classification": ["udacity"],
       "github_link": "https://github.com/lalitmee/Ud-Pixel-Art-Maker",
       "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/pixel_art.png?raw=true"
-    },
-    {
-      "name": "name will be a string",
-      "tagline": "tagline will be a string",
-      "languages": "languages will be an array of languages",
-      "classification": "classification will be an array of contexts",
-      "github_link": "github_link will be a string",
-      "project_image": "project_image will be a string of the link"
     }
   ]
 }
