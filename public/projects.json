@@ -1,6 +1,70 @@
 {
   "projects": [
     {
+      "name": "ud-myreads",
+      "tagline": "Book Tracking Application",
+      "languages": ["react", "html", "css", "javascript"],
+      "classification": ["udacity"],
+      "github_link": "https://github.com/lalitmee/ud-myreads",
+      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/my_reads.png?raw=true"
+    },
+    {
+      "name": "ud-neighborhood-map",
+      "tagline": "Web Tour of India",
+      "languages": ["react", "html", "css", "javascript"],
+      "classification": ["udacity"],
+      "github_link": "https://github.com/lalitmee/ud-neighborhood-map",
+      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/neighborhood.png?raw=true"
+    },
+    {
+      "name": "ud-restaurant-review",
+      "tagline": "Application for Restaurants",
+      "languages": ["html", "css", "javascript"],
+      "classification": ["udacity"],
+      "github_link": "https://github.com/lalitmee/ud-restaurant-rewiews-stage1",
+      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/reviews.jpeg?raw=true"
+    },
+    {
+      "name": "ud-feedreader-testing",
+      "tagline": "Testing Using Jasmine",
+      "languages": ["html", "css", "javascript"],
+      "classification": ["udacity"],
+      "github_link": "https://github.com/lalitmee/ud-feedreader-testing",
+      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/feed_reader.png?raw=true"
+    },
+    {
+      "name": "ud-portfolio",
+      "tagline": "Simple and Clean Portfolio",
+      "languages": ["html", "css"],
+      "classification": ["udacity"],
+      "github_link": "https://github.com/lalitmee/ud-portfolio",
+      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/portfolio.png?raw=true"
+    },
+    {
+      "name": "ud-classic-arcade-game",
+      "tagline": "Classic Game For Fun",
+      "languages": ["html", "css", "javascript"],
+      "classification": ["udacity"],
+      "github_link": "https://github.com/lalitmee/ud-classic-arcade-game",
+      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/arcade_game.png?raw=true"
+    },
+    {
+      "name": "ud-memory-game",
+      "tagline": "A Memory Game for your Mind",
+      "languages": ["html", "css", "javascript"],
+      "classification": ["udacity"],
+      "github_link": "https://github.com/lalitmee/ud-memory-game",
+      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/memory_game.png?raw=true"
+    },
+    {
+      "name": "ud-pixel-art-maker",
+      "tagline": "Pixel Art Maker Application",
+      "languages": ["html", "css", "javascript"],
+      "classification": ["udacity"],
+      "github_link": "https://github.com/lalitmee/Ud-Pixel-Art-Maker",
+      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/pixel_art.png?raw=true"
+    },
+    {
       "name": "name will be a string",
       "tagline": "tagline will be a string",
       "languages": "languages will be an array of languages",
