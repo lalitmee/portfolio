@@ -943,14 +943,7 @@ h6 {
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
   font-weight: 600 !important;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#30c3a6),
-    to(#8cc69b)
-  );
-  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  background: linear-gradient(to right, #1b9980, #41c062);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1040,14 +1033,7 @@ h6 {
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
   font-weight: 600 !important;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#30c3a6),
-    to(#8cc69b)
-  );
-  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  background: linear-gradient(to right, #1b9980, #41c062);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -1579,14 +1565,7 @@ button.btn::before {
   font-family: 'Proxima', sans-serif !important;
   letter-spacing: 0.02em !important;
   font-weight: 600 !important;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#30c3a6),
-    to(#8cc69b)
-  );
-  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  background: linear-gradient(to right, #1b9980, #41c062);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
