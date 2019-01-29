@@ -1357,6 +1357,7 @@ h6 {
   color: #2a5b51;
   font-size: 3rem;
   font-weight: 600;
+  text-decoration: underline;
 }
 
 .wrapper .inside .contents .technologies {
@@ -1369,11 +1370,11 @@ h6 {
 }
 
 .wrapper .inside .contents .category-head {
-  color: #7e7e7e;
   color: #2a5b51;
   margin: 4rem 0 1rem 0;
   font-size: 3rem;
   font-weight: 600;
+  text-decoration: underline;
 }
 
 .wrapper .inside .contents .categories {
