@@ -1546,6 +1546,52 @@ button.btn::before {
   right: -4rem;
 }
 
+/*******************
+ * RESUME PAGE CSS *
+ *******************/
+.resume-page-wrapper {
+  position: relative;
+  padding: 3rem 0.9rem 3rem 0.9rem;
+  background: #fff;
+  color: #7e7e7e;
+}
+
+.resume-page-wrapper-paper {
+  background-color: transparent !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+
+.resume-page-head {
+  display: flex;
+  font-size: 7rem !important;
+  font-family: 'Proxima', sans-serif !important;
+  letter-spacing: 0.02em !important;
+  font-weight: 600 !important;
+  color: #2a5b51 !important;
+  width: 27%;
+  margin: 0 auto !important;
+  z-index: 1;
+}
+
+.resume-page-head .first-head {
+  font-weight: 100 !important;
+  font-size: 8rem !important;
+  /* color: #30c3a6 !important; */
+  letter-spacing: 0.05em !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+
+.resume-page-head .second-head {
+  font-weight: 900 !important;
+  color: #30c3a6 !important;
+  font-size: 8rem !important;
+  letter-spacing: 0.1em !important;
+  text-shadow: 0 0 #30c3a6, 0.04em 0 0 #30c3a6, 0 0, -0.03em 0 0 #30c3a6;
+  margin-left: 1rem !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+
 /***********************
  * CONTACT SECTION CSS *
  ***********************/

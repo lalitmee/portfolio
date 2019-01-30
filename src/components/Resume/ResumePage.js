@@ -14,9 +14,14 @@ class ResumePage extends React.Component {
     return (
       <div className="resume-page-wrapper" id="resume-page">
         <Paper className="resume-page-wrapper-paper" elevation={1}>
-          <Typography className="resume-head" variant="h3" component="div">
-            Resume
-          </Typography>
+          <div className="resume-page-head">
+            <Typography className="first-head" variant="h1" component="div">
+              Lalit
+            </Typography>
+            <Typography variant="h1" component="div" className="second-head">
+              Kumar
+            </Typography>
+          </div>
         </Paper>
       </div>
     );
