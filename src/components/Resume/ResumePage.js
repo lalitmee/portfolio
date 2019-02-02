@@ -74,7 +74,7 @@ class ResumePage extends React.Component {
                 icon={['fas', 'envelope']}
               />
               <span className="resume-email-text">
-                <a href="mailto:lalitkumar.meena.lk@gmail.com">
+                <a target="_blank" href="mailto:lalitkumar.meena.lk@gmail.com">
                   lalitkumar.meena.lk@gmail.com
                 </a>
               </span>
@@ -85,8 +85,8 @@ class ResumePage extends React.Component {
                 icon={['fas', 'home']}
               />
               <span className="resume-email-text">
-                <a href="http://https//lalitmee.github.iocom">
-                  http://https//lalitmee.github.io
+                <a target="_blank" href="https://lalitmee.github.io">
+                  https://lalitmee.github.io
                 </a>
               </span>
             </div>
@@ -96,7 +96,9 @@ class ResumePage extends React.Component {
                 icon={['fab', 'github-square']}
               />
               <span className="resume-email-text">
-                <a href="https://github.com/lalitmee">lalitmee</a>
+                <a target="_blank" href="https://github.com/lalitmee">
+                  lalitmee
+                </a>
               </span>
             </div>
             <div className="resume-linkedin">
@@ -105,8 +107,15 @@ class ResumePage extends React.Component {
                 icon={['fab', 'linkedin']}
               />
               <span className="resume-email-text">
-                <a href="https://www.linkedin.com/in/lalitmee/">lalitmee</a>
+                <a target="_blank" href="https://www.linkedin.com/in/lalitmee/">
+                  lalitmee
+                </a>
               </span>
+            </div>
+          </div>
+          <div className="resume-quote">
+            <div className="resume-quote-text">
+              “Be the change that you want to see in the world.”
             </div>
           </div>
         </Paper>
