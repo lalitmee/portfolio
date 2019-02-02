@@ -18,8 +18,23 @@ class ResumePage extends React.Component {
             <Typography className="first-head" variant="h1" component="div">
               Lalit
             </Typography>
-            <Typography variant="h1" component="div" className="second-head">
+            <Typography className="second-head" variant="h1" component="div">
               Kumar
+            </Typography>
+          </div>
+          <div className="resume-sub-head">
+            <Typography className="first-sub-head" variant="h4" component="div">
+              <div>Software</div>
+              <div>Developer</div>
+            </Typography>
+            <div className="point">.</div>
+            <Typography
+              className="second-sub-head"
+              variant="h4"
+              component="div"
+            >
+              <div>Web</div>
+              <div>Developer</div>
             </Typography>
           </div>
         </Paper>

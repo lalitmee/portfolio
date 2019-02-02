@@ -1592,6 +1592,51 @@ button.btn::before {
   font-family: 'Raleway', sans-serif !important;
 }
 
+.resume-sub-head {
+  display: flex;
+  width: 24%;
+  margin: 0 auto;
+  padding: 1rem;
+  text-transform: uppercase;
+}
+
+.point {
+  padding: 0 1rem;
+  font-weight: bolder;
+  font-size: 2rem;
+  margin: -8px 0;
+  color: #30c3a6;
+}
+
+.first-sub-head {
+  display: flex !important;
+  color: #30c3a6 !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.05em !important;
+}
+
+.first-sub-head div,
+.second-sub-head div {
+  padding: 0 0.3rem;
+}
+
+.first-sub-head div::first-letter {
+  color: #30c3a6 !important;
+  font-size: 2rem !important;
+}
+
+.second-sub-head {
+  display: flex !important;
+  color: #30c3a6 !important;
+  font-size: 1.5rem !important;
+  letter-spacing: 0.05em !important;
+}
+
+.second-sub-head div::first-letter {
+  color: #30c3a6 !important;
+  font-size: 2rem !important;
+}
+
 /***********************
  * CONTACT SECTION CSS *
  ***********************/
