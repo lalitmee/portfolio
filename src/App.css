@@ -1638,7 +1638,7 @@ button.btn::before {
 }
 
 .resume-contact {
-  width: 60%;
+  width: 56%;
   font-weight: 700;
   margin: 1rem auto;
   display: flex;
@@ -1675,9 +1675,16 @@ button.btn::before {
   margin: 0 2rem;
 }
 
+.resume-quote {
+  width: 35%;
+  margin: 4rem auto;
+  display: flex;
+  font-size: 2.8rem;
+  font-style: italic;
+}
 /***********************
- * CONTACT SECTION CSS *
- ***********************/
+* CONTACT SECTION CSS *
+***********************/
 
 .contacts-wrapper {
   position: relative;
