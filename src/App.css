@@ -1637,6 +1637,44 @@ button.btn::before {
   font-size: 2rem !important;
 }
 
+.resume-contact {
+  width: 60%;
+  font-weight: 700;
+  margin: 1rem auto;
+  display: flex;
+  font-size: 1.8rem;
+}
+
+.resume-contact svg {
+  color: #30c3a6 !important;
+  margin: 0 0.5rem;
+}
+
+.resume-contact a {
+  color: #7e7e7e;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.resume-contact a:hover,
+.resume-contact a:focus,
+.resume-contact a:active {
+  color: #30c3a6;
+  text-decoration: none;
+}
+
+.resume-contact div::after {
+  content: '';
+  border-left: 2px solid #30c3a6;
+  margin: 0 2rem;
+}
+
+.resume-contact div:last-child::after {
+  content: '';
+  border-left: none;
+  margin: 0 2rem;
+}
+
 /***********************
  * CONTACT SECTION CSS *
  ***********************/

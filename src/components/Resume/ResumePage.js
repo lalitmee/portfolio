@@ -1,6 +1,29 @@
+import fontawesome from '@fortawesome/fontawesome';
+import {
+  faFacebook,
+  faGithubSquare,
+  faLinkedin,
+  faTwitter
+} from '@fortawesome/fontawesome-free-brands';
+import {
+  faEnvelope,
+  faHome,
+  faMobileAlt
+} from '@fortawesome/fontawesome-free-solid';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Typography } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
+
+fontawesome.library.add(
+  faFacebook,
+  faLinkedin,
+  faTwitter,
+  faGithubSquare,
+  faEnvelope,
+  faHome,
+  faMobileAlt
+);
 
 class ResumePage extends React.Component {
   constructor(props) {
@@ -36,6 +59,55 @@ class ResumePage extends React.Component {
               <div>Web</div>
               <div>Developer</div>
             </Typography>
+          </div>
+          <div className="resume-contact">
+            <div className="resume-phone">
+              <FontAwesomeIcon
+                className="resume-contact-icon"
+                icon={['fas', 'mobile-alt']}
+              />
+              <span className="resume-phone-text">(+91)9712618438</span>
+            </div>
+            <div className="resume-email">
+              <FontAwesomeIcon
+                className="resume-contact-icon"
+                icon={['fas', 'envelope']}
+              />
+              <span className="resume-email-text">
+                <a href="mailto:lalitkumar.meena.lk@gmail.com">
+                  lalitkumar.meena.lk@gmail.com
+                </a>
+              </span>
+            </div>
+            <div className="resume-home">
+              <FontAwesomeIcon
+                className="resume-contact-icon"
+                icon={['fas', 'home']}
+              />
+              <span className="resume-email-text">
+                <a href="http://https//lalitmee.github.iocom">
+                  http://https//lalitmee.github.io
+                </a>
+              </span>
+            </div>
+            <div className="resume-github">
+              <FontAwesomeIcon
+                className="resume-contact-icon"
+                icon={['fab', 'github-square']}
+              />
+              <span className="resume-email-text">
+                <a href="https://github.com/lalitmee">lalitmee</a>
+              </span>
+            </div>
+            <div className="resume-linkedin">
+              <FontAwesomeIcon
+                className="resume-contact-icon"
+                icon={['fab', 'linkedin']}
+              />
+              <span className="resume-email-text">
+                <a href="https://www.linkedin.com/in/lalitmee/">lalitmee</a>
+              </span>
+            </div>
           </div>
         </Paper>
       </div>
