@@ -1691,9 +1691,16 @@ button.btn::before {
   font-style: italic;
 }
 
-.resume-education {
+.resume-content-wrapper {
   width: 80%;
   margin: 0 auto;
+}
+
+.content-item {
+  margin: 6rem 0;
+}
+
+.resume-education {
 }
 
 .head-wrapper {
@@ -1713,11 +1720,10 @@ button.btn::before {
   border-bottom: 3px solid #7e7e7e;
   top: 37px;
   margin: 1rem;
-  width: 1250px;
+  width: 1240px;
 }
 
-.education-head::first-letter,
-.education-head:nth-child(2) {
+.education-head::first-letter {
   color: #30c3a6;
   font-weight: bold;
 }
@@ -1752,10 +1758,56 @@ button.btn::before {
   font-size: 2rem;
 }
 
+.major {
+  display: flex;
+}
+
+.major div {
+  padding: 0 0.3rem;
+}
+
+.major div::first-letter {
+  font-size: 2.5rem !important;
+}
+
 .marks {
   font-size: 2.5rem;
 }
 
+.resume-skills-head {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  width: 95%;
+}
+
+.resume-skills-head:after {
+  content: '';
+  position: absolute;
+  height: 5px;
+  border-bottom: 3px solid #7e7e7e;
+  top: 37px;
+  margin: 1rem;
+  width: inherit;
+}
+
+.resume-skills-head::first-letter {
+  color: #30c3a6;
+  font-weight: bold;
+}
+
+.skills-item {
+  font-size: 2.5rem;
+  margin: 2rem;
+}
+
+.skills-content {
+  margin: 1rem;
+}
+
+.skills-content strong {
+  font-size: 3rem;
+}
 /***********************
 * CONTACT SECTION CSS *
 ***********************/
