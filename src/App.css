@@ -86,6 +86,14 @@ h6 {
   font-size: 1.1em;
 }
 
+.text-bold {
+  font-weight: bold;
+}
+
+.text-italic {
+  font-style: italic;
+}
+
 .portfolio {
   text-align: center;
 }
@@ -1576,7 +1584,7 @@ button.btn::before {
 
 .resume-page-head .first-head {
   font-weight: 100 !important;
-  font-size: 8rem !important;
+  font-size: 9rem !important;
   /* color: #30c3a6 !important; */
   letter-spacing: 0.05em !important;
   font-family: 'Raleway', sans-serif !important;
@@ -1585,7 +1593,7 @@ button.btn::before {
 .resume-page-head .second-head {
   font-weight: 900 !important;
   color: #30c3a6 !important;
-  font-size: 8rem !important;
+  font-size: 9rem !important;
   letter-spacing: 0.1em !important;
   text-shadow: 0 0 #30c3a6, 0.04em 0 0 #30c3a6, 0 0, -0.03em 0 0 #30c3a6;
   margin-left: 1rem !important;
@@ -1594,7 +1602,7 @@ button.btn::before {
 
 .resume-sub-head {
   display: flex;
-  width: 24%;
+  width: 21%;
   margin: 0 auto;
   padding: 1rem;
   text-transform: uppercase;
@@ -1638,7 +1646,7 @@ button.btn::before {
 }
 
 .resume-contact {
-  width: 56%;
+  width: 59%;
   font-weight: 700;
   margin: 1rem auto;
   display: flex;
@@ -1666,7 +1674,7 @@ button.btn::before {
 .resume-contact div::after {
   content: '';
   border-left: 2px solid #30c3a6;
-  margin: 0 2rem;
+  margin: 0 3rem;
 }
 
 .resume-contact div:last-child::after {
@@ -1676,12 +1684,78 @@ button.btn::before {
 }
 
 .resume-quote {
-  width: 35%;
+  width: 33%;
   margin: 4rem auto;
   display: flex;
   font-size: 2.8rem;
   font-style: italic;
 }
+
+.resume-education {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.head-wrapper {
+  font-size: 6rem;
+}
+
+.education-head {
+  display: inline-block;
+  position: relative;
+  margin: 0;
+}
+
+.education-head:after {
+  content: '';
+  position: absolute;
+  height: 5px;
+  border-bottom: 3px solid #7e7e7e;
+  top: 37px;
+  margin: 1rem;
+  width: 1250px;
+}
+
+.education-head::first-letter,
+.education-head:nth-child(2) {
+  color: #30c3a6;
+  font-weight: bold;
+}
+
+.education-item {
+  margin: 1rem 0;
+}
+
+.education-item:last-child {
+  margin-top: 5rem;
+}
+
+.edu-sub-item {
+  display: flex;
+  justify-content: space-between;
+  margin: 1.2rem 0;
+}
+
+.college-name-place {
+  font-size: 3rem;
+}
+
+.cname {
+  letter-spacing: 0.03em;
+}
+
+.cplace {
+  color: #30c3a6;
+}
+
+.major-years {
+  font-size: 2rem;
+}
+
+.marks {
+  font-size: 2.5rem;
+}
+
 /***********************
 * CONTACT SECTION CSS *
 ***********************/
