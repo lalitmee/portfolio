@@ -106,10 +106,6 @@ h6 {
   transform: translate(-50%, -50%);
 }
 
-.loading-text {
-  font-size: 4rem;
-}
-
 .horizontal-rule {
   border: 0;
   height: 1px;
@@ -1137,6 +1133,18 @@ h6 {
   width: 100%;
   position: absolute;
   z-index: 1000;
+}
+
+.image-loader {
+  position: fixed;
+  top: 45%;
+  left: 55%;
+  transform: translate(-50%, -50%);
+}
+
+.loading-text {
+  font-size: 2rem;
+  padding: 6rem 1rem 0 0;
 }
 
 .wrapper .container .top img {

@@ -12,6 +12,8 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import React from 'react';
+import Img from 'react-image';
+import Spinner from 'react-spinkit';
 import 'react-typist/dist/Typist.css';
 import github from '../../assets/images/github-circle.png';
 
@@ -20,7 +22,9 @@ class Projects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: []
+      projects: [],
+      isImageLoading: true,
+      imageLoadError: true
     };
   }
 
@@ -56,7 +60,20 @@ class Projects extends React.Component {
                     <div className="wrapper">
                       <div className="container">
                         <div className="top">
-                          <img src={project.project_image} alt={project.name} />
+                          <Img
+                            src={[project.project_image]}
+                            alt={project.name}
+                            loader={
+                              <div className="image-loader">
+                                <Spinner
+                                  name="ball-scale-multiple"
+                                  style={{
+                                    color: '#30c3a6'
+                                  }}
+                                />
+                              </div>
+                            }
+                          />
                         </div>
                         <div className="bottom">
                           <div className="left">
