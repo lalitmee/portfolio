@@ -23,7 +23,7 @@ export default class App extends React.Component {
       this.setState({
         loading: false
       });
-    }, 3000);
+    }, 2000);
   }
 
   render() {
