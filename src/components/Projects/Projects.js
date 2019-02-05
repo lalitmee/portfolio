@@ -13,9 +13,9 @@ import Typography from '@material-ui/core/Typography';
 import axios from 'axios';
 import React from 'react';
 import Img from 'react-image';
-import Spinner from 'react-spinkit';
 import 'react-typist/dist/Typist.css';
 import github from '../../assets/images/github-circle.png';
+import placeholder from '../../assets/images/placeholder-image.png';
 
 fontawesome.library.add(faAngular, faCss3, faReact, faJsSquare, faHtml5);
 class Projects extends React.Component {
@@ -65,12 +65,18 @@ class Projects extends React.Component {
                             alt={project.name}
                             loader={
                               <div className="image-loader">
-                                <Spinner
+                                {/* <Spinner
                                   name="ball-scale-multiple"
                                   style={{
                                     color: '#30c3a6'
                                   }}
+                                /> */}
+                                <img
+                                  src={placeholder}
+                                  alt="placeholder-image"
+                                  className="placeholder-image"
                                 />
+                                <p className="loading-text">Loading...</p>
                               </div>
                             }
                           />

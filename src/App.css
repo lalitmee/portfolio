@@ -1142,9 +1142,14 @@ h6 {
   transform: translate(-50%, -50%);
 }
 
+.placeholder-image {
+  width: 100%;
+  height: auto;
+}
+
 .loading-text {
   font-size: 2rem;
-  padding: 6rem 1rem 0 0;
+  padding: 1rem;
 }
 
 .wrapper .container .top img {
