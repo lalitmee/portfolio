@@ -31,7 +31,9 @@ class ResumePage extends React.Component {
     this.state = {};
   }
 
-  componentDidMount() {}
+  componentDidMount() {
+    window.scrollTo(0, 0);
+  }
 
   render() {
     return (
