@@ -72,9 +72,9 @@ class Projects extends React.Component {
                                 <img
                                   src={placeholder}
                                   alt="placeholder"
-                                  className="placeholder-image"
+                                  // className="placeholder-image"
                                 />
-                                <p className="loading-text">Loading...</p>
+                                {/* <p className="loading-text">Loading...</p> */}
                               </div>
                             }
                           />

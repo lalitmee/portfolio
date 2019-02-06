@@ -1145,7 +1145,9 @@ h6 {
 .placeholder-image {
   width: 100%;
   height: auto;
-  padding: 0 4rem 0 0;
+  /* padding: 0 4rem 0 0; */
+  padding: 0;
+  margin: 0;
 }
 
 .loading-text {
