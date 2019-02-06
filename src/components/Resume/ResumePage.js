@@ -491,6 +491,60 @@ class ResumePage extends React.Component {
                 </div>
               </div>
             </div>
+            <div className="resume-extra-cu content-item">
+              <div className="head-wrapper">
+                <div className="resume-section-head resume-extra-cu-head">
+                  Extracurricular Activity
+                </div>
+              </div>
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
+                  <div className="cname text-bold">
+                    Front-End Web Developer Nanodegree
+                  </div>
+                  <div className="cplace text-italic">Online @Udacity</div>
+                </div>
+                <div className="major-years resume-section-sub-item">
+                  <div className="major">
+                    <div>STUDENT</div>
+                  </div>
+                  <div className="years text-italic">May. 2018 - Dec. 2018</div>
+                </div>
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
+                    <li>Learned advance concepts of Front End Development.</li>
+                    <li>
+                      Implemented 7 projects during the course which are
+                      available on my GitHub profile.
+                    </li>
+                    <li>
+                      Learned about Frontend Frameworkds like React.js and
+                      importance of service workers in PWAs
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
+                  <div className="cname text-bold">Google Code-In</div>
+                  <div className="cplace text-italic">Online @Sugar Labs</div>
+                </div>
+                <div className="major-years resume-section-sub-item">
+                  <div className="major">
+                    <div>MENTOR</div>
+                  </div>
+                  <div className="years text-italic">Nov. 2017 - Jan. 2018</div>
+                </div>
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
+                    <li>
+                      {' '}
+                      Mentored the students in the projects of Sugar Labs
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </Paper>
       </div>
