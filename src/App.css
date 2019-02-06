@@ -1819,6 +1819,9 @@ button.btn::before {
 .resume-projects-head::after {
   width: 1290px;
 }
+.resume-extra-cu-head::after {
+  width: 920px;
+}
 
 .project-link {
   color: #30c3a6;
