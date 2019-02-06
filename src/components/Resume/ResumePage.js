@@ -546,6 +546,11 @@ class ResumePage extends React.Component {
               </div>
             </div>
           </div>
+          <div className="thank-you">
+            <div className="thank-you-text fancy">
+              <span>Thank You</span>
+            </div>
+          </div>
         </Paper>
       </div>
     );
