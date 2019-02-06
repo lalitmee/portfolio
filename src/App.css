@@ -1720,25 +1720,8 @@ button.btn::before {
   font-size: 6rem;
 }
 
-.education-head {
-  display: inline-block;
-  position: relative;
-  margin: 0;
-}
-
-.education-head:after {
-  content: '';
-  position: absolute;
-  height: 5px;
-  border-bottom: 3px solid #7e7e7e;
-  top: 37px;
-  margin: 1rem;
-  width: 1240px;
-}
-
-.education-head::first-letter {
-  color: #30c3a6;
-  font-weight: bold;
+.resume-education-head:after {
+  width: 1240px !important;
 }
 
 .education-item {
@@ -1787,14 +1770,14 @@ button.btn::before {
   font-size: 2.5rem;
 }
 
-.resume-skills-head {
+.resume-section-head {
   display: inline-block;
   position: relative;
   margin: 0;
   width: 95%;
 }
 
-.resume-skills-head:after {
+.resume-section-head:after {
   content: '';
   position: absolute;
   height: 5px;
@@ -1804,7 +1787,7 @@ button.btn::before {
   width: inherit;
 }
 
-.resume-skills-head::first-letter {
+.resume-section-head::first-letter {
   color: #30c3a6;
   font-weight: bold;
 }
@@ -1820,6 +1803,10 @@ button.btn::before {
 
 .skills-content strong {
   font-size: 3rem;
+}
+
+.resume-experience-head::after {
+  width: 1205px;
 }
 /***********************
 * CONTACT SECTION CSS *
