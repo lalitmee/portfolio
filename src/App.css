@@ -1833,6 +1833,41 @@ button.btn::before {
 .project-link:hover {
   color: #30c359;
 }
+
+.thank-you-text {
+  margin: 0 0 2em 0;
+}
+
+.fancy {
+  line-height: 0.5;
+  text-align: center;
+}
+
+.fancy span {
+  display: inline-block;
+  position: relative;
+}
+
+.fancy span:before,
+.fancy span:after {
+  content: '';
+  position: absolute;
+  height: 5px;
+  border-bottom: 1px solid #7e7e7e;
+  border-top: 1px solid #7e7e7e;
+  top: 8px;
+  width: 650px;
+}
+
+.fancy span:before {
+  right: 100%;
+  margin-right: 15px;
+}
+
+.fancy span:after {
+  left: 100%;
+  margin-left: 15px;
+}
 /***********************
 * CONTACT SECTION CSS *
 ***********************/
