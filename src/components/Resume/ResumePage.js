@@ -139,7 +139,9 @@ class ResumePage extends React.Component {
           <div className="resume-content-wrapper">
             <div className="resume-education content-item">
               <div className="head-wrapper">
-                <p className="education-head">Education</p>
+                <div className="resume-section-head resume-education-head">
+                  Education
+                </div>
               </div>
               <div className="education-item">
                 <div className="college-name-place edu-sub-item">
@@ -197,7 +199,9 @@ class ResumePage extends React.Component {
             </div>
             <div className="resume-skills content-item">
               <div className="head-wrapper">
-                <p className="resume-skills-head">Skills</p>
+                <div className="resume-section-head resume-skills-head">
+                  Skills
+                </div>
               </div>
               <div className="skills-item">
                 <div className="skills-content">
@@ -210,6 +214,13 @@ class ResumePage extends React.Component {
                 </div>
                 <div className="skills-content">
                   <strong>Frameworks:</strong> React.js, Angular
+                </div>
+              </div>
+            </div>
+            <div className="resume-experience content-item">
+              <div className="head-wrapper">
+                <div className="resume-section-head resume-experience-head">
+                  Experience
                 </div>
               </div>
             </div>
