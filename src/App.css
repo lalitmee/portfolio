@@ -1815,6 +1815,21 @@ button.btn::before {
 .resume-experience-head::after {
   width: 1205px;
 }
+
+.resume-projects-head::after {
+  width: 1290px;
+}
+
+.project-link {
+  color: #30c3a6;
+  text-decoration: none;
+  -webkit-transition: all 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.project-link:hover {
+  color: #30c359;
+}
 /***********************
 * CONTACT SECTION CSS *
 ***********************/

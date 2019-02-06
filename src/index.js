@@ -1,7 +1,7 @@
 import { createBrowserHistory } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { Route, Router } from 'react-router-dom';
 import App from './App';
 import ResumePage from './components/Resume/ResumePage';
 import './index.css';

@@ -366,6 +366,131 @@ class ResumePage extends React.Component {
                 </div>
               </div>
             </div>
+            <div className="resume-projects content-item">
+              <div className="head-wrapper">
+                <div className="resume-section-head resume-projects-head">
+                  Projects
+                </div>
+              </div>
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
+                  <div className="cname text-bold">
+                    Projectile - Student Project Listing Platform
+                  </div>
+                  <div className="cplace text-italic">
+                    Django, JavaScript, HTML and CSS
+                  </div>
+                </div>
+                <div className="major-years resume-section-sub-item">
+                  <div className="major">
+                    <div>DEVELOPER</div>
+                    <div>AND</div>
+                    <div>DOCUMENTATION</div>
+                    <div>HEAD</div>
+                  </div>
+                  <div className="years text-italic">Aug. 2016 - Nov. 2016</div>
+                </div>
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
+                    <li>
+                      <a
+                        className="project-link"
+                        href="http://projectile.pythonanywhere.com/login/?next=/"
+                      >
+                        Link to the Project
+                      </a>
+                    </li>
+                    <li>
+                      It is a platform in which we will provide the user with
+                      the listing of the suitable projects according to their
+                      skills which they currently have. We are trying to reduce
+                      the effort and difficulty of the student, interested in
+                      doing any project.
+                    </li>
+                    <li>
+                      Anyone who is interested in doing some projects, can go to
+                      this website and select according to his skills.
+                      Currently, we are working on this website to improve
+                      further.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
+                  <div className="cname text-bold">Notes-Webapp</div>
+                  <div className="cplace text-italic">
+                    React.js, HTML5 and CSS3
+                  </div>
+                </div>
+                <div className="major-years resume-section-sub-item">
+                  <div className="major">
+                    <div>DEVELOPER</div>
+                  </div>
+                  <div className="years text-italic">Jul. 2017</div>
+                </div>
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
+                    <li>
+                      <a
+                        className="project-link"
+                        href="https://lalitmee.github.io/Notes-App/"
+                      >
+                        Link to the Project
+                      </a>
+                    </li>
+                    <li>
+                      This is a small project which is developed for taking
+                      notes. Mainly it is a web application in which we can take
+                      notes as many as we want to.
+                    </li>
+                    <li>
+                      This project was developed mainly to learn basics of
+                      React.js and understanding the flow of the mechanism of
+                      React.js. It is a very handy web application in which you
+                      can edit, add and delete any notes.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
+                  <div className="cname text-bold">
+                    Client Management System
+                  </div>
+                  <div className="cplace text-italic">
+                    Angular.js, HTML5 and CSS3
+                  </div>
+                </div>
+                <div className="major-years resume-section-sub-item">
+                  <div className="major">
+                    <div>DEVELOPER</div>
+                  </div>
+                  <div className="years text-italic">Apr. 2017</div>
+                </div>
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
+                    <li>
+                      <a
+                        className="project-link"
+                        href="https://github.com/lalitmee/Client-Management"
+                      >
+                        Link to the Project
+                      </a>
+                    </li>
+                    <li>
+                      This is a small project which is developed for management
+                      of clients or users in a company or an organization.
+                    </li>
+                    <li>
+                      Management can be done by updating the existing client,
+                      deleting the non-existing client and adding the new
+                      client.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
           </div>
         </Paper>
       </div>

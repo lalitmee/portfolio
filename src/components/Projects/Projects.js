@@ -73,7 +73,7 @@ class Projects extends React.Component {
                                 /> */}
                                 <img
                                   src={placeholder}
-                                  alt="placeholder-image"
+                                  alt="placeholder"
                                   className="placeholder-image"
                                 />
                                 <p className="loading-text">Loading...</p>
