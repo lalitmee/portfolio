@@ -1145,6 +1145,7 @@ h6 {
 .placeholder-image {
   width: 100%;
   height: auto;
+  padding: 0 4rem 0 0;
 }
 
 .loading-text {
@@ -1868,6 +1869,11 @@ button.btn::before {
   left: 100%;
   margin-left: 15px;
 }
+
+.thank-you {
+  font-size: 4rem;
+}
+
 /***********************
 * CONTACT SECTION CSS *
 ***********************/
