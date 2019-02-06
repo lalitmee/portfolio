@@ -143,34 +143,32 @@ class ResumePage extends React.Component {
                   Education
                 </div>
               </div>
-              <div className="education-item">
-                <div className="college-name-place edu-sub-item">
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
                   <div className="cname text-bold">
                     IIITV(Indian Institute of Information Technology, Vadodara)
                   </div>
                   <div className="cplace text-italic">Gandhinagar, Gujarat</div>
                 </div>
-                <div className="major-years edu-sub-item">
+                <div className="major-years resume-section-sub-item">
                   <div className="major">
                     <div>B.TECH.</div>
                     <div>IN</div>
                     <div>INFORMATION</div>
                     <div>TECHNOLOGY</div>
                   </div>
-                  <div className="years text-italic">
-                    July, 2014 - May, 2018
-                  </div>
+                  <div className="years text-italic">Jul. 2014 - May. 2018</div>
                 </div>
-                <div className="edu-sub-item">
-                  <div className="marks">
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
                     <li>
                       <strong>CPI :</strong> 6.99/10
                     </li>
-                  </div>
+                  </ul>
                 </div>
               </div>
-              <div className="education-item">
-                <div className="college-name-place edu-sub-item">
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
                   <div className="cname text-bold">
                     M.S. Senior Secondary Public School
                   </div>
@@ -178,22 +176,20 @@ class ResumePage extends React.Component {
                     Dhanaura, Uttar Pradesh
                   </div>
                 </div>
-                <div className="major-years edu-sub-item">
+                <div className="major-years resume-section-sub-item">
                   <div className="major">
                     <div>HIGHER</div>
                     <div>SECONDARY</div>
                     <div>SCHOOL</div>
                   </div>
-                  <div className="years text-italic">
-                    July, 2011 - May, 2013
-                  </div>
+                  <div className="years text-italic">Jul. 2011 - May. 2013</div>
                 </div>
-                <div className="edu-sub-item">
-                  <div className="marks">
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
                     <li>
                       <strong>Marks :</strong> 81.8%
                     </li>
-                  </div>
+                  </ul>
                 </div>
               </div>
             </div>
@@ -221,6 +217,152 @@ class ResumePage extends React.Component {
               <div className="head-wrapper">
                 <div className="resume-section-head resume-experience-head">
                   Experience
+                </div>
+              </div>
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
+                  <div className="cname text-bold">CognitiveClouds</div>
+                  <div className="cplace text-italic">Bangalore</div>
+                </div>
+                <div className="major-years resume-section-sub-item">
+                  <div className="major">
+                    <div>SOFTWARE</div>
+                    <div>ENGINEER</div>
+                  </div>
+                  <div className="years text-italic">Jun. 2018 - Present</div>
+                </div>
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
+                    <li>
+                      Working on real time projects using technologies like
+                      Angular and React.js
+                    </li>
+                    <li>
+                      Learning how to collaborate efficiently in a team of
+                      motivated and dedicated developers/engineers.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
+                  <div className="cname text-bold">The Sense Infinity</div>
+                  <div className="cplace text-italic">JP Nagar, Bangalore</div>
+                </div>
+                <div className="major-years resume-section-sub-item">
+                  <div className="major">
+                    <div>FRONT</div>
+                    <div>END</div>
+                    <div>DEVELOPER</div>
+                  </div>
+                  <div className="years text-italic">Jan. 2018 - May. 2018</div>
+                </div>
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
+                    <li>
+                      Implemented email templates for the products Ballyhoo and
+                      Staple of the Project Sense Infinity.
+                    </li>
+                    <li>
+                      Implemented a simple desktop application using Electron
+                      platform using React.js and Semantic-UI-React.
+                    </li>
+                    <li>
+                      Implemented a e-food commerce website using
+                      React.js(Javascript) and Laravel(PHP).
+                    </li>
+                    <li>
+                      Implemented Search Engine Optimization(SEO) for the
+                      Ballyhoo Web application.
+                    </li>
+                    <li>
+                      API integration by handling the data with the help of
+                      React and Redux.
+                    </li>
+                    <li>
+                      Improved functionality and performance of the website and
+                      worked on Electron Desktop Application Platform.
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
+                  <div className="cname text-bold">The Inforwarehouse</div>
+                  <div className="cplace text-italic">Ahmedabad, Gujarat</div>
+                </div>
+                <div className="major-years resume-section-sub-item">
+                  <div className="major">
+                    <div>WEB</div>
+                    <div>DEVELOPER</div>
+                  </div>
+                  <div className="years text-italic">May. 2017 - Jul. 2017</div>
+                </div>
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
+                    <li>
+                      During this internship, I contributed to their live
+                      projects like SkillGames, Ahtaj, etc. These projects were
+                      mostly about E-learning Web applications. It was a great
+                      experience and I learned a lot from this internship.
+                    </li>
+                    <li>
+                      <strong>SkillGames: </strong>
+                      This project is based on the concept of Learning by
+                      playing games. In this project, you can create your
+                      profile and after that, you will be assigned to the daily
+                      tasks which you have to complete daily to improve your
+                      learning on the particular topic. Mainly this project is
+                      designed for the students to improve their learning
+                      criteria. My contribution in this was designing the front
+                      end of the dashboard of the user.
+                    </li>
+                    <li>
+                      <strong>Ahtaj: </strong> This project was to reduce the
+                      effort in consulting with Advocates and Doctors. In this
+                      project, you can get the appointment, advice, etc from an
+                      Advocate or a Doctor. I was promoted to this project
+                      because of my good work in SkillGames. I contributed
+                      mainly to the feed
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
+                  <div className="cname text-bold">
+                    Rural Internship at Atma Vani Welfare Society
+                  </div>
+                  <div className="cplace text-italic">
+                    Kanpur, Uttar Pradesh
+                  </div>
+                </div>
+                <div className="major-years resume-section-sub-item">
+                  <div className="major">
+                    <div>VOLUNTEER</div>
+                    <div>FOR</div>
+                    <div>THE</div>
+                    <div>SOCIETY</div>
+                  </div>
+                  <div className="years text-italic">Dec. 2016</div>
+                </div>
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
+                    <li>
+                      This Internship gave me an opportunity to know the rural
+                      and slum areas from a different perspective.
+                    </li>
+                    <li>
+                      During this internship, we visited different schools, an
+                      old-age home and an organization which is working for the
+                      deprived section of the society.
+                    </li>
+                    <li>
+                      We also observed the requirement of IT sector for these
+                      welfare organization for spreading their visions and
+                      seeking help for the same.
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>
