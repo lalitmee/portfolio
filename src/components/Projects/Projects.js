@@ -15,16 +15,14 @@ import React from 'react';
 import Img from 'react-image';
 import 'react-typist/dist/Typist.css';
 import github from '../../assets/images/github-circle.png';
-import placeholder from '../../assets/images/placeholder-image.png';
+import placeholder from '../../assets/images/image-loader.gif';
 
 fontawesome.library.add(faAngular, faCss3, faReact, faJsSquare, faHtml5);
 class Projects extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      projects: [],
-      isImageLoading: true,
-      imageLoadError: true
+      projects: []
     };
   }
 

@@ -394,6 +394,8 @@ class ResumePage extends React.Component {
                   <ul className="description-list">
                     <li>
                       <a
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="project-link"
                         href="http://projectile.pythonanywhere.com/login/?next=/"
                       >
@@ -433,6 +435,8 @@ class ResumePage extends React.Component {
                   <ul className="description-list">
                     <li>
                       <a
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="project-link"
                         href="https://lalitmee.github.io/Notes-App/"
                       >
@@ -472,6 +476,8 @@ class ResumePage extends React.Component {
                   <ul className="description-list">
                     <li>
                       <a
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="project-link"
                         href="https://github.com/lalitmee/Client-Management"
                       >
