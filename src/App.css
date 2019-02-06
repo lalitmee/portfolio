@@ -57,10 +57,10 @@ ol {
   font-size: 1em;
 }
 
-ul {
+/* ul {
   margin: 0 0 1em 25px;
   list-style: none;
-}
+} */
 
 h1 {
   font-size: 1.6em;
@@ -1724,15 +1724,15 @@ button.btn::before {
   width: 1240px !important;
 }
 
-.education-item {
-  margin: 1rem 0;
+.resume-section-item {
+  margin: 1rem 0 5rem;
 }
 
 .education-item:last-child {
   margin-top: 5rem;
 }
 
-.edu-sub-item {
+.resume-section-sub-item {
   display: flex;
   justify-content: space-between;
   margin: 1.2rem 0;
@@ -1760,14 +1760,21 @@ button.btn::before {
 
 .major div {
   padding: 0 0.3rem;
+  letter-spacing: 0.1rem;
 }
 
 .major div::first-letter {
   font-size: 2.5rem !important;
 }
 
-.marks {
+.description-list {
   font-size: 2.5rem;
+  margin: 0 5rem;
+  list-style-position: outside;
+}
+
+.description-list li {
+  margin: 0.5rem 0;
 }
 
 .resume-section-head {
