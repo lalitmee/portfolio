@@ -1,5 +1,11 @@
 import fontawesome from '@fortawesome/fontawesome';
-import { faAngular, faCss3, faHtml5, faJsSquare, faReact } from '@fortawesome/fontawesome-free-brands';
+import {
+  faAngular,
+  faCss3,
+  faHtml5,
+  faJsSquare,
+  faReact
+} from '@fortawesome/fontawesome-free-brands';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -57,18 +63,11 @@ class Projects extends React.Component {
                             alt={project.name}
                             loader={
                               <div className="image-loader">
-                                {/* <Spinner
-                                  name="ball-scale-multiple"
-                                  style={{
-                                    color: '#30c3a6'
-                                  }}
-                                /> */}
                                 <img
                                   src={placeholder}
                                   alt="placeholder"
                                   className="placeholder-image"
                                 />
-                                {/* <p className="loading-text">Loading...</p> */}
                               </div>
                             }
                           />
