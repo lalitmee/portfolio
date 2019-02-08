@@ -14,6 +14,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Typography } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 fontawesome.library.add(
   faFacebook,
@@ -39,6 +40,14 @@ class ResumePage extends React.Component {
     return (
       <div className="resume-page-wrapper" id="resume-page">
         <Paper className="resume-page-wrapper-paper" elevation={1}>
+          <Link to="/" className="back-button">
+            <div className="backBtn">
+              <span className="line tLine" />
+              <span className="line mLine" />
+              <span className="label">Portfolio</span>
+              <span className="line bLine" />
+            </div>
+          </Link>
           <div className="resume-page-head">
             <Typography className="first-head" variant="h1" component="div">
               Lalit
