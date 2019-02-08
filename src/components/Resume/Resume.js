@@ -1,7 +1,7 @@
 import { Typography } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
-import resume from '../../assets/Resume.pdf';
+import { Link } from 'react-router-dom';
 
 class Resume extends React.Component {
   constructor(props) {
@@ -19,12 +19,7 @@ class Resume extends React.Component {
             Wanna Hire Me
           </Typography>
 
-          <a
-            href={resume}
-            rel="noopener noreferrer"
-            target="_blank"
-            className="resume-button"
-          >
+          <Link to="/resume" className="resume-button">
             <button className="btn btn-arrow">
               <span>
                 Resume
@@ -60,7 +55,7 @@ class Resume extends React.Component {
                 </svg>
               </span>
             </button>
-          </a>
+          </Link>
         </Paper>
       </div>
     );

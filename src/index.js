@@ -1,6 +1,23 @@
+import { createBrowserHistory } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { Route, Router } from 'react-router-dom';
 import App from './App';
+import ResumePage from './components/Resume/ResumePage';
 import './index.css';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const history = createBrowserHistory();
+
+history.listen(_ => {
+  window.scrollTo(0, 0);
+});
+
+ReactDOM.render(
+  <Router history={history}>
+    <div>
+      <Route path="/" exact component={App} />
+      <Route path="/resume" component={ResumePage} />
+    </div>
+  </Router>,
+  document.getElementById('root')
+);
