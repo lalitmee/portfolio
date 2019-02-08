@@ -1879,7 +1879,7 @@ button.btn::before {
 /* back button css */
 div.backBtn {
   width: 100px;
-  left: 100px;
+  left: 50px;
   background-color: #f4f4f4;
   transition: all 0.4s ease;
   position: fixed;
