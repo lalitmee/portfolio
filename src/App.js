@@ -64,7 +64,6 @@ export default class App extends React.Component {
                 }}
               />
             </div>
-            {/* <div className="loading-text">Loading . . .</div> */}
           </div>
         )}
       </div>
