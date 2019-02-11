@@ -8,7 +8,7 @@ import './index.css';
 
 const history = createBrowserHistory();
 
-history.listen(_ => {
+history.listen(() => {
   window.scrollTo(0, 0);
 });
 
