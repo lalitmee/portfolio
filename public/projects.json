@@ -65,6 +65,14 @@
       "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/pixel_art.png?raw=true"
     },
     {
+      "name": "Notes-App",
+      "tagline": "A Note Taking application",
+      "languages": ["html", "css", "react"],
+      "classification": ["personal"],
+      "github_link": "https://github.com/lalitmee/Notes-App",
+      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/pixel_art.png?raw=true"
+    },
+    {
       "name": "github-search",
       "tagline": "GitHub Repository Search Application",
       "languages": ["html", "css", "react"],
