@@ -70,7 +70,7 @@
       "languages": ["html", "css", "react"],
       "classification": ["personal"],
       "github_link": "https://github.com/lalitmee/Notes-App",
-      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/pixel_art.png?raw=true"
+      "project_image": "https://github.com/lalitmee/Notes-App/blob/master/images/Selection_001.png?raw=true"
     },
     {
       "name": "github-search",
@@ -78,7 +78,7 @@
       "languages": ["html", "css", "react"],
       "classification": ["personal"],
       "github_link": "https://github.com/lalitmee/github-search",
-      "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/pixel_art.png?raw=true"
+      "project_image": "https://github.com/lalitmee/github-search/blob/master/src/images/application.png?raw=true"
     }
   ]
 }
