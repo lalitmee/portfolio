@@ -1437,8 +1437,8 @@ h6 {
   background-color: transparent !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  width: 80%;
-  margin: 0 auto;
+  /* width: 80%;
+  margin: 0 auto; */
 }
 
 .resume-head {
