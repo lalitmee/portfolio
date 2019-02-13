@@ -1452,13 +1452,41 @@ h6 {
   z-index: 1;
 }
 
+.resume-image {
+  background-image: linear-gradient(#28c4a5, rgba(0, 0, 0, 0.5)),
+    url(/static/media/resume-image.c0e7f075.png);
+  height: 655px;
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  color: #fff !important;
+  background-color: #f5f5f5 !important;
+  background-size: cover;
+  /* background-position: center center; */
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: center;
+  margin: auto;
+  border-radius: 10px !important;
+  padding: 0;
+}
+
+.resume-image-view {
+  width: 80%;
+}
+
+.resume-button-div {
+  position: absolute;
+  top: 52%;
+  left: 43%;
+}
+
 .resume-button {
   cursor: pointer;
   text-decoration: none;
 }
 
 button.btn {
-  background: #2a5b51;
+  background: #b2bdbb;
   border-radius: 5px;
   font-size: 2rem !important;
   background-color: transparent;
@@ -1466,7 +1494,7 @@ button.btn {
   text-transform: uppercase;
   font-family: 'Proxima';
   position: relative;
-  border: 2px solid #2a5b51;
+  border: 2px solid white;
   -webkit-transition: color 0.1s cubic-bezier(0.16, 0.08, 0.355, 1),
     background 0.1s cubic-bezier(0.16, 0.08, 0.355, 1);
   transition: color 0.1s cubic-bezier(0.16, 0.08, 0.355, 1),
@@ -1503,7 +1531,7 @@ button.btn:hover {
     to(#41c062)
   );
   background: linear-gradient(to right, #1b9980, #41c062);
-  border-color: #2a5b51;
+  border-color: white;
   color: #fff;
 }
 
@@ -1533,7 +1561,7 @@ button.btn::before {
   transition: background-color 0.3s ease-out;
 }
 .btn-arrow span {
-  color: #2a5b51;
+  color: white;
   display: inline-block;
   position: relative;
   -webkit-transition: all 0.3s ease-out;
