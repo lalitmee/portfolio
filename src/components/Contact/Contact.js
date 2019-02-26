@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import 'react-typist/dist/Typist.css';
 import Map from '../Map/Map';
+import './Contact.css';
 
 fontawesome.library.add(
   faFacebook,
