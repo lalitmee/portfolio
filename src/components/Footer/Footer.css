@@ -1,0 +1,33 @@
+/**********************
+ * FOOTER SECTION CSS *
+ **********************/
+.footer-wrapper {
+  position: relative;
+  padding: 1rem 1.9rem 0rem 0.9rem;
+}
+
+.footer-wrapper-paper {
+  background-color: transparent !important;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+  width: 70%;
+  margin: 4rem auto;
+}
+
+.footer {
+  height: 100%;
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#30c3a6),
+    to(#8cc69b)
+  );
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
+}
+
+.footer-text {
+  font-family: 'Proxima', sans-serif !important;
+  margin-top: 1% !important;
+  color: #2a5b51 !important;
+}

@@ -1,6 +1,7 @@
 {
   "projects": [
     {
+      "id": 1,
       "name": "ud-myreads",
       "tagline": "Book Tracking Application",
       "languages": ["react", "html", "css", "javascript"],
@@ -9,6 +10,7 @@
       "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/my_reads.png?raw=true"
     },
     {
+      "id": 2,
       "name": "ud-neighborhood-map",
       "tagline": "Web Tour of India",
       "languages": ["react", "html", "css", "javascript"],
@@ -17,6 +19,7 @@
       "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/neighborhood.png?raw=true"
     },
     {
+      "id": 3,
       "name": "ud-restaurant-review",
       "tagline": "Application for Restaurants",
       "languages": ["html", "css", "javascript"],
@@ -25,6 +28,7 @@
       "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/reviews.jpeg?raw=true"
     },
     {
+      "id": 4,
       "name": "ud-feedreader-testing",
       "tagline": "Testing Using Jasmine",
       "languages": ["html", "css", "javascript"],
@@ -33,6 +37,7 @@
       "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/feed_reader.png?raw=true"
     },
     {
+      "id": 5,
       "name": "ud-portfolio",
       "tagline": "Simple and Clean Portfolio",
       "languages": ["html", "css"],
@@ -41,6 +46,7 @@
       "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/portfolio.png?raw=true"
     },
     {
+      "id": 6,
       "name": "ud-classic-arcade-game",
       "tagline": "Classic Game For Fun",
       "languages": ["html", "css", "javascript"],
@@ -49,6 +55,7 @@
       "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/arcade_game.png?raw=true"
     },
     {
+      "id": 7,
       "name": "ud-memory-game",
       "tagline": "A Memory Game for your Mind",
       "languages": ["html", "css", "javascript"],
@@ -57,6 +64,7 @@
       "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/memory_game.png?raw=true"
     },
     {
+      "id": 8,
       "name": "ud-pixel-art-maker",
       "tagline": "Pixel Art Maker Application",
       "languages": ["html", "css", "javascript"],
@@ -65,6 +73,7 @@
       "project_image": "https://github.com/lalitmee/portfolio/blob/master/src/assets/images/projects/pixel_art.png?raw=true"
     },
     {
+      "id": 9,
       "name": "Notes-App",
       "tagline": "A Note Taking application",
       "languages": ["react", "html", "css", "javascript"],
@@ -74,6 +83,7 @@
       "project_image": "https://github.com/lalitmee/Notes-App/blob/master/images/Selection_001.png?raw=true"
     },
     {
+      "id": 10,
       "name": "github-search",
       "tagline": "GitHub Repository Search Application",
       "languages": ["react", "html", "css", "javascript"],
