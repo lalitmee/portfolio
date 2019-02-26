@@ -1454,7 +1454,7 @@ h6 {
 
 .resume-image {
   background-image: linear-gradient(#28c4a5, rgba(0, 0, 0, 0.5)),
-    url(/static/media/resume-image.c0e7f075.png);
+    url(assets/images/resume-image.png);
   height: 655px;
   box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
     0 1px 10px 0 rgba(0, 0, 0, 0.12);
