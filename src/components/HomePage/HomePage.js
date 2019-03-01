@@ -18,6 +18,7 @@ import Typist from 'react-typist';
 import TypistLoop from 'react-typist-loop';
 import 'react-typist/dist/Typist.css';
 import NavBar from '../NavBar/NavBar';
+import './HomePage.css';
 
 fontawesome.library.add(
   faFacebook,

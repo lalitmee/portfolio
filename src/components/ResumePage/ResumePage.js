@@ -15,6 +15,7 @@ import { Typography } from '@material-ui/core';
 import Paper from '@material-ui/core/Paper';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './ResumePage.css';
 
 fontawesome.library.add(
   faFacebook,

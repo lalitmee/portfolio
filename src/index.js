@@ -3,7 +3,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Router } from 'react-router-dom';
 import App from './App';
-import ResumePage from './components/Resume/ResumePage';
+import ResumePage from './components/ResumePage/ResumePage';
 import './index.css';
 
 const history = createBrowserHistory();

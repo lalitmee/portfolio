@@ -1,5 +1,6 @@
 import React from 'react';
 import { Events, Link } from 'react-scroll';
+import './OverlayNavigation.css';
 
 class OverlayNavigation extends React.Component {
   constructor(props) {
