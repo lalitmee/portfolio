@@ -14,7 +14,8 @@ import { createMuiTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import PropTypes from 'prop-types';
 import React from 'react';
-import OverlayNavigation from './OverlayNavigation';
+import OverlayNavigation from '../OverlayNavigation/OverlayNavigation';
+import './NavBar.css';
 
 fontawesome.library.add(
   faFacebook,

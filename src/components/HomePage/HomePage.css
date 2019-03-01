@@ -1,0 +1,266 @@
+/****************
+ * HOMEPAGE CSS *
+ ****************/
+.main-wrapper {
+  position: relative;
+}
+
+.main-wrapper-paper {
+  height: 920px;
+
+  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    0 1px 10px 0 rgba(0, 0, 0, 0.12);
+  color: #fff !important;
+  background-color: #f5f5f5 !important;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
+    url('../../assets/images/background/back5.png');
+  background-size: cover;
+  background-position: center center;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  text-align: center;
+  margin: auto;
+  border-radius: 0 !important;
+  padding: 0;
+}
+
+.avatar-image {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0;
+  position: absolute;
+  top: 20%;
+  left: 51%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.main-avatar {
+  width: 150px !important;
+  height: 150px !important;
+  border-radius: 0 !important;
+}
+
+.name-head {
+  display: flex;
+  margin: 0;
+  position: absolute;
+  top: 37%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+  font-size: 72px;
+  color: #333;
+  color: transparent;
+  background: linear-gradient(to right, #30c3a6, #8cc69b) center 1.09em
+    no-repeat;
+  background-size: 80% 3px;
+  transition: 0.2s ease;
+}
+
+.name-head:hover {
+  background-size: 97% 3px;
+}
+
+.main-wrapper-first-head {
+  font-weight: 100 !important;
+  font-size: 8rem !important;
+  color: #30c3a6 !important;
+  letter-spacing: 0.05em !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+
+.main-wrapper-second-head {
+  font-weight: 900 !important;
+  color: #fff !important;
+  font-size: 8rem !important;
+  letter-spacing: 0.1em !important;
+  text-shadow: 0 0 #fff, 0.04em 0 0 #fff, 0 0, -0.03em 0 0 #fff;
+  margin-left: 1rem !important;
+  font-family: 'Raleway', sans-serif !important;
+}
+
+/******************
+ * TYPED-TEXT CSS *
+ ******************/
+.typed-text {
+  display: flex;
+  margin: 0;
+  position: absolute;
+  font-size: 5rem;
+  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  top: 50%;
+  left: 51%;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.typed {
+  display: flex;
+  margin: 3.2rem;
+  position: absolute;
+  font-size: 2.5rem;
+  left: 48%;
+  transform: translate(-50%, -50%);
+}
+
+/********************
+ * SOCIAL-ICONS CSS *
+ ********************/
+.social-icons-wrapper {
+  display: flex;
+  margin: 0;
+  position: absolute;
+  top: 70%;
+  left: 46%;
+  transform: translate(-50%, -50%);
+}
+
+.social-icon {
+  margin: 0 11% 0 0;
+  border-radius: 50%;
+  width: 50px;
+  position: absolute;
+  top: 5px;
+  left: 4px;
+}
+
+.social-icons {
+  padding: 0;
+  list-style: none;
+  margin: 1em;
+}
+
+.social-icons li {
+  display: inline-block;
+  margin: 1rem;
+  position: relative;
+  font-size: 1.2em;
+  left: 74px;
+}
+
+.social-icons i {
+  color: #fff;
+  position: absolute;
+  top: 21px;
+  left: 21px;
+  transition: all 265ms ease-out;
+}
+
+.social-icons a {
+  display: inline-block;
+}
+
+.social-icons a:before {
+  transform: scale(1);
+  content: ' ';
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  display: block;
+  background: linear-gradient(45deg, #c2ccf1, #d0cfdf);
+  transition: all 265ms ease-out;
+}
+
+.social-icons a:hover:before {
+  transform: scale(0);
+  transition: all 265ms ease-in;
+}
+
+.social-icons a:hover i {
+  transform: scale(2.2);
+  color: #ff003c;
+  background: -webkit-linear-gradient(45deg, #c2ccf1, #d0cfdf);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  -webkit-text-fill-color: transparent;
+  transition: all 265ms ease-in;
+}
+
+.social-icons a.social-square:before {
+  background: linear-gradient(45deg, #f5f5f5, #a2dcd1);
+  border-radius: 10%;
+}
+
+.social-icons a.social-square:hover:before {
+  transform: rotate(-180deg);
+  border-radius: 100%;
+}
+
+.social-icons a.social-square:hover i {
+  transform: scale(1.6);
+  color: #fff;
+  -webkit-text-fill-color: #fff;
+}
+
+.social-icons-nav-in .social-icons {
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+  margin-right: 6rem;
+  position: absolute;
+  top: 0rem;
+  right: 10rem;
+  transition: top 0.35s ease-in-out;
+}
+
+.social-icons-nav-out .social-icons {
+  margin-top: 0.3rem;
+  margin-bottom: 0;
+  margin-right: 6rem;
+  position: absolute;
+  top: -6rem;
+  right: 10rem;
+  transition: top 0.35s ease-in-out;
+}
+
+.social-nav-icon {
+  position: absolute;
+  top: 0.9rem;
+  left: 1.1rem;
+  font-size: 2rem;
+}
+
+/*************
+ * QUOTE CSS *
+ *************/
+.quote-wrapper {
+  display: inline-block;
+  margin: 0;
+  position: absolute;
+  top: 85%;
+  left: 51%;
+  transform: translate(-50%, -50%);
+}
+
+.quote-text {
+  quotes: '“' '”' '‘' '’';
+  font-size: 3rem !important;
+  color: white !important;
+  letter-spacing: 0.05em !important;
+  font-family: 'Proxima', sans-serif !important;
+}
+
+.quote-writer {
+  quotes: '“' '”' '‘' '’';
+  font-size: 2rem !important;
+  color: white !important;
+  letter-spacing: 0.05em !important;
+  font-style: italic;
+  font-family: 'Proxima', sans-serif !important;
+}
+
+.quote-text:before {
+  content: open-quote;
+}
+
+.quote-text:after {
+  content: close-quote;
+}
