@@ -1,3 +1,6 @@
+/*************************
+ * CSS FOR THE PORTFOLIO *
+ *************************/
 .portfolio {
   text-align: center;
 }
@@ -65,7 +68,6 @@
 /*****************************
  * SPINNER ICON CSS OVERRIDE *
  *****************************/
-
 .ball-scale-multiple > div {
   width: 100px;
   height: 100px;
