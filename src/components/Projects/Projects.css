@@ -70,39 +70,9 @@
   box-shadow: 0;
   -webkit-transform: scale(0.95);
   transform: scale(0.95);
-  -webkit-transition: -webkit-box-shadow 0.5s, -webkit-transform 0.5s;
-  transition: -webkit-box-shadow 0.5s, -webkit-transform 0.5s;
   transition: box-shadow 0.5s, transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
-  transition: box-shadow 0.5s, transform 0.5s, -webkit-box-shadow 0.5s,
-    -webkit-transform 0.5s;
+  box-shadow: 10px 10px 10px 0px rgba(0, 0, 0, 0.2),
+    0px 1px 1px 0px rgba(0, 0, 0, 0.14), 0px 2px 1px -1px rgba(0, 0, 0, 0.12);
 }
 
 .wrapper:hover {
