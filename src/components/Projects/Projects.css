@@ -208,7 +208,6 @@
   padding: 3.3rem;
   color: #2a5b51;
   transition: transform 0.3s;
-  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
   transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
 }
 
@@ -219,7 +218,6 @@
   position: absolute;
   top: 4%;
   right: 4%;
-  -webkit-transform: translate3d(0, -100%, 0);
   transform: translate3d(0, -100%, 0);
 }
 
@@ -228,7 +226,6 @@
   transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
   transition: transform 0.3s, -webkit-transform 0.3s;
-  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
   transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
 }
 
@@ -250,7 +247,6 @@
   transition: -webkit-transform 0.3s;
   transition: transform 0.3s;
   transition: transform 0.3s, -webkit-transform 0.3s;
-  -webkit-transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
   transition-timing-function: cubic-bezier(0.75, 0, 0.125, 1);
 }
 
@@ -285,7 +281,6 @@
   top: -70px;
   right: -70px;
   border-radius: 0px 0px 200px 200px;
-  -webkit-transition: all 0.5s, border-radius 2s, top 1s;
   transition: all 0.5s, border-radius 2s, top 1s;
   overflow: hidden;
 }
