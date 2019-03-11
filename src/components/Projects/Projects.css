@@ -402,12 +402,10 @@
 .info-icons {
   font-size: 2.5rem !important;
   color: white;
-  -webkit-transition: all ease 0.4s;
   transition: all ease 0.4s;
 }
 
 .info-icon:hover .github {
   color: #24292e !important;
-  -webkit-transition: all ease 0.4s;
   transition: all ease 0.4s;
 }
