@@ -1,5 +1,12 @@
 import fontawesome from '@fortawesome/fontawesome';
-import { faFacebook, faGithub, faInstagram, faLinkedinIn, faStackOverflow, faTwitter } from '@fortawesome/fontawesome-free-brands';
+import {
+  faFacebook,
+  faGithub,
+  faInstagram,
+  faLinkedinIn,
+  faStackOverflow,
+  faTwitter
+} from '@fortawesome/fontawesome-free-brands';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Avatar from '@material-ui/core/Avatar';
 import Paper from '@material-ui/core/Paper';
@@ -13,6 +20,7 @@ import 'react-typist/dist/Typist.css';
 import NavBar from '../NavBar/NavBar';
 import './HomePage.css';
 
+// adding the fontawesome icons to the library
 fontawesome.library.add(
   faFacebook,
   faLinkedinIn,
@@ -22,7 +30,8 @@ fontawesome.library.add(
   faInstagram
 );
 
-const styles = (theme) => ({
+// styles
+const styles = theme => ({
   root: {
     ...theme.mixins.gutters(),
     paddingTop: theme.spacing.unit * 2,
@@ -43,28 +52,33 @@ class HomePage extends React.Component {
     };
   }
 
-  avatarHandle = (avatarDiv) => {
-    const {count} = this.state
+  // method for handling the Avatar image animation
+  avatarHandle = avatarDiv => {
+    const { count } = this.state;
     this.setState({ avatarDiv, count: count + 1 });
   };
 
-  nameHandle = (nameDiv) => {
-    const {count} = this.state
+  // method for handling the Avatar image animation
+  nameHandle = nameDiv => {
+    const { count } = this.state;
     this.setState({ nameDiv, count: count + 1 });
   };
 
-  mainWrapperHandle = (mainWrapperDiv) => {
-    const {count} = this.state
+  // method for handling the Wrapper animation
+  mainWrapperHandle = mainWrapperDiv => {
+    const { count } = this.state;
     this.setState({ mainWrapperDiv, count: count + 1 });
   };
 
-  typedTextHandle = (typedTextDiv) => {
-    const {count} = this.state
+  // method for handling the Typed Text animation
+  typedTextHandle = typedTextDiv => {
+    const { count } = this.state;
     this.setState({ typedTextDiv, count: count + 1 });
   };
 
-  socialIconsHandle = (socialIconsDiv) => {
-    const {count} = this.state
+  // method for handling the Social Icons animation
+  socialIconsHandle = socialIconsDiv => {
+    const { count } = this.state;
     this.setState({ socialIconsDiv, count: count + 1 });
   };
 
@@ -84,9 +98,10 @@ class HomePage extends React.Component {
           triggers={[
             {
               top: -780,
-              callback: (visible) => this.mainWrapperHandle(visible)
+              callback: visible => this.mainWrapperHandle(visible)
             }
-          ]}>
+          ]}
+        >
           <Paper className="main-wrapper-paper" elevation={1}>
             <NavBar
               fullName={nameDiv}
@@ -102,9 +117,10 @@ class HomePage extends React.Component {
                 triggers={[
                   {
                     top: -140,
-                    callback: (visible) => this.avatarHandle(visible)
+                    callback: visible => this.avatarHandle(visible)
                   }
-                ]}>
+                ]}
+              >
                 <Avatar
                   alt="Lalit Kumar"
                   src="https://avatars1.githubusercontent.com/u/10762218?s=460&v=4"
@@ -118,20 +134,23 @@ class HomePage extends React.Component {
               triggers={[
                 {
                   top: 0,
-                  callback: (visible) => this.nameHandle(visible)
+                  callback: visible => this.nameHandle(visible)
                 }
-              ]}>
+              ]}
+            >
               <div className="name-head">
                 <Typography
                   className="main-wrapper-first-head"
                   variant="h1"
-                  component="div">
+                  component="div"
+                >
                   Lalit
                 </Typography>
                 <Typography
                   variant="h1"
                   component="div"
-                  className="main-wrapper-second-head">
+                  className="main-wrapper-second-head"
+                >
                   Kumar
                 </Typography>
               </div>
@@ -141,9 +160,10 @@ class HomePage extends React.Component {
               triggers={[
                 {
                   top: -780,
-                  callback: (visible) => this.typedTextHandle(visible)
+                  callback: visible => this.typedTextHandle(visible)
                 }
-              ]}>
+              ]}
+            >
               <div className="typed-text">
                 <TypistLoop interval={500}>
                   {[
@@ -152,7 +172,7 @@ class HomePage extends React.Component {
                     'Open Source Enthusiast',
                     'Footballer',
                     'Music Lover'
-                  ].map((text) => (
+                  ].map(text => (
                     <Typist key={text} startDelay={100}>
                       {text}
                       <Typist.Delay ms={500} />
@@ -167,9 +187,10 @@ class HomePage extends React.Component {
               triggers={[
                 {
                   top: -620,
-                  callback: (visible) => this.socialIconsHandle(visible)
+                  callback: visible => this.socialIconsHandle(visible)
                 }
-              ]}>
+              ]}
+            >
               <div className="social-icons-wrapper">
                 <ul className="social-icons">
                   <li>
@@ -177,7 +198,8 @@ class HomePage extends React.Component {
                       href="https://www.linkedin.com/in/lalitmee/"
                       target="_blank"
                       className="social-square"
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       <FontAwesomeIcon
                         className="social-nav-icon"
                         style={{
@@ -192,7 +214,8 @@ class HomePage extends React.Component {
                       href="https://www.github.com/lalitmee/"
                       target="_blank"
                       className="social-square"
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       <FontAwesomeIcon
                         className="social-nav-icon"
                         style={{
@@ -207,7 +230,8 @@ class HomePage extends React.Component {
                       href="https://stackoverflow.com/users/4515657/lalit-kumar?tab=profile"
                       target="_blank"
                       className="social-square"
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       <FontAwesomeIcon
                         className="social-nav-icon"
                         style={{
@@ -222,7 +246,8 @@ class HomePage extends React.Component {
                       href="https://www.facebook.com/iamlalitmee"
                       target="_blank"
                       className="social-square"
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       <FontAwesomeIcon
                         className="social-nav-icon"
                         style={{
@@ -237,7 +262,8 @@ class HomePage extends React.Component {
                       href="https://www.twitter.com/lalitmee/"
                       target="_blank"
                       className="social-square"
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       <FontAwesomeIcon
                         className="social-nav-icon"
                         style={{
@@ -252,7 +278,8 @@ class HomePage extends React.Component {
                       href="https://www.instagram.com/lalitmee/"
                       target="_blank"
                       className="social-square"
-                      rel="noopener noreferrer">
+                      rel="noopener noreferrer"
+                    >
                       <FontAwesomeIcon
                         className="social-nav-icon"
                         style={{
