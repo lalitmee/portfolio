@@ -19,8 +19,6 @@
   background-color: transparent !important;
   -webkit-box-shadow: none !important;
   box-shadow: none !important;
-  /* width: 80%;
-  margin: 0 auto; */
 }
 
 .resume-head {
@@ -78,8 +76,6 @@ button.btn {
   font-family: 'Proxima';
   position: relative;
   border: 2px solid white;
-  -webkit-transition: color 0.1s cubic-bezier(0.16, 0.08, 0.355, 1),
-    background 0.1s cubic-bezier(0.16, 0.08, 0.355, 1);
   transition: color 0.1s cubic-bezier(0.16, 0.08, 0.355, 1),
     background 0.1s cubic-bezier(0.16, 0.08, 0.355, 1);
   display: inline-block;
