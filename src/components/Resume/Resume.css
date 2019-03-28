@@ -95,12 +95,14 @@ button.btn {
     width: auto;
   }
 }
+
 @media (min-width: 800px) {
   button.btn {
     font-size: 1.1rem;
     padding: 1.6rem 2.8rem;
   }
 }
+
 button.btn:hover {
   background: -webkit-gradient(
     linear,
@@ -132,6 +134,7 @@ button.btn::before {
   -webkit-transition: background-color 0.3s ease-out;
   transition: background-color 0.3s ease-out;
 }
+
 .btn-arrow span {
   color: white;
   display: inline-block;
@@ -140,11 +143,13 @@ button.btn::before {
   transition: all 0.3s ease-out;
   will-change: transform;
 }
+
 .btn-arrow:hover span {
   color: #fff;
   -webkit-transform: translate3d(-2rem, 0, 0);
   transform: translate3d(-2rem, 0, 0);
 }
+
 .btn-arrow svg {
   position: absolute;
   width: 1.1em;
@@ -158,10 +163,12 @@ button.btn::before {
   transition: all 0.3s ease-out;
   will-change: right, opacity;
 }
+
 .btn-arrow svg * {
   stroke-width: 5;
   stroke-color: transparent;
 }
+
 .btn-arrow:hover svg {
   opacity: 1;
   right: -4rem;
