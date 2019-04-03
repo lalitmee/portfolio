@@ -16,14 +16,6 @@
 .horizontal-rule {
   border: 0;
   height: 1px;
-  background-image: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(rgba(0, 0, 0, 0)),
-    color-stop(#30c3a6),
-    to(rgba(0, 0, 0, 0))
-  );
   background-image: linear-gradient(
     to right,
     rgba(0, 0, 0, 0),
