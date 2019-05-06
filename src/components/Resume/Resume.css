@@ -4,14 +4,7 @@
 .resume-wrapper {
   position: relative;
   padding: 8rem 1.9rem 8rem 0.9rem;
-  background: -webkit-gradient(
-    linear,
-    left top,
-    right top,
-    from(#30c3a6),
-    to(#8cc69b)
-  );
-  background: linear-gradient(to right, #30c3a6, #8cc69b);
+  /* background: linear-gradient(to right, #30c3a6, #8cc69b); */
   color: #7e7e7e;
 }
 
@@ -33,17 +26,16 @@
 }
 
 .resume-image {
-  height: 700px;
+  height: 150px;
   /* background-image: linear-gradient(#28c4a5, rgba(0, 0, 0, 0.5)),
-    url(../../assets/images/resume-image.png);
-  height: 655px;
-  box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
+    url(../../assets/images/resume-image.png); */
+  /* box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2), 0 4px 5px 0 rgba(0, 0, 0, 0.14),
     0 1px 10px 0 rgba(0, 0, 0, 0.12); */
   color: #fff !important;
   /* background-color: #f5f5f5 !important; */
   background-size: cover;
   /* background-position: center center; */
-  background-attachment: fixed;
+  /* background-attachment: fixed; */
   background-repeat: no-repeat;
   text-align: center;
   margin: auto;
@@ -75,7 +67,7 @@ button.btn {
   text-transform: uppercase;
   font-family: 'Proxima';
   position: relative;
-  border: 2px solid white;
+  border: 2px solid #2a5b51;
   transition: color 0.1s cubic-bezier(0.16, 0.08, 0.355, 1),
     background 0.1s cubic-bezier(0.16, 0.08, 0.355, 1);
   display: inline-block;
@@ -136,7 +128,7 @@ button.btn::before {
 }
 
 .btn-arrow span {
-  color: white;
+  color: #2a5b51;
   display: inline-block;
   position: relative;
   -webkit-transition: all 0.3s ease-out;
