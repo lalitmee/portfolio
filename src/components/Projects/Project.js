@@ -136,9 +136,9 @@ const Project = props => (
               <Fab
                 target="_blank"
                 href={props.project.github_link}
-                style={{
-                  backgroundColor: '#24292e'
-                }}
+                // style={{
+                //   backgroundColor: '#24292e'
+                // }}
                 aria-label="Add"
                 className="info-icon"
               >

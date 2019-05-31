@@ -57,11 +57,8 @@ class Contact extends React.Component {
                   <Fab
                     target="_blank"
                     href="https://www.linkedin.com/in/lalitmee/"
-                    style={{
-                      backgroundColor: '#0077b5'
-                    }}
                     aria-label="Add"
-                    className="contact-icon"
+                    className="contact-icon linkedin-icon"
                   >
                     <FontAwesomeIcon
                       className="contact-icons linkedin"
@@ -71,11 +68,8 @@ class Contact extends React.Component {
                   <Fab
                     target="_blank"
                     href="https://www.github.com/lalitmee/"
-                    style={{
-                      backgroundColor: '#24292e'
-                    }}
                     aria-label="Add"
-                    className="contact-icon"
+                    className="contact-icon github-icon"
                   >
                     <FontAwesomeIcon
                       className="contact-icons github"
@@ -85,11 +79,8 @@ class Contact extends React.Component {
                   <Fab
                     target="_blank"
                     href="https://www.facebook.com/iamlalitmee"
-                    style={{
-                      backgroundColor: '#4267b2'
-                    }}
                     aria-label="Add"
-                    className="contact-icon"
+                    className="contact-icon facebook-icon"
                   >
                     <FontAwesomeIcon
                       className="contact-icons facebook"
@@ -98,12 +89,9 @@ class Contact extends React.Component {
                   </Fab>
                   <Fab
                     target="_blank"
-                    style={{
-                      backgroundColor: '#1da1f2'
-                    }}
                     href="https://www.twitter.com/lalitmee/"
                     aria-label="Add"
-                    className="contact-icon"
+                    className="contact-icon twitter-icon"
                   >
                     <FontAwesomeIcon
                       className="contact-icons twitter"
