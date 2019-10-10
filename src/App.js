@@ -11,7 +11,7 @@ import Resume from './components/Resume/Resume';
 import Skills from './components/Skills/Skills';
 
 function App() {
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   useEffect(() => {
     setTimeout(() => {
       setLoading((state) => !state);
