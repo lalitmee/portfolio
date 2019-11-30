@@ -1,43 +1,28 @@
-import fontawesome from '@fortawesome/fontawesome';
-import {
-  faFacebook,
-  faGithub,
-  faInstagram,
-  faLinkedinIn,
-  faStackOverflow,
-  faTwitter
-} from '@fortawesome/fontawesome-free-brands';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import Avatar from '@material-ui/core/Avatar';
-import Paper from '@material-ui/core/Paper';
-import { withStyles } from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import OnScroll from 'react-on-scroll';
 import Typist from 'react-typist';
 import TypistLoop from 'react-typist-loop';
-import 'react-typist/dist/Typist.css';
+import Avatar from '@material-ui/core/Avatar';
+import Paper from '@material-ui/core/Paper';
+import Typography from '@material-ui/core/Typography';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
+
 import NavBar from '../NavBar/NavBar';
+
+import 'react-typist/dist/Typist.css';
 import './HomePage.css';
 
-// adding the fontawesome icons to the library
-fontawesome.library.add(
-  faFacebook,
-  faLinkedinIn,
-  faStackOverflow,
-  faTwitter,
-  faGithub,
-  faInstagram
-);
-
-// styles
-const styles = theme => ({
-  root: {
-    ...theme.mixins.gutters(),
-    paddingTop: theme.spacing.unit * 2,
-    paddingBottom: theme.spacing.unit * 2
-  }
-});
+// const styles = theme => ({
+//   root: {
+//     ...theme.mixins.gutters(),
+//     paddingTop: theme.spacing.unit * 2,
+//     paddingBottom: theme.spacing.unit * 2,
+//   },
+// });
 
 class HomePage extends React.Component {
   constructor(props) {
@@ -48,7 +33,7 @@ class HomePage extends React.Component {
       nameDiv: false,
       mainWrapperDiv: false,
       typedTextDiv: false,
-      socialIconsDiv: false
+      socialIconsDiv: false,
     };
   }
 
@@ -89,7 +74,7 @@ class HomePage extends React.Component {
       mainWrapperDiv,
       typedTextDiv,
       socialIconsDiv,
-      count
+      count,
     } = this.state;
     return (
       <div className="main-wrapper" id="home">
@@ -98,8 +83,8 @@ class HomePage extends React.Component {
           triggers={[
             {
               top: -780,
-              callback: visible => this.mainWrapperHandle(visible)
-            }
+              callback: visible => this.mainWrapperHandle(visible),
+            },
           ]}
         >
           <Paper className="main-wrapper-paper" elevation={1}>
@@ -117,8 +102,8 @@ class HomePage extends React.Component {
                 triggers={[
                   {
                     top: -140,
-                    callback: visible => this.avatarHandle(visible)
-                  }
+                    callback: visible => this.avatarHandle(visible),
+                  },
                 ]}
               >
                 <Avatar
@@ -134,8 +119,8 @@ class HomePage extends React.Component {
               triggers={[
                 {
                   top: 0,
-                  callback: visible => this.nameHandle(visible)
-                }
+                  callback: visible => this.nameHandle(visible),
+                },
               ]}
             >
               <div className="name-head">
@@ -160,8 +145,8 @@ class HomePage extends React.Component {
               triggers={[
                 {
                   top: -780,
-                  callback: visible => this.typedTextHandle(visible)
-                }
+                  callback: visible => this.typedTextHandle(visible),
+                },
               ]}
             >
               <div className="typed-text">
@@ -171,7 +156,7 @@ class HomePage extends React.Component {
                     'Front End Developer',
                     'Open Source Enthusiast',
                     'Footballer',
-                    'Music Lover'
+                    'Music Lover',
                   ].map(text => (
                     <Typist key={text} startDelay={100}>
                       {text}
@@ -187,8 +172,8 @@ class HomePage extends React.Component {
               triggers={[
                 {
                   top: -620,
-                  callback: visible => this.socialIconsHandle(visible)
-                }
+                  callback: visible => this.socialIconsHandle(visible),
+                },
               ]}
             >
               <div className="social-icons-wrapper">
@@ -200,12 +185,11 @@ class HomePage extends React.Component {
                       className="social-square"
                       rel="noopener noreferrer"
                     >
-                      <FontAwesomeIcon
+                      <LinkedInIcon
                         className="social-nav-icon"
                         style={{
-                          color: '#0077B5'
+                          color: '#0077B5',
                         }}
-                        icon={['fab', 'linkedin-in']}
                       />
                     </a>
                   </li>
@@ -216,28 +200,11 @@ class HomePage extends React.Component {
                       className="social-square"
                       rel="noopener noreferrer"
                     >
-                      <FontAwesomeIcon
+                      <GitHubIcon
                         className="social-nav-icon"
                         style={{
-                          color: '#24292e'
+                          color: '#24292e',
                         }}
-                        icon={['fab', 'github']}
-                      />
-                    </a>
-                  </li>
-                  <li>
-                    <a
-                      href="https://stackoverflow.com/users/4515657/lalit-kumar?tab=profile"
-                      target="_blank"
-                      className="social-square"
-                      rel="noopener noreferrer"
-                    >
-                      <FontAwesomeIcon
-                        className="social-nav-icon"
-                        style={{
-                          color: '#F48024'
-                        }}
-                        icon={['fab', 'stack-overflow']}
                       />
                     </a>
                   </li>
@@ -248,12 +215,11 @@ class HomePage extends React.Component {
                       className="social-square"
                       rel="noopener noreferrer"
                     >
-                      <FontAwesomeIcon
+                      <FacebookIcon
                         className="social-nav-icon"
                         style={{
-                          color: '#4267b2'
+                          color: '#4267b2',
                         }}
-                        icon={['fab', 'facebook']}
                       />
                     </a>
                   </li>
@@ -264,12 +230,11 @@ class HomePage extends React.Component {
                       className="social-square"
                       rel="noopener noreferrer"
                     >
-                      <FontAwesomeIcon
+                      <TwitterIcon
                         className="social-nav-icon"
                         style={{
-                          color: '#1da1f2'
+                          color: '#1da1f2',
                         }}
-                        icon={['fab', 'twitter']}
                       />
                     </a>
                   </li>
@@ -280,12 +245,11 @@ class HomePage extends React.Component {
                       className="social-square"
                       rel="noopener noreferrer"
                     >
-                      <FontAwesomeIcon
+                      <InstagramIcon
                         className="social-nav-icon"
                         style={{
-                          color: '#cb2c8a'
+                          color: '#cb2c8a',
                         }}
-                        icon={['fab', 'instagram']}
                       />
                     </a>
                   </li>
@@ -294,7 +258,7 @@ class HomePage extends React.Component {
             </OnScroll>
             <div className="quote-wrapper">
               <Typography className="quote-text" variant="h5" component="div">
-                Don't comment bad code - rewrite it.
+                Don&#39;t comment bad code - rewrite it.
               </Typography>
               <Typography className="quote-writer" variant="h5" component="div">
                 - Brian Kernighan
@@ -306,4 +270,4 @@ class HomePage extends React.Component {
     );
   }
 }
-export default withStyles(styles)(HomePage);
+export default HomePage;

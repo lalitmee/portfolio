@@ -5,7 +5,7 @@ import {
   faGithub,
   faHtml5,
   faJsSquare,
-  faReact
+  faReact,
 } from '@fortawesome/fontawesome-free-brands';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import Fab from '@material-ui/core/Fab';
@@ -21,7 +21,7 @@ fontawesome.library.add(
   faReact,
   faJsSquare,
   faHtml5,
-  faGithub
+  faGithub,
 );
 
 const Project = props => (
@@ -70,55 +70,54 @@ const Project = props => (
         <div className="contents">
           <div className="tech-head">Build With</div>
           <div className="technologies">
-            {props.project.languages.map(
-              (tech, i) =>
-                tech === 'react' ? (
-                  <div key={i}>
-                    <FontAwesomeIcon
-                      className="icons"
-                      style={{
-                        color: '#5ed3f3'
-                      }}
-                      icon={['fab', 'react']}
-                    />
-                    <div className="icon-name">React</div>
-                  </div>
-                ) : tech === 'javascript' ? (
-                  <div key={i}>
-                    <FontAwesomeIcon
-                      className="icons"
-                      style={{
-                        color: '#f0db4f'
-                      }}
-                      icon={['fab', 'js-square']}
-                    />
-                    <div className="icon-name">Javscript</div>
-                  </div>
-                ) : tech === 'html' ? (
-                  <div key={i}>
-                    <FontAwesomeIcon
-                      className="icons"
-                      style={{
-                        color: '#ff6d00'
-                      }}
-                      icon={['fab', 'html5']}
-                    />
-                    <div className="icon-name">HTML5</div>
-                  </div>
-                ) : tech === 'css' ? (
-                  <div key={i}>
-                    <FontAwesomeIcon
-                      className="icons"
-                      style={{
-                        color: '#0374b7'
-                      }}
-                      icon={['fab', 'css3']}
-                    />
-                    <div className="icon-name">CSS3</div>
-                  </div>
-                ) : (
-                  ''
-                )
+            {props.project.languages.map((tech, i) =>
+              tech === 'react' ? (
+                <div key={i}>
+                  <FontAwesomeIcon
+                    className="icons"
+                    style={{
+                      color: '#5ed3f3',
+                    }}
+                    icon={['fab', 'react']}
+                  />
+                  <div className="icon-name">React</div>
+                </div>
+              ) : tech === 'javascript' ? (
+                <div key={i}>
+                  <FontAwesomeIcon
+                    className="icons"
+                    style={{
+                      color: '#f0db4f',
+                    }}
+                    icon={['fab', 'js-square']}
+                  />
+                  <div className="icon-name">Javscript</div>
+                </div>
+              ) : tech === 'html' ? (
+                <div key={i}>
+                  <FontAwesomeIcon
+                    className="icons"
+                    style={{
+                      color: '#ff6d00',
+                    }}
+                    icon={['fab', 'html5']}
+                  />
+                  <div className="icon-name">HTML5</div>
+                </div>
+              ) : tech === 'css' ? (
+                <div key={i}>
+                  <FontAwesomeIcon
+                    className="icons"
+                    style={{
+                      color: '#0374b7',
+                    }}
+                    icon={['fab', 'css3']}
+                  />
+                  <div className="icon-name">CSS3</div>
+                </div>
+              ) : (
+                ''
+              ),
             )}
           </div>
           <div className="category-head">Category</div>

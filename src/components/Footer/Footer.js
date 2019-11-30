@@ -1,12 +1,11 @@
-import fontawesome from '@fortawesome/fontawesome';
-import { faCopyright, faHeart } from '@fortawesome/fontawesome-free-solid';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
-import React from 'react';
+import CopyrightIcon from '@material-ui/icons/Copyright';
+import FavoriteIcon from '@material-ui/icons/Favorite';
+
 import './Footer.css';
 
-fontawesome.library.add(faCopyright, faHeart);
 function Footer() {
   return (
     <div className="footer-wrapper" id="footer">
@@ -58,7 +57,7 @@ function Footer() {
           </svg>
         </div>
         <Typography className="footer-text" variant="h4" component="div">
-          <FontAwesomeIcon className="copyright" icon={['fas', 'copyright']} />
+          <CopyrightIcon className="copyright" />
           <span> Copyright 2019.</span>
         </Typography>
         <Typography className="footer-text" variant="h4" component="div">
@@ -66,7 +65,7 @@ function Footer() {
         </Typography>
         <Typography className="footer-text" variant="h4" component="div">
           <span>Made with </span>
-          <FontAwesomeIcon className="heart" icon={['fas', 'heart']} />
+          <FavoriteIcon className="heart" />
         </Typography>
       </Paper>
     </div>

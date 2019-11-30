@@ -1,31 +1,14 @@
-import fontawesome from '@fortawesome/fontawesome';
-import {
-  faFacebook,
-  faGithubSquare,
-  faLinkedin,
-  faTwitter
-} from '@fortawesome/fontawesome-free-brands';
-import {
-  faEnvelope,
-  faHome,
-  faMobileAlt
-} from '@fortawesome/fontawesome-free-solid';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Typography } from '@material-ui/core';
-import Paper from '@material-ui/core/Paper';
 import React from 'react';
+import Typography from '@material-ui/core/Typography';
+import Paper from '@material-ui/core/Paper';
 import { Link } from 'react-router-dom';
-import './ResumePage.css';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import WebAssetIcon from '@material-ui/icons/WebAsset';
+import EmailIcon from '@material-ui/icons/Email';
+import PhoneAndroidIcon from '@material-ui/icons/PhoneAndroid';
 
-fontawesome.library.add(
-  faFacebook,
-  faLinkedin,
-  faTwitter,
-  faGithubSquare,
-  faEnvelope,
-  faHome,
-  faMobileAlt
-);
+import './ResumePage.css';
 
 class ResumePage extends React.Component {
   constructor(props) {
@@ -74,17 +57,11 @@ class ResumePage extends React.Component {
           </div>
           <div className="resume-contact">
             <div className="resume-phone">
-              <FontAwesomeIcon
-                className="resume-contact-icon"
-                icon={['fas', 'mobile-alt']}
-              />
+              <PhoneAndroidIcon className="resume-contact-icon" />
               <span className="resume-phone-text">(+91)9712618438</span>
             </div>
             <div className="resume-email">
-              <FontAwesomeIcon
-                className="resume-contact-icon"
-                icon={['fas', 'envelope']}
-              />
+              <EmailIcon className="resume-contact-icon" />
               <span className="resume-email-text">
                 <a
                   target="_blank"
@@ -96,10 +73,7 @@ class ResumePage extends React.Component {
               </span>
             </div>
             <div className="resume-home">
-              <FontAwesomeIcon
-                className="resume-contact-icon"
-                icon={['fas', 'home']}
-              />
+              <WebAssetIcon className="resume-contact-icon" />
               <span className="resume-email-text">
                 <a
                   target="_blank"
@@ -111,10 +85,7 @@ class ResumePage extends React.Component {
               </span>
             </div>
             <div className="resume-github">
-              <FontAwesomeIcon
-                className="resume-contact-icon"
-                icon={['fab', 'github-square']}
-              />
+              <GitHubIcon className="resume-contact-icon" />
               <span className="resume-email-text">
                 <a
                   target="_blank"
@@ -126,10 +97,7 @@ class ResumePage extends React.Component {
               </span>
             </div>
             <div className="resume-linkedin">
-              <FontAwesomeIcon
-                className="resume-contact-icon"
-                icon={['fab', 'linkedin']}
-              />
+              <LinkedInIcon className="resume-contact-icon" />
               <span className="resume-email-text">
                 <a
                   target="_blank"
@@ -231,6 +199,29 @@ class ResumePage extends React.Component {
               </div>
               <div className="resume-section-item">
                 <div className="college-name-place resume-section-sub-item">
+                  <div className="cname text-bold">koinearth</div>
+                  <div className="cplace text-italic">Bangalore</div>
+                </div>
+                <div className="major-years resume-section-sub-item">
+                  <div className="major">
+                    <div>SOFTWARE</div>
+                    <div>ENGINEER</div>
+                  </div>
+                  <div className="years text-italic">
+                    August. 2019 - Present
+                  </div>
+                </div>
+                <div className="resume-section-sub-item">
+                  <ul className="description-list">
+                    <li>Working on Blockchain Product Marketsn.com</li>
+                    <li>
+                      Learning new and advanced practices in React Environment
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div className="resume-section-item">
+                <div className="college-name-place resume-section-sub-item">
                   <div className="cname text-bold">CognitiveClouds</div>
                   <div className="cplace text-italic">Bangalore</div>
                 </div>
@@ -239,7 +230,9 @@ class ResumePage extends React.Component {
                     <div>SOFTWARE</div>
                     <div>ENGINEER</div>
                   </div>
-                  <div className="years text-italic">Jun. 2018 - Present</div>
+                  <div className="years text-italic">
+                    Jun. 2018 - August 2019
+                  </div>
                 </div>
                 <div className="resume-section-sub-item">
                   <ul className="description-list">

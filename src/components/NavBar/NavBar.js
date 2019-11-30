@@ -1,35 +1,23 @@
-import fontawesome from '@fortawesome/fontawesome';
-import {
-  faFacebook,
-  faGithub,
-  faInstagram,
-  faLinkedinIn,
-  faStackOverflow,
-  faTwitter
-} from '@fortawesome/fontawesome-free-brands';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import React from 'react';
 import AppBar from '@material-ui/core/AppBar';
 import Avatar from '@material-ui/core/Avatar';
 import { createMuiTheme } from '@material-ui/core/styles';
 import Toolbar from '@material-ui/core/Toolbar';
 import PropTypes from 'prop-types';
-import React from 'react';
-import OverlayNavigation from '../OverlayNavigation/OverlayNavigation';
-import './NavBar.css';
+import TwitterIcon from '@material-ui/icons/Twitter';
+import GitHubIcon from '@material-ui/icons/GitHub';
+import LinkedInIcon from '@material-ui/icons/LinkedIn';
+import FacebookIcon from '@material-ui/icons/Facebook';
+import InstagramIcon from '@material-ui/icons/Instagram';
 
-fontawesome.library.add(
-  faFacebook,
-  faLinkedinIn,
-  faStackOverflow,
-  faTwitter,
-  faGithub,
-  faInstagram
-);
+import OverlayNavigation from '../OverlayNavigation/OverlayNavigation';
+
+import './NavBar.css';
 
 const theme = createMuiTheme({
   typography: {
-    useNextVariants: true
-  }
+    useNextVariants: true,
+  },
 });
 
 class NavBar extends React.Component {
@@ -91,12 +79,11 @@ class NavBar extends React.Component {
                           className="social-square"
                           rel="noopener noreferrer"
                         >
-                          <FontAwesomeIcon
+                          <LinkedInIcon
                             className="social-nav-icon"
                             style={{
-                              color: '#0077B5'
+                              color: '#0077B5',
                             }}
-                            icon={['fab', 'linkedin-in']}
                           />
                         </a>
                       </li>
@@ -107,28 +94,11 @@ class NavBar extends React.Component {
                           className="social-square"
                           rel="noopener noreferrer"
                         >
-                          <FontAwesomeIcon
+                          <GitHubIcon
                             className="social-nav-icon"
                             style={{
-                              color: '#24292e'
+                              color: '#24292e',
                             }}
-                            icon={['fab', 'github']}
-                          />
-                        </a>
-                      </li>
-                      <li>
-                        <a
-                          href="https://stackoverflow.com/users/4515657/lalit-kumar?tab=profile"
-                          target="_blank"
-                          className="social-square"
-                          rel="noopener noreferrer"
-                        >
-                          <FontAwesomeIcon
-                            className="social-nav-icon"
-                            style={{
-                              color: '#F48024'
-                            }}
-                            icon={['fab', 'stack-overflow']}
                           />
                         </a>
                       </li>
@@ -139,12 +109,11 @@ class NavBar extends React.Component {
                           className="social-square"
                           rel="noopener noreferrer"
                         >
-                          <FontAwesomeIcon
+                          <FacebookIcon
                             className="social-nav-icon"
                             style={{
-                              color: '#4267b2'
+                              color: '#4267b2',
                             }}
-                            icon={['fab', 'facebook']}
                           />
                         </a>
                       </li>
@@ -155,12 +124,11 @@ class NavBar extends React.Component {
                           className="social-square"
                           rel="noopener noreferrer"
                         >
-                          <FontAwesomeIcon
+                          <TwitterIcon
                             className="social-nav-icon"
                             style={{
-                              color: '#1da1f2'
+                              color: '#1da1f2',
                             }}
-                            icon={['fab', 'twitter']}
                           />
                         </a>
                       </li>
@@ -171,12 +139,11 @@ class NavBar extends React.Component {
                           className="social-square"
                           rel="noopener noreferrer"
                         >
-                          <FontAwesomeIcon
+                          <InstagramIcon
                             className="social-nav-icon"
                             style={{
-                              color: '#cb2c8a'
+                              color: '#cb2c8a',
                             }}
-                            icon={['fab', 'instagram']}
                           />
                         </a>
                       </li>
@@ -198,7 +165,7 @@ NavBar.propTypes = {
   fullName: PropTypes.bool.isRequired,
   wrapperDiv: PropTypes.bool.isRequired,
   social: PropTypes.bool.isRequired,
-  count: PropTypes.number.isRequired
+  count: PropTypes.number.isRequired,
 };
 
 export default NavBar;
