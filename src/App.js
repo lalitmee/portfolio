@@ -12,6 +12,7 @@ import Skills from './components/Skills/Skills';
 
 function App() {
   const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     const timeout = setTimeout(() => {
       setLoading((state) => !state);
@@ -19,6 +20,7 @@ function App() {
 
     return () => {clearTimeout(timeout)}
   }, []);
+  
   return (
     <div className="portfolio">
       {!loading ? (
