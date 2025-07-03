@@ -2,33 +2,18 @@
   "skills": [
     {
       "title": "Web Development",
-      "description": "I love to build attractive and platform independent Web Applications",
-      "icon": ["fas", "desktop"]
+      "description": "I have experience with React, Angular, and Node.js.",
+      "icon": "desktop"
     },
     {
-      "title": "Research & Analysis",
-      "description": "Before starting anything, I like to do my homework and complete analysis of the process",
-      "icon": ["fas", "search"]
+      "title": "Mobile Development",
+      "description": "I have experience with React Native.",
+      "icon": "mobile-alt"
     },
     {
-      "title": "Problem Solving",
-      "description": "Give me a problem and I will give you a better and efficient solution",
-      "icon": ["fas", "tasks"]
-    },
-    {
-      "title": "Documentation",
-      "description": "I like to maintain a good documentation, whether it is code comments or code documents",
-      "icon": ["fas", "file-alt"]
-    },
-    {
-      "title": "Team Work",
-      "description": "I believe that a team can do miracles, if all the players of that team are motivated and dedicated",
-      "icon": ["fas", "users-cog"]
-    },
-    {
-      "title": "Communication",
-      "description": "I also love to discuss and share my views with other people so that we can come up with something better",
-      "icon": ["fas", "comments"]
+      "title": "UI/UX Design",
+      "description": "I have experience with Figma and Sketch.",
+      "icon": "drafting-compass"
     }
   ]
 }
