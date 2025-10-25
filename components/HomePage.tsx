@@ -1,0 +1,550 @@
+import React, { useEffect, useRef, useState } from 'react';
+import {
+  FaBrain,
+  FaChevronDown,
+  FaCode,
+  FaEnvelope,
+  FaGithub,
+  FaLightbulb,
+  FaLinkedin,
+  FaRocket,
+  FaTwitter,
+} from 'react-icons/fa';
+import { twMerge } from 'tailwind-merge';
+
+interface Particle {
+  x: number;
+  y: number;
+  vx: number;
+  vy: number;
+  size: number;
+  opacity: number;
+}
+
+const HomePage: React.FC = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [isVisible, setIsVisible] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const particlesRef = useRef<Particle[]>([]);
+  const animationRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    setIsVisible(true);
+    setIsMobile(window.innerWidth < 1024);
+    initParticles();
+    animate();
+
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  const initParticles = () => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const particles: Particle[] = [];
+    for (let i = 0; i < 50; i++) {
+      particles.push({
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        vx: (Math.random() - 0.5) * 0.5,
+        vy: (Math.random() - 0.5) * 0.5,
+        size: Math.random() * 2 + 1,
+        opacity: Math.random() * 0.5 + 0.1,
+      });
+    }
+    particlesRef.current = particles;
+  };
+
+  const animate = () => {
+    const canvas = canvasRef.current;
+    const ctx = canvas?.getContext('2d');
+    if (!canvas || !ctx) return;
+
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    // Update and draw particles
+    particlesRef.current.forEach((particle) => {
+      particle.x += particle.vx;
+      particle.y += particle.vy;
+
+      if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+      if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+
+      ctx.beginPath();
+      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(139, 92, 246, ${particle.opacity})`;
+      ctx.fill();
+    });
+
+    // Draw connections
+    particlesRef.current.forEach((particle, i) => {
+      particlesRef.current.slice(i + 1).forEach((otherParticle) => {
+        const dx = particle.x - otherParticle.x;
+        const dy = particle.y - otherParticle.y;
+        const distance = Math.sqrt(dx * dx + dy * dy);
+
+        if (distance < 100) {
+          ctx.beginPath();
+          ctx.moveTo(particle.x, particle.y);
+          ctx.lineTo(otherParticle.x, otherParticle.y);
+          ctx.strokeStyle = `rgba(139, 92, 246, ${0.1 * (1 - distance / 100)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      });
+    });
+
+    animationRef.current = requestAnimationFrame(animate);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isMobile) {
+      const rect = e.currentTarget.getBoundingClientRect();
+      setMousePosition({
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      });
+    }
+  };
+
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = 80;
+      const elementPosition = element.offsetTop - offset;
+      window.scrollTo({
+        top: elementPosition,
+        behavior: 'smooth',
+      });
+    }
+  };
+
+  return (
+    <div
+      className="relative min-h-screen overflow-hidden bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900"
+      onMouseMove={handleMouseMove}
+      id="home"
+    >
+      {/* Animated Background Canvas */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full"
+        width={1920}
+        height={1080}
+      />
+
+      {/* Gradient Overlays */}
+      <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-blue-500/10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent" />
+
+      {/* Floating Geometric Shapes - Hidden on mobile */}
+      <div className="hidden lg:block absolute top-20 left-20 w-32 h-32 border border-purple-500/20 rounded-full animate-spin-slow" />
+      <div className="hidden lg:block absolute top-40 right-32 w-24 h-24 border border-blue-500/20 rotate-45 animate-pulse" />
+      <div className="hidden lg:block absolute bottom-32 left-40 w-16 h-16 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg animate-float" />
+
+      {/* Main Content */}
+      <div className="relative z-10 flex items-center justify-center min-h-screen px-6 pt-20">
+        <div className="max-w-6xl mx-auto w-full">
+          {/* Mobile Layout */}
+          <div className="lg:hidden">
+            {/* Name - Center aligned on mobile */}
+            <div className="text-center mb-8">
+              <h1 className="text-3xl sm:text-4xl font-bold text-white mb-3">
+                Lalit Kumar
+              </h1>
+              <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 text-sm text-white">
+                <FaBrain className="text-purple-400" />
+                <span>AI-Era Software Engineer</span>
+                <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+              </div>
+            </div>
+
+            {/* Profile Card - First on mobile */}
+            <div className="flex justify-center mb-8">
+              <div className="relative w-80 h-80">
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl">
+                  {/* Profile Image */}
+                  <div className="absolute top-6 left-1/2 transform -translate-x-1/2">
+                    <div className="relative">
+                      <img
+                        src="https://avatars1.githubusercontent.com/u/10762218?s=460&v=4"
+                        alt="Lalit Kumar"
+                        className="w-24 h-24 rounded-2xl object-cover border-4 border-white/30"
+                      />
+                      <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center">
+                        <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Floating Tech Icons */}
+                  <div className="absolute top-16 left-6 w-10 h-10 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float">
+                    <span className="text-white font-bold text-sm">TS</span>
+                  </div>
+                  <div
+                    className="absolute top-24 right-6 w-10 h-10 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
+                    style={{ animationDelay: '0.5s' }}
+                  >
+                    <span className="text-white font-bold text-sm">⚛️</span>
+                  </div>
+                  <div
+                    className="absolute bottom-24 left-8 w-10 h-10 bg-gradient-to-r from-green-500/20 to-teal-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
+                    style={{ animationDelay: '1s' }}
+                  >
+                    <span className="text-white font-bold text-sm">🚀</span>
+                  </div>
+                  <div
+                    className="absolute bottom-16 right-8 w-10 h-10 bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
+                    style={{ animationDelay: '1.5s' }}
+                  >
+                    <span className="text-white font-bold text-sm">AI</span>
+                  </div>
+
+                  {/* Status Text */}
+                  <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 text-center">
+                    <div className="text-white font-semibold text-sm">
+                      Senior Software Engineer
+                    </div>
+                    <div className="text-gray-300 text-xs">
+                      Available for opportunities
+                    </div>
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-3xl scale-150 -z-10" />
+              </div>
+            </div>
+
+            {/* Main Heading - Mobile */}
+            <div className="text-left space-y-4 mb-8">
+              <h2 className="text-4xl sm:text-5xl font-bold leading-tight">
+                <span className="text-white">Building the </span>
+                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x">
+                  Future
+                </span>
+                <span className="text-white"> of Web</span>
+              </h2>
+              <p className="text-lg text-gray-300 leading-relaxed">
+                Senior Software Engineer with{' '}
+                <span className="text-purple-400 font-semibold">7+ years</span>{' '}
+                of experience crafting exceptional digital experiences using
+                cutting-edge technologies and AI-driven solutions.
+              </p>
+            </div>
+
+            {/* Stats - Mobile */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              {[
+                { number: '7+', label: 'Years Experience', icon: FaRocket },
+                { number: '50+', label: 'Projects Delivered', icon: FaCode },
+                { number: '15+', label: 'Technologies', icon: FaLightbulb },
+              ].map((stat, index) => (
+                <div
+                  key={index}
+                  className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 text-center hover:bg-white/10 transition-all duration-300"
+                >
+                  <stat.icon className="text-purple-400 text-2xl mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-white">
+                    {stat.number}
+                  </div>
+                  <div className="text-sm text-gray-400">{stat.label}</div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Buttons - Mobile */}
+            <div className="flex flex-col gap-4 mb-8">
+              <button
+                onClick={() => scrollToSection('projects')}
+                className="group bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center justify-center space-x-2"
+              >
+                <FaRocket className="group-hover:animate-bounce" />
+                <span>Explore My Work</span>
+              </button>
+              <button
+                onClick={() => scrollToSection('contact')}
+                className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 flex items-center justify-center space-x-2"
+              >
+                <FaEnvelope />
+                <span>Let's Connect</span>
+              </button>
+            </div>
+
+            {/* Social Links - Mobile */}
+            <div className="flex justify-center space-x-4 mb-16">
+              {[
+                {
+                  icon: FaGithub,
+                  href: 'https://github.com/lalitmee',
+                  label: 'GitHub',
+                },
+                {
+                  icon: FaLinkedin,
+                  href: 'https://linkedin.com/in/lalitmee',
+                  label: 'LinkedIn',
+                },
+                {
+                  icon: FaTwitter,
+                  href: 'https://twitter.com/lalitmee',
+                  label: 'Twitter',
+                },
+              ].map((social, index) => (
+                <a
+                  key={index}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300"
+                  aria-label={social.label}
+                >
+                  <social.icon />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Desktop Layout */}
+          <div className="hidden lg:grid lg:grid-cols-2 gap-12 items-center">
+            {/* Left Content - Desktop */}
+            <div
+              className={twMerge(
+                'space-y-8 transition-all duration-1000',
+                isVisible
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 -translate-x-10',
+              )}
+            >
+              {/* Name - Left aligned on desktop */}
+              <div className="text-left">
+                <h1 className="text-4xl lg:text-5xl font-bold text-white mb-3">
+                  Lalit Kumar
+                </h1>
+                <div className="inline-flex items-center space-x-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-2 text-sm text-white">
+                  <FaBrain className="text-purple-400" />
+                  <span>AI-Era Software Engineer</span>
+                  <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <h2 className="text-6xl lg:text-7xl font-bold leading-tight">
+                  <span className="text-white">Building the</span>
+                  <br />
+                  <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x">
+                    Future
+                  </span>
+                  <br />
+                  <span className="text-white">of Web</span>
+                </h2>
+                <p className="text-xl text-gray-300 leading-relaxed max-w-lg">
+                  Senior Software Engineer with{' '}
+                  <span className="text-purple-400 font-semibold">
+                    7+ years
+                  </span>{' '}
+                  of experience crafting exceptional digital experiences using
+                  cutting-edge technologies and AI-driven solutions.
+                </p>
+              </div>
+
+              <div className="grid grid-cols-3 gap-6">
+                {[
+                  { number: '7+', label: 'Years Experience', icon: FaRocket },
+                  { number: '50+', label: 'Projects Delivered', icon: FaCode },
+                  { number: '15+', label: 'Technologies', icon: FaLightbulb },
+                ].map((stat, index) => (
+                  <div
+                    key={index}
+                    className="bg-white/5 backdrop-blur-md border border-white/10 rounded-xl p-4 text-center hover:bg-white/10 transition-all duration-300"
+                  >
+                    <stat.icon className="text-purple-400 text-2xl mx-auto mb-2" />
+                    <div className="text-2xl font-bold text-white">
+                      {stat.number}
+                    </div>
+                    <div className="text-sm text-gray-400">{stat.label}</div>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex gap-4">
+                <button
+                  onClick={() => scrollToSection('projects')}
+                  className="group bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center space-x-2"
+                >
+                  <FaRocket className="group-hover:animate-bounce" />
+                  <span>Explore My Work</span>
+                </button>
+                <button
+                  onClick={() => scrollToSection('contact')}
+                  className="bg-white/10 backdrop-blur-md border border-white/20 text-white px-8 py-4 rounded-full font-semibold hover:bg-white/20 transition-all duration-300 flex items-center space-x-2"
+                >
+                  <FaEnvelope />
+                  <span>Let's Connect</span>
+                </button>
+              </div>
+
+              <div className="flex space-x-4">
+                {[
+                  {
+                    icon: FaGithub,
+                    href: 'https://github.com/lalitmee',
+                    label: 'GitHub',
+                  },
+                  {
+                    icon: FaLinkedin,
+                    href: 'https://linkedin.com/in/lalitmee',
+                    label: 'LinkedIn',
+                  },
+                  {
+                    icon: FaTwitter,
+                    href: 'https://twitter.com/lalitmee',
+                    label: 'Twitter',
+                  },
+                ].map((social, index) => (
+                  <a
+                    key={index}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-12 h-12 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center text-white hover:bg-white/20 hover:scale-110 transition-all duration-300"
+                    aria-label={social.label}
+                  >
+                    <social.icon />
+                  </a>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Content - Desktop with mouse animation */}
+            <div
+              className={twMerge(
+                'relative transition-all duration-1000 delay-300',
+                isVisible
+                  ? 'opacity-100 translate-x-0'
+                  : 'opacity-0 translate-x-10',
+              )}
+            >
+              <div className="relative">
+                <div
+                  className="relative w-96 h-96 mx-auto"
+                  style={{
+                    transform: `perspective(1000px) rotateY(${mousePosition.x * 0.01}deg) rotateX(${-mousePosition.y * 0.01}deg)`,
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-white/5 backdrop-blur-xl border border-white/20 rounded-3xl shadow-2xl">
+                    <div className="absolute top-8 left-1/2 transform -translate-x-1/2">
+                      <div className="relative">
+                        <img
+                          src="https://avatars1.githubusercontent.com/u/10762218?s=460&v=4"
+                          alt="Lalit Kumar"
+                          className="w-32 h-32 rounded-2xl object-cover border-4 border-white/30"
+                        />
+                        <div className="absolute -top-2 -right-2 w-8 h-8 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center">
+                          <div className="w-3 h-3 bg-white rounded-full animate-pulse" />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="absolute top-20 left-8 w-12 h-12 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float">
+                      <span className="text-white font-bold">TS</span>
+                    </div>
+                    <div
+                      className="absolute top-32 right-8 w-12 h-12 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
+                      style={{ animationDelay: '0.5s' }}
+                    >
+                      <span className="text-white font-bold">⚛️</span>
+                    </div>
+                    <div
+                      className="absolute bottom-32 left-12 w-12 h-12 bg-gradient-to-r from-green-500/20 to-teal-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
+                      style={{ animationDelay: '1s' }}
+                    >
+                      <span className="text-white font-bold">🚀</span>
+                    </div>
+                    <div
+                      className="absolute bottom-20 right-12 w-12 h-12 bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
+                      style={{ animationDelay: '1.5s' }}
+                    >
+                      <span className="text-white font-bold">AI</span>
+                    </div>
+
+                    <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-center">
+                      <div className="text-white font-semibold">
+                        Senior Software Engineer
+                      </div>
+                      <div className="text-gray-300 text-sm">
+                        Available for opportunities
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="absolute inset-0 animate-spin-slow">
+                    <div className="absolute top-0 left-1/2 w-4 h-4 bg-purple-500 rounded-full transform -translate-x-1/2 -translate-y-8" />
+                    <div className="absolute bottom-0 left-1/2 w-4 h-4 bg-blue-500 rounded-full transform -translate-x-1/2 translate-y-8" />
+                    <div className="absolute left-0 top-1/2 w-4 h-4 bg-pink-500 rounded-full transform -translate-x-8 -translate-y-1/2" />
+                    <div className="absolute right-0 top-1/2 w-4 h-4 bg-cyan-500 rounded-full transform translate-x-8 -translate-y-1/2" />
+                  </div>
+                </div>
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-3xl scale-150 -z-10" />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Scroll Indicator - Hidden on mobile */}
+      <div className="hidden lg:block absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+        <button
+          onClick={() => scrollToSection('about')}
+          className="flex flex-col items-center space-y-2 text-white/60 hover:text-white transition-colors duration-300"
+        >
+          <span className="text-sm">Scroll to explore</span>
+          <FaChevronDown className="animate-pulse" />
+        </button>
+      </div>
+
+      {/* Custom Styles */}
+      <style jsx>{`
+        @keyframes gradient-x {
+          0%,
+          100% {
+            background-size: 200% 200%;
+            background-position: left center;
+          }
+          50% {
+            background-size: 200% 200%;
+            background-position: right center;
+          }
+        }
+
+        @keyframes spin-slow {
+          from {
+            transform: rotate(0deg);
+          }
+          to {
+            transform: rotate(360deg);
+          }
+        }
+
+        .animate-gradient-x {
+          animation: gradient-x 3s ease infinite;
+        }
+
+        .animate-spin-slow {
+          animation: spin-slow 20s linear infinite;
+        }
+      `}</style>
+    </div>
+  );
+};
+
+export default HomePage;

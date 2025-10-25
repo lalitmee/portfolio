@@ -1,0 +1,536 @@
+{
+  "personal": {
+    "name": "Lalit Kumar",
+    "title": "Senior Software Engineer",
+    "subtitle": "AI-Era Software Engineer",
+    "yearsOfExperience": "7+",
+    "location": "San Francisco, CA",
+    "email": "lalit@example.com",
+    "phone": "+1 (555) 123-4567",
+    "website": "https://lalitkumar.dev",
+    "bio": "Senior Software Engineer with 7+ years of experience crafting exceptional digital experiences using cutting-edge technologies and AI-driven solutions.",
+    "profileImage": "https://avatars1.githubusercontent.com/u/10762218?s=460&v=4",
+    "resume": "/resume/Lalit-Kumar-Resume.pdf",
+    "availability": {
+      "status": "available",
+      "message": "Available for opportunities"
+    }
+  },
+  "contact": {
+    "email": "lalit@example.com",
+    "phone": "+1 (555) 123-4567",
+    "location": "San Francisco, CA",
+    "timezone": "PST (UTC-8)",
+    "social": [
+      {
+        "platform": "GitHub",
+        "url": "https://github.com/lalitmee",
+        "username": "@lalitmee",
+        "icon": "FaGithub"
+      },
+      {
+        "platform": "LinkedIn",
+        "url": "https://linkedin.com/in/lalitmee",
+        "username": "lalitmee",
+        "icon": "FaLinkedin"
+      },
+      {
+        "platform": "Twitter",
+        "url": "https://twitter.com/lalitmee",
+        "username": "@lalitmee",
+        "icon": "FaTwitter"
+      }
+    ]
+  },
+  "stats": {
+    "experience": {
+      "value": "7+",
+      "label": "Years Experience"
+    },
+    "projects": {
+      "value": "50+",
+      "label": "Projects Delivered"
+    },
+    "technologies": {
+      "value": "15+",
+      "label": "Technologies"
+    },
+    "teamMembers": {
+      "value": "10+",
+      "label": "Team Members Led"
+    }
+  },
+  "skills": {
+    "categories": [
+      {
+        "name": "Frontend",
+        "icon": "FaCode",
+        "gradient": "from-purple-500 to-pink-500",
+        "skills": [
+          {
+            "name": "React",
+            "level": 95,
+            "years": 6,
+            "icon": "FaReact",
+            "color": "text-blue-400",
+            "active": true
+          },
+          {
+            "name": "TypeScript",
+            "level": 90,
+            "years": 5,
+            "icon": "SiTypescript",
+            "color": "text-blue-500",
+            "active": true
+          },
+          {
+            "name": "Next.js",
+            "level": 88,
+            "years": 4,
+            "icon": "SiNextdotjs",
+            "color": "text-white",
+            "active": true
+          },
+          {
+            "name": "JavaScript",
+            "level": 95,
+            "years": 7,
+            "icon": "SiJavascript",
+            "color": "text-yellow-400",
+            "active": true
+          },
+          {
+            "name": "Tailwind CSS",
+            "level": 92,
+            "years": 3,
+            "icon": "SiTailwindcss",
+            "color": "text-cyan-400",
+            "active": true
+          },
+          {
+            "name": "React Native",
+            "level": 75,
+            "years": 2,
+            "icon": "FaMobile",
+            "color": "text-blue-400",
+            "active": true
+          }
+        ]
+      },
+      {
+        "name": "Backend",
+        "icon": "FaServer",
+        "gradient": "from-blue-500 to-cyan-500",
+        "skills": [
+          {
+            "name": "Node.js",
+            "level": 90,
+            "years": 6,
+            "icon": "FaNodeJs",
+            "color": "text-green-400",
+            "active": true
+          },
+          {
+            "name": "Python",
+            "level": 85,
+            "years": 4,
+            "icon": "FaPython",
+            "color": "text-yellow-400",
+            "active": true
+          },
+          {
+            "name": "GraphQL",
+            "level": 80,
+            "years": 3,
+            "icon": "SiGraphql",
+            "color": "text-pink-400",
+            "active": true
+          },
+          {
+            "name": "REST APIs",
+            "level": 95,
+            "years": 7,
+            "icon": "FaServer",
+            "color": "text-blue-400",
+            "active": true
+          },
+          {
+            "name": "Microservices",
+            "level": 85,
+            "years": 4,
+            "icon": "FaTools",
+            "color": "text-purple-400",
+            "active": true
+          }
+        ]
+      },
+      {
+        "name": "Database",
+        "icon": "FaDatabase",
+        "gradient": "from-green-500 to-teal-500",
+        "skills": [
+          {
+            "name": "MongoDB",
+            "level": 88,
+            "years": 5,
+            "icon": "SiMongodb",
+            "color": "text-green-400",
+            "active": true
+          },
+          {
+            "name": "PostgreSQL",
+            "level": 85,
+            "years": 4,
+            "icon": "SiPostgresql",
+            "color": "text-blue-400",
+            "active": true
+          },
+          {
+            "name": "Redis",
+            "level": 80,
+            "years": 3,
+            "icon": "SiRedis",
+            "color": "text-red-400",
+            "active": true
+          },
+          {
+            "name": "Firebase",
+            "level": 75,
+            "years": 2,
+            "icon": "SiFirebase",
+            "color": "text-orange-400",
+            "active": true
+          }
+        ]
+      },
+      {
+        "name": "DevOps & Cloud",
+        "icon": "FaCloud",
+        "gradient": "from-orange-500 to-red-500",
+        "skills": [
+          {
+            "name": "AWS",
+            "level": 85,
+            "years": 4,
+            "icon": "FaAws",
+            "color": "text-orange-400",
+            "active": true
+          },
+          {
+            "name": "Docker",
+            "level": 88,
+            "years": 5,
+            "icon": "FaDocker",
+            "color": "text-blue-400",
+            "active": true
+          },
+          {
+            "name": "Kubernetes",
+            "level": 75,
+            "years": 3,
+            "icon": "SiKubernetes",
+            "color": "text-blue-500",
+            "active": true
+          },
+          {
+            "name": "Jenkins",
+            "level": 80,
+            "years": 3,
+            "icon": "SiJenkins",
+            "color": "text-blue-400",
+            "active": true
+          },
+          {
+            "name": "Vercel",
+            "level": 90,
+            "years": 3,
+            "icon": "SiVercel",
+            "color": "text-white",
+            "active": true
+          },
+          {
+            "name": "Git",
+            "level": 95,
+            "years": 7,
+            "icon": "FaGitAlt",
+            "color": "text-orange-400",
+            "active": true
+          }
+        ]
+      }
+    ]
+  },
+  "experience": [
+    {
+      "id": 1,
+      "company": "TechCorp Solutions",
+      "position": "Senior Software Engineer & Team Lead",
+      "location": "San Francisco, CA",
+      "startDate": "2022",
+      "endDate": "Present",
+      "current": true,
+      "description": "Leading a team of 8 engineers in developing scalable web applications and microservices architecture. Responsible for technical decision-making, code reviews, and mentoring junior developers.",
+      "achievements": [
+        "Led migration from monolith to microservices, reducing deployment time by 80%",
+        "Implemented CI/CD pipeline that decreased bug reports by 60%",
+        "Mentored 5 junior developers, with 3 receiving promotions",
+        "Architected real-time analytics platform serving 1M+ users",
+        "Improved application performance by 70% through optimization"
+      ],
+      "technologies": [
+        "React",
+        "TypeScript",
+        "Node.js",
+        "AWS",
+        "Docker",
+        "Kubernetes",
+        "PostgreSQL"
+      ],
+      "teamSize": "8 Engineers",
+      "impact": "$2M+ Revenue Impact"
+    },
+    {
+      "id": 2,
+      "company": "InnovateTech Inc.",
+      "position": "Full Stack Developer",
+      "location": "Austin, TX",
+      "startDate": "2020",
+      "endDate": "2022",
+      "current": false,
+      "description": "Developed and maintained multiple client-facing applications using modern web technologies. Collaborated with cross-functional teams to deliver high-quality software solutions.",
+      "achievements": [
+        "Built e-commerce platform that generated $5M+ in first year",
+        "Reduced page load times by 50% through performance optimization",
+        "Implemented automated testing suite with 95% code coverage",
+        "Led adoption of TypeScript across the development team",
+        "Designed and implemented RESTful APIs serving 100K+ requests/day"
+      ],
+      "technologies": [
+        "React",
+        "Next.js",
+        "Node.js",
+        "MongoDB",
+        "AWS",
+        "Docker",
+        "Jest"
+      ],
+      "teamSize": "6 Engineers",
+      "impact": "$5M+ GMV Generated"
+    },
+    {
+      "id": 3,
+      "company": "StartupXYZ",
+      "position": "Frontend Developer",
+      "location": "Remote",
+      "startDate": "2019",
+      "endDate": "2020",
+      "current": false,
+      "description": "Responsible for developing responsive web applications and improving user experience. Worked closely with designers and backend developers to create seamless user interfaces.",
+      "achievements": [
+        "Developed MVP that secured $2M Series A funding",
+        "Improved user engagement by 40% through UX enhancements",
+        "Built responsive design system used across 5 products",
+        "Implemented real-time features using WebSocket connections",
+        "Optimized bundle size by 60% using code splitting"
+      ],
+      "technologies": [
+        "React",
+        "JavaScript",
+        "SASS",
+        "Node.js",
+        "MongoDB",
+        "Socket.io"
+      ],
+      "teamSize": "4 Engineers",
+      "impact": "$2M Funding Secured"
+    },
+    {
+      "id": 4,
+      "company": "WebDev Agency",
+      "position": "Junior Full Stack Developer",
+      "location": "New York, NY",
+      "startDate": "2017",
+      "endDate": "2019",
+      "current": false,
+      "description": "Developed custom websites and web applications for various clients. Gained experience in multiple technologies and frameworks while working on diverse projects.",
+      "achievements": [
+        "Delivered 20+ client projects with 100% on-time completion",
+        "Increased client satisfaction scores by 25%",
+        "Built custom CMS used by 15+ clients",
+        "Implemented SEO best practices improving search rankings by 200%",
+        "Mentored 2 interns in web development fundamentals"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "PHP",
+        "MySQL",
+        "WordPress"
+      ],
+      "teamSize": "3 Engineers",
+      "impact": "20+ Projects Delivered"
+    }
+  ],
+  "education": [
+    {
+      "id": 1,
+      "institution": "University of Technology",
+      "degree": "Bachelor of Science",
+      "field": "Computer Science",
+      "location": "California, USA",
+      "startDate": "2013",
+      "endDate": "2017",
+      "gpa": "3.8/4.0",
+      "achievements": [
+        "Graduated Magna Cum Laude",
+        "President of Computer Science Club",
+        "Winner of Annual Hackathon 2016",
+        "Published research paper on Machine Learning",
+        "Dean's List for 6 consecutive semesters"
+      ]
+    },
+    {
+      "id": 2,
+      "institution": "Tech Institute",
+      "degree": "Certificate",
+      "field": "Advanced Web Development",
+      "location": "Online",
+      "startDate": "2016",
+      "endDate": "2017",
+      "achievements": [
+        "Completed with 98% score",
+        "Built 5 full-stack applications",
+        "Specialized in React and Node.js",
+        "Mentored 10+ fellow students"
+      ]
+    }
+  ],
+  "certifications": [
+    {
+      "id": 1,
+      "name": "AWS Certified Solutions Architect",
+      "issuer": "Amazon Web Services",
+      "date": "2023",
+      "credentialId": "AWS-SA-2023-001",
+      "validUntil": "2026",
+      "icon": "FaCloud",
+      "color": "text-orange-500",
+      "active": true
+    },
+    {
+      "id": 2,
+      "name": "Certified Kubernetes Administrator",
+      "issuer": "Cloud Native Computing Foundation",
+      "date": "2022",
+      "credentialId": "CKA-2022-001",
+      "validUntil": "2025",
+      "icon": "FaRocket",
+      "color": "text-blue-500",
+      "active": true
+    },
+    {
+      "id": 3,
+      "name": "Professional Scrum Master I",
+      "issuer": "Scrum.org",
+      "date": "2021",
+      "credentialId": "PSM-2021-001",
+      "icon": "FaUsers",
+      "color": "text-green-500",
+      "active": true
+    },
+    {
+      "id": 4,
+      "name": "Google Cloud Professional Developer",
+      "issuer": "Google Cloud",
+      "date": "2023",
+      "credentialId": "GCP-DEV-2023-001",
+      "validUntil": "2025",
+      "icon": "FaCode",
+      "color": "text-blue-600",
+      "active": true
+    }
+  ],
+  "projects": [
+    {
+      "id": 1,
+      "title": "E-Commerce Platform",
+      "description": "A full-stack e-commerce solution with real-time inventory management, payment processing, and analytics dashboard.",
+      "image": "/images/projects/ecommerce.png",
+      "technologies": ["React", "Node.js", "MongoDB", "Stripe", "AWS"],
+      "category": "Full Stack",
+      "status": "completed",
+      "featured": true,
+      "github": "https://github.com/lalitmee/ecommerce-platform",
+      "demo": "https://ecommerce-demo.lalitkumar.dev",
+      "highlights": [
+        "Processed $1M+ in transactions",
+        "99.9% uptime with auto-scaling",
+        "Real-time inventory sync across channels"
+      ]
+    },
+    {
+      "id": 2,
+      "title": "AI-Powered Analytics Dashboard",
+      "description": "Machine learning-driven analytics platform providing predictive insights for business intelligence.",
+      "image": "/images/projects/analytics.png",
+      "technologies": ["React", "Python", "TensorFlow", "PostgreSQL", "Docker"],
+      "category": "AI/ML",
+      "status": "completed",
+      "featured": true,
+      "github": "https://github.com/lalitmee/ai-analytics",
+      "demo": "https://analytics-demo.lalitkumar.dev",
+      "highlights": [
+        "95% prediction accuracy",
+        "Reduced analysis time by 80%",
+        "Serves 10K+ daily active users"
+      ]
+    },
+    {
+      "id": 3,
+      "title": "Real-time Collaboration Tool",
+      "description": "WebRTC-based collaboration platform with video conferencing, screen sharing, and document editing.",
+      "image": "/images/projects/collaboration.png",
+      "technologies": ["React", "WebRTC", "Socket.io", "Node.js", "Redis"],
+      "category": "Real-time",
+      "status": "in-progress",
+      "featured": true,
+      "github": "https://github.com/lalitmee/collab-tool",
+      "highlights": [
+        "Sub-100ms latency",
+        "Supports 50+ concurrent users",
+        "End-to-end encryption"
+      ]
+    }
+  ],
+  "testimonials": [
+    {
+      "id": 1,
+      "name": "Sarah Johnson",
+      "position": "CTO at TechCorp Solutions",
+      "company": "TechCorp Solutions",
+      "content": "Lalit is an exceptional engineer and leader. His technical expertise and ability to mentor junior developers has been invaluable to our team's growth.",
+      "avatar": "/images/testimonials/sarah.jpg",
+      "rating": 5
+    },
+    {
+      "id": 2,
+      "name": "Michael Chen",
+      "position": "Product Manager",
+      "company": "InnovateTech Inc.",
+      "content": "Working with Lalit was a game-changer for our product. His attention to detail and innovative solutions helped us achieve our ambitious goals.",
+      "avatar": "/images/testimonials/michael.jpg",
+      "rating": 5
+    }
+  ],
+  "settings": {
+    "theme": "dark",
+    "layout": "single-page",
+    "showTestimonials": true,
+    "showProjects": true,
+    "showCertifications": true,
+    "showEducation": true,
+    "contactFormEnabled": true,
+    "downloadResumeEnabled": true
+  }
+}
