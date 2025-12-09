@@ -9,11 +9,13 @@ const Navigation = dynamic(() => import('../components/Navigation'), {
   ssr: false,
 });
 
+import SkillsSkeleton from '../components/skeletons/SkillsSkeleton';
+
 const HomePage = dynamic(() => import('../components/HomePage'), {
   loading: () => <LoadingSpinner size="xl" text="Loading Portfolio..." />,
 });
 const Skills = dynamic(() => import('../components/Skills'), {
-  loading: () => <LoadingSpinner size="lg" variant="skeleton" />,
+  loading: () => <SkillsSkeleton />,
 });
 const Quotes = dynamic(() => import('../components/Quotes'), {
   loading: () => <LoadingSpinner size="md" variant="pulse" />,
@@ -45,35 +47,49 @@ const Footer = dynamic(() => import('../components/Footer'), {
     <LoadingSpinner size="sm" variant="pulse" className="bg-gray-900" />
   ),
 });
+const ScrollToTop = dynamic(() => import('../components/ScrollToTop'), {
+  ssr: false,
+});
 
 export default function Home() {
   const [loading, setLoading] = useState(true);
-  const [darkMode, setDarkMode] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    // Check for saved dark mode preference
-    const savedDarkMode = localStorage.getItem('darkMode');
-    if (savedDarkMode) {
-      setDarkMode(JSON.parse(savedDarkMode));
-    } else {
-      // Check system preference
-      const prefersDark = window.matchMedia(
-        '(prefers-color-scheme: dark)',
-      ).matches;
-      setDarkMode(prefersDark);
-    }
+    // Check if we've already shown the loader in this session
+    const hasLoaded = sessionStorage.getItem('portfolio_loaded');
 
-    const timeout = setTimeout(() => {
+    if (hasLoaded) {
       setLoading(false);
-    }, 1500);
-
-    return () => clearTimeout(timeout);
+    } else {
+      const timeout = setTimeout(() => {
+        setLoading(false);
+        sessionStorage.setItem('portfolio_loaded', 'true');
+      }, 1500);
+      return () => clearTimeout(timeout);
+    }
   }, []);
 
-  // Track active section based on scroll position
+  // Track active section using IntersectionObserver for better performance
   useEffect(() => {
-    const handleScroll = () => {
+    const observerOptions = {
+      root: null,
+      rootMargin: '-20% 0px -35% 0px',
+      threshold: [0, 1],
+    };
+
+    const visibleSections = new Set<string>();
+
+    const observerCallback: IntersectionObserverCallback = (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          visibleSections.add(entry.target.id);
+        } else {
+          visibleSections.delete(entry.target.id);
+        }
+      });
+
+      // Determine the active section
       const sections = [
         'home',
         'about',
@@ -82,38 +98,38 @@ export default function Home() {
         'resume',
         'contact',
       ];
-      const scrollPosition = window.scrollY + 100;
 
-      for (const section of sections) {
-        const element = document.getElementById(section);
-        if (element) {
-          const { offsetTop, offsetHeight } = element;
-          if (
-            scrollPosition >= offsetTop &&
-            scrollPosition < offsetTop + offsetHeight
-          ) {
-            setActiveSection(section);
-            break;
-          }
-        }
+      // Find the first visible section from our ordered list
+      const active = sections.find((section) => visibleSections.has(section));
+
+      if (active) {
+        setActiveSection(active);
+      } else if (window.scrollY < 100) {
+        // Fallback for top of page
+        setActiveSection('home');
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    const observer = new IntersectionObserver(
+      observerCallback,
+      observerOptions,
+    );
+    const sections = [
+      'home',
+      'about',
+      'skills',
+      'projects',
+      'resume',
+      'contact',
+    ];
 
-  useEffect(() => {
-    // Apply dark mode class to document
-    if (darkMode) {
-      document.documentElement.classList.add('dark');
-    } else {
-      document.documentElement.classList.remove('dark');
-    }
+    sections.forEach((section) => {
+      const element = document.getElementById(section);
+      if (element) observer.observe(element);
+    });
 
-    // Save preference
-    localStorage.setItem('darkMode', JSON.stringify(darkMode));
-  }, [darkMode]);
+    return () => observer.disconnect();
+  }, [loading]);
 
   if (loading) {
     return (
@@ -128,7 +144,7 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-slate-900 transition-colors duration-500">
+    <div className="min-h-screen bg-transparent transition-colors duration-500">
       <Navigation activeSection={activeSection} />
       <Head>
         <title>Lalit Kumar - Senior Software Engineer | Portfolio</title>
@@ -217,25 +233,30 @@ export default function Home() {
 
       <main className="relative overflow-x-hidden">
         {/* Hero Section */}
-        <section id="home" className="animate-fade-in-up">
+        <section id="home" className="animate-fade-in-up relative">
+          <div
+            id="hero-sentinel"
+            className="absolute top-0 left-0 w-full h-[75vh] pointer-events-none bg-transparent"
+            aria-hidden="true"
+          />
           <HomePage />
         </section>
 
         {/* About/Skills Section */}
         <section
           id="about"
-          className="animate-slide-in-left"
+          className="animate-slide-in-left bg-gray-50/50 dark:bg-black/20 backdrop-blur-sm"
           style={{ animationDelay: '0.2s' }}
         >
-          <div className="py-20 bg-gradient-to-br from-gray-50 to-white dark:from-gray-900 dark:to-gray-800">
+          <div className="py-20 bg-transparent">
             <div className="max-w-4xl mx-auto px-6 text-center">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">
+              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 About{' '}
                 <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
                   Me
                 </span>
               </h2>
-              <p className="text-lg sm:text-xl text-gray-300 leading-relaxed mb-8">
+              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
                 I'm a passionate Senior Software Engineer with over 7 years of
                 experience building scalable web applications and leading
                 high-performing teams. I specialize in modern JavaScript
@@ -300,7 +321,7 @@ export default function Home() {
         {/* Projects Section */}
         <section
           id="projects"
-          className="animate-slide-in-right"
+          className="animate-slide-in-right bg-gray-50/50 dark:bg-black/20 backdrop-blur-sm"
           style={{ animationDelay: '0.8s' }}
         >
           <Projects />
@@ -355,7 +376,7 @@ export default function Home() {
         {/* Contact Section */}
         <section
           id="contact"
-          className="animate-slide-in-right"
+          className="animate-slide-in-right bg-gray-50/50 dark:bg-black/20 backdrop-blur-sm"
           style={{ animationDelay: '2s' }}
         >
           <Contact />
@@ -386,6 +407,8 @@ export default function Home() {
           }}
         />
       </div>
+
+      <ScrollToTop />
     </div>
   );
 }

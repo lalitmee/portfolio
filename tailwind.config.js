@@ -62,9 +62,11 @@ module.exports = {
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['var(--font-outfit)', 'Inter', 'system-ui', 'sans-serif'],
       },
       colors: {
+        background: 'var(--background)',
+        foreground: 'var(--foreground)',
         primary: {
           50: '#f5f3ff',
           100: '#ede9fe',

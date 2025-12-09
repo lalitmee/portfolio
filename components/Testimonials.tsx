@@ -1,26 +1,9 @@
 import React from 'react';
 
+import portfolioData from '../data/portfolio.json';
+
 const Testimonials: React.FC = () => {
-  const testimonials = [
-    {
-      name: 'John Doe',
-      role: 'Tech Lead at XYZ Corp',
-      content:
-        'Lalit is an exceptional developer with deep knowledge in frontend and backend technologies. His work on our CI/CD pipelines saved us countless hours.',
-    },
-    {
-      name: 'Jane Smith',
-      role: 'Marketing Director at ABC Inc',
-      content:
-        'His expertise in digital marketing tools helped us optimize our campaigns effectively. Highly recommend for any tech and marketing projects.',
-    },
-    {
-      name: 'Mike Johnson',
-      role: 'CTO at Startup Co',
-      content:
-        "Lalit's cloud architecture skills on AWS and GCP are top-notch. He delivered scalable solutions that met all our requirements.",
-    },
-  ];
+  const testimonials = portfolioData.testimonials;
 
   return (
     <section className="py-16 bg-gray-50" id="testimonials">

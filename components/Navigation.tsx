@@ -1,6 +1,10 @@
+import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useState } from 'react';
-import { FaBars, FaCode, FaTimes } from 'react-icons/fa';
+import { FaBars, FaTimes } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
+import portfolioData from '../data/portfolio.json';
+import { Logo } from './Logo';
+import ThemeToggle from './ThemeToggle';
 
 interface NavigationProps {
   activeSection?: string;
@@ -8,21 +12,71 @@ interface NavigationProps {
 
 const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [showProfileInNav, setShowProfileInNav] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [activeTab, setActiveTab] = useState(activeSection || 'home');
+  const isManualScroll = React.useRef(false);
+  const [showMobileName, setShowMobileName] = useState(false); // Add state for mobile name visibility
+
+  useEffect(() => {
+    if (activeSection && !isManualScroll.current) {
+      setActiveTab(activeSection);
+    }
+  }, [activeSection]);
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      const scrollY = window.scrollY;
+      const shouldBeScrolled = scrollY > 20;
+      if (isScrolled !== shouldBeScrolled) {
+        setIsScrolled(shouldBeScrolled);
+      }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
+  }, [isScrolled]);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setShowProfileInNav(!entry.isIntersecting);
+        setShowMobileName(!entry.isIntersecting);
+      },
+      { threshold: 0 },
+    );
+
+    const sentinel = document.getElementById('hero-sentinel');
+    if (sentinel) {
+      observer.observe(sentinel);
+    }
+
+    // Retry finding sentinel if not immediately available (failsafe)
+    const retryInterval = setInterval(() => {
+      const el = document.getElementById('hero-sentinel');
+      if (el) {
+        observer.observe(el);
+        clearInterval(retryInterval);
+      }
+    }, 100);
+
+    // Clear interval after 2 seconds to stop polling
+    const timeout = setTimeout(() => clearInterval(retryInterval), 2000);
+
+    return () => {
+      observer.disconnect();
+      clearInterval(retryInterval);
+      clearTimeout(timeout);
+    };
   }, []);
 
   const scrollToSection = (sectionId: string) => {
+    setActiveTab(sectionId);
+    isManualScroll.current = true;
+
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = 80; // Account for fixed header
+      const offset = 100; // Account for floating header
       const elementPosition = element.offsetTop - offset;
       window.scrollTo({
         top: elementPosition,
@@ -30,6 +84,11 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
       });
     }
     setIsMobileMenuOpen(false);
+
+    // Reset manual scroll flag after animation
+    setTimeout(() => {
+      isManualScroll.current = false;
+    }, 1000);
   };
 
   const navigationItems = [
@@ -43,130 +102,201 @@ const Navigation: React.FC<NavigationProps> = ({ activeSection }) => {
 
   return (
     <>
-      <nav
+      <motion.nav
+        initial={{ y: -100, opacity: 0 }}
+        animate={{ y: 0, opacity: 1 }}
+        transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
         className={twMerge(
-          'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-          isScrolled
-            ? 'bg-slate-900/95 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-purple-500/10'
-            : 'bg-transparent',
+          'fixed top-0 left-0 right-0 z-50 flex justify-center pt-4 px-4 transition-all duration-300',
+          isScrolled ? 'pt-2' : 'pt-4',
         )}
       >
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="flex justify-between items-center h-20">
-            {/* Logo */}
-            <button
-              onClick={() => scrollToSection('home')}
-              className="flex items-center space-x-3 group"
-            >
-              <div className="w-12 h-12 bg-gradient-to-r from-purple-500 to-blue-500 rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
-                <FaCode className="text-white text-xl" />
-              </div>
-              <div className="hidden sm:block">
-                <div className="text-xl font-bold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent">
-                  Lalit Kumar
-                </div>
-                <div className="text-xs text-gray-400">
-                  Senior Software Engineer
-                </div>
-              </div>
-            </button>
-
-            {/* Desktop Navigation */}
-            <div className="hidden lg:flex items-center space-x-1">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={twMerge(
-                    'relative px-6 py-3 rounded-xl font-medium transition-all duration-300 group',
-                    activeSection === item.id
-                      ? 'text-white bg-white/10 backdrop-blur-md'
-                      : 'text-gray-300 hover:text-white hover:bg-white/5',
-                  )}
+        <div
+          className={twMerge(
+            'relative flex items-center justify-between px-4 sm:px-6 py-2 rounded-full transition-all duration-500',
+            'bg-white/80 dark:bg-slate-900/80 backdrop-blur-xl border border-gray-200 dark:border-white/10 shadow-2xl shadow-purple-500/10',
+            isScrolled
+              ? 'w-[98%] max-w-7xl border-opacity-100'
+              : 'w-[95%] max-w-7xl border-opacity-0 bg-transparent dark:bg-transparent shadow-none',
+          )}
+        >
+          {/* Logo - Centered on mobile, Left on desktop */}
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault();
+              scrollToSection('home');
+            }}
+            className="flex items-center space-x-3 group relative h-10 overflow-hidden"
+          >
+            <AnimatePresence mode="wait">
+              {showProfileInNav ? (
+                <motion.div
+                  key="profile"
+                  initial={{ opacity: 0, scale: 0.5, rotate: -90 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.5, rotate: 90 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-10 h-10 rounded-full border-2 border-purple-500 overflow-hidden"
                 >
-                  <span className="relative z-10">{item.label}</span>
+                  <img
+                    src={portfolioData.personal.profileImage}
+                    alt="Profile"
+                    className="w-full h-full object-cover"
+                  />
+                </motion.div>
+              ) : (
+                <motion.div
+                  key="code"
+                  initial={{ opacity: 0, scale: 0.5, rotate: 90 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  exit={{ opacity: 0, scale: 0.5, rotate: -90 }}
+                  transition={{ duration: 0.3 }}
+                  className="w-10 h-10 bg-gradient-to-tr from-purple-500 to-blue-500 rounded-full flex items-center justify-center group-hover:rotate-12 transition-transform duration-300"
+                >
+                  <Logo className="text-white w-5 h-5" />
+                </motion.div>
+              )}
+            </AnimatePresence>
 
-                  {/* Active indicator */}
-                  {activeSection === item.id && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-xl border border-purple-500/30" />
-                  )}
-
-                  {/* Hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </button>
-              ))}
-            </div>
-
-            {/* CTA Button */}
-            <div className="hidden lg:block">
-              <button
-                onClick={() => scrollToSection('contact')}
-                className="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 hover:scale-105 transition-all duration-300"
+            {/* Desktop Name */}
+            <div className="hidden sm:block overflow-hidden h-5">
+              <motion.div
+                initial={{ y: 0 }}
+                whileHover={{ y: -20 }}
+                transition={{ duration: 0.3, ease: 'easeInOut' }}
               >
-                Let's Talk
-              </button>
+                <span className="block h-5">{portfolioData.personal.name}</span>
+                <span className="block h-5 text-purple-600 dark:text-purple-400">
+                  {portfolioData.personal.name}
+                </span>
+              </motion.div>
             </div>
 
-            {/* Mobile Menu Button */}
+            {/* Mobile Name */}
+            <AnimatePresence>
+              {showMobileName && (
+                <motion.div
+                  initial={{ opacity: 0, x: -10 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -10 }}
+                  className="block sm:hidden font-bold text-gray-900 dark:text-white"
+                >
+                  {portfolioData.personal.name}
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </a>
+
+          {/* Desktop Navigation */}
+          <div className="hidden lg:flex items-center bg-gray-100 dark:bg-white/5 rounded-full px-2 py-1.5 border border-gray-200 dark:border-white/5">
+            {navigationItems.map((item) => (
+              <a
+                key={item.id}
+                href={`#${item.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection(item.id);
+                }}
+                className={twMerge(
+                  'relative px-5 py-2 rounded-full text-sm font-medium transition-colors duration-300',
+                  activeTab === item.id
+                    ? 'text-gray-900 dark:text-white'
+                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white',
+                )}
+              >
+                {activeTab === item.id && (
+                  <motion.div
+                    layoutId="activeSection"
+                    className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 dark:from-purple-500/20 dark:to-blue-500/20 rounded-full border border-purple-200 dark:border-white/10 shadow-sm dark:shadow-none"
+                    transition={{ type: 'spring', stiffness: 380, damping: 30 }}
+                  />
+                )}
+                <span className="relative z-10">{item.label}</span>
+              </a>
+            ))}
+          </div>
+
+          {/* CTA Button and Theme Toggle */}
+          <div className="hidden lg:flex items-center space-x-4">
+            <ThemeToggle />
+            <a
+              href="#contact"
+              onClick={(e) => {
+                e.preventDefault();
+                scrollToSection('contact');
+              }}
+              className="group relative px-6 py-2.5 rounded-full bg-gradient-to-r from-purple-500 to-blue-500 text-slate-900 font-semibold text-sm overflow-hidden inline-flex items-center justify-center"
+            >
+              <div className="absolute inset-[2px] rounded-full bg-white transition-opacity duration-300 group-hover:opacity-0" />
+              <span className="relative z-10 group-hover:text-white transition-colors duration-300">
+                Let's Talk
+              </span>
+            </a>
+          </div>
+
+          {/* Mobile Menu Button & Theme Toggle */}
+          <div className="lg:hidden flex items-center space-x-4 ml-auto">
+            <ThemeToggle />
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="lg:hidden w-10 h-10 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center justify-center text-white hover:bg-white/20 transition-all duration-300"
+              className="w-10 h-10 flex items-center justify-center text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-white/10 rounded-full transition-colors"
             >
               {isMobileMenuOpen ? <FaTimes /> : <FaBars />}
             </button>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Mobile Menu */}
-      <div
-        className={twMerge(
-          'fixed inset-0 z-40 lg:hidden transition-all duration-500',
-          isMobileMenuOpen
-            ? 'opacity-100 pointer-events-auto'
-            : 'opacity-0 pointer-events-none',
-        )}
-      >
-        {/* Backdrop */}
-        <div
-          className="absolute inset-0 bg-slate-900/95 backdrop-blur-xl"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-
-        {/* Menu Content */}
-        <div className="relative z-10 flex flex-col items-center justify-center min-h-screen space-y-8">
-          {navigationItems.map((item, index) => (
-            <button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className={twMerge(
-                'text-2xl font-semibold transition-all duration-500 hover:scale-110',
-                activeSection === item.id
-                  ? 'text-white bg-gradient-to-r from-purple-500 to-blue-500 px-8 py-4 rounded-2xl'
-                  : 'text-gray-300 hover:text-white',
-              )}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              {item.label}
-            </button>
-          ))}
-
-          <button
-            onClick={() => scrollToSection('contact')}
-            className="mt-8 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold text-lg hover:scale-105 transition-all duration-300"
+      {/* Mobile Menu Overlay */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-40 lg:hidden pt-24 px-4 bg-slate-900/95 backdrop-blur-xl"
           >
-            Get In Touch
-          </button>
-        </div>
-      </div>
-
-      {/* Scroll Progress Indicator */}
-      <div
-        className="fixed top-0 left-0 right-0 z-50 h-1 bg-gradient-to-r from-purple-500 to-blue-500 transform origin-left scale-x-0 transition-transform duration-300"
-        style={{
-          transform: `scaleX(${Math.min(window.scrollY / (document.documentElement.scrollHeight - window.innerHeight), 1)})`,
-        }}
-      />
+            <div className="flex flex-col items-center space-y-4">
+              {navigationItems.map((item, index) => (
+                <motion.a
+                  key={item.id}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  href={`#${item.id}`}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    scrollToSection(item.id);
+                  }}
+                  className={twMerge(
+                    'text-xl font-medium py-2 px-6 rounded-xl transition-all w-full text-center',
+                    activeTab === item.id
+                      ? 'bg-gray-100 dark:bg-purple-500/20 text-gray-900 dark:text-white'
+                      : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-50 dark:hover:bg-white/5',
+                  )}
+                >
+                  {item.label}
+                </motion.a>
+              ))}
+              <motion.a
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: navigationItems.length * 0.1 }}
+                href="#contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection('contact');
+                }}
+                className="mt-4 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-3 rounded-full font-semibold"
+              >
+                Let's Talk
+              </motion.a>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 };

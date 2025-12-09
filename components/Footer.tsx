@@ -1,17 +1,17 @@
 import React from 'react';
 import {
-  FaArrowUp,
-  FaCalendarAlt,
   FaCode,
   FaEnvelope,
   FaGithub,
   FaHeart,
+  FaInstagram,
   FaLinkedin,
-  FaMapMarkerAlt,
   FaPhone,
   FaTwitter,
 } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
+import portfolioData from '../data/portfolio.json';
+import { TopmateIcon } from './icons/TopmateIcon';
 
 const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
@@ -38,42 +38,48 @@ const Footer: React.FC = () => {
   const socialLinks = [
     {
       name: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/lalitmee/',
+      href: portfolioData.contact.social.find((s) => s.platform === 'LinkedIn')
+        ?.url!,
       icon: <FaLinkedin />,
       color: 'hover:text-blue-600',
       bgColor: 'hover:bg-blue-50 dark:hover:bg-blue-900/20',
     },
     {
       name: 'GitHub',
-      href: 'https://www.github.com/lalitmee/',
+      href: portfolioData.contact.social.find((s) => s.platform === 'GitHub')
+        ?.url!,
       icon: <FaGithub />,
       color: 'hover:text-gray-900 dark:hover:text-gray-100',
       bgColor: 'hover:bg-gray-50 dark:hover:bg-gray-800',
     },
     {
       name: 'Twitter',
-      href: 'https://www.twitter.com/lalitmee/',
+      href: portfolioData.contact.social.find((s) => s.platform === 'Twitter')
+        ?.url!,
       icon: <FaTwitter />,
       color: 'hover:text-blue-500',
       bgColor: 'hover:bg-blue-50 dark:hover:bg-blue-900/20',
+    },
+    {
+      name: 'Instagram',
+      href: portfolioData.contact.social.find((s) => s.platform === 'Instagram')
+        ?.url!,
+      icon: <FaInstagram />,
+      color: 'hover:text-pink-600',
+      bgColor: 'hover:bg-pink-50 dark:hover:bg-pink-900/20',
     },
   ];
 
   const contactInfo = [
     {
       icon: <FaEnvelope />,
-      text: 'lalit.kumar@example.com',
-      href: 'mailto:lalit.kumar@example.com',
+      text: portfolioData.contact.email,
+      href: `mailto:${portfolioData.contact.email}`,
     },
     {
       icon: <FaPhone />,
-      text: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
-    },
-    {
-      icon: <FaMapMarkerAlt />,
-      text: 'San Francisco, CA',
-      href: 'https://maps.google.com/?q=San+Francisco,CA',
+      text: portfolioData.contact.phone,
+      href: `tel:${portfolioData.contact.phone.replace(/[^0-9]/g, '')}`,
     },
   ];
 
@@ -89,7 +95,7 @@ const Footer: React.FC = () => {
   ];
 
   return (
-    <footer className="bg-gray-900 text-white relative overflow-hidden">
+    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-900 dark:text-white relative overflow-hidden transition-colors duration-300">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div
@@ -111,12 +117,16 @@ const Footer: React.FC = () => {
                   <FaCode className="text-white text-xl" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold">Lalit Kumar</h3>
-                  <p className="text-gray-400">Senior Software Engineer</p>
+                  <h3 className="text-2xl font-bold text-gray-900 dark:text-white">
+                    {portfolioData.personal.name}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    Senior Software Engineer
+                  </p>
                 </div>
               </div>
 
-              <p className="text-gray-300 leading-relaxed mb-6 max-w-md">
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed mb-6 max-w-md">
                 Passionate about creating exceptional digital experiences with
                 7+ years of expertise in modern web technologies. Always excited
                 to take on new challenges and collaborate on innovative
@@ -132,7 +142,7 @@ const Footer: React.FC = () => {
                   {skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 bg-gray-800 text-gray-300 rounded-full text-sm hover:bg-purple-600 hover:text-white transition-colors duration-300 cursor-default"
+                      className="px-3 py-1 bg-white/80 dark:bg-gray-800 text-gray-500 dark:text-gray-300 rounded-full text-sm hover:bg-purple-600 hover:text-white transition-colors duration-300 cursor-default border border-gray-200 dark:border-gray-700"
                     >
                       {skill}
                     </span>
@@ -155,20 +165,24 @@ const Footer: React.FC = () => {
               <ul className="space-y-3">
                 {quickLinks.map((link) => (
                   <li key={link.id}>
-                    <button
-                      onClick={() => scrollToSection(link.id)}
-                      className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
+                    <a
+                      href={`#${link.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToSection(link.id);
+                      }}
+                      className="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
                     >
                       <span className="w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                       <span>{link.name}</span>
-                    </button>
+                    </a>
                   </li>
                 ))}
                 <li>
                   <a
-                    href="/resume/Lalit-Kumar-Resume.pdf"
+                    href={portfolioData.personal.resume}
                     download
-                    className="text-gray-400 hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
+                    className="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
                   >
                     <span className="w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     <span>Download Resume</span>
@@ -193,7 +207,7 @@ const Footer: React.FC = () => {
                           ? 'noopener noreferrer'
                           : undefined
                       }
-                      className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group"
+                      className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-white transition-colors duration-300 group"
                     >
                       <div className="text-purple-500 group-hover:text-purple-400 transition-colors duration-300">
                         {info.icon}
@@ -204,13 +218,17 @@ const Footer: React.FC = () => {
                 ))}
                 <li>
                   <a
-                    href="https://calendly.com/lalit-kumar"
+                    href={
+                      portfolioData.contact.social.find(
+                        (s) => s.platform === 'Topmate',
+                      )?.url || 'https://topmate.io/lalitmee'
+                    }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-3 text-gray-400 hover:text-white transition-colors duration-300 group"
+                    className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-white transition-colors duration-300 group"
                   >
                     <div className="text-purple-500 group-hover:text-purple-400 transition-colors duration-300">
-                      <FaCalendarAlt />
+                      <TopmateIcon />
                     </div>
                     <span className="text-sm">Schedule a meeting</span>
                   </a>
@@ -230,7 +248,7 @@ const Footer: React.FC = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       className={twMerge(
-                        'w-10 h-10 bg-gray-800 rounded-lg flex items-center justify-center text-gray-400 transition-all duration-300',
+                        'w-10 h-10 bg-white/80 dark:bg-gray-800 rounded-lg flex items-center justify-center text-gray-500 dark:text-gray-400 transition-all duration-300 border border-gray-200 dark:border-gray-700',
                         social.color,
                         social.bgColor,
                       )}
@@ -249,8 +267,11 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-800">
           <div className="max-w-7xl mx-auto px-6 py-6">
             <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
-              <div className="flex items-center space-x-4 text-sm text-gray-400">
-                <span>© {currentYear} Lalit Kumar. All rights reserved.</span>
+              <div className="flex flex-col md:flex-row items-center space-y-2 md:space-y-0 md:space-x-4 text-sm text-gray-400">
+                <span>
+                  © {currentYear} {portfolioData.personal.name}. All rights
+                  reserved.
+                </span>
                 <span className="hidden md:inline">•</span>
                 <span className="flex items-center space-x-1">
                   <span>Made with</span>
@@ -261,31 +282,12 @@ const Footer: React.FC = () => {
               </div>
 
               <div className="flex items-center space-x-6">
-                {/* Back to Top */}
-                <button
-                  onClick={scrollToTop}
-                  className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-300 group"
-                  aria-label="Back to top"
-                >
-                  <span className="text-sm">Back to top</span>
-                  <FaArrowUp className="group-hover:-translate-y-1 transition-transform duration-300" />
-                </button>
-
                 {/* Version */}
                 <div className="text-xs text-gray-500">v2.0.0</div>
               </div>
             </div>
           </div>
         </div>
-
-        {/* Floating Action Button for Mobile */}
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-full shadow-lg hover:shadow-xl transition-all duration-300 flex items-center justify-center md:hidden z-50 hover:scale-110"
-          aria-label="Back to top"
-        >
-          <FaArrowUp />
-        </button>
       </div>
     </footer>
   );

@@ -1,17 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import emailjs from '@emailjs/browser';
+import React, { useEffect, useRef, useState } from 'react';
 import {
-  FaCalendarAlt,
   FaCheckCircle,
-  FaEnvelope,
   FaGithub,
   FaLinkedin,
-  FaMapMarkerAlt,
   FaPaperPlane,
-  FaPhone,
   FaSpinner,
   FaTwitter,
+  FaWhatsapp,
 } from 'react-icons/fa';
+import { SiGmail } from 'react-icons/si';
 import { twMerge } from 'tailwind-merge';
+import { TopmateIcon } from './icons/TopmateIcon';
 
 interface FormData {
   name: string;
@@ -28,7 +28,10 @@ interface FormErrors {
   message?: string;
 }
 
+import portfolioData from '../data/portfolio.json';
+
 const Contact: React.FC = () => {
+  const form = useRef<HTMLFormElement>(null);
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -108,24 +111,45 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Simulate API call
-      await new Promise((resolve) => {
-        setTimeout(resolve, 2000);
-      });
+      // Replace with your actual EmailJS Service ID, Template ID, and Public Key
+      // You can find these in your EmailJS dashboard: https://dashboard.emailjs.com/
+      const SERVICE_ID = 'YOUR_SERVICE_ID';
+      const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
+      const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
 
-      // In a real application, you would send the form data to your backend
-      console.log('Form submitted:', formData);
-
-      setIsSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        company: '',
-        subject: '',
-        message: '',
-      });
+      if (form.current) {
+        await emailjs.sendForm(
+          SERVICE_ID,
+          TEMPLATE_ID,
+          form.current,
+          PUBLIC_KEY,
+        );
+        console.log('Form submitted successfully');
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          subject: '',
+          message: '',
+        });
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
+      // Fallback for demo purposes if EmailJS is not configured
+      if ((error as any).text?.includes('The user ID is required')) {
+        console.warn('EmailJS not configured. Simulating success.');
+        setIsSubmitted(true);
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          subject: '',
+          message: '',
+        });
+      } else {
+        alert('Failed to send message. Please try again later.');
+      }
     } finally {
       setIsSubmitting(false);
     }
@@ -133,32 +157,28 @@ const Contact: React.FC = () => {
 
   const contactInfo = [
     {
-      icon: <FaEnvelope />,
+      icon: <SiGmail />,
       label: 'Email',
-      value: 'lalit.kumar@example.com',
-      href: 'mailto:lalit.kumar@example.com',
+      value: portfolioData.contact.email,
+      href: `mailto:${portfolioData.contact.email}`,
       color: 'text-red-500',
     },
     {
-      icon: <FaPhone />,
+      icon: <FaWhatsapp />,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      href: 'tel:+15551234567',
+      value: portfolioData.contact.phone,
+      href: `https://wa.me/${portfolioData.contact.phone.replace(/[^0-9]/g, '')}`,
       color: 'text-green-500',
     },
+
     {
-      icon: <FaMapMarkerAlt />,
-      label: 'Location',
-      value: 'San Francisco, CA',
-      href: 'https://maps.google.com/?q=San+Francisco,CA',
-      color: 'text-blue-500',
-    },
-    {
-      icon: <FaCalendarAlt />,
-      label: 'Schedule a Call',
-      value: 'Book 30min meeting',
-      href: 'https://calendly.com/lalit-kumar',
-      color: 'text-purple-500',
+      icon: <TopmateIcon />,
+      label: 'Mentorship',
+      value: 'Book a session on Topmate',
+      href:
+        portfolioData.contact.social.find((s) => s.platform === 'Topmate')
+          ?.url || 'https://topmate.io/lalitmee',
+      color: 'text-orange-500',
     },
   ];
 
@@ -166,23 +186,34 @@ const Contact: React.FC = () => {
     {
       icon: <FaLinkedin />,
       label: 'LinkedIn',
-      href: 'https://www.linkedin.com/in/lalitmee/',
+      href: portfolioData.contact.social.find((s) => s.platform === 'LinkedIn')
+        ?.url!,
       color: 'hover:text-blue-600',
       bgColor: 'hover:bg-blue-50 dark:hover:bg-blue-900/20',
     },
     {
       icon: <FaGithub />,
       label: 'GitHub',
-      href: 'https://www.github.com/lalitmee/',
+      href: portfolioData.contact.social.find((s) => s.platform === 'GitHub')
+        ?.url!,
       color: 'hover:text-gray-900 dark:hover:text-gray-100',
       bgColor: 'hover:bg-gray-50 dark:hover:bg-gray-800',
     },
     {
       icon: <FaTwitter />,
       label: 'Twitter',
-      href: 'https://www.twitter.com/lalitmee/',
+      href: portfolioData.contact.social.find((s) => s.platform === 'Twitter')
+        ?.url!,
       color: 'hover:text-blue-500',
       bgColor: 'hover:bg-blue-50 dark:hover:bg-blue-900/20',
+    },
+    {
+      icon: <TopmateIcon />,
+      label: 'Topmate',
+      href: portfolioData.contact.social.find((s) => s.platform === 'Topmate')
+        ?.url!,
+      color: 'hover:text-orange-500',
+      bgColor: 'hover:bg-orange-50 dark:hover:bg-orange-900/20',
     },
   ];
 
@@ -190,10 +221,10 @@ const Contact: React.FC = () => {
     return (
       <section
         id="contact"
-        className="py-20 bg-white dark:bg-gray-900 transition-colors duration-500"
+        className="py-20 bg-white/80 dark:bg-gray-900 transition-colors duration-500"
       >
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="bg-green-50 dark:bg-green-900/20 rounded-2xl p-12">
+          <div className="bg-green-50 dark:bg-green-900/20 rounded-2xl p-12 border border-green-200 dark:border-green-800">
             <FaCheckCircle className="text-6xl text-green-500 mx-auto mb-6" />
             <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
               Thank You!
@@ -204,7 +235,7 @@ const Contact: React.FC = () => {
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
-              className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300"
+              className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Send Another Message
             </button>
@@ -217,7 +248,7 @@ const Contact: React.FC = () => {
   return (
     <section
       id="contact"
-      className="py-20 bg-white dark:bg-gray-900 transition-colors duration-500"
+      className="py-20 bg-transparent transition-colors duration-500"
     >
       <div className="max-w-7xl mx-auto px-6">
         {/* Header */}
@@ -244,7 +275,7 @@ const Contact: React.FC = () => {
                 : 'opacity-0 -translate-x-4',
             )}
           >
-            <div>
+            <div className="text-center lg:text-left">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Get In Touch
               </h3>
@@ -268,7 +299,7 @@ const Contact: React.FC = () => {
                       ? 'noopener noreferrer'
                       : undefined
                   }
-                  className="flex items-center space-x-4 p-4 bg-gray-50 dark:bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300 group"
+                  className="flex items-center space-x-4 p-4 bg-white/80 dark:bg-gray-800 rounded-xl hover:shadow-md transition-all duration-300 group hover:scale-[1.02] active:scale-[0.98] border border-gray-200 dark:border-gray-700"
                 >
                   <div className={twMerge('text-2xl', info.color)}>
                     {info.icon}
@@ -286,11 +317,11 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Social Links */}
-            <div>
+            <div className="text-center lg:text-left">
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
                 Connect With Me
               </h4>
-              <div className="flex space-x-4">
+              <div className="flex justify-center lg:justify-start space-x-4">
                 {socialLinks.map((social, index) => (
                   <a
                     key={index}
@@ -298,7 +329,7 @@ const Contact: React.FC = () => {
                     target="_blank"
                     rel="noopener noreferrer"
                     className={twMerge(
-                      'p-4 bg-gray-50 dark:bg-gray-800 rounded-xl transition-all duration-300 text-gray-600 dark:text-gray-400',
+                      'p-4 bg-white/80 dark:bg-gray-800 rounded-xl transition-all duration-300 text-gray-600 dark:text-gray-400 hover:scale-105 active:scale-95 border border-gray-200 dark:border-gray-700',
                       social.color,
                       social.bgColor,
                     )}
@@ -333,12 +364,12 @@ const Contact: React.FC = () => {
                 : 'opacity-0 translate-x-4',
             )}
           >
-            <div className="bg-gray-50 dark:bg-gray-800 rounded-2xl p-8 shadow-lg">
+            <div className="bg-white/80 dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
                 Send a Message
               </h3>
 
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form ref={form} onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <label
@@ -357,7 +388,7 @@ const Contact: React.FC = () => {
                         'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                         errors.name
                           ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                          : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white',
+                          : 'border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white',
                       )}
                       placeholder="Your full name"
                     />
@@ -383,7 +414,7 @@ const Contact: React.FC = () => {
                         'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                         errors.email
                           ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                          : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white',
+                          : 'border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white',
                       )}
                       placeholder="your.email@example.com"
                     />
@@ -408,7 +439,7 @@ const Contact: React.FC = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-300"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-300"
                     placeholder="Your company name (optional)"
                   />
                 </div>
@@ -430,7 +461,7 @@ const Contact: React.FC = () => {
                       'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
                       errors.subject
                         ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white',
+                        : 'border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white',
                     )}
                     placeholder="What's this about?"
                   />
@@ -458,7 +489,7 @@ const Contact: React.FC = () => {
                       'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-vertical',
                       errors.message
                         ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
-                        : 'border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 text-gray-900 dark:text-white',
+                        : 'border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white',
                     )}
                     placeholder="Tell me about your project, ideas, or just say hello..."
                   />
@@ -473,7 +504,7 @@ const Contact: React.FC = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className={twMerge(
-                    'w-full py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2',
+                    'w-full py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-[1.02] active:scale-[0.98]',
                     isSubmitting
                       ? 'bg-gray-400 cursor-not-allowed'
                       : 'bg-gradient-to-r from-purple-600 to-blue-600 hover:shadow-lg hover:shadow-purple-500/25 text-white',

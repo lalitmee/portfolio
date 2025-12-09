@@ -1,7 +1,13 @@
-import '../styles/globals.css';
+import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
+import { Outfit } from 'next/font/google';
 import Head from 'next/head';
-import Script from 'next/script';
+import '../styles/globals.css';
+
+const outfit = Outfit({
+  subsets: ['latin'],
+  variable: '--font-outfit',
+});
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -33,7 +39,7 @@ export default function App({ Component, pageProps }: AppProps) {
         <meta name="twitter:card" content="summary_large_image" />
         <link rel="canonical" href="https://lalitmee.github.io/portfolio" />
       </Head>
-      <Script
+      {/* <Script
         src="https://www.googletagmanager.com/gtag/js?id=GA_MEASUREMENT_ID"
         strategy="afterInteractive"
       />
@@ -53,8 +59,12 @@ export default function App({ Component, pageProps }: AppProps) {
           'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
           })(window,document,'script','dataLayer','GTM_CONTAINER_ID');
         `}
-      </Script>
-      <Component {...pageProps} />
+      </Script> */}
+      <ThemeProvider attribute="class" defaultTheme="dark">
+        <main className={`${outfit.variable} font-sans`}>
+          <Component {...pageProps} />
+        </main>
+      </ThemeProvider>
     </>
   );
 }

@@ -4,23 +4,23 @@
     "title": "Senior Software Engineer",
     "subtitle": "AI-Era Software Engineer",
     "yearsOfExperience": "7+",
-    "location": "San Francisco, CA",
-    "email": "lalit@example.com",
-    "phone": "+1 (555) 123-4567",
-    "website": "https://lalitkumar.dev",
-    "bio": "Senior Software Engineer with 7+ years of experience crafting exceptional digital experiences using cutting-edge technologies and AI-driven solutions.",
-    "profileImage": "https://avatars1.githubusercontent.com/u/10762218?s=460&v=4",
-    "resume": "/resume/Lalit-Kumar-Resume.pdf",
+
+    "email": "lalitkumar.meena.lk@gmail.com",
+    "phone": "+91 97-1261-8438",
+    "website": "https://lalitmee.github.io/portfolio",
+    "bio": "Senior Software Engineer @Nykaa | Neovim Enthusiast | Open Source Advocate. Pioneering Agentic Coding workflows and building high-performance web applications. Focused on productivity and developer experience.",
+    "profileImage": "https://avatars.githubusercontent.com/u/10762218?v=4",
+    "resume": "/Lalit_Kumar_Resume.pdf",
     "availability": {
       "status": "available",
       "message": "Available for opportunities"
     }
   },
   "contact": {
-    "email": "lalit@example.com",
-    "phone": "+1 (555) 123-4567",
-    "location": "San Francisco, CA",
-    "timezone": "PST (UTC-8)",
+    "email": "lalitkumar.meena.lk@gmail.com",
+    "phone": "+91 97-1261-8438",
+
+    "timezone": "IST (UTC+5:30)",
     "social": [
       {
         "platform": "GitHub",
@@ -39,6 +39,18 @@
         "url": "https://twitter.com/lalitmee",
         "username": "@lalitmee",
         "icon": "FaTwitter"
+      },
+      {
+        "platform": "Topmate",
+        "url": "https://topmate.io/lalitmee",
+        "username": "lalitmee",
+        "icon": "SiTopmate"
+      },
+      {
+        "platform": "Instagram",
+        "url": "https://instagram.com/lalitmee",
+        "username": "lalitmee",
+        "icon": "FaInstagram"
       }
     ]
   },
@@ -108,11 +120,19 @@
             "active": true
           },
           {
-            "name": "React Native",
-            "level": 75,
-            "years": 2,
-            "icon": "FaMobile",
-            "color": "text-blue-400",
+            "name": "Redux",
+            "level": 90,
+            "years": 5,
+            "icon": "SiRedux",
+            "color": "text-purple-500",
+            "active": true
+          },
+          {
+            "name": "Angular",
+            "level": 80,
+            "years": 3,
+            "icon": "FaAngular",
+            "color": "text-red-500",
             "active": true
           }
         ]
@@ -153,14 +173,6 @@
             "icon": "FaServer",
             "color": "text-blue-400",
             "active": true
-          },
-          {
-            "name": "Microservices",
-            "level": 85,
-            "years": 4,
-            "icon": "FaTools",
-            "color": "text-purple-400",
-            "active": true
           }
         ]
       },
@@ -178,44 +190,28 @@
             "active": true
           },
           {
-            "name": "PostgreSQL",
+            "name": "MySQL",
             "level": 85,
             "years": 4,
-            "icon": "SiPostgresql",
+            "icon": "SiMysql",
             "color": "text-blue-400",
             "active": true
           },
           {
-            "name": "Redis",
+            "name": "BigQuery",
             "level": 80,
             "years": 3,
-            "icon": "SiRedis",
-            "color": "text-red-400",
-            "active": true
-          },
-          {
-            "name": "Firebase",
-            "level": 75,
-            "years": 2,
-            "icon": "SiFirebase",
-            "color": "text-orange-400",
+            "icon": "SiGooglebigquery",
+            "color": "text-blue-500",
             "active": true
           }
         ]
       },
       {
-        "name": "DevOps & Cloud",
-        "icon": "FaCloud",
+        "name": "DevOps & Tools",
+        "icon": "FaTools",
         "gradient": "from-orange-500 to-red-500",
         "skills": [
-          {
-            "name": "AWS",
-            "level": 85,
-            "years": 4,
-            "icon": "FaAws",
-            "color": "text-orange-400",
-            "active": true
-          },
           {
             "name": "Docker",
             "level": 88,
@@ -233,27 +229,19 @@
             "active": true
           },
           {
-            "name": "Jenkins",
-            "level": 80,
-            "years": 3,
-            "icon": "SiJenkins",
-            "color": "text-blue-400",
-            "active": true
-          },
-          {
-            "name": "Vercel",
-            "level": 90,
-            "years": 3,
-            "icon": "SiVercel",
-            "color": "text-white",
-            "active": true
-          },
-          {
             "name": "Git",
             "level": 95,
             "years": 7,
             "icon": "FaGitAlt",
             "color": "text-orange-400",
+            "active": true
+          },
+          {
+            "name": "Neovim",
+            "level": 90,
+            "years": 4,
+            "icon": "SiNeovim",
+            "color": "text-green-500",
             "active": true
           }
         ]
@@ -263,270 +251,416 @@
   "experience": [
     {
       "id": 1,
-      "company": "TechCorp Solutions",
-      "position": "Senior Software Engineer & Team Lead",
-      "location": "San Francisco, CA",
-      "startDate": "2022",
+      "company": "Nykaa",
+      "position": "Senior Software Engineer",
+      "location": "Bangalore",
+      "startDate": "Feb 2024",
       "endDate": "Present",
       "current": true,
-      "description": "Leading a team of 8 engineers in developing scalable web applications and microservices architecture. Responsible for technical decision-making, code reviews, and mentoring junior developers.",
+      "description": "Leading frontend development initiatives and optimizing e-commerce performance.",
       "achievements": [
-        "Led migration from monolith to microservices, reducing deployment time by 80%",
-        "Implemented CI/CD pipeline that decreased bug reports by 60%",
-        "Mentored 5 junior developers, with 3 receiving promotions",
-        "Architected real-time analytics platform serving 1M+ users",
-        "Improved application performance by 70% through optimization"
-      ],
-      "technologies": [
-        "React",
-        "TypeScript",
-        "Node.js",
-        "AWS",
-        "Docker",
-        "Kubernetes",
-        "PostgreSQL"
-      ],
-      "teamSize": "8 Engineers",
-      "impact": "$2M+ Revenue Impact"
-    },
-    {
-      "id": 2,
-      "company": "InnovateTech Inc.",
-      "position": "Full Stack Developer",
-      "location": "Austin, TX",
-      "startDate": "2020",
-      "endDate": "2022",
-      "current": false,
-      "description": "Developed and maintained multiple client-facing applications using modern web technologies. Collaborated with cross-functional teams to deliver high-quality software solutions.",
-      "achievements": [
-        "Built e-commerce platform that generated $5M+ in first year",
-        "Reduced page load times by 50% through performance optimization",
-        "Implemented automated testing suite with 95% code coverage",
-        "Led adoption of TypeScript across the development team",
-        "Designed and implemented RESTful APIs serving 100K+ requests/day"
+        "Spearheading the development of nysaa.com, managing end-to-end integration",
+        "Significantly increasing application performance and user experience",
+        "Led Martech integration (GTM, GA4, Meta, etc.) resulting in 3x daily orders",
+        "Designed attribution system using BigQuery and Looker Studio",
+        "Revamped cart operations and implemented cart merging feature"
       ],
       "technologies": [
         "React",
         "Next.js",
-        "Node.js",
-        "MongoDB",
-        "AWS",
-        "Docker",
-        "Jest"
+        "TypeScript",
+        "GTM",
+        "GA4",
+        "BigQuery"
       ],
-      "teamSize": "6 Engineers",
-      "impact": "$5M+ GMV Generated"
+      "teamSize": "Cross-functional",
+      "impact": "10x Daily Orders"
+    },
+    {
+      "id": 2,
+      "company": "Quartic.ai",
+      "position": "Software Development Engineer 2",
+      "location": "Remote",
+      "startDate": "Apr 2023",
+      "endDate": "Dec 2023",
+      "current": false,
+      "description": "Developed features for the Quartic Platform using modern frontend stack.",
+      "achievements": [
+        "Developed end-to-end features using React.js, Redux, GraphQL",
+        "Integrated LDAP Server with Administration module",
+        "Engineered Infinite Virtualized Table for efficient user management",
+        "Revamped Analytics module improving data querying"
+      ],
+      "technologies": ["React.js", "Redux", "GraphQL", "Patternfly"],
+      "teamSize": "Frontend Team",
+      "impact": "Enhanced UX"
     },
     {
       "id": 3,
-      "company": "StartupXYZ",
-      "position": "Frontend Developer",
-      "location": "Remote",
-      "startDate": "2019",
-      "endDate": "2020",
+      "company": "KoineArth",
+      "position": "Senior Software Engineer",
+      "location": "Bangalore",
+      "startDate": "Aug 2019",
+      "endDate": "Mar 2023",
       "current": false,
-      "description": "Responsible for developing responsive web applications and improving user experience. Worked closely with designers and backend developers to create seamless user interfaces.",
+      "description": "Led frontend team and developed B2B blockchain products.",
       "achievements": [
-        "Developed MVP that secured $2M Series A funding",
-        "Improved user engagement by 40% through UX enhancements",
-        "Built responsive design system used across 5 products",
-        "Implemented real-time features using WebSocket connections",
-        "Optimized bundle size by 60% using code splitting"
+        "Launched key features for marketsN using React.js and Next.js",
+        "Championed global search feature in ngageN",
+        "Designed REST APIs and constructed reusable UI components",
+        "Mentored junior developers and led frontend team"
       ],
-      "technologies": [
-        "React",
-        "JavaScript",
-        "SASS",
-        "Node.js",
-        "MongoDB",
-        "Socket.io"
-      ],
-      "teamSize": "4 Engineers",
-      "impact": "$2M Funding Secured"
+      "technologies": ["React.js", "Next.js", "Material-UI", "REST APIs"],
+      "teamSize": "Frontend Team",
+      "impact": "Product Launch"
     },
     {
       "id": 4,
-      "company": "WebDev Agency",
-      "position": "Junior Full Stack Developer",
-      "location": "New York, NY",
-      "startDate": "2017",
-      "endDate": "2019",
+      "company": "Cognitive Clouds",
+      "position": "Software Engineer",
+      "location": "Bangalore",
+      "startDate": "Jun 2018",
+      "endDate": "Jul 2019",
       "current": false,
-      "description": "Developed custom websites and web applications for various clients. Gained experience in multiple technologies and frameworks while working on diverse projects.",
+      "description": "Contributed to real-time projects and UI implementation.",
       "achievements": [
-        "Delivered 20+ client projects with 100% on-time completion",
-        "Increased client satisfaction scores by 25%",
-        "Built custom CMS used by 15+ clients",
-        "Implemented SEO best practices improving search rankings by 200%",
-        "Mentored 2 interns in web development fundamentals"
+        "Contributed to real-time projects using Angular and React.js",
+        "Designed and implemented UI components",
+        "Optimized performance and addressed bugs"
       ],
-      "technologies": [
-        "HTML",
-        "CSS",
-        "JavaScript",
-        "PHP",
-        "MySQL",
-        "WordPress"
-      ],
-      "teamSize": "3 Engineers",
-      "impact": "20+ Projects Delivered"
+      "technologies": ["Angular", "React.js"],
+      "teamSize": "Dev Team",
+      "impact": "Project Delivery"
     }
   ],
   "education": [
     {
       "id": 1,
-      "institution": "University of Technology",
-      "degree": "Bachelor of Science",
-      "field": "Computer Science",
-      "location": "California, USA",
-      "startDate": "2013",
-      "endDate": "2017",
-      "gpa": "3.8/4.0",
+      "institution": "Indian Institute of Information Technology (IIIT), Vadodara",
+      "degree": "B.Tech in Information Technology",
+      "field": "Information Technology",
+      "location": "Gandhinagar, Gujarat",
+      "startDate": "Jul 2014",
+      "endDate": "May 2018",
+      "gpa": "6.99 CPI",
       "achievements": [
-        "Graduated Magna Cum Laude",
-        "President of Computer Science Club",
-        "Winner of Annual Hackathon 2016",
-        "Published research paper on Machine Learning",
-        "Dean's List for 6 consecutive semesters"
-      ]
-    },
-    {
-      "id": 2,
-      "institution": "Tech Institute",
-      "degree": "Certificate",
-      "field": "Advanced Web Development",
-      "location": "Online",
-      "startDate": "2016",
-      "endDate": "2017",
-      "achievements": [
-        "Completed with 98% score",
-        "Built 5 full-stack applications",
-        "Specialized in React and Node.js",
-        "Mentored 10+ fellow students"
+        "Frontend Developer Nanodegree (Udacity)",
+        "Google Code-In Mentor (Sugar Labs)"
       ]
     }
   ],
   "certifications": [
     {
       "id": 1,
-      "name": "AWS Certified Solutions Architect",
-      "issuer": "Amazon Web Services",
-      "date": "2023",
-      "credentialId": "AWS-SA-2023-001",
-      "validUntil": "2026",
-      "icon": "FaCloud",
-      "color": "text-orange-500",
-      "active": true
+      "name": "Frontend Developer Nanodegree",
+      "issuer": "Udacity",
+      "date": "Dec 2018",
+      "credentialId": "View Credential",
+      "validUntil": "Lifetime",
+      "icon": "SiUdacity",
+      "image": "/images/certifications/udacity.png",
+      "color": "text-blue-500",
+      "active": true,
+      "link": "https://confirm.udacity.com/XG3K5F4T"
     },
     {
       "id": 2,
-      "name": "Certified Kubernetes Administrator",
-      "issuer": "Cloud Native Computing Foundation",
-      "date": "2022",
-      "credentialId": "CKA-2022-001",
-      "validUntil": "2025",
-      "icon": "FaRocket",
-      "color": "text-blue-500",
-      "active": true
+      "name": "Google Code-In Mentor",
+      "issuer": "Sugar Labs",
+      "date": "Feb 2018",
+      "credentialId": "View Credential",
+      "validUntil": "Lifetime",
+      "icon": "FaChalkboardTeacher",
+      "image": "/images/certifications/sugarlabs.svg",
+      "color": "text-green-500",
+      "active": true,
+      "link": "https://codein.withgoogle.com/"
     },
     {
       "id": 3,
-      "name": "Professional Scrum Master I",
-      "issuer": "Scrum.org",
-      "date": "2021",
-      "credentialId": "PSM-2021-001",
-      "icon": "FaUsers",
-      "color": "text-green-500",
-      "active": true
+      "name": "Certificate of Recognition",
+      "issuer": "GirlScript Foundation",
+      "date": "Aug 2023",
+      "credentialId": "View Credential",
+      "validUntil": "Lifetime",
+      "icon": "FaCertificate",
+      "image": "/images/certifications/girlscript.png",
+      "color": "text-yellow-500",
+      "active": true,
+      "link": "https://drive.google.com/file/d/16Ps77LlmOBt7AsOOj7vB69WyvdyYVaC1/view?usp=drive_link"
     },
     {
       "id": 4,
-      "name": "Google Cloud Professional Developer",
-      "issuer": "Google Cloud",
-      "date": "2023",
-      "credentialId": "GCP-DEV-2023-001",
-      "validUntil": "2025",
-      "icon": "FaCode",
-      "color": "text-blue-600",
-      "active": true
+      "name": "CSS",
+      "issuer": "HackerRank",
+      "date": "Feb 2023",
+      "credentialId": "c5127823561d",
+      "validUntil": "Lifetime",
+      "icon": "FaCss3Alt",
+      "color": "text-blue-500",
+      "active": true,
+      "link": "https://www.hackerrank.com/certificates/c5127823561d"
+    },
+    {
+      "id": 5,
+      "name": "React (Basic)",
+      "issuer": "HackerRank",
+      "date": "Feb 2023",
+      "credentialId": "8fddb1a83475",
+      "validUntil": "Lifetime",
+      "icon": "FaReact",
+      "color": "text-blue-400",
+      "active": true,
+      "link": "https://www.hackerrank.com/certificates/8fddb1a83475"
+    },
+    {
+      "id": 6,
+      "name": "JavaScript (Basic)",
+      "issuer": "HackerRank",
+      "date": "Feb 2022",
+      "credentialId": "6a54dc98e910",
+      "validUntil": "Lifetime",
+      "icon": "FaJsSquare",
+      "color": "text-yellow-400",
+      "active": true,
+      "link": "https://www.hackerrank.com/certificates/6a54dc98e910"
+    },
+    {
+      "id": 7,
+      "name": "HTML Fundamentals course",
+      "issuer": "Sololearn",
+      "date": "Mar 2017",
+      "credentialId": "View Credential",
+      "validUntil": "Mar 2017",
+      "icon": "FaHtml5",
+      "color": "text-orange-500",
+      "active": true,
+      "link": "https://www.sololearn.com/Certificate/1014-3904449/pdf/"
+    },
+    {
+      "id": 8,
+      "name": "Java Tutorial course",
+      "issuer": "Sololearn",
+      "date": "Mar 2017",
+      "credentialId": "View Credential",
+      "validUntil": "Mar 2017",
+      "icon": "FaJava",
+      "color": "text-red-500",
+      "active": true,
+      "link": "https://www.sololearn.com/Certificate/1068-3904449/pdf/"
+    },
+    {
+      "id": 10,
+      "name": "Python3 Tutorial Course",
+      "issuer": "Sololearn",
+      "date": "Feb 2017",
+      "credentialId": "View Credential",
+      "validUntil": "Feb 2017",
+      "icon": "FaPython",
+      "color": "text-yellow-500",
+      "active": true,
+      "link": "https://www.sololearn.com/Certificate/1073-3904449/pdf/"
     }
   ],
   "projects": [
     {
       "id": 1,
-      "title": "E-Commerce Platform",
-      "description": "A full-stack e-commerce solution with real-time inventory management, payment processing, and analytics dashboard.",
-      "image": "/images/projects/ecommerce.png",
-      "technologies": ["React", "Node.js", "MongoDB", "Stripe", "AWS"],
-      "category": "Full Stack",
-      "status": "completed",
+      "title": "browse.nvim",
+      "description": "Neovim plugin to browse for anything using your choice of method.",
+      "image": "/images/projects/browse-nvim.png",
+      "technologies": ["Lua", "Neovim"],
+      "category": "Featured",
+      "status": "active",
       "featured": true,
-      "github": "https://github.com/lalitmee/ecommerce-platform",
-      "demo": "https://ecommerce-demo.lalitkumar.dev",
+      "github": "https://github.com/lalitmee/browse.nvim",
       "highlights": [
-        "Processed $1M+ in transactions",
-        "99.9% uptime with auto-scaling",
-        "Real-time inventory sync across channels"
+        "Browse anything in Neovim",
+        "Customizable methods",
+        "High performance"
       ]
     },
     {
       "id": 2,
-      "title": "AI-Powered Analytics Dashboard",
-      "description": "Machine learning-driven analytics platform providing predictive insights for business intelligence.",
-      "image": "/images/projects/analytics.png",
-      "technologies": ["React", "Python", "TensorFlow", "PostgreSQL", "Docker"],
-      "category": "AI/ML",
-      "status": "completed",
+      "title": "cobalt2.nvim",
+      "description": "Cobalt2 theme for Neovim in Lua using colorbuddy.",
+      "image": "/images/projects/cobalt2-nvim.png",
+      "technologies": ["Lua", "Neovim", "Colorbuddy"],
+      "category": "Featured",
+      "status": "active",
       "featured": true,
-      "github": "https://github.com/lalitmee/ai-analytics",
-      "demo": "https://analytics-demo.lalitkumar.dev",
+      "github": "https://github.com/lalitmee/cobalt2.nvim",
       "highlights": [
-        "95% prediction accuracy",
-        "Reduced analysis time by 80%",
-        "Serves 10K+ daily active users"
+        "Vibrant color scheme",
+        "Eye-friendly",
+        "Easy installation"
       ]
     },
     {
       "id": 3,
-      "title": "Real-time Collaboration Tool",
-      "description": "WebRTC-based collaboration platform with video conferencing, screen sharing, and document editing.",
-      "image": "/images/projects/collaboration.png",
-      "technologies": ["React", "WebRTC", "Socket.io", "Node.js", "Redis"],
-      "category": "Real-time",
-      "status": "in-progress",
+      "title": "github-search",
+      "description": "Search for any github user and see his/her profile and repositories.",
+      "image": "/images/projects/github-search.png",
+      "technologies": ["React.js", "Redux", "Semantic-UI"],
+      "category": "Featured",
+      "status": "completed",
       "featured": true,
-      "github": "https://github.com/lalitmee/collab-tool",
+      "github": "https://github.com/lalitmee/github-search",
+      "highlights": ["User search", "Profile view", "Repository listing"]
+    },
+    {
+      "id": 4,
+      "title": "dotfiles",
+      "description": "My personal configuration files for Neovim, Tmux, Zsh, and more.",
+      "image": "/images/projects/dotfiles.png",
+      "technologies": ["Lua", "Shell", "Vim script"],
+      "category": "Featured",
+      "status": "active",
+      "featured": true,
+      "github": "https://github.com/lalitmee/dotfiles",
       "highlights": [
-        "Sub-100ms latency",
-        "Supports 50+ concurrent users",
-        "End-to-end encryption"
+        "Optimized workflow",
+        "Custom scripts",
+        "Productivity tools"
       ]
+    },
+    {
+      "id": 5,
+      "title": "portfolio",
+      "description": "This modern, high-performance portfolio website built with Next.js.",
+      "image": "/images/projects/portfolio.png",
+      "technologies": ["Next.js", "React", "Tailwind CSS"],
+      "category": "Featured",
+      "status": "active",
+      "featured": true,
+      "github": "https://github.com/lalitmee/portfolio",
+      "highlights": ["Responsive design", "Dark mode", "High performance"]
+    },
+    {
+      "id": 6,
+      "title": "ud-myreads",
+      "description": "Book tracking application built with React.",
+      "image": "/images/projects/my_reads.png",
+      "technologies": ["React.js", "JavaScript"],
+      "category": "React Nanodegree",
+      "status": "completed",
+      "featured": false,
+      "github": "https://github.com/lalitmee/ud-myreads",
+      "highlights": [
+        "Book shelving",
+        "Search functionality",
+        "State management"
+      ]
+    },
+    {
+      "id": 7,
+      "title": "ud-neighborhood-map",
+      "description": "Neighborhood map application using React and Google Maps API.",
+      "image": "/images/projects/neighborhood.png",
+      "technologies": ["React.js", "Google Maps API"],
+      "category": "React Nanodegree",
+      "status": "completed",
+      "featured": false,
+      "github": "https://github.com/lalitmee/ud-neighborhood-map",
+      "highlights": ["Map integration", "Location filtering", "Third-party API"]
+    },
+    {
+      "id": 8,
+      "title": "ud-restaurant-rewiews-stage1",
+      "description": "Restaurant reviews app focusing on accessibility and offline-first.",
+      "image": "/images/projects/reviews.jpeg",
+      "technologies": ["JavaScript", "Service Worker"],
+      "category": "React Nanodegree",
+      "status": "completed",
+      "featured": false,
+      "github": "https://github.com/lalitmee/ud-restaurant-rewiews-stage1",
+      "highlights": ["Offline support", "Accessibility", "Responsive design"]
+    },
+    {
+      "id": 9,
+      "title": "ud-feedreader-testing",
+      "description": "Comprehensive testing suite for a feed reader application.",
+      "image": "/images/projects/feed_reader.png",
+      "technologies": ["Jasmine", "JavaScript"],
+      "category": "Frontend Nanodegree",
+      "status": "completed",
+      "featured": false,
+      "github": "https://github.com/lalitmee/ud-feedreader-testing",
+      "highlights": ["Unit testing", "Test coverage", "Bug fixing"]
+    },
+    {
+      "id": 10,
+      "title": "ud-classic-arcade-game",
+      "description": "Classic arcade game clone using Object-Oriented JavaScript.",
+      "image": "/images/projects/arcade_game.png",
+      "technologies": ["JavaScript", "HTML5 Canvas"],
+      "category": "Frontend Nanodegree",
+      "status": "completed",
+      "featured": false,
+      "github": "https://github.com/lalitmee/ud-classic-arcade-game",
+      "highlights": [
+        "Game loop",
+        "Collision detection",
+        "Object-oriented design"
+      ]
+    },
+    {
+      "id": 11,
+      "title": "ud-memory-game",
+      "description": "Interactive memory matching game.",
+      "image": "/images/projects/memory_game.png",
+      "technologies": ["JavaScript", "CSS3"],
+      "category": "Frontend Nanodegree",
+      "status": "completed",
+      "featured": false,
+      "github": "https://github.com/lalitmee/ud-memory-game",
+      "highlights": ["Game logic", "Animations", "Score tracking"]
+    },
+    {
+      "id": 12,
+      "title": "Ud-Pixel-Art-Maker",
+      "description": "Single-page web app to create pixel art.",
+      "image": "/images/projects/pixel_art.png",
+      "technologies": ["JavaScript", "jQuery"],
+      "category": "Frontend Nanodegree",
+      "status": "completed",
+      "featured": false,
+      "github": "https://github.com/lalitmee/Ud-Pixel-Art-Maker",
+      "highlights": ["Grid generation", "Color picker", "Canvas manipulation"]
+    },
+    {
+      "id": 13,
+      "title": "ud-portfolio",
+      "description": "Responsive portfolio website built with HTML, CSS, and Bootstrap.",
+      "image": "/images/projects/old-portfolio.png",
+      "technologies": ["HTML5", "CSS3", "Bootstrap"],
+      "category": "Frontend Nanodegree",
+      "status": "completed",
+      "featured": false,
+      "github": "https://github.com/lalitmee/ud-portfolio",
+      "highlights": ["Responsive layout", "Grid system", "Custom styling"]
     }
   ],
   "testimonials": [
     {
-      "id": 1,
-      "name": "Sarah Johnson",
-      "position": "CTO at TechCorp Solutions",
-      "company": "TechCorp Solutions",
-      "content": "Lalit is an exceptional engineer and leader. His technical expertise and ability to mentor junior developers has been invaluable to our team's growth.",
-      "avatar": "/images/testimonials/sarah.jpg",
-      "rating": 5
+      "name": "John Doe",
+      "role": "Tech Lead at XYZ Corp",
+      "content": "Lalit is an exceptional developer with deep knowledge in frontend and backend technologies. His work on our CI/CD pipelines saved us countless hours."
     },
     {
-      "id": 2,
-      "name": "Michael Chen",
-      "position": "Product Manager",
-      "company": "InnovateTech Inc.",
-      "content": "Working with Lalit was a game-changer for our product. His attention to detail and innovative solutions helped us achieve our ambitious goals.",
-      "avatar": "/images/testimonials/michael.jpg",
-      "rating": 5
+      "name": "Jane Smith",
+      "role": "Marketing Director at ABC Inc",
+      "content": "His expertise in digital marketing tools helped us optimize our campaigns effectively. Highly recommend for any tech and marketing projects."
+    },
+    {
+      "name": "Mike Johnson",
+      "role": "CTO at Startup Co",
+      "content": "Lalit's cloud architecture skills on AWS and GCP are top-notch. He delivered scalable solutions that met all our requirements."
     }
   ],
   "settings": {
     "theme": "dark",
     "layout": "single-page",
-    "showTestimonials": true,
+    "showTestimonials": false,
     "showProjects": true,
     "showCertifications": true,
     "showEducation": true,
