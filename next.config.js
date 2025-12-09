@@ -2,7 +2,14 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['avatars1.githubusercontent.com'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'avatars1.githubusercontent.com',
+        port: '',
+        pathname: '/**',
+      },
+    ],
   },
 };
 
