@@ -47,6 +47,7 @@ const Footer = dynamic(() => import('../components/Footer'), {
     <LoadingSpinner size="sm" variant="pulse" className="bg-gray-900" />
   ),
 });
+
 const ScrollToTop = dynamic(() => import('../components/ScrollToTop'), {
   ssr: false,
 });
@@ -216,7 +217,7 @@ export default function Home() {
           sizes="16x16"
           href="/favicon-16x16.png"
         />
-        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="manifest" href="/manifest.json" />
 
         {/* Theme color */}
         <meta name="theme-color" content="#8b5cf6" />
