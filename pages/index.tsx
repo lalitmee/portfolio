@@ -3,6 +3,7 @@ import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
 import { config } from '../config';
+import portfolioData from '../data/portfolio.json';
 
 // Import Navigation component
 const Navigation = dynamic(() => import('../components/Navigation'), {
@@ -252,47 +253,73 @@ export default function Home() {
           <div className="py-20 bg-transparent">
             <div className="max-w-4xl mx-auto px-6 text-center">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                About{' '}
+                {(portfolioData.sections as any).about.title}{' '}
                 <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-                  Me
+                  {(portfolioData.sections as any).about.highlight}
                 </span>
               </h2>
               <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
-                I'm a passionate Senior Software Engineer with over 7 years of
-                experience building scalable web applications and leading
-                high-performing teams. I specialize in modern JavaScript
-                frameworks, cloud architecture, and creating exceptional user
-                experiences that drive business growth.
+                {(portfolioData.sections as any).about.description}
               </p>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-12">
                 <div className="text-center">
-                  <div className="text-4xl mb-4">🚀</div>
+                  <div className="text-4xl mb-4">
+                    {
+                      (portfolioData.sections as any).about.cards.innovation
+                        .icon
+                    }
+                  </div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    Innovation
+                    {
+                      (portfolioData.sections as any).about.cards.innovation
+                        .title
+                    }
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300">
-                    Always exploring cutting-edge technologies to solve complex
-                    problems
+                    {
+                      (portfolioData.sections as any).about.cards.innovation
+                        .description
+                    }
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl mb-4">👥</div>
+                  <div className="text-4xl mb-4">
+                    {
+                      (portfolioData.sections as any).about.cards.leadership
+                        .icon
+                    }
+                  </div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    Leadership
+                    {
+                      (portfolioData.sections as any).about.cards.leadership
+                        .title
+                    }
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300">
-                    Leading teams and mentoring developers to achieve
-                    exceptional results
+                    {
+                      (portfolioData.sections as any).about.cards.leadership
+                        .description
+                    }
                   </p>
                 </div>
                 <div className="text-center">
-                  <div className="text-4xl mb-4">⚡</div>
+                  <div className="text-4xl mb-4">
+                    {
+                      (portfolioData.sections as any).about.cards.performance
+                        .icon
+                    }
+                  </div>
                   <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    Performance
+                    {
+                      (portfolioData.sections as any).about.cards.performance
+                        .title
+                    }
                   </h3>
                   <p className="text-gray-600 dark:text-gray-300">
-                    Optimizing applications for speed, scalability, and user
-                    experience
+                    {
+                      (portfolioData.sections as any).about.cards.performance
+                        .description
+                    }
                   </p>
                 </div>
               </div>

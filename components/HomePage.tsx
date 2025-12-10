@@ -274,20 +274,23 @@ const HomePage: React.FC = () => {
               <div className="text-left space-y-4 mb-8">
                 <h2 className="text-4xl sm:text-5xl font-bold leading-tight">
                   <span className="text-gray-900 dark:text-white">
-                    Building the{' '}
+                    {(portfolioData.sections as any).hero.prefix}{' '}
                   </span>
                   <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x">
-                    Future
+                    {(portfolioData.sections as any).hero.highlight}
                   </span>
-                  <span className="text-gray-900 dark:text-white"> of Web</span>
+                  <span className="text-gray-900 dark:text-white">
+                    {' '}
+                    {(portfolioData.sections as any).hero.suffix}
+                  </span>
                 </h2>
                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
-                  {portfolioData.personal.title} with{' '}
+                  {portfolioData.personal.title}{' '}
+                  {(portfolioData.sections as any).hero.descriptionPrefix}{' '}
                   <span className="text-purple-400 font-semibold">
                     {portfolioData.stats.experience.value}
                   </span>{' '}
-                  of experience crafting exceptional digital experiences using
-                  cutting-edge technologies and AI-driven solutions.
+                  {(portfolioData.sections as any).hero.descriptionSuffix}
                 </p>
               </div>
 
@@ -332,14 +335,16 @@ const HomePage: React.FC = () => {
                   className="group bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center justify-center space-x-2"
                 >
                   <FaRocket className="group-hover:animate-bounce" />
-                  <span>Explore My Work</span>
+                  <span>{(portfolioData.sections as any).hero.ctaPrimary}</span>
                 </button>
                 <button
                   onClick={() => scrollToSection('contact')}
                   className="bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white px-8 py-4 rounded-full font-semibold hover:bg-white dark:hover:bg-white/20 transition-all duration-300 flex items-center justify-center space-x-2 shadow-sm"
                 >
                   <FaEnvelope />
-                  <span>Let's Connect</span>
+                  <span>
+                    {(portfolioData.sections as any).hero.ctaSecondary}
+                  </span>
                 </button>
               </div>
 
@@ -394,24 +399,24 @@ const HomePage: React.FC = () => {
                 <div className="space-y-4">
                   <h2 className="text-6xl lg:text-7xl font-bold leading-tight">
                     <span className="text-gray-900 dark:text-white">
-                      Building the
+                      {(portfolioData.sections as any).hero.prefix}
                     </span>
                     <br />
                     <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x">
-                      Future
+                      {(portfolioData.sections as any).hero.highlight}
                     </span>
                     <br />
                     <span className="text-gray-900 dark:text-white">
-                      of Web
+                      {(portfolioData.sections as any).hero.suffix}
                     </span>
                   </h2>
                   <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">
-                    {portfolioData.personal.title} with{' '}
+                    {portfolioData.personal.title}{' '}
+                    {(portfolioData.sections as any).hero.descriptionPrefix}{' '}
                     <span className="text-purple-400 font-semibold">
                       {portfolioData.stats.experience.value}
                     </span>{' '}
-                    of experience crafting exceptional digital experiences using
-                    cutting-edge technologies and AI-driven solutions.
+                    {(portfolioData.sections as any).hero.descriptionSuffix}
                   </p>
                 </div>
 
@@ -454,14 +459,18 @@ const HomePage: React.FC = () => {
                     className="group bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center space-x-2 hover:scale-[1.02] active:scale-[0.98]"
                   >
                     <FaRocket className="group-hover:translate-x-1 transition-transform duration-300" />
-                    <span>Explore My Work</span>
+                    <span>
+                      {(portfolioData.sections as any).hero.ctaPrimary}
+                    </span>
                   </button>
                   <button
                     onClick={() => scrollToSection('contact')}
                     className="bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white px-8 py-4 rounded-full font-semibold hover:bg-white dark:hover:bg-white/20 transition-all duration-300 flex items-center space-x-2 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
                   >
                     <FaEnvelope />
-                    <span>Let's Connect</span>
+                    <span>
+                      {(portfolioData.sections as any).hero.ctaSecondary}
+                    </span>
                   </button>
                 </div>
 

@@ -1,7 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import Image from 'next/image';
 import Link from 'next/link';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   FaAward,
   FaChartLine,
@@ -15,27 +15,10 @@ import {
   FaStar,
   FaUsers,
 } from 'react-icons/fa';
-import {
-  SiAmazon,
-  SiDocker,
-  SiGraphql,
-  SiJavascript,
-  SiKubernetes,
-  SiMongodb,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiPostgresql,
-  SiPython,
-  SiReact,
-  SiRedis,
-  SiStorybook,
-  SiStripe,
-  SiTailwindcss,
-  SiTypescript,
-} from 'react-icons/si';
 import { useInView } from 'react-intersection-observer';
 import { twMerge } from 'tailwind-merge';
 import { generateSlug } from '../utils/slug';
+import { getTechIcon } from '../utils/techIcons';
 
 import portfolioData from '../data/portfolio.json';
 
@@ -57,7 +40,7 @@ interface Project {
 
 const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
-  const [ref, isVisible] = useInView({
+  const [ref] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
@@ -109,10 +92,7 @@ const Projects: React.FC = () => {
                   };
                 }
               } catch (error) {
-                console.warn(
-                  `Error fetching stats for ${project.title}:`,
-                  error,
-                );
+                // Silently fail for individual project stats
               }
             }
             return project;
@@ -120,7 +100,6 @@ const Projects: React.FC = () => {
         );
         setProjectsWithStats(updatedProjects);
       } catch (error) {
-        console.error('Failed to fetch project stats', error);
         // Fallback to default data
         setProjectsWithStats(portfolioData.projects as Project[]);
       }
@@ -134,15 +113,30 @@ const Projects: React.FC = () => {
       ? projectsWithStats
       : (portfolioData.projects as Project[]);
 
-  const categories = [
-    'All',
-    ...Array.from(new Set(projects.map((p) => p.category))),
-  ];
+  const categories = useMemo(
+    () => ['All', ...Array.from(new Set(projects.map((p) => p.category)))],
+    [projects],
+  );
 
-  const filteredProjects =
-    selectedCategory === 'All'
-      ? projects
-      : projects.filter((p) => p.category === selectedCategory);
+  // Fisher-Yates shuffle algorithm
+  const shuffleArray = (array: Project[]) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
+
+  const filteredProjects = useMemo(() => {
+    const filtered =
+      selectedCategory === 'All'
+        ? projects
+        : projects.filter((p) => p.category === selectedCategory);
+
+    // Always shuffle for dynamic effect
+    return shuffleArray(filtered);
+  }, [selectedCategory, projects]);
 
   useEffect(() => {
     const activeIndex = categories.indexOf(selectedCategory);
@@ -155,47 +149,6 @@ const Projects: React.FC = () => {
       });
     }
   }, [selectedCategory, categories]);
-
-  const getTechIcon = (tech: string) => {
-    switch (tech.toLowerCase()) {
-      case 'react':
-      case 'react native':
-      case 'react.js':
-        return <SiReact className="text-blue-400" />;
-      case 'typescript':
-        return <SiTypescript className="text-blue-600" />;
-      case 'javascript':
-        return <SiJavascript className="text-yellow-400" />;
-      case 'node.js':
-        return <SiNodedotjs className="text-green-500" />;
-      case 'next.js':
-        return <SiNextdotjs className="text-white" />;
-      case 'postgresql':
-        return <SiPostgresql className="text-blue-300" />;
-      case 'mongodb':
-        return <SiMongodb className="text-green-400" />;
-      case 'redis':
-        return <SiRedis className="text-red-500" />;
-      case 'docker':
-        return <SiDocker className="text-blue-500" />;
-      case 'kubernetes':
-        return <SiKubernetes className="text-blue-400" />;
-      case 'aws':
-        return <SiAmazon className="text-orange-400" />;
-      case 'graphql':
-        return <SiGraphql className="text-pink-500" />;
-      case 'python':
-        return <SiPython className="text-blue-300" />;
-      case 'stripe':
-        return <SiStripe className="text-purple-400" />;
-      case 'storybook':
-        return <SiStorybook className="text-pink-500" />;
-      case 'tailwindcss':
-        return <SiTailwindcss className="text-cyan-400" />;
-      default:
-        return <FaCode className="text-gray-400" />;
-    }
-  };
 
   const getStatusClass = (status: string) => {
     switch (status.toLowerCase()) {
@@ -215,23 +168,30 @@ const Projects: React.FC = () => {
     <section
       id="projects"
       ref={ref}
-      className="py-20 bg-transparent transition-colors duration-300"
+      className="py-20 bg-transparent relative overflow-hidden transition-colors duration-500"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div
-          className={twMerge(
-            'text-center mb-16 transition-all duration-1000',
-            isVisible
-              ? 'opacity-100 translate-y-0'
-              : 'opacity-0 translate-y-10',
-          )}
-        >
-          <h2 className="text-4xl font-bold text-gray-900 dark:text-white mb-4">
-            Featured Projects
+      {/* Background Effects */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white mb-6 shadow-sm">
+            <FaCode className="text-purple-600 dark:text-purple-400" />
+            <span>{portfolioData.sections.projects.title}</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+            {portfolioData.sections.projects.heading.split(' ')[0]}
+            <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent ml-2 sm:ml-4">
+              {portfolioData.sections.projects.heading.split(' ')[1]}
+            </span>
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
-            A showcase of my technical projects, open source contributions, and
-            experiments.
+
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+            {portfolioData.sections.projects.description}
           </p>
         </div>
 
@@ -319,143 +279,160 @@ const Projects: React.FC = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProjects.map((project, index) => (
-            <Link
-              key={project.id}
-              href={`/projects/${generateSlug(project.title)}`}
-              className={twMerge(
-                'group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 text-left flex flex-col h-full',
-                isVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-10',
-              )}
-              style={{ transitionDelay: `${index * 100}ms` }}
-            >
-              {/* Project Image */}
-              <div className="relative h-48 overflow-hidden shrink-0">
-                <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-600" />
-                {project.image && (
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                )}
-                <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
-                <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/80 to-transparent z-10 transition-opacity duration-300" />
-
-                <div className="absolute top-4 left-4 z-20">
-                  <span
-                    className={twMerge(
-                      'px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md',
-                      getStatusClass(project.status),
+        <motion.div
+          layout
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredProjects.map((project, index) => (
+              <motion.div
+                layout
+                key={project.id}
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{
+                  type: 'spring',
+                  stiffness: 300,
+                  damping: 25,
+                  opacity: { duration: 0.2 },
+                }}
+                className="h-full"
+              >
+                <Link
+                  href={`/projects/${generateSlug(project.title)}`}
+                  className={twMerge(
+                    'group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 text-left flex flex-col h-full',
+                  )}
+                >
+                  {/* Project Image */}
+                  <div className="relative h-48 overflow-hidden shrink-0">
+                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-600" />
+                    {project.image && (
+                      <Image
+                        src={project.image}
+                        alt={project.title}
+                        fill
+                        className="object-cover group-hover:scale-110 transition-transform duration-500"
+                      />
                     )}
-                  >
-                    {project.status}
-                  </span>
-                </div>
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors duration-500" />
+                    <div className="absolute top-0 left-0 right-0 h-24 bg-gradient-to-b from-black/80 to-transparent z-10 transition-opacity duration-300" />
 
-                {!project.image && (
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="text-6xl text-white/30">
-                      {project.category === 'Enterprise' && <FaChartLine />}
-                      {project.category === 'SaaS' && <FaRocket />}
-                      {project.category === 'E-commerce' && <FaUsers />}
-                      {project.category === 'Mobile' && <FaMobile />}
-                      {project.category === 'Open Source' && <FaAward />}
-                      {project.category === 'Frontend' && <FaCode />}
-                      {project.category === 'Featured' && <FaAward />}
-                      {project.category.includes('Nanodegree') && <FaCode />}
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              {/* Project Content */}
-              <div className="p-6 flex flex-col flex-grow">
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors">
-                    {project.title}
-                  </h3>
-                  <div className="flex space-x-3 text-sm text-gray-500 dark:text-gray-400">
-                    {project.stars !== undefined && project.stars > 0 && (
-                      <div
-                        className="flex items-center space-x-1"
-                        title="Stars"
+                    <div className="absolute top-4 left-4 z-20">
+                      <span
+                        className={twMerge(
+                          'px-3 py-1 rounded-full text-xs font-semibold backdrop-blur-md',
+                          getStatusClass(project.status),
+                        )}
                       >
-                        <FaStar className="text-yellow-400" />
-                        <span>{project.stars}</span>
-                      </div>
-                    )}
-                    {project.forks !== undefined && project.forks > 0 && (
-                      <div
-                        className="flex items-center space-x-1"
-                        title="Forks"
-                      >
-                        <FaCodeBranch className="text-blue-400" />
-                        <span>{project.forks}</span>
-                      </div>
-                    )}
-                  </div>
-                </div>
-
-                <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 flex-grow">
-                  {project.description}
-                </p>
-
-                {/* Technologies */}
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {project.technologies.slice(0, 4).map((tech) => (
-                    <div
-                      key={tech}
-                      className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full text-xs"
-                    >
-                      {getTechIcon(tech)}
-                      <span className="text-gray-700 dark:text-gray-300">
-                        {tech}
+                        {project.status}
                       </span>
                     </div>
-                  ))}
-                  {project.technologies.length > 4 && (
-                    <div className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-700 dark:text-gray-300">
-                      +{project.technologies.length - 4} more
-                    </div>
-                  )}
-                </div>
 
-                {/* Action Buttons */}
-                <div className="flex space-x-2 mt-auto">
-                  {project.github && (
-                    <a
-                      href={project.github}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 bg-gray-900 dark:bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors flex items-center justify-center space-x-2"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <FaGithub />
-                      <span>Code</span>
-                    </a>
-                  )}
-                  {project.demo && (
-                    <a
-                      href={project.demo}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-4 rounded-lg hover:shadow-lg transition-all flex items-center justify-center space-x-2"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      <FaExternalLinkAlt />
-                      <span>Live</span>
-                    </a>
-                  )}
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
+                    {!project.image && (
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <div className="text-6xl text-white/30">
+                          {project.category === 'Enterprise' && <FaChartLine />}
+                          {project.category === 'SaaS' && <FaRocket />}
+                          {project.category === 'E-commerce' && <FaUsers />}
+                          {project.category === 'Mobile' && <FaMobile />}
+                          {project.category === 'Open Source' && <FaAward />}
+                          {project.category === 'Frontend' && <FaCode />}
+                          {project.category === 'Featured' && <FaAward />}
+                          {project.category.includes('Nanodegree') && (
+                            <FaCode />
+                          )}
+                        </div>
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Project Content */}
+                  <div className="p-6 flex flex-col flex-grow">
+                    <div className="flex justify-between items-start mb-2">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors">
+                        {project.title}
+                      </h3>
+                      <div className="flex space-x-3 text-sm text-gray-500 dark:text-gray-400">
+                        {project.stars !== undefined && project.stars > 0 && (
+                          <div
+                            className="flex items-center space-x-1"
+                            title="Stars"
+                          >
+                            <FaStar className="text-yellow-400" />
+                            <span>{project.stars}</span>
+                          </div>
+                        )}
+                        {project.forks !== undefined && project.forks > 0 && (
+                          <div
+                            className="flex items-center space-x-1"
+                            title="Forks"
+                          >
+                            <FaCodeBranch className="text-blue-400" />
+                            <span>{project.forks}</span>
+                          </div>
+                        )}
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600 dark:text-gray-300 mb-4 line-clamp-2 flex-grow">
+                      {project.description}
+                    </p>
+
+                    {/* Technologies */}
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {project.technologies.slice(0, 4).map((tech) => (
+                        <div
+                          key={tech}
+                          className="flex items-center space-x-1 bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full text-xs"
+                        >
+                          {getTechIcon(tech)}
+                          <span className="text-gray-700 dark:text-gray-300">
+                            {tech}
+                          </span>
+                        </div>
+                      ))}
+                      {project.technologies.length > 4 && (
+                        <div className="bg-gray-100 dark:bg-gray-700 px-2 py-1 rounded-full text-xs text-gray-700 dark:text-gray-300">
+                          +{project.technologies.length - 4} more
+                        </div>
+                      )}
+                    </div>
+
+                    {/* Action Buttons */}
+                    <div className="flex space-x-2 mt-auto">
+                      {project.github && (
+                        <a
+                          href={project.github}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-gray-900 dark:bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors flex items-center justify-center space-x-2"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <FaGithub />
+                          <span>Code</span>
+                        </a>
+                      )}
+                      {project.demo && (
+                        <a
+                          href={project.demo}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-4 rounded-lg hover:shadow-lg transition-all flex items-center justify-center space-x-2"
+                          onClick={(e) => e.stopPropagation()}
+                        >
+                          <FaExternalLinkAlt />
+                          <span>Live</span>
+                        </a>
+                      )}
+                    </div>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );

@@ -60,7 +60,7 @@
       "label": "Years Experience"
     },
     "projects": {
-      "value": "50+",
+      "value": "20+",
       "label": "Projects Delivered"
     },
     "technologies": {
@@ -68,7 +68,7 @@
       "label": "Technologies"
     },
     "teamMembers": {
-      "value": "10+",
+      "value": "6+",
       "label": "Team Members Led"
     }
   },
@@ -346,7 +346,8 @@
       "achievements": [
         "Frontend Developer Nanodegree (Udacity)",
         "Google Code-In Mentor (Sugar Labs)"
-      ]
+      ],
+      "image": "/images/education/iiitv_logo.png"
     }
   ],
   "certifications": [
@@ -666,5 +667,101 @@
     "showEducation": true,
     "contactFormEnabled": true,
     "downloadResumeEnabled": true
+  },
+  "professionalImpact": [
+    {
+      "icon": "🚀",
+      "title": "Performance Optimization",
+      "description": "Improved application performance by 60% through advanced optimization techniques and modern architecture patterns",
+      "metric": "60% faster"
+    },
+    {
+      "icon": "👥",
+      "title": "Team Leadership",
+      "description": "Led cross-functional teams of 10+ developers, delivering complex projects on time with exceptional quality",
+      "metric": "10+ developers"
+    },
+    {
+      "icon": "🏗️",
+      "title": "Architecture Design",
+      "description": "Designed scalable microservices architecture serving 1M+ users with 99.9% uptime and reliability",
+      "metric": "99.9% uptime"
+    }
+  ],
+  "sections": {
+    "hero": {
+      "prefix": "Building the",
+      "highlight": "Future",
+      "suffix": "of Web",
+      "descriptionPrefix": "with",
+      "descriptionSuffix": "of experience crafting exceptional digital experiences using cutting-edge technologies and AI-driven solutions.",
+      "ctaPrimary": "Explore My Work",
+      "ctaSecondary": "Let's Connect"
+    },
+    "about": {
+      "title": "About",
+      "highlight": "Me",
+      "description": "I'm a passionate Senior Software Engineer with over 7 years of experience building scalable web applications and leading high-performing teams. I specialize in modern JavaScript frameworks, cloud architecture, and creating exceptional user experiences that drive business growth.",
+      "cards": {
+        "innovation": {
+          "icon": "🚀",
+          "title": "Innovation",
+          "description": "Always exploring cutting-edge technologies to solve complex problems"
+        },
+        "leadership": {
+          "icon": "👥",
+          "title": "Leadership",
+          "description": "Leading teams and mentoring developers to achieve exceptional results"
+        },
+        "performance": {
+          "icon": "⚡",
+          "title": "Performance",
+          "description": "Optimizing applications for speed, scalability, and user experience"
+        }
+      }
+    },
+    "certifications": {
+      "title": "Certifications",
+      "linkText": "View Certificate"
+    },
+    "skills": {
+      "title": "Technical Expertise",
+      "heading": "Skills & Technologies",
+      "description": "Mastering cutting-edge technologies to build scalable, performant, and innovative solutions",
+      "professionalImpactTitle": "Professional Impact"
+    },
+    "projects": {
+      "title": "Featured Work",
+      "heading": "Featured Projects",
+      "description": "A showcase of my technical projects, open source contributions, and experiments"
+    },
+    "resume": {
+      "title": "Professional Journey",
+      "heading": "Career & Achievements",
+      "description": "years of progressive growth in software engineering, from junior developer to technical leader",
+      "downloadButton": "Download Resume",
+      "tabs": {
+        "experience": "Experience",
+        "education": "Education",
+        "certifications": "Certifications"
+      }
+    },
+    "contact": {
+      "title": "Let's Work Together",
+      "description": "Ready to bring your ideas to life? Let's discuss how I can help you build exceptional digital experiences.",
+      "getInTouch": "Get In Touch",
+      "getInTouchDesc": "I'm always interested in new opportunities, challenging projects, and great conversations. Whether you're looking for a technical leader, want to collaborate on a project, or just want to say hello, I'd love to hear from you.",
+      "connectWithMe": "Connect With Me",
+      "currentAvailability": "Current Availability",
+      "sendMessage": "Send a Message",
+      "successMessage": "Your message has been sent successfully. I'll get back to you within 24 hours.",
+      "form": {
+        "name": "Name *",
+        "email": "Email *",
+        "company": "Company",
+        "subject": "Subject *",
+        "message": "Message *"
+      }
+    }
   }
 }

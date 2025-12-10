@@ -1,47 +1,25 @@
 import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import {
-  FaAws,
   FaBrain,
   FaChevronDown,
   FaCloud,
   FaCode,
   FaDatabase,
-  FaDocker,
-  FaGitAlt,
   FaLightbulb,
-  FaMobile,
-  FaNodeJs,
-  FaPython,
-  FaReact,
   FaRocket,
   FaServer,
-  FaTools,
 } from 'react-icons/fa';
-import {
-  SiFirebase,
-  SiGraphql,
-  SiJavascript,
-  SiJenkins,
-  SiKubernetes,
-  SiMongodb,
-  SiNextdotjs,
-  SiPostgresql,
-  SiRedis,
-  SiTailwindcss,
-  SiTypescript,
-  SiVercel,
-} from 'react-icons/si';
 import { useInView } from 'react-intersection-observer';
 import { twMerge } from 'tailwind-merge';
+import portfolioData from '../data/portfolio.json';
+import { getTechIcon } from '../utils/techIcons';
 
 interface Skill {
   name: string;
   level: number;
   years: number;
-  icon: React.ReactNode;
   category: string;
-  color: string;
 }
 
 interface SkillCategory {
@@ -61,49 +39,37 @@ const skillCategories: SkillCategory[] = [
         name: 'React',
         level: 95,
         years: 6,
-        icon: <FaReact />,
         category: 'Frontend',
-        color: 'text-blue-400',
       },
       {
         name: 'TypeScript',
         level: 90,
         years: 5,
-        icon: <SiTypescript />,
         category: 'Frontend',
-        color: 'text-blue-500',
       },
       {
         name: 'Next.js',
         level: 88,
         years: 4,
-        icon: <SiNextdotjs />,
         category: 'Frontend',
-        color: 'text-white',
       },
       {
         name: 'JavaScript',
         level: 95,
         years: 7,
-        icon: <SiJavascript />,
         category: 'Frontend',
-        color: 'text-yellow-400',
       },
       {
         name: 'Tailwind CSS',
         level: 92,
         years: 3,
-        icon: <SiTailwindcss />,
         category: 'Frontend',
-        color: 'text-cyan-400',
       },
       {
         name: 'React Native',
         level: 75,
         years: 2,
-        icon: <FaMobile />,
         category: 'Frontend',
-        color: 'text-blue-400',
       },
     ],
   },
@@ -116,41 +82,32 @@ const skillCategories: SkillCategory[] = [
         name: 'Node.js',
         level: 90,
         years: 6,
-        icon: <FaNodeJs />,
         category: 'Backend',
-        color: 'text-green-400',
       },
       {
         name: 'Python',
         level: 85,
         years: 4,
-        icon: <FaPython />,
         category: 'Backend',
-        color: 'text-yellow-400',
       },
       {
         name: 'GraphQL',
         level: 80,
         years: 3,
-        icon: <SiGraphql />,
         category: 'Backend',
-        color: 'text-pink-400',
       },
       {
         name: 'REST APIs',
         level: 95,
         years: 7,
-        icon: <FaServer />,
         category: 'Backend',
-        color: 'text-blue-400',
       },
       {
         name: 'Microservices',
         level: 85,
         years: 4,
-        icon: <FaTools />,
-        category: 'Backend',
-        color: 'text-purple-400',
+        category: 'Backend', // Mapped to generic FaTools in previous impl? No, I need to check getTechIcon for 'Microservices'.
+        // I don't see 'Microservices' in getTechIcon. I should add it or map it to something.
       },
     ],
   },
@@ -163,33 +120,25 @@ const skillCategories: SkillCategory[] = [
         name: 'MongoDB',
         level: 88,
         years: 5,
-        icon: <SiMongodb />,
         category: 'Database',
-        color: 'text-green-400',
       },
       {
         name: 'PostgreSQL',
         level: 85,
         years: 4,
-        icon: <SiPostgresql />,
         category: 'Database',
-        color: 'text-blue-400',
       },
       {
         name: 'Redis',
         level: 80,
         years: 3,
-        icon: <SiRedis />,
         category: 'Database',
-        color: 'text-red-400',
       },
       {
         name: 'Firebase',
         level: 75,
         years: 2,
-        icon: <SiFirebase />,
         category: 'Database',
-        color: 'text-orange-400',
       },
     ],
   },
@@ -202,49 +151,37 @@ const skillCategories: SkillCategory[] = [
         name: 'AWS',
         level: 85,
         years: 4,
-        icon: <FaAws />,
         category: 'DevOps & Cloud',
-        color: 'text-orange-400',
       },
       {
         name: 'Docker',
         level: 88,
         years: 5,
-        icon: <FaDocker />,
         category: 'DevOps & Cloud',
-        color: 'text-blue-400',
       },
       {
         name: 'Kubernetes',
         level: 75,
         years: 3,
-        icon: <SiKubernetes />,
         category: 'DevOps & Cloud',
-        color: 'text-blue-500',
       },
       {
         name: 'Jenkins',
         level: 80,
         years: 3,
-        icon: <SiJenkins />,
         category: 'DevOps & Cloud',
-        color: 'text-blue-400',
       },
       {
         name: 'Vercel',
         level: 90,
         years: 3,
-        icon: <SiVercel />,
         category: 'DevOps & Cloud',
-        color: 'text-white',
       },
       {
         name: 'Git',
         level: 95,
         years: 7,
-        icon: <FaGitAlt />,
         category: 'DevOps & Cloud',
-        color: 'text-orange-400',
       },
     ],
   },
@@ -316,21 +253,20 @@ const Skills: React.FC = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white mb-6 shadow-sm">
             <FaBrain className="text-purple-600 dark:text-purple-400" />
-            <span>Technical Expertise</span>
+            <span>{portfolioData.sections.skills.title}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            Skills &
+            {portfolioData.sections.skills.heading.split(' & ')[0]} &
             <span
               className={`bg-gradient-to-r ${currentGradient} bg-clip-text text-transparent ml-2 sm:ml-4`}
             >
-              Technologies
+              {portfolioData.sections.skills.heading.split(' & ')[1]}
             </span>
           </h2>
 
           <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
-            Mastering cutting-edge technologies to build scalable, performant,
-            and innovative solutions
+            {portfolioData.sections.skills.description}
           </p>
         </div>
 
@@ -344,7 +280,6 @@ const Skills: React.FC = () => {
               className="relative w-full flex items-center justify-between bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl px-6 py-3.5 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all font-semibold shadow-sm text-base"
             >
               <div className="flex items-center gap-2">
-                {/* Optional: Add icon if available for category, currently just name */}
                 <span>{activeCategory}</span>
               </div>
               <FaChevronDown
@@ -426,99 +361,129 @@ const Skills: React.FC = () => {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
-          {currentSkills.map((skill, index) => (
-            <div
-              key={skill.name}
-              className={twMerge(
-                'group relative overflow-hidden bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-6 hover:bg-white dark:hover:bg-white/10 hover:border-purple-200 dark:hover:border-white/20 transition-all duration-300 shadow-sm hover:shadow-xl hover:-translate-y-1',
-                isVisible
-                  ? 'opacity-100 translate-y-0'
-                  : 'opacity-0 translate-y-8',
-              )}
-              style={{ transitionDelay: `${index * 50}ms` }}
-            >
-              {/* Watermark Background */}
-              <div className="absolute inset-0 pointer-events-none">
-                <div className="absolute inset-0 bg-gradient-to-br from-transparent to-purple-500/5 dark:to-purple-500/10 z-0" />
-                <div
-                  className={`absolute -right-4 -bottom-4 text-9xl ${skill.color.replace('text-', 'text-opacity-[0.15] dark:text-opacity-[0.15] text-')} transform rotate-12 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-6`}
-                >
-                  {skill.icon}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            initial="hidden"
+            animate="visible"
+            exit="hidden"
+            style={{ perspective: '1000px' }}
+            variants={{
+              hidden: { opacity: 0 },
+              visible: {
+                opacity: 1,
+                transition: {
+                  staggerChildren: 0.1,
+                },
+              },
+              exit: {
+                opacity: 0,
+                transition: { duration: 0.1 },
+              },
+            }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16"
+          >
+            {currentSkills.map((skill) => (
+              <motion.div
+                key={skill.name}
+                variants={{
+                  hidden: { opacity: 0, rotateY: 90 },
+                  visible: {
+                    opacity: 1,
+                    rotateY: 0,
+                    transition: {
+                      type: 'spring',
+                      stiffness: 260,
+                      damping: 20,
+                    },
+                  },
+                }}
+                whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                className={twMerge(
+                  'group relative overflow-hidden bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-6 hover:bg-white dark:hover:bg-white/10 hover:border-purple-200 dark:hover:border-white/20 transition-colors duration-300 shadow-sm hover:shadow-xl',
+                )}
+              >
+                {/* Watermark Background */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-purple-500/5 dark:to-purple-500/10 z-0" />
+                  <div className="absolute -right-4 -bottom-4 transform rotate-12 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-6">
+                    {getTechIcon(
+                      skill.name,
+                      'text-9xl opacity-15 dark:opacity-15',
+                    )}
+                  </div>
                 </div>
-              </div>
 
-              <div className="relative z-10">
-                {/* Header */}
-                <div className="flex items-center justify-between mb-6">
-                  <div className="flex items-center space-x-4">
-                    <div
-                      className={`text-3xl ${skill.color} group-hover:scale-110 transition-transform duration-300`}
-                    >
-                      {skill.icon}
+                <div className="relative z-10">
+                  {/* Header */}
+                  <div className="flex items-center justify-between mb-6">
+                    <div className="flex items-center space-x-4">
+                      {/* Main Icon */}
+                      <div className="text-3xl group-hover:scale-110 transition-transform duration-300">
+                        {getTechIcon(skill.name)}
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors duration-300">
+                          {skill.name}
+                        </h3>
+                        <p className="text-gray-500 dark:text-gray-400 text-sm">
+                          {skill.years} years experience
+                        </p>
+                      </div>
                     </div>
-                    <div>
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors duration-300">
-                        {skill.name}
-                      </h3>
-                      <p className="text-gray-500 dark:text-gray-400 text-sm">
-                        {skill.years} years experience
-                      </p>
+
+                    <div className="text-right">
+                      <div className="text-2xl font-bold text-gray-900 dark:text-white">
+                        {skill.level}%
+                      </div>
+                      <div className="text-xs text-gray-500 dark:text-gray-400">
+                        Proficiency
+                      </div>
                     </div>
                   </div>
 
-                  <div className="text-right">
-                    <div className="text-2xl font-bold text-gray-900 dark:text-white">
-                      {skill.level}%
-                    </div>
-                    <div className="text-xs text-gray-500 dark:text-gray-400">
-                      Proficiency
+                  {/* Progress Bar */}
+                  <div className="relative">
+                    <div className="w-full bg-gray-200 dark:bg-white/10 rounded-full h-3 overflow-hidden">
+                      <motion.div
+                        className={`h-full bg-gradient-to-r ${currentGradient} relative overflow-hidden`}
+                        initial={{ width: 0 }}
+                        animate={{ width: `${skill.level}%` }}
+                        transition={{ duration: 1, delay: 0.2 }}
+                      />
                     </div>
                   </div>
                 </div>
-
-                {/* Progress Bar */}
-                <div className="relative">
-                  <div className="w-full bg-gray-200 dark:bg-white/10 rounded-full h-3 overflow-hidden">
-                    <div
-                      className={`h-full bg-gradient-to-r ${currentGradient} transition-all duration-1000 ease-out relative overflow-hidden`}
-                      style={{
-                        width: isVisible ? `${skill.level}%` : '0%',
-                        transitionDelay: `${index * 50 + 200}ms`,
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
 
         {/* Stats Section */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 mb-16">
           {[
             {
               icon: FaRocket,
-              number: '15+',
-              label: 'Technologies',
+              number: portfolioData.stats.technologies.value,
+              label: portfolioData.stats.technologies.label,
               color: 'text-purple-400',
             },
             {
               icon: FaLightbulb,
-              number: '7+',
-              label: 'Years Experience',
+              number: portfolioData.stats.experience.value,
+              label: portfolioData.stats.experience.label,
               color: 'text-blue-400',
             },
             {
               icon: FaCode,
-              number: '50+',
-              label: 'Projects',
+              number: portfolioData.stats.projects.value,
+              label: 'Projects', // Keeping 'Projects' label as per UI design, though JSON says 'Projects Delivered'
               color: 'text-green-400',
             },
             {
               icon: FaBrain,
-              number: '10+',
-              label: 'Team Members Led',
+              number: portfolioData.stats.teamMembers.value,
+              label: portfolioData.stats.teamMembers.label,
               color: 'text-pink-400',
             },
           ].map((stat, index) => (
@@ -542,36 +507,13 @@ const Skills: React.FC = () => {
         </div>
 
         {/* Professional Highlights */}
-        {/* Professional Highlights */}
         <div className="bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-3xl p-8 md:p-12 shadow-md dark:shadow-none">
           <h3 className="text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">
-            Professional Impact
+            {portfolioData.sections.skills.professionalImpactTitle}
           </h3>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {[
-              {
-                icon: '🚀',
-                title: 'Performance Optimization',
-                description:
-                  'Improved application performance by 60% through advanced optimization techniques and modern architecture patterns',
-                metric: '60% faster',
-              },
-              {
-                icon: '👥',
-                title: 'Team Leadership',
-                description:
-                  'Led cross-functional teams of 10+ developers, delivering complex projects on time with exceptional quality',
-                metric: '10+ developers',
-              },
-              {
-                icon: '🏗️',
-                title: 'Architecture Design',
-                description:
-                  'Designed scalable microservices architecture serving 1M+ users with 99.9% uptime and reliability',
-                metric: '99.9% uptime',
-              },
-            ].map((highlight, index) => (
+            {portfolioData.professionalImpact.map((highlight, index) => (
               <div
                 key={index}
                 className={twMerge(

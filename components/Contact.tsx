@@ -230,8 +230,7 @@ const Contact: React.FC = () => {
               Thank You!
             </h2>
             <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-              Your message has been sent successfully. I'll get back to you
-              within 24 hours.
+              {portfolioData.sections.contact.successMessage}
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
@@ -254,14 +253,14 @@ const Contact: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
-            Let's Work{' '}
+            {portfolioData.sections.contact.title.split(' ')[0]}{' '}
+            {portfolioData.sections.contact.title.split(' ')[1]}{' '}
             <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
-              Together
+              {portfolioData.sections.contact.title.split(' ')[2]}
             </span>
           </h2>
           <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Ready to bring your ideas to life? Let's discuss how I can help you
-            build exceptional digital experiences.
+            {portfolioData.sections.contact.description}
           </p>
         </div>
 
@@ -277,13 +276,10 @@ const Contact: React.FC = () => {
           >
             <div className="text-center lg:text-left">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Get In Touch
+                {portfolioData.sections.contact.getInTouch}
               </h3>
               <p className="text-gray-600 dark:text-gray-300 text-lg leading-relaxed mb-8">
-                I'm always interested in new opportunities, challenging
-                projects, and great conversations. Whether you're looking for a
-                technical leader, want to collaborate on a project, or just want
-                to say hello, I'd love to hear from you.
+                {portfolioData.sections.contact.getInTouchDesc}
               </p>
             </div>
 
@@ -319,7 +315,7 @@ const Contact: React.FC = () => {
             {/* Social Links */}
             <div className="text-center lg:text-left">
               <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
-                Connect With Me
+                {portfolioData.sections.contact.connectWithMe}
               </h4>
               <div className="flex justify-center lg:justify-start space-x-4">
                 {socialLinks.map((social, index) => (
@@ -344,7 +340,7 @@ const Contact: React.FC = () => {
             {/* Availability */}
             <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 p-6 rounded-xl">
               <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
-                Current Availability
+                {portfolioData.sections.contact.currentAvailability}
               </h4>
               <p className="text-gray-700 dark:text-gray-300">
                 I'm currently{' '}
@@ -366,7 +362,7 @@ const Contact: React.FC = () => {
           >
             <div className="bg-white/80 dark:bg-gray-800 rounded-2xl p-8 shadow-lg border border-gray-200 dark:border-gray-700">
               <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
-                Send a Message
+                {portfolioData.sections.contact.sendMessage}
               </h3>
 
               <form ref={form} onSubmit={handleSubmit} className="space-y-6">
@@ -376,7 +372,7 @@ const Contact: React.FC = () => {
                       htmlFor="name"
                       className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                     >
-                      Name *
+                      {portfolioData.sections.contact.form.name}
                     </label>
                     <input
                       type="text"
@@ -402,7 +398,7 @@ const Contact: React.FC = () => {
                       htmlFor="email"
                       className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                     >
-                      Email *
+                      {portfolioData.sections.contact.form.email}
                     </label>
                     <input
                       type="email"
@@ -431,7 +427,7 @@ const Contact: React.FC = () => {
                     htmlFor="company"
                     className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                   >
-                    Company
+                    {portfolioData.sections.contact.form.company}
                   </label>
                   <input
                     type="text"
@@ -449,7 +445,7 @@ const Contact: React.FC = () => {
                     htmlFor="subject"
                     className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                   >
-                    Subject *
+                    {portfolioData.sections.contact.form.subject}
                   </label>
                   <input
                     type="text"
@@ -477,7 +473,7 @@ const Contact: React.FC = () => {
                     htmlFor="message"
                     className="block text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2"
                   >
-                    Message *
+                    {portfolioData.sections.contact.form.message}
                   </label>
                   <textarea
                     id="message"
