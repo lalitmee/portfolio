@@ -4,7 +4,6 @@ import NextImage from 'next/image';
 import { useRouter } from 'next/router';
 import React from 'react';
 import {
-  FaArrowLeft,
   FaAward,
   FaChartLine,
   FaCode,
@@ -18,7 +17,6 @@ import {
 } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 import Navigation from '../../components/Navigation';
-import GlassButton from '../../components/ui/GlassButton';
 import portfolioData from '../../data/portfolio.json';
 import { generateSlug } from '../../utils/slug';
 import { getTechIcon } from '../../utils/techIcons';
@@ -70,23 +68,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
         <meta name="description" content={project.description} />
       </Head>
 
-      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="mb-8">
-          <div className="inline-block">
-            <GlassButton
-              onClick={() => {
-                if (window.history.length > 2) {
-                  router.back();
-                } else {
-                  router.push('/#projects');
-                }
-              }}
-              icon={<FaArrowLeft />}
-            >
-              Back to Projects
-            </GlassButton>
-          </div>
-        </div>
+      <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-12 lg:pt-28">
         <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl">
           {/* Hero Section */}
           <div className="relative h-64 md:h-96 overflow-hidden">

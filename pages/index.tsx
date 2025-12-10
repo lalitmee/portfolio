@@ -23,18 +23,21 @@ import Testimonials from '../components/Testimonials';
 let hasShownSplash = false;
 
 export default function Home() {
-  // Initialize state based on global variable to prevent flash on back navigation
+  // Initialize state based on global variable to prevent flash on back navigation (SPA)
   const [loading, setLoading] = useState(() => {
-    // If we've already shown it in this SPA session, don't show it again
+    // If we've already shown it in this SPA session (hasShownSplash is true), don't show it again.
+    // This allows instant back navigation.
     if (hasShownSplash) return false;
+    // Otherwise, default to true to match server-side rendering (avoids hydration mismatch).
     return true;
   });
 
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    // Check if we've defined the global yet (first mount)
-    if (!hasShownSplash) {
+    // Check if we need to run splash logic
+    if (!hasShownSplash && loading) {
+      // Only check if currently loading and haven't shown splash
       // Check session storage for page refreshes
       const sessionLoaded = sessionStorage.getItem('portfolio_loaded');
 
@@ -50,7 +53,7 @@ export default function Home() {
         return () => clearTimeout(timeout);
       }
     }
-  }, []);
+  }, [loading]);
 
   // Track active section using IntersectionObserver for better performance
   useEffect(() => {
