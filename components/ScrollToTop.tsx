@@ -52,7 +52,7 @@ const ScrollToTop: React.FC = () => {
             },
           }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-[100] p-3 rounded-full bg-gradient-to-r from-purple-600 to-blue-600 text-white shadow-lg shadow-purple-500/30 hover:shadow-purple-500/50 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
+          className="fixed bottom-8 right-8 z-[100] p-3 rounded-full bg-gradient-to-r from-primary-600 to-blue-600 text-white shadow-lg shadow-primary-500/30 hover:shadow-primary-500/50 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 dark:focus:ring-offset-gray-900"
           aria-label="Scroll to top"
         >
           <FaArrowUp className="w-5 h-5" />

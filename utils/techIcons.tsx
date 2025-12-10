@@ -111,7 +111,7 @@ export const getTechIcon = (tech: string, className?: string) => {
       break;
     case 'stripe':
       Icon = SiStripe;
-      defaultClass = 'text-purple-400';
+      defaultClass = 'text-primary-400';
       break;
     case 'storybook':
       Icon = SiStorybook;
@@ -143,7 +143,7 @@ export const getTechIcon = (tech: string, className?: string) => {
       break;
     case 'redux':
       Icon = SiRedux;
-      defaultClass = 'text-purple-500';
+      defaultClass = 'text-primary-500';
       break;
     case 'shell':
     case 'bash':
@@ -158,7 +158,7 @@ export const getTechIcon = (tech: string, className?: string) => {
       break;
     case 'bootstrap':
       Icon = SiBootstrap;
-      defaultClass = 'text-purple-600';
+      defaultClass = 'text-primary-600';
       break;
     case 'jquery':
       Icon = SiJquery;
@@ -166,7 +166,7 @@ export const getTechIcon = (tech: string, className?: string) => {
       break;
     case 'jasmine':
       Icon = SiJasmine;
-      defaultClass = 'text-purple-800';
+      defaultClass = 'text-primary-800';
       break;
     case 'google maps api':
       Icon = SiGooglemaps;

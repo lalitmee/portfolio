@@ -2,7 +2,6 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   FaBrain,
-  FaChevronDown,
   FaCloud,
   FaCode,
   FaDatabase,
@@ -14,6 +13,7 @@ import { useInView } from 'react-intersection-observer';
 import { twMerge } from 'tailwind-merge';
 import portfolioData from '../data/portfolio.json';
 import { getTechIcon } from '../utils/techIcons';
+import Tabs from './ui/Tabs';
 
 interface Skill {
   name: string;
@@ -33,7 +33,7 @@ const skillCategories: SkillCategory[] = [
   {
     name: 'Frontend',
     icon: <FaCode />,
-    gradient: 'from-purple-500 to-pink-500',
+    gradient: 'from-primary-500 to-pink-500',
     skills: [
       {
         name: 'React',
@@ -196,8 +196,12 @@ const Skills: React.FC = () => {
     threshold: 0.1,
   });
 
-  const [tabStyle, setTabStyle] = useState({ left: 0, width: 0 });
-  const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
+  const currentCategory = skillCategories.find(
+    (c) => c.name === activeCategory,
+  );
+  const currentSkills = currentCategory?.skills || [];
+  const currentGradient =
+    currentCategory?.gradient || 'from-primary-500 to-blue-500';
 
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
@@ -216,149 +220,35 @@ const Skills: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
-  useEffect(() => {
-    const activeIndex = skillCategories.findIndex(
-      (cat) => cat.name === activeCategory,
-    );
-    const activeTab = tabsRef.current[activeIndex];
-
-    if (activeTab) {
-      setTabStyle({
-        left: activeTab.offsetLeft,
-        width: activeTab.offsetWidth,
-      });
-    }
-  }, [activeCategory]);
-
-  const currentSkills =
-    skillCategories.find((cat) => cat.name === activeCategory)?.skills || [];
-  const currentGradient =
-    skillCategories.find((cat) => cat.name === activeCategory)?.gradient ||
-    'from-purple-500 to-blue-500';
-
   return (
-    <section
-      id="skills"
-      ref={ref}
-      className="py-20 bg-transparent relative overflow-hidden transition-colors duration-500"
-    >
-      {/* Animated Background Elements - Simplified */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
-        {/* Header */}
+    <section id="skills" ref={ref} className="py-20 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white mb-6 shadow-sm">
-            <FaBrain className="text-purple-600 dark:text-purple-400" />
-            <span>{portfolioData.sections.skills.title}</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            {portfolioData.sections.skills.heading.split(' & ')[0]} &
-            <span
-              className={`bg-gradient-to-r ${currentGradient} bg-clip-text text-transparent ml-2 sm:ml-4`}
-            >
-              {portfolioData.sections.skills.heading.split(' & ')[1]}
-            </span>
+          <h2 className="text-base text-primary-600 dark:text-primary-400 font-semibold tracking-wide uppercase">
+            {portfolioData.sections.skills.title}
           </h2>
-
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            {portfolioData.sections.skills.heading}
+          </p>
+          <p className="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400 mx-auto">
             {portfolioData.sections.skills.description}
           </p>
         </div>
 
-        {/* Mobile Custom Dropdown */}
-        <div className="md:hidden flex justify-center mb-12 px-6">
-          <div className="relative w-full max-w-sm" ref={dropdownRef}>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-xl blur-sm" />
-
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="relative w-full flex items-center justify-between bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl px-6 py-3.5 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all font-semibold shadow-sm text-base"
-            >
-              <div className="flex items-center gap-2">
-                <span>{activeCategory}</span>
-              </div>
-              <FaChevronDown
-                className={`w-4 h-4 text-purple-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
-              />
-            </button>
-
-            <AnimatePresence>
-              {isDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-full left-0 right-0 mt-2 bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-xl shadow-xl overflow-hidden z-50 py-2"
-                >
-                  {skillCategories.map((category) => (
-                    <button
-                      key={category.name}
-                      onClick={() => {
-                        setActiveCategory(category.name);
-                        setIsDropdownOpen(false);
-                        isAutomatic.current = false; // Stop auto-rotation when user selects
-                      }}
-                      className={twMerge(
-                        'w-full text-left px-6 py-3 transition-colors duration-200 flex items-center justify-between',
-                        activeCategory === category.name
-                          ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold'
-                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5',
-                      )}
-                    >
-                      <div className="flex items-center gap-2">
-                        {category.icon}
-                        <span>{category.name}</span>
-                      </div>
-                      {activeCategory === category.name && (
-                        <div className="w-2 h-2 rounded-full bg-purple-500" />
-                      )}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-
         {/* Category Tabs - Desktop */}
-        <div className="hidden md:flex justify-center mb-16">
-          <div className="relative bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-full p-2 inline-flex flex-wrap justify-center gap-2 shadow-sm">
-            {/* Sliding Background */}
-            <div
-              className="absolute top-2 bottom-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full shadow-lg shadow-purple-500/25 transition-all duration-300 ease-out"
-              style={{
-                left: tabStyle.left,
-                width: tabStyle.width,
-                opacity: tabStyle.width ? 1 : 0,
-              }}
-            />
-
-            {skillCategories.map((category, index) => (
-              <button
-                key={category.name}
-                ref={(el) => {
-                  tabsRef.current[index] = el;
-                }}
-                onClick={() => setActiveCategory(category.name)}
-                className={twMerge(
-                  'relative flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-colors duration-300 text-sm sm:text-base z-10',
-                  activeCategory === category.name
-                    ? 'text-white'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white',
-                )}
-              >
-                <span className="text-lg">{category.icon}</span>
-                <span>{category.name}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+        <Tabs
+          tabs={skillCategories.map((c) => ({
+            id: c.name,
+            label: c.name,
+            icon: c.icon,
+          }))}
+          activeId={activeCategory}
+          onChange={(id) => {
+            setActiveCategory(id);
+            isAutomatic.current = false;
+          }}
+          className="hidden md:flex mb-16"
+        />
 
         {/* Skills Grid */}
         <AnimatePresence mode="wait">
@@ -400,12 +290,12 @@ const Skills: React.FC = () => {
                 }}
                 whileHover={{ y: -5, transition: { duration: 0.2 } }}
                 className={twMerge(
-                  'group relative overflow-hidden bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-6 hover:bg-white dark:hover:bg-white/10 hover:border-purple-200 dark:hover:border-white/20 transition-colors duration-300 shadow-sm hover:shadow-xl',
+                  'group relative overflow-hidden bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-6 hover:bg-white dark:hover:bg-white/10 hover:border-primary-200 dark:hover:border-white/20 transition-colors duration-300 shadow-sm hover:shadow-xl',
                 )}
               >
                 {/* Watermark Background */}
                 <div className="absolute inset-0 pointer-events-none">
-                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-purple-500/5 dark:to-purple-500/10 z-0" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-transparent to-primary-500/5 dark:to-primary-500/10 z-0" />
                   <div className="absolute -right-4 -bottom-4 transform rotate-12 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-6">
                     {getTechIcon(
                       skill.name,
@@ -423,7 +313,7 @@ const Skills: React.FC = () => {
                         {getTechIcon(skill.name)}
                       </div>
                       <div>
-                        <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors duration-300">
+                        <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-300 transition-colors duration-300">
                           {skill.name}
                         </h3>
                         <p className="text-gray-500 dark:text-gray-400 text-sm">
@@ -466,7 +356,7 @@ const Skills: React.FC = () => {
               icon: FaRocket,
               number: portfolioData.stats.technologies.value,
               label: portfolioData.stats.technologies.label,
-              color: 'text-purple-400',
+              color: 'text-primary-400',
             },
             {
               icon: FaLightbulb,
@@ -531,7 +421,7 @@ const Skills: React.FC = () => {
                 <p className="text-gray-600 dark:text-gray-300 mb-4 leading-relaxed">
                   {highlight.description}
                 </p>
-                <div className="inline-flex items-center bg-purple-50 dark:bg-purple-500/20 border border-purple-100 dark:border-purple-500/30 backdrop-blur-md rounded-full px-4 py-2 text-sm font-semibold text-purple-600 dark:text-purple-300">
+                <div className="inline-flex items-center bg-primary-50 dark:bg-primary-500/20 border border-primary-100 dark:border-primary-500/30 backdrop-blur-md rounded-full px-4 py-2 text-sm font-semibold text-primary-600 dark:text-primary-300">
                   {highlight.metric}
                 </div>
               </div>

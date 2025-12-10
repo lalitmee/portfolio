@@ -124,7 +124,6 @@ const Contact: React.FC = () => {
           form.current,
           PUBLIC_KEY,
         );
-        console.log('Form submitted successfully');
         setIsSubmitted(true);
         setFormData({
           name: '',
@@ -135,10 +134,8 @@ const Contact: React.FC = () => {
         });
       }
     } catch (error) {
-      console.error('Error submitting form:', error);
       // Fallback for demo purposes if EmailJS is not configured
       if ((error as any).text?.includes('The user ID is required')) {
-        console.warn('EmailJS not configured. Simulating success.');
         setIsSubmitted(true);
         setFormData({
           name: '',
@@ -234,7 +231,7 @@ const Contact: React.FC = () => {
             </p>
             <button
               onClick={() => setIsSubmitted(false)}
-              className="bg-gradient-to-r from-purple-600 to-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
+              className="bg-gradient-to-r from-primary-600 to-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300 hover:scale-105 active:scale-95"
             >
               Send Another Message
             </button>
@@ -255,7 +252,7 @@ const Contact: React.FC = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
             {portfolioData.sections.contact.title.split(' ')[0]}{' '}
             {portfolioData.sections.contact.title.split(' ')[1]}{' '}
-            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">
               {portfolioData.sections.contact.title.split(' ')[2]}
             </span>
           </h2>
@@ -301,7 +298,7 @@ const Contact: React.FC = () => {
                     {info.icon}
                   </div>
                   <div>
-                    <div className="font-semibold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-400 transition-colors">
+                    <div className="font-semibold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-400 transition-colors">
                       {info.label}
                     </div>
                     <div className="text-gray-600 dark:text-gray-300">
@@ -338,7 +335,7 @@ const Contact: React.FC = () => {
             </div>
 
             {/* Availability */}
-            <div className="bg-gradient-to-r from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 p-6 rounded-xl">
+            <div className="bg-gradient-to-r from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20 p-6 rounded-xl">
               <h4 className="font-semibold text-gray-900 dark:text-white mb-2">
                 {portfolioData.sections.contact.currentAvailability}
               </h4>
@@ -381,12 +378,13 @@ const Contact: React.FC = () => {
                       value={formData.name}
                       onChange={handleInputChange}
                       className={twMerge(
-                        'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                        'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500',
                         errors.name
                           ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                           : 'border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white',
                       )}
                       placeholder="Your full name"
+                      autoComplete="name"
                     />
                     {errors.name && (
                       <p className="text-red-500 text-sm mt-1">{errors.name}</p>
@@ -407,12 +405,13 @@ const Contact: React.FC = () => {
                       value={formData.email}
                       onChange={handleInputChange}
                       className={twMerge(
-                        'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                        'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500',
                         errors.email
                           ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                           : 'border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white',
                       )}
                       placeholder="your.email@example.com"
+                      autoComplete="email"
                     />
                     {errors.email && (
                       <p className="text-red-500 text-sm mt-1">
@@ -435,8 +434,9 @@ const Contact: React.FC = () => {
                     name="company"
                     value={formData.company}
                     onChange={handleInputChange}
-                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 transition-colors duration-300"
+                    className="w-full px-4 py-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-primary-500 transition-colors duration-300"
                     placeholder="Your company name (optional)"
+                    autoComplete="organization"
                   />
                 </div>
 
@@ -454,12 +454,13 @@ const Contact: React.FC = () => {
                     value={formData.subject}
                     onChange={handleInputChange}
                     className={twMerge(
-                      'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500',
+                      'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500',
                       errors.subject
                         ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                         : 'border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white',
                     )}
                     placeholder="What's this about?"
+                    autoComplete="off"
                   />
                   {errors.subject && (
                     <p className="text-red-500 text-sm mt-1">
@@ -482,12 +483,13 @@ const Contact: React.FC = () => {
                     value={formData.message}
                     onChange={handleInputChange}
                     className={twMerge(
-                      'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-vertical',
+                      'w-full px-4 py-3 rounded-lg border transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-primary-500 resize-vertical',
                       errors.message
                         ? 'border-red-500 bg-red-50 dark:bg-red-900/20'
                         : 'border-gray-300 dark:border-gray-600 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white',
                     )}
                     placeholder="Tell me about your project, ideas, or just say hello..."
+                    autoComplete="off"
                   />
                   {errors.message && (
                     <p className="text-red-500 text-sm mt-1">
@@ -503,7 +505,7 @@ const Contact: React.FC = () => {
                     'w-full py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-[1.02] active:scale-[0.98]',
                     isSubmitting
                       ? 'bg-gray-400 cursor-not-allowed'
-                      : 'bg-gradient-to-r from-purple-600 to-blue-600 hover:shadow-lg hover:shadow-purple-500/25 text-white',
+                      : 'bg-gradient-to-r from-primary-600 to-blue-600 hover:shadow-lg hover:shadow-primary-500/25 text-white',
                   )}
                 >
                   {isSubmitting ? (

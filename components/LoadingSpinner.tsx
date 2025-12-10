@@ -40,13 +40,13 @@ const LoadingSpinner: React.FC<LoadingSpinnerProps> = ({
         <div className="relative">
           <div
             className={twMerge(
-              'animate-spin rounded-full border-4 border-purple-200 border-t-purple-600',
+              'animate-spin rounded-full border-4 border-primary-200 border-t-primary-600',
               spinnerSizes[size],
             )}
           />
           {size === 'xl' && (
             <div className="absolute inset-0 flex items-center justify-center">
-              <div className="w-16 h-16 bg-gradient-to-r from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
+              <div className="w-16 h-16 bg-gradient-to-r from-primary-600 to-blue-600 rounded-full flex items-center justify-center">
                 <span className="text-white font-bold text-lg">LK</span>
               </div>
             </div>

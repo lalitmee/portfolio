@@ -8,48 +8,11 @@ const SkillsSkeleton: React.FC = () => {
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-gray-100 dark:bg-gray-800 rounded-full px-4 py-2 mb-6">
             <div className="w-4 h-4 bg-gray-300 dark:bg-gray-700 rounded-full animate-pulse" />
-            <div className="w-32 h-4 bg-gray-300 dark:bg-gray-700 rounded animate-pulse" />
+            <div className="w-20 h-4 bg-gray-300 dark:bg-gray-700 rounded animate-pulse" />
           </div>
 
           <div className="h-10 sm:h-14 w-3/4 sm:w-1/2 mx-auto bg-gray-300 dark:bg-gray-700 rounded-lg animate-pulse mb-6" />
           <div className="h-6 w-full max-w-2xl mx-auto bg-gray-200 dark:bg-gray-800 rounded animate-pulse" />
-        </div>
-
-        {/* Category Tabs Skeleton */}
-        <div className="flex justify-center mb-16">
-          <div className="bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-full p-2 inline-flex flex-wrap justify-center gap-2">
-            {[1, 2, 3, 4].map((i) => (
-              <div
-                key={i}
-                className="w-32 h-12 bg-gray-200 dark:bg-gray-800 rounded-full animate-pulse"
-              />
-            ))}
-          </div>
-        </div>
-
-        {/* Skills Grid Skeleton */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
-          {[1, 2, 3, 4, 5, 6].map((i) => (
-            <div
-              key={i}
-              className="bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-6 h-[180px] animate-pulse"
-            >
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-gray-300 dark:bg-gray-700 rounded-lg" />
-                  <div>
-                    <div className="w-24 h-6 bg-gray-300 dark:bg-gray-700 rounded mb-2" />
-                    <div className="w-32 h-4 bg-gray-200 dark:bg-gray-800 rounded" />
-                  </div>
-                </div>
-                <div className="text-right">
-                  <div className="w-12 h-8 bg-gray-300 dark:bg-gray-700 rounded mb-1" />
-                  <div className="w-16 h-3 bg-gray-200 dark:bg-gray-800 rounded" />
-                </div>
-              </div>
-              <div className="w-full bg-gray-200 dark:bg-gray-800 rounded-full h-3" />
-            </div>
-          ))}
         </div>
 
         {/* Stats Section Skeleton */}

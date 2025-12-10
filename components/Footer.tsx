@@ -113,7 +113,7 @@ const Footer: React.FC = () => {
             {/* Brand & Bio */}
             <div className="lg:col-span-2">
               <div className="flex items-center space-x-3 mb-6">
-                <div className="w-12 h-12 bg-gradient-to-r from-purple-600 to-blue-600 rounded-xl flex items-center justify-center">
+                <div className="w-12 h-12 bg-gradient-to-r from-primary-600 to-blue-600 rounded-xl flex items-center justify-center">
                   <FaCode className="text-white text-xl" />
                 </div>
                 <div>
@@ -142,7 +142,7 @@ const Footer: React.FC = () => {
                   {skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-3 py-1 bg-white/80 dark:bg-gray-800 text-gray-500 dark:text-gray-300 rounded-full text-sm hover:bg-purple-600 hover:text-white transition-colors duration-300 cursor-default border border-gray-200 dark:border-gray-700"
+                      className="px-3 py-1 bg-white/80 dark:bg-gray-800 text-gray-500 dark:text-gray-300 rounded-full text-sm hover:bg-primary-600 hover:text-white transition-colors duration-300 cursor-default border border-gray-200 dark:border-gray-700"
                     >
                       {skill}
                     </span>
@@ -171,9 +171,9 @@ const Footer: React.FC = () => {
                         e.preventDefault();
                         scrollToSection(link.id);
                       }}
-                      className="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
+                      className="text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
                     >
-                      <span className="w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                      <span className="w-1 h-1 bg-primary-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                       <span>{link.name}</span>
                     </a>
                   </li>
@@ -182,9 +182,9 @@ const Footer: React.FC = () => {
                   <a
                     href={portfolioData.personal.resume}
                     download
-                    className="text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
+                    className="text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition-colors duration-300 flex items-center space-x-2 group"
                   >
-                    <span className="w-1 h-1 bg-purple-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
+                    <span className="w-1 h-1 bg-primary-500 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300"></span>
                     <span>Download Resume</span>
                   </a>
                 </li>
@@ -207,9 +207,9 @@ const Footer: React.FC = () => {
                           ? 'noopener noreferrer'
                           : undefined
                       }
-                      className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-white transition-colors duration-300 group"
+                      className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition-colors duration-300 group"
                     >
-                      <div className="text-purple-500 group-hover:text-purple-400 transition-colors duration-300">
+                      <div className="text-primary-500 group-hover:text-primary-400 transition-colors duration-300">
                         {info.icon}
                       </div>
                       <span className="text-sm">{info.text}</span>
@@ -225,9 +225,9 @@ const Footer: React.FC = () => {
                     }
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:text-purple-600 dark:hover:text-white transition-colors duration-300 group"
+                    className="flex items-center space-x-3 text-gray-500 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white transition-colors duration-300 group"
                   >
-                    <div className="text-purple-500 group-hover:text-purple-400 transition-colors duration-300">
+                    <div className="text-primary-500 group-hover:text-primary-400 transition-colors duration-300">
                       <TopmateIcon />
                     </div>
                     <span className="text-sm">Schedule a meeting</span>
@@ -277,7 +277,7 @@ const Footer: React.FC = () => {
                   <span>Made with</span>
                   <FaHeart className="text-red-500 animate-pulse" />
                   <span>and lots of</span>
-                  <FaCode className="text-purple-500" />
+                  <FaCode className="text-primary-500" />
                 </span>
               </div>
 

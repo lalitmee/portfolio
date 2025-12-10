@@ -37,9 +37,73 @@ const HomePage: React.FC = () => {
   useEffect(() => {
     setIsVisible(true);
     setIsMobile(window.innerWidth < 1024);
-    initParticles();
 
-    // Start animation
+    const initParticles = () => {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      const particles: Particle[] = [];
+      for (let i = 0; i < 50; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          size: Math.random() * 2 + 1,
+          opacity: Math.random() * 0.5 + 0.1,
+        });
+      }
+      particlesRef.current = particles;
+    };
+
+    const animate = () => {
+      if (!isComponentVisible.current) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
+      const canvas = canvasRef.current;
+      const ctx = canvas?.getContext('2d');
+      if (!canvas || !ctx) return;
+
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      // Update and draw particles
+      particlesRef.current.forEach((particle) => {
+        particle.x += particle.vx;
+        particle.y += particle.vy;
+
+        if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
+        if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(139, 92, 246, ${particle.opacity})`;
+        ctx.fill();
+      });
+
+      // Draw connections
+      particlesRef.current.forEach((particle, i) => {
+        particlesRef.current.slice(i + 1).forEach((otherParticle) => {
+          const dx = particle.x - otherParticle.x;
+          const dy = particle.y - otherParticle.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+
+          if (distance < 100) {
+            ctx.beginPath();
+            ctx.moveTo(particle.x, particle.y);
+            ctx.lineTo(otherParticle.x, otherParticle.y);
+            ctx.strokeStyle = `rgba(139, 92, 246, ${0.1 * (1 - distance / 100)})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        });
+      });
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    initParticles();
     animate();
 
     const handleResize = () => {
@@ -54,7 +118,6 @@ const HomePage: React.FC = () => {
       ([entry]) => {
         isComponentVisible.current = entry.isIntersecting;
         if (entry.isIntersecting) {
-          // Restart if stopped, but animate() checks the ref so simpler to just ensure it's running
           if (!animationRef.current) animate();
         }
       },
@@ -73,71 +136,6 @@ const HomePage: React.FC = () => {
       observer.disconnect();
     };
   }, []);
-
-  const initParticles = () => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const particles: Particle[] = [];
-    for (let i = 0; i < 50; i++) {
-      particles.push({
-        x: Math.random() * canvas.width,
-        y: Math.random() * canvas.height,
-        vx: (Math.random() - 0.5) * 0.5,
-        vy: (Math.random() - 0.5) * 0.5,
-        size: Math.random() * 2 + 1,
-        opacity: Math.random() * 0.5 + 0.1,
-      });
-    }
-    particlesRef.current = particles;
-  };
-
-  const animate = () => {
-    if (!isComponentVisible.current) {
-      animationRef.current = requestAnimationFrame(animate);
-      return; // Skip rendering but keep loop alive (or better: cancel it)
-    }
-
-    const canvas = canvasRef.current;
-    const ctx = canvas?.getContext('2d');
-    if (!canvas || !ctx) return;
-
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Update and draw particles
-    particlesRef.current.forEach((particle) => {
-      particle.x += particle.vx;
-      particle.y += particle.vy;
-
-      if (particle.x < 0 || particle.x > canvas.width) particle.vx *= -1;
-      if (particle.y < 0 || particle.y > canvas.height) particle.vy *= -1;
-
-      ctx.beginPath();
-      ctx.arc(particle.x, particle.y, particle.size, 0, Math.PI * 2);
-      ctx.fillStyle = `rgba(139, 92, 246, ${particle.opacity})`;
-      ctx.fill();
-    });
-
-    // Draw connections
-    particlesRef.current.forEach((particle, i) => {
-      particlesRef.current.slice(i + 1).forEach((otherParticle) => {
-        const dx = particle.x - otherParticle.x;
-        const dy = particle.y - otherParticle.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < 100) {
-          ctx.beginPath();
-          ctx.moveTo(particle.x, particle.y);
-          ctx.lineTo(otherParticle.x, otherParticle.y);
-          ctx.strokeStyle = `rgba(139, 92, 246, ${0.1 * (1 - distance / 100)})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      });
-    });
-
-    animationRef.current = requestAnimationFrame(animate);
-  };
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -193,13 +191,13 @@ const HomePage: React.FC = () => {
         />
 
         {/* Gradient Overlays */}
-        <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 via-transparent to-blue-500/10" />
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-purple-500/5 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 via-transparent to-blue-500/10" />
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary-500/5 to-transparent" />
 
         {/* Floating Geometric Shapes - Hidden on mobile */}
-        <div className="hidden lg:block absolute top-20 left-20 w-32 h-32 border border-purple-500/20 rounded-full animate-spin-slow" />
+        <div className="hidden lg:block absolute top-20 left-20 w-32 h-32 border border-primary-500/20 rounded-full animate-spin-slow" />
         <div className="hidden lg:block absolute top-40 right-32 w-24 h-24 border border-blue-500/20 rotate-45 animate-pulse" />
-        <div className="hidden lg:block absolute bottom-32 left-40 w-16 h-16 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-lg animate-float" />
+        <div className="hidden lg:block absolute bottom-32 left-40 w-16 h-16 bg-gradient-to-r from-primary-500/20 to-blue-500/20 rounded-lg animate-float" />
 
         {/* Main Content */}
         <div className="relative z-10 flex items-center justify-center min-h-screen px-6 pt-24 lg:pt-28">
@@ -215,7 +213,7 @@ const HomePage: React.FC = () => {
                   {portfolioData.personal.name}
                 </h1>
                 <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white shadow-sm">
-                  <FaBrain className="text-purple-600 dark:text-purple-400" />
+                  <FaBrain className="text-primary-600 dark:text-primary-400" />
                   <span>{portfolioData.personal.subtitle}</span>
                   <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                 </div>
@@ -223,14 +221,14 @@ const HomePage: React.FC = () => {
 
               {/* Profile Card - First on mobile */}
               <div className="flex justify-center mb-8 px-4">
-                <div className="relative w-full max-w-[20rem] aspect-square">
+                <div className="relative w-full max-w-[25rem] aspect-square">
                   <div className="absolute inset-0 bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-3xl shadow-2xl flex items-center justify-center">
                     {/* Profile Image */}
                     <div className="relative">
                       <img
                         src={portfolioData.personal.profileImage}
                         alt={portfolioData.personal.name}
-                        className="w-24 h-24 rounded-2xl object-cover border-4 border-gray-200 dark:border-white/30"
+                        className="w-44 h-44 rounded-2xl object-cover border-4 border-gray-200 dark:border-white/30"
                       />
                       <div className="absolute -top-2 -right-2 w-6 h-6 bg-gradient-to-r from-green-400 to-blue-400 rounded-full flex items-center justify-center">
                         <div className="w-2 h-2 bg-white rounded-full animate-pulse" />
@@ -238,22 +236,36 @@ const HomePage: React.FC = () => {
                     </div>
                     {/* Floating Tech Icons */}
                     <div
-                      className="absolute top-8 left-8 w-10 h-10 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
+                      className="absolute top-8 left-8 w-10 h-10 bg-gradient-to-r from-primary-500/20 to-blue-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
                       style={{ animationDelay: '0.5s' }}
                     >
-                      <span className="text-white font-bold text-sm">⚛️</span>
+                      <span className="text-gray-900 dark:text-white font-bold text-sm">
+                        ⚛️
+                      </span>
+                    </div>
+                    <div
+                      className="absolute top-8 right-8 w-10 h-10 bg-gradient-to-r from-blue-500/20 to-cyan-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
+                      style={{ animationDelay: '2s' }}
+                    >
+                      <span className="text-gray-900 dark:text-white font-bold text-sm">
+                        TS
+                      </span>
                     </div>
                     <div
                       className="absolute bottom-24 left-8 w-10 h-10 bg-gradient-to-r from-green-500/20 to-teal-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
                       style={{ animationDelay: '1s' }}
                     >
-                      <span className="text-white font-bold text-sm">🚀</span>
+                      <span className="text-gray-900 dark:text-white font-bold text-sm">
+                        🚀
+                      </span>
                     </div>
                     <div
-                      className="absolute bottom-16 right-8 w-10 h-10 bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
+                      className="absolute bottom-16 right-8 w-10 h-10 bg-gradient-to-r from-pink-500/20 to-primary-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
                       style={{ animationDelay: '1.5s' }}
                     >
-                      <span className="text-white font-bold text-sm">AI</span>
+                      <span className="text-gray-900 dark:text-white font-bold text-sm">
+                        AI
+                      </span>
                     </div>
 
                     {/* Status Text */}
@@ -266,17 +278,17 @@ const HomePage: React.FC = () => {
                       </div>
                     </div>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-3xl scale-150 -z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-blue-500/20 rounded-full blur-3xl scale-150 -z-10" />
                 </div>
               </div>
 
               {/* Main Heading - Mobile */}
-              <div className="text-left space-y-4 mb-8">
+              <div className="text-center space-y-4 mb-8">
                 <h2 className="text-4xl sm:text-5xl font-bold leading-tight">
                   <span className="text-gray-900 dark:text-white">
                     {(portfolioData.sections as any).hero.prefix}{' '}
                   </span>
-                  <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x">
+                  <span className="bg-gradient-to-r from-primary-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x">
                     {(portfolioData.sections as any).hero.highlight}
                   </span>
                   <span className="text-gray-900 dark:text-white">
@@ -287,7 +299,7 @@ const HomePage: React.FC = () => {
                 <p className="text-lg text-gray-600 dark:text-gray-300 leading-relaxed">
                   {portfolioData.personal.title}{' '}
                   {(portfolioData.sections as any).hero.descriptionPrefix}{' '}
-                  <span className="text-purple-400 font-semibold">
+                  <span className="text-primary-400 font-semibold">
                     {portfolioData.stats.experience.value}
                   </span>{' '}
                   {(portfolioData.sections as any).hero.descriptionSuffix}
@@ -317,7 +329,7 @@ const HomePage: React.FC = () => {
                     key={index}
                     className="bg-white/80 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-xl p-4 text-center hover:bg-white dark:hover:bg-white/10 transition-all duration-300 shadow-sm"
                   >
-                    <stat.icon className="text-purple-400 text-2xl mx-auto mb-2" />
+                    <stat.icon className="text-primary-400 text-2xl mx-auto mb-2" />
                     <div className="text-2xl font-bold text-gray-900 dark:text-white">
                       {stat.number}
                     </div>
@@ -332,16 +344,16 @@ const HomePage: React.FC = () => {
               <div className="flex flex-col gap-4 mb-8">
                 <button
                   onClick={() => scrollToSection('projects')}
-                  className="group bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center justify-center space-x-2"
+                  className="group bg-gradient-to-r from-primary-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-primary-500/25 transition-transform duration-300 flex items-center justify-center space-x-2"
                 >
-                  <FaRocket className="group-hover:animate-bounce" />
+                  <FaRocket className="group-hover:animate-bounce-right" />
                   <span>{(portfolioData.sections as any).hero.ctaPrimary}</span>
                 </button>
                 <button
                   onClick={() => scrollToSection('contact')}
-                  className="bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white px-8 py-4 rounded-full font-semibold hover:bg-white dark:hover:bg-white/20 transition-all duration-300 flex items-center justify-center space-x-2 shadow-sm"
+                  className="group bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white px-8 py-4 rounded-full font-semibold hover:bg-white dark:hover:bg-white/20 transition-colors duration-300 flex items-center justify-center space-x-2 shadow-sm"
                 >
-                  <FaEnvelope />
+                  <FaEnvelope className="group-hover:animate-wiggle" />
                   <span>
                     {(portfolioData.sections as any).hero.ctaSecondary}
                   </span>
@@ -390,19 +402,19 @@ const HomePage: React.FC = () => {
                     {portfolioData.personal.name}
                   </h1>
                   <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white shadow-sm">
-                    <FaBrain className="text-purple-600 dark:text-purple-400" />
+                    <FaBrain className="text-primary-600 dark:text-primary-400" />
                     <span>{portfolioData.personal.subtitle}</span>
                     <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse" />
                   </div>
                 </div>
 
-                <div className="space-y-4">
+                <div className="space-y-4 text-left">
                   <h2 className="text-6xl lg:text-7xl font-bold leading-tight">
                     <span className="text-gray-900 dark:text-white">
                       {(portfolioData.sections as any).hero.prefix}
                     </span>
                     <br />
-                    <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x">
+                    <span className="bg-gradient-to-r from-primary-400 via-pink-400 to-blue-400 bg-clip-text text-transparent animate-gradient-x">
                       {(portfolioData.sections as any).hero.highlight}
                     </span>
                     <br />
@@ -410,10 +422,10 @@ const HomePage: React.FC = () => {
                       {(portfolioData.sections as any).hero.suffix}
                     </span>
                   </h2>
-                  <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg">
+                  <p className="text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-lg mx-0">
                     {portfolioData.personal.title}{' '}
                     {(portfolioData.sections as any).hero.descriptionPrefix}{' '}
-                    <span className="text-purple-400 font-semibold">
+                    <span className="text-primary-400 font-semibold">
                       {portfolioData.stats.experience.value}
                     </span>{' '}
                     {(portfolioData.sections as any).hero.descriptionSuffix}
@@ -442,7 +454,7 @@ const HomePage: React.FC = () => {
                       key={index}
                       className="bg-white/80 dark:bg-white/5 backdrop-blur-md border border-gray-200 dark:border-white/10 rounded-xl p-4 text-center hover:bg-white dark:hover:bg-white/10 transition-all duration-300 shadow-sm"
                     >
-                      <stat.icon className="text-purple-400 text-2xl mx-auto mb-2" />
+                      <stat.icon className="text-primary-400 text-2xl mx-auto mb-2" />
                       <div className="text-2xl font-bold text-gray-900 dark:text-white">
                         {stat.number}
                       </div>
@@ -456,18 +468,18 @@ const HomePage: React.FC = () => {
                 <div className="flex gap-4">
                   <button
                     onClick={() => scrollToSection('projects')}
-                    className="group bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center space-x-2 hover:scale-[1.02] active:scale-[0.98]"
+                    className="group bg-gradient-to-r from-primary-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-primary-500/25 transition-transform duration-300 flex items-center space-x-2 hover:scale-[1.02] active:scale-[0.98]"
                   >
-                    <FaRocket className="group-hover:translate-x-1 transition-transform duration-300" />
+                    <FaRocket className="group-hover:animate-bounce-right" />
                     <span>
                       {(portfolioData.sections as any).hero.ctaPrimary}
                     </span>
                   </button>
                   <button
                     onClick={() => scrollToSection('contact')}
-                    className="bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white px-8 py-4 rounded-full font-semibold hover:bg-white dark:hover:bg-white/20 transition-all duration-300 flex items-center space-x-2 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
+                    className="group bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 text-gray-900 dark:text-white px-8 py-4 rounded-full font-semibold hover:bg-white dark:hover:bg-white/20 transition-colors duration-300 flex items-center space-x-2 hover:scale-[1.02] active:scale-[0.98] shadow-sm"
                   >
-                    <FaEnvelope />
+                    <FaEnvelope className="group-hover:animate-wiggle" />
                     <span>
                       {(portfolioData.sections as any).hero.ctaSecondary}
                     </span>
@@ -525,7 +537,7 @@ const HomePage: React.FC = () => {
                         </div>
                       </div>
 
-                      <div className="absolute top-20 left-8 w-12 h-12 bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float">
+                      <div className="absolute top-20 left-8 w-12 h-12 bg-gradient-to-r from-primary-500/20 to-blue-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float">
                         <span className="text-gray-900 dark:text-white font-bold">
                           TS
                         </span>
@@ -547,7 +559,7 @@ const HomePage: React.FC = () => {
                         </span>
                       </div>
                       <div
-                        className="absolute bottom-20 right-12 w-12 h-12 bg-gradient-to-r from-pink-500/20 to-purple-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
+                        className="absolute bottom-20 right-12 w-12 h-12 bg-gradient-to-r from-pink-500/20 to-primary-500/20 backdrop-blur-md rounded-xl flex items-center justify-center animate-float"
                         style={{ animationDelay: '1.5s' }}
                       >
                         <span className="text-gray-900 dark:text-white font-bold">
@@ -566,13 +578,13 @@ const HomePage: React.FC = () => {
                     </div>
 
                     <div className="absolute inset-0 animate-spin-slow">
-                      <div className="absolute top-0 left-1/2 w-4 h-4 bg-purple-500 rounded-full transform -translate-x-1/2 -translate-y-8" />
+                      <div className="absolute top-0 left-1/2 w-4 h-4 bg-primary-500 rounded-full transform -translate-x-1/2 -translate-y-8" />
                       <div className="absolute bottom-0 left-1/2 w-4 h-4 bg-blue-500 rounded-full transform -translate-x-1/2 translate-y-8" />
                       <div className="absolute left-0 top-1/2 w-4 h-4 bg-pink-500 rounded-full transform -translate-x-8 -translate-y-1/2" />
                       <div className="absolute right-0 top-1/2 w-4 h-4 bg-cyan-500 rounded-full transform translate-x-8 -translate-y-1/2" />
                     </div>
                   </div>
-                  <div className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-blue-500/20 rounded-full blur-3xl scale-150 -z-10" />
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-500/20 to-blue-500/20 rounded-full blur-3xl scale-150 -z-10" />
                 </div>
               </div>
             </div>

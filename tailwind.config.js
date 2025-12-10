@@ -20,6 +20,8 @@ module.exports = {
         'gradient-x': 'gradient-x 3s ease infinite',
         'pulse-slow': 'pulse 3s ease-in-out infinite',
         'bounce-slow': 'bounce 3s ease-in-out infinite',
+        wiggle: 'wiggle 1s ease-in-out infinite',
+        'bounce-vertical': 'bounce-vertical 1s ease-in-out infinite',
       },
       keyframes: {
         fadeInUp: {
@@ -60,6 +62,15 @@ module.exports = {
             'background-position': 'right center',
           },
         },
+        wiggle: {
+          '0%, 100%': { transform: 'rotate(-3deg)' },
+          '50%': { transform: 'rotate(3deg)' },
+        },
+        'bounce-vertical': {
+          '0%, 100%': { transform: 'translateY(0)' },
+          '25%': { transform: 'translateY(-3px)' },
+          '75%': { transform: 'translateY(3px)' },
+        },
       },
       fontFamily: {
         sans: ['var(--font-outfit)', 'Inter', 'system-ui', 'sans-serif'],
@@ -68,16 +79,16 @@ module.exports = {
         background: 'var(--background)',
         foreground: 'var(--foreground)',
         primary: {
-          50: '#f5f3ff',
-          100: '#ede9fe',
-          200: '#ddd6fe',
-          300: '#c4b5fd',
-          400: '#a78bfa',
-          500: '#8b5cf6',
-          600: '#7c3aed',
-          700: '#6d28d9',
-          800: '#5b21b6',
-          900: '#4c1d95',
+          50: 'rgba(var(--primary-50), <alpha-value>)',
+          100: 'rgba(var(--primary-100), <alpha-value>)',
+          200: 'rgba(var(--primary-200), <alpha-value>)',
+          300: 'rgba(var(--primary-300), <alpha-value>)',
+          400: 'rgba(var(--primary-400), <alpha-value>)',
+          500: 'rgba(var(--primary-500), <alpha-value>)',
+          600: 'rgba(var(--primary-600), <alpha-value>)',
+          700: 'rgba(var(--primary-700), <alpha-value>)',
+          800: 'rgba(var(--primary-800), <alpha-value>)',
+          900: 'rgba(var(--primary-900), <alpha-value>)',
         },
       },
       backdropBlur: {

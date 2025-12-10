@@ -2,7 +2,52 @@ import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { Outfit } from 'next/font/google';
 import Head from 'next/head';
+import { useEffect } from 'react';
 import '../styles/globals.css';
+
+function FaviconUpdater() {
+  useEffect(() => {
+    const updateFavicon = () => {
+      const theme =
+        document.documentElement.getAttribute('data-theme') || 'default';
+      const link = document.querySelector(
+        "link[rel~='icon']",
+      ) as HTMLLinkElement;
+      if (link) {
+        link.href = `/favicon-${theme}.svg`;
+      } else {
+        const newLink = document.createElement('link');
+        newLink.rel = 'icon';
+        newLink.href = `/favicon-${theme}.svg`;
+        document.head.appendChild(newLink);
+      }
+    };
+
+    // Initial update
+    updateFavicon();
+
+    // Observer for theme changes
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (
+          mutation.type === 'attributes' &&
+          mutation.attributeName === 'data-theme'
+        ) {
+          updateFavicon();
+        }
+      });
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ['data-theme'],
+    });
+
+    return () => observer.disconnect();
+  }, []);
+
+  return null;
+}
 
 const outfit = Outfit({
   subsets: ['latin'],
@@ -10,6 +55,14 @@ const outfit = Outfit({
 });
 
 export default function App({ Component, pageProps }: AppProps) {
+  useEffect(() => {
+    // Apply font to body to ensure Portals (like BottomSheet) inherit it
+    document.body.classList.add(outfit.variable, 'font-sans');
+    return () => {
+      document.body.classList.remove(outfit.variable, 'font-sans');
+    };
+  }, []);
+
   return (
     <>
       <Head>
@@ -60,6 +113,7 @@ export default function App({ Component, pageProps }: AppProps) {
           })(window,document,'script','dataLayer','GTM_CONTAINER_ID');
         `}
       </Script> */}
+      <FaviconUpdater />
       <ThemeProvider attribute="class" defaultTheme="dark">
         <main className={`${outfit.variable} font-sans`}>
           <Component {...pageProps} />

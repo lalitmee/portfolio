@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
 import NextImage from 'next/image';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 import React from 'react';
 import {
   FaArrowLeft,
@@ -16,27 +16,12 @@ import {
   FaStar,
   FaUsers,
 } from 'react-icons/fa';
-import {
-  SiAmazon,
-  SiDocker,
-  SiGraphql,
-  SiJavascript,
-  SiKubernetes,
-  SiMongodb,
-  SiNextdotjs,
-  SiNodedotjs,
-  SiPostgresql,
-  SiPython,
-  SiReact,
-  SiRedis,
-  SiStorybook,
-  SiStripe,
-  SiTailwindcss,
-  SiTypescript,
-} from 'react-icons/si';
 import { twMerge } from 'tailwind-merge';
+import Navigation from '../../components/Navigation';
+import GlassButton from '../../components/ui/GlassButton';
 import portfolioData from '../../data/portfolio.json';
 import { generateSlug } from '../../utils/slug';
+import { getTechIcon } from '../../utils/techIcons';
 
 interface Project {
   id: number;
@@ -58,82 +43,50 @@ interface ProjectDetailProps {
   project: Project;
 }
 
-const getTechIcon = (tech: string) => {
-  switch (tech.toLowerCase()) {
-    case 'react':
-    case 'react native':
-    case 'react.js':
-      return <SiReact className="text-blue-400" />;
-    case 'typescript':
-      return <SiTypescript className="text-blue-600" />;
-    case 'javascript':
-      return <SiJavascript className="text-yellow-400" />;
-    case 'node.js':
-      return <SiNodedotjs className="text-green-500" />;
-    case 'next.js':
-      return <SiNextdotjs className="text-white" />;
-    case 'postgresql':
-      return <SiPostgresql className="text-blue-300" />;
-    case 'mongodb':
-      return <SiMongodb className="text-green-400" />;
-    case 'redis':
-      return <SiRedis className="text-red-500" />;
-    case 'docker':
-      return <SiDocker className="text-blue-500" />;
-    case 'kubernetes':
-      return <SiKubernetes className="text-blue-400" />;
-    case 'aws':
-      return <SiAmazon className="text-orange-400" />;
-    case 'graphql':
-      return <SiGraphql className="text-pink-500" />;
-    case 'python':
-      return <SiPython className="text-blue-300" />;
-    case 'stripe':
-      return <SiStripe className="text-purple-400" />;
-    case 'storybook':
-      return <SiStorybook className="text-pink-500" />;
-    case 'tailwindcss':
-      return <SiTailwindcss className="text-cyan-400" />;
-    default:
-      return <FaCode className="text-gray-400" />;
-  }
-};
-
 const getStatusClass = (status: string) => {
-  switch (status.toLowerCase()) {
-    case 'completed':
-      return 'bg-green-500/20 text-green-400 border border-green-500/30';
-    case 'in progress':
-      return 'bg-blue-500/20 text-blue-400 border border-blue-500/30';
-    case 'maintained':
-    case 'active':
-      return 'bg-purple-500/20 text-purple-400 border border-purple-500/30';
+  switch (status) {
+    case 'Live':
+      return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 border border-green-200 dark:border-green-800';
+    case 'In Development':
+      return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 border border-yellow-200 dark:border-yellow-800';
+    case 'Prototype':
+      return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-200 dark:border-purple-800';
     default:
-      return 'bg-gray-500/20 text-gray-400 border border-gray-500/30';
+      return 'bg-gray-100 text-gray-800 dark:bg-gray-800/50 dark:text-gray-300 border border-gray-200 dark:border-gray-700';
   }
 };
 
 const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
+  const router = useRouter();
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+      <Navigation showBackArrow={true} />
       <Head>
         <title>{project.title} | Project Details</title>
         <meta name="description" content={project.description} />
       </Head>
 
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <Link
-          href="/#projects"
-          className="inline-flex items-center space-x-2 text-purple-600 hover:text-purple-500 mb-8 transition-colors"
-        >
-          <FaArrowLeft />
-          <span>Back to Projects</span>
-        </Link>
-
+        <div className="mb-8">
+          <div className="inline-block">
+            <GlassButton
+              onClick={() => {
+                if (window.history.length > 2) {
+                  router.back();
+                } else {
+                  router.push('/#projects');
+                }
+              }}
+              icon={<FaArrowLeft />}
+            >
+              Back to Projects
+            </GlassButton>
+          </div>
+        </div>
         <div className="bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-xl">
           {/* Hero Section */}
           <div className="relative h-64 md:h-96 overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-600" />
+            <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-blue-600" />
             {project.image && (
               <NextImage
                 src={project.image}
@@ -258,7 +211,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-4 px-6 rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center space-x-3 text-lg font-semibold"
+                  className="flex-1 bg-gradient-to-r from-primary-600 to-blue-600 text-white py-4 px-6 rounded-xl hover:shadow-lg hover:scale-[1.02] transition-all flex items-center justify-center space-x-3 text-lg font-semibold"
                 >
                   <FaExternalLinkAlt className="text-xl" />
                   <span>View Live Demo</span>

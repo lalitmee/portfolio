@@ -2,14 +2,13 @@
   "personal": {
     "name": "Lalit Kumar",
     "title": "Senior Software Engineer",
-    "subtitle": "AI-Era Software Engineer",
+    "subtitle": "Product-Minded Senior Engineer",
     "yearsOfExperience": "7+",
-
     "email": "lalitkumar.meena.lk@gmail.com",
     "phone": "+91 97-1261-8438",
     "website": "https://lalitmee.github.io/portfolio",
     "bio": "Senior Software Engineer @Nykaa | Neovim Enthusiast | Open Source Advocate. Pioneering Agentic Coding workflows and building high-performance web applications. Focused on productivity and developer experience.",
-    "profileImage": "https://avatars.githubusercontent.com/u/10762218?v=4",
+    "profileImage": "/images/profile_v3.png",
     "resume": "/Lalit_Kumar_Resume.pdf",
     "availability": {
       "status": "available",
@@ -77,7 +76,7 @@
       {
         "name": "Frontend",
         "icon": "FaCode",
-        "gradient": "from-purple-500 to-pink-500",
+        "gradient": "from-primary-500 to-pink-500",
         "skills": [
           {
             "name": "React",

@@ -10,38 +10,43 @@ const Navigation = dynamic(() => import('../components/Navigation'), {
   ssr: false,
 });
 
+import BlogArticlesSkeleton from '../components/skeletons/BlogArticlesSkeleton';
+import CertificationsSkeleton from '../components/skeletons/CertificationsSkeleton';
+import ContactSkeleton from '../components/skeletons/ContactSkeleton';
+import ProjectsSkeleton from '../components/skeletons/ProjectsSkeleton';
+import ResumeSkeleton from '../components/skeletons/ResumeSkeleton';
 import SkillsSkeleton from '../components/skeletons/SkillsSkeleton';
 
 const HomePage = dynamic(() => import('../components/HomePage'), {
-  loading: () => <LoadingSpinner size="xl" text="Loading Portfolio..." />,
+  loading: () => <LoadingSpinner size="lg" />,
 });
 const Skills = dynamic(() => import('../components/Skills'), {
   loading: () => <SkillsSkeleton />,
 });
 const Quotes = dynamic(() => import('../components/Quotes'), {
-  loading: () => <LoadingSpinner size="md" variant="pulse" />,
-});
-const Projects = dynamic(() => import('../components/Projects'), {
   loading: () => <LoadingSpinner size="lg" variant="skeleton" />,
 });
+const Projects = dynamic(() => import('../components/Projects'), {
+  loading: () => <ProjectsSkeleton />,
+});
 const Certifications = dynamic(() => import('../components/Certifications'), {
-  loading: () => <LoadingSpinner size="md" variant="skeleton" />,
+  loading: () => <CertificationsSkeleton />,
 });
 const BlogArticles = dynamic(() => import('../components/BlogArticles'), {
-  loading: () => <LoadingSpinner size="md" variant="skeleton" />,
+  loading: () => <BlogArticlesSkeleton />,
 });
 const DigitalMarketingProjects = dynamic(
   () => import('../components/DigitalMarketingProjects'),
-  { loading: () => <LoadingSpinner size="md" variant="skeleton" /> },
+  { loading: () => <LoadingSpinner size="lg" variant="skeleton" /> },
 );
 const Testimonials = dynamic(() => import('../components/Testimonials'), {
-  loading: () => <LoadingSpinner size="md" variant="pulse" />,
+  loading: () => <LoadingSpinner size="lg" variant="skeleton" />,
 });
 const Resume = dynamic(() => import('../components/Resume'), {
-  loading: () => <LoadingSpinner size="lg" variant="skeleton" />,
+  loading: () => <ResumeSkeleton />,
 });
 const Contact = dynamic(() => import('../components/Contact'), {
-  loading: () => <LoadingSpinner size="lg" variant="skeleton" />,
+  loading: () => <ContactSkeleton />,
 });
 const Footer = dynamic(() => import('../components/Footer'), {
   loading: () => (
@@ -53,22 +58,36 @@ const ScrollToTop = dynamic(() => import('../components/ScrollToTop'), {
   ssr: false,
 });
 
+// Global state to track if splash screen has been shown in this session (SPA navigation)
+let hasShownSplash = false;
+
 export default function Home() {
-  const [loading, setLoading] = useState(true);
+  // Initialize state based on global variable to prevent flash on back navigation
+  const [loading, setLoading] = useState(() => {
+    // If we've already shown it in this SPA session, don't show it again
+    if (hasShownSplash) return false;
+    return true;
+  });
+
   const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
-    // Check if we've already shown the loader in this session
-    const hasLoaded = sessionStorage.getItem('portfolio_loaded');
+    // Check if we've defined the global yet (first mount)
+    if (!hasShownSplash) {
+      // Check session storage for page refreshes
+      const sessionLoaded = sessionStorage.getItem('portfolio_loaded');
 
-    if (hasLoaded) {
-      setLoading(false);
-    } else {
-      const timeout = setTimeout(() => {
+      if (sessionLoaded) {
         setLoading(false);
-        sessionStorage.setItem('portfolio_loaded', 'true');
-      }, 1500);
-      return () => clearTimeout(timeout);
+        hasShownSplash = true;
+      } else {
+        const timeout = setTimeout(() => {
+          setLoading(false);
+          sessionStorage.setItem('portfolio_loaded', 'true');
+          hasShownSplash = true;
+        }, 1500);
+        return () => clearTimeout(timeout);
+      }
     }
   }, []);
 
@@ -135,7 +154,7 @@ export default function Home() {
 
   if (loading) {
     return (
-      <div className="bg-gradient-to-br from-purple-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
+      <div className="bg-gradient-to-br from-primary-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
         <LoadingSpinner
           size="xl"
           text="Preparing an exceptional experience..."
@@ -200,24 +219,9 @@ export default function Home() {
         />
 
         {/* Favicon */}
-        <link rel="icon" href="/favicon.ico" />
-        <link
-          rel="apple-touch-icon"
-          sizes="180x180"
-          href="/apple-touch-icon.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="32x32"
-          href="/favicon-32x32.png"
-        />
-        <link
-          rel="icon"
-          type="image/png"
-          sizes="16x16"
-          href="/favicon-16x16.png"
-        />
+        {/* Favicon */}
+        <link rel="icon" href="/favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/icon.png" />
         <link rel="manifest" href="/manifest.json" />
 
         {/* Theme color */}
@@ -254,7 +258,7 @@ export default function Home() {
             <div className="max-w-4xl mx-auto px-6 text-center">
               <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
                 {(portfolioData.sections as any).about.title}{' '}
-                <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+                <span className="bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">
                   {(portfolioData.sections as any).about.highlight}
                 </span>
               </h2>
@@ -422,7 +426,7 @@ export default function Home() {
       {/* Progress Indicator */}
       <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 dark:bg-gray-700 z-50">
         <div
-          className="h-full bg-gradient-to-r from-purple-600 to-blue-600 transition-all duration-300"
+          className="h-full bg-gradient-to-r from-primary-600 to-blue-600 transition-all duration-300"
           style={{
             width: `${
               typeof window !== 'undefined'

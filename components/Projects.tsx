@@ -5,7 +5,6 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   FaAward,
   FaChartLine,
-  FaChevronDown,
   FaCode,
   FaCodeBranch,
   FaExternalLinkAlt,
@@ -16,9 +15,9 @@ import {
   FaUsers,
 } from 'react-icons/fa';
 import { useInView } from 'react-intersection-observer';
-import { twMerge } from 'tailwind-merge';
 import { generateSlug } from '../utils/slug';
 import { getTechIcon } from '../utils/techIcons';
+import Tabs from './ui/Tabs';
 
 import portfolioData from '../data/portfolio.json';
 
@@ -38,15 +37,29 @@ interface Project {
   forks?: number;
 }
 
+import { twMerge } from 'tailwind-merge';
+
+const getStatusClass = (status: string) => {
+  switch (status) {
+    case 'Live':
+      return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 border border-green-200 dark:border-green-800';
+    case 'In Development':
+      return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 border border-yellow-200 dark:border-yellow-800';
+    case 'Prototype':
+      return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-200 dark:border-purple-800';
+    default:
+      return 'bg-gray-100 text-gray-800 dark:bg-gray-800/50 dark:text-gray-300 border border-gray-200 dark:border-gray-700';
+  }
+};
+
 const Projects: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [ref] = useInView({
     triggerOnce: true,
     threshold: 0.1,
   });
+
   const [projectsWithStats, setProjectsWithStats] = useState<Project[]>([]);
-  const [tabStyle, setTabStyle] = useState({ left: 0, width: 0 });
-  const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -64,48 +77,10 @@ const Projects: React.FC = () => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
 
+  // Removed client-side fetching to avoid GitHub API rate limiting (403 errors)
+  // Future improvement: Fetch these stats at build time or use a proxy
   useEffect(() => {
-    const fetchStats = async () => {
-      try {
-        const updatedProjects = await Promise.all(
-          (portfolioData.projects as Project[]).map(async (project) => {
-            if (project.github) {
-              try {
-                const repoPath = project.github.replace(
-                  'https://github.com/',
-                  '',
-                );
-                // Add a small delay to avoid rate limiting if there are many projects
-                await new Promise((resolve) =>
-                  setTimeout(resolve, Math.random() * 1000),
-                );
-
-                const response = await fetch(
-                  `https://api.github.com/repos/${repoPath}`,
-                );
-                if (response.ok) {
-                  const data = await response.json();
-                  return {
-                    ...project,
-                    stars: data.stargazers_count,
-                    forks: data.forks_count,
-                  };
-                }
-              } catch (error) {
-                // Silently fail for individual project stats
-              }
-            }
-            return project;
-          }),
-        );
-        setProjectsWithStats(updatedProjects);
-      } catch (error) {
-        // Fallback to default data
-        setProjectsWithStats(portfolioData.projects as Project[]);
-      }
-    };
-
-    fetchStats();
+    setProjectsWithStats(portfolioData.projects as Project[]);
   }, []);
 
   const projects =
@@ -138,145 +113,28 @@ const Projects: React.FC = () => {
     return shuffleArray(filtered);
   }, [selectedCategory, projects]);
 
-  useEffect(() => {
-    const activeIndex = categories.indexOf(selectedCategory);
-    const activeElement = tabsRef.current[activeIndex];
-
-    if (activeElement) {
-      setTabStyle({
-        left: activeElement.offsetLeft,
-        width: activeElement.offsetWidth,
-      });
-    }
-  }, [selectedCategory, categories]);
-
-  const getStatusClass = (status: string) => {
-    switch (status.toLowerCase()) {
-      case 'completed':
-        return 'bg-green-500/20 text-green-400 border border-green-500/30';
-      case 'in progress':
-        return 'bg-blue-500/20 text-blue-400 border border-blue-500/30';
-      case 'maintained':
-      case 'active':
-        return 'bg-purple-500/20 text-purple-400 border border-purple-500/30';
-      default:
-        return 'bg-gray-500/20 text-gray-400 border border-gray-500/30';
-    }
-  };
-
   return (
-    <section
-      id="projects"
-      ref={ref}
-      className="py-20 bg-transparent relative overflow-hidden transition-colors duration-500"
-    >
-      {/* Background Effects */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl" />
-      </div>
-
-      <div className="max-w-7xl mx-auto px-6 relative z-10">
+    <section id="projects" ref={ref} className="py-20 relative overflow-hidden">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white mb-6 shadow-sm">
-            <FaCode className="text-purple-600 dark:text-purple-400" />
-            <span>{portfolioData.sections.projects.title}</span>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
-            {portfolioData.sections.projects.heading.split(' ')[0]}
-            <span className="bg-gradient-to-r from-purple-500 to-blue-500 bg-clip-text text-transparent ml-2 sm:ml-4">
-              {portfolioData.sections.projects.heading.split(' ')[1]}
-            </span>
+          <h2 className="text-base text-primary-600 dark:text-primary-400 font-semibold tracking-wide uppercase">
+            {portfolioData.sections.projects.title}
           </h2>
-
-          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto leading-relaxed">
+          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
+            {portfolioData.sections.projects.heading}
+          </p>
+          <p className="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400 mx-auto">
             {portfolioData.sections.projects.description}
           </p>
         </div>
 
-        {/* Mobile Custom Dropdown */}
-        <div className="md:hidden flex justify-center mb-12 px-6">
-          <div className="relative w-full max-w-sm" ref={dropdownRef}>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-xl blur-sm" />
-
-            <button
-              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="relative w-full flex items-center justify-between bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl px-6 py-3.5 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all font-semibold shadow-sm text-base"
-            >
-              <span>{selectedCategory}</span>
-              <FaChevronDown
-                className={`w-4 h-4 text-purple-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
-              />
-            </button>
-
-            <AnimatePresence>
-              {isDropdownOpen && (
-                <motion.div
-                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                  animate={{ opacity: 1, y: 0, scale: 1 }}
-                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                  transition={{ duration: 0.2 }}
-                  className="absolute top-full left-0 right-0 mt-2 bg-white/90 dark:bg-[#0a0a0a]/90 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-xl shadow-xl overflow-hidden z-50 py-2"
-                >
-                  {categories.map((category) => (
-                    <button
-                      key={category}
-                      onClick={() => {
-                        setSelectedCategory(category);
-                        setIsDropdownOpen(false);
-                      }}
-                      className={twMerge(
-                        'w-full text-left px-6 py-3 transition-colors duration-200 flex items-center justify-between',
-                        selectedCategory === category
-                          ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold'
-                          : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5',
-                      )}
-                    >
-                      <span>{category}</span>
-                      {selectedCategory === category && (
-                        <div className="w-2 h-2 rounded-full bg-purple-500" />
-                      )}
-                    </button>
-                  ))}
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </div>
-        </div>
-
         {/* Modern Tab Navigation - Desktop */}
-        <div className="hidden md:flex justify-center mb-16">
-          <div className="relative bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-full p-2 inline-flex flex-wrap justify-center gap-2 shadow-sm">
-            {/* Sliding Background */}
-            <div
-              className="absolute top-2 bottom-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full shadow-lg shadow-purple-500/25 transition-all duration-300 ease-out"
-              style={{
-                left: tabStyle.left,
-                width: tabStyle.width,
-                opacity: tabStyle.width ? 1 : 0,
-              }}
-            />
-
-            {categories.map((category, index) => (
-              <button
-                key={category}
-                ref={(el) => {
-                  tabsRef.current[index] = el;
-                }}
-                onClick={() => setSelectedCategory(category)}
-                className={twMerge(
-                  'relative px-6 py-3 rounded-full font-medium transition-colors duration-300 text-sm sm:text-base z-10 flex-shrink-0',
-                  selectedCategory === category
-                    ? 'text-white'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white',
-                )}
-              >
-                {category}
-              </button>
-            ))}
-          </div>
-        </div>
+        <Tabs
+          tabs={categories.map((c) => ({ id: c, label: c }))}
+          activeId={selectedCategory}
+          onChange={setSelectedCategory}
+          className="hidden md:flex mb-16"
+        />
 
         {/* Projects Grid */}
         <motion.div
@@ -299,15 +157,21 @@ const Projects: React.FC = () => {
                 }}
                 className="h-full"
               >
-                <Link
-                  href={`/projects/${generateSlug(project.title)}`}
+                <div
                   className={twMerge(
-                    'group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 text-left flex flex-col h-full',
+                    'group bg-white dark:bg-gray-800 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-500 text-left flex flex-col h-full relative',
                   )}
                 >
+                  <Link
+                    href={`/projects/${generateSlug(project.title)}`}
+                    className="absolute inset-0 z-10"
+                    aria-label={`View project ${project.title}`}
+                  >
+                    <span className="sr-only">View Project</span>
+                  </Link>
                   {/* Project Image */}
-                  <div className="relative h-48 overflow-hidden shrink-0">
-                    <div className="absolute inset-0 bg-gradient-to-br from-purple-500 to-blue-600" />
+                  <div className="relative h-48 overflow-hidden shrink-0 pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary-500 to-blue-600" />
                     {project.image && (
                       <Image
                         src={project.image}
@@ -349,9 +213,9 @@ const Projects: React.FC = () => {
                   </div>
 
                   {/* Project Content */}
-                  <div className="p-6 flex flex-col flex-grow">
+                  <div className="p-6 flex flex-col flex-grow pointer-events-none">
                     <div className="flex justify-between items-start mb-2">
-                      <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 transition-colors">
+                      <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 transition-colors">
                         {project.title}
                       </h3>
                       <div className="flex space-x-3 text-sm text-gray-500 dark:text-gray-400">
@@ -401,13 +265,13 @@ const Projects: React.FC = () => {
                     </div>
 
                     {/* Action Buttons */}
-                    <div className="flex space-x-2 mt-auto">
+                    <div className="flex space-x-2 mt-auto pointer-events-auto">
                       {project.github && (
                         <a
                           href={project.github}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 bg-gray-900 dark:bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors flex items-center justify-center space-x-2"
+                          className="relative z-20 flex-1 bg-gray-900 dark:bg-gray-700 text-white py-2 px-4 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-600 transition-colors flex items-center justify-center space-x-2"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <FaGithub />
@@ -419,7 +283,7 @@ const Projects: React.FC = () => {
                           href={project.demo}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 text-white py-2 px-4 rounded-lg hover:shadow-lg transition-all flex items-center justify-center space-x-2"
+                          className="relative z-20 flex-1 bg-gradient-to-r from-primary-600 to-blue-600 text-white py-2 px-4 rounded-lg hover:shadow-lg transition-all flex items-center justify-center space-x-2"
                           onClick={(e) => e.stopPropagation()}
                         >
                           <FaExternalLinkAlt />
@@ -428,7 +292,7 @@ const Projects: React.FC = () => {
                       )}
                     </div>
                   </div>
-                </Link>
+                </div>
               </motion.div>
             ))}
           </AnimatePresence>

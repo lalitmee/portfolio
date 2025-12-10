@@ -27,6 +27,7 @@ import { useInView } from 'react-intersection-observer';
 import { twMerge } from 'tailwind-merge';
 import portfolioData from '../data/portfolio.json';
 import { getTechIcon } from '../utils/techIcons';
+import Tabs from './ui/Tabs';
 
 const tabs = [
   {
@@ -74,20 +75,6 @@ const Resume: React.FC = () => {
   }, []);
 
   const activeTabLabel = tabs.find((t) => t.key === activeTab)?.label;
-  const [tabStyle, setTabStyle] = useState({ left: 0, width: 0 });
-  const tabsRef = useRef<(HTMLButtonElement | null)[]>([]);
-
-  useEffect(() => {
-    const activeIndex = tabs.findIndex((t) => t.key === activeTab);
-    const activeElement = tabsRef.current[activeIndex];
-
-    if (activeElement) {
-      setTabStyle({
-        left: activeElement.offsetLeft,
-        width: activeElement.offsetWidth,
-      });
-    }
-  }, [activeTab]);
 
   const getIconComponent = (iconName: string) => {
     const icons: { [key: string]: React.ReactNode } = {
@@ -136,7 +123,7 @@ const Resume: React.FC = () => {
     >
       {/* Background Effects - Simplified */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-full blur-3xl" />
+        <div className="absolute top-20 left-20 w-64 h-64 bg-gradient-to-r from-primary-500/10 to-blue-500/10 rounded-full blur-3xl" />
         <div className="absolute bottom-20 right-20 w-96 h-96 bg-gradient-to-r from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl" />
       </div>
 
@@ -144,13 +131,13 @@ const Resume: React.FC = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white mb-6 shadow-sm">
-            <FaBriefcase className="text-purple-600 dark:text-purple-400" />
+            <FaBriefcase className="text-primary-600 dark:text-primary-400" />
             <span>{portfolioData.sections.resume.title}</span>
           </div>
 
           <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
             {portfolioData.sections.resume.heading.split(' & ')[0]} &
-            <span className="bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent ml-2 sm:ml-4">
+            <span className="bg-gradient-to-r from-primary-400 to-blue-400 bg-clip-text text-transparent ml-2 sm:ml-4">
               {portfolioData.sections.resume.heading.split(' & ')[1]}
             </span>
           </h2>
@@ -162,9 +149,9 @@ const Resume: React.FC = () => {
 
           <button
             onClick={downloadResume}
-            className="group bg-gradient-to-r from-purple-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-purple-500/25 transition-all duration-300 flex items-center space-x-2 mx-auto hover:scale-[1.02] active:scale-[0.98]"
+            className="group bg-gradient-to-r from-primary-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-primary-500/25 transition-transform duration-300 flex items-center space-x-2 mx-auto hover:scale-[1.02] active:scale-[0.98]"
           >
-            <FaDownload className="group-hover:translate-y-1 transition-transform duration-300" />
+            <FaDownload className="group-hover:animate-bounce-vertical" />
             <span>{portfolioData.sections.resume.downloadButton}</span>
           </button>
         </div>
@@ -172,18 +159,18 @@ const Resume: React.FC = () => {
         {/* Mobile Custom Dropdown */}
         <div className="md:hidden flex justify-center mb-12 px-6">
           <div className="relative w-full max-w-sm" ref={dropdownRef}>
-            <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 rounded-xl blur-sm" />
+            <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-blue-500/10 rounded-xl blur-sm" />
 
             <button
               onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-              className="relative w-full flex items-center justify-between bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl px-6 py-3.5 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all font-semibold shadow-sm text-base"
+              className="relative w-full flex items-center justify-between bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl px-6 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all font-semibold shadow-sm text-base"
             >
               <div className="flex items-center gap-2">
                 {tabs.find((t) => t.key === activeTab)?.icon}
                 <span>{activeTabLabel}</span>
               </div>
               <FaChevronDown
-                className={`w-4 h-4 text-purple-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+                className={`w-4 h-4 text-primary-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
               />
             </button>
 
@@ -206,7 +193,7 @@ const Resume: React.FC = () => {
                       className={twMerge(
                         'w-full text-left px-6 py-3 transition-colors duration-200 flex items-center justify-between',
                         activeTab === tab.key
-                          ? 'bg-purple-500/10 text-purple-600 dark:text-purple-400 font-bold'
+                          ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400 font-bold'
                           : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5',
                       )}
                     >
@@ -215,7 +202,7 @@ const Resume: React.FC = () => {
                         <span>{tab.label}</span>
                       </div>
                       {activeTab === tab.key && (
-                        <div className="w-2 h-2 rounded-full bg-purple-500" />
+                        <div className="w-2 h-2 rounded-full bg-primary-500" />
                       )}
                     </button>
                   ))}
@@ -226,42 +213,12 @@ const Resume: React.FC = () => {
         </div>
 
         {/* Modern Tab Navigation - Desktop */}
-        <div className="hidden md:flex justify-center mb-16">
-          <div className="relative bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-full p-2 inline-flex flex-wrap justify-center gap-2 shadow-sm">
-            {/* Sliding Background */}
-            <div
-              className="absolute top-2 bottom-2 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full shadow-lg shadow-purple-500/25 transition-all duration-300 ease-out"
-              style={{
-                left: tabStyle.left,
-                width: tabStyle.width,
-                opacity: tabStyle.width ? 1 : 0,
-              }}
-            />
-
-            {tabs.map((tab, index) => (
-              <button
-                key={tab.key}
-                ref={(el) => {
-                  tabsRef.current[index] = el;
-                }}
-                onClick={() =>
-                  setActiveTab(
-                    tab.key as 'experience' | 'education' | 'certifications',
-                  )
-                }
-                className={twMerge(
-                  'relative flex items-center gap-2 px-6 py-3 rounded-full font-medium transition-colors duration-300 text-sm sm:text-base z-10 flex-shrink-0',
-                  activeTab === tab.key
-                    ? 'text-white'
-                    : 'text-gray-500 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white',
-                )}
-              >
-                <span className="text-lg">{tab.icon}</span>
-                <span>{tab.label}</span>
-              </button>
-            ))}
-          </div>
-        </div>
+        <Tabs
+          tabs={tabs.map((t) => ({ id: t.key, label: t.label, icon: t.icon }))}
+          activeId={activeTab}
+          onChange={(id) => setActiveTab(id as any)}
+          className="hidden md:flex mb-16"
+        />
 
         {/* Content Section with Sliding Animation */}
         <div className="relative min-h-[400px]">
@@ -277,7 +234,7 @@ const Resume: React.FC = () => {
                 className="relative"
               >
                 {/* Timeline Line - Hidden on Mobile */}
-                <div className="hidden md:block absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 to-blue-500 opacity-50"></div>
+                <div className="hidden md:block absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary-500 to-blue-500 opacity-50"></div>
 
                 <div className="space-y-8 md:space-y-12">
                   {portfolioData.experience.map((exp, index) => (
@@ -288,14 +245,14 @@ const Resume: React.FC = () => {
                       )}
                     >
                       {/* Timeline Dot - Hidden on Mobile */}
-                      <div className="hidden md:block absolute left-6 w-4 h-4 bg-gradient-to-r from-purple-500 to-blue-500 rounded-full border-4 border-slate-900 shadow-lg shadow-purple-500/25 animate-pulse"></div>
+                      <div className="hidden md:block absolute left-6 w-4 h-4 bg-gradient-to-r from-primary-500 to-blue-500 rounded-full border-4 border-slate-900 shadow-lg shadow-primary-500/25 animate-pulse"></div>
 
                       {/* Content Card */}
-                      <div className="bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-6 md:p-8 hover:bg-white dark:hover:bg-white/10 hover:border-purple-200 dark:hover:border-white/20 transition-all duration-300 group shadow-sm">
+                      <div className="bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-6 md:p-8 hover:bg-white dark:hover:bg-white/10 hover:border-primary-200 dark:hover:border-white/20 transition-all duration-300 group shadow-sm">
                         <div className="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 gap-2">
                           <div>
                             <div className="flex flex-wrap items-center gap-2 mb-1">
-                              <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors">
+                              <h3 className="text-xl font-bold text-gray-900 dark:text-white group-hover:text-primary-600 dark:group-hover:text-primary-300 transition-colors">
                                 {exp.position}
                               </h3>
                               {exp.current && (
@@ -304,7 +261,7 @@ const Resume: React.FC = () => {
                                 </div>
                               )}
                             </div>
-                            <h4 className="text-lg font-semibold text-purple-600 dark:text-purple-400 mb-2">
+                            <h4 className="text-lg font-semibold text-primary-600 dark:text-primary-400 mb-2">
                               {exp.company}
                             </h4>
                             <div className="flex flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-400">
@@ -320,7 +277,7 @@ const Resume: React.FC = () => {
                                 </span>
                               </div>
                               {exp.teamSize && (
-                                <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors duration-300">
+                                <div className="flex items-center space-x-2 hover:text-primary-300 transition-colors duration-300">
                                   <FaUsers />
                                   <span>{exp.teamSize}</span>
                                 </div>
@@ -370,7 +327,7 @@ const Resume: React.FC = () => {
                             {exp.technologies.map((tech) => (
                               <span
                                 key={tech}
-                                className="inline-flex items-center gap-2 bg-purple-50 dark:bg-purple-500/20 text-purple-600 dark:text-purple-300 border border-purple-200 dark:border-purple-500/30 px-3 py-1 rounded-full text-sm font-medium hover:bg-purple-100 dark:hover:bg-purple-500/30 hover:scale-105 transition-all duration-300"
+                                className="inline-flex items-center gap-2 bg-primary-50 dark:bg-primary-500/20 text-primary-600 dark:text-primary-300 border border-primary-200 dark:border-primary-500/30 px-3 py-1 rounded-full text-sm font-medium hover:bg-primary-100 dark:hover:bg-primary-500/30 hover:scale-105 transition-all duration-300"
                               >
                                 {getTechIcon(tech)}
                                 <span>{tech}</span>
@@ -381,10 +338,10 @@ const Resume: React.FC = () => {
 
                         {/* Impact Metric */}
                         {exp.impact && (
-                          <div className="bg-purple-50 dark:bg-purple-900/20 backdrop-blur-md border border-purple-100 dark:border-purple-500/20 p-4 rounded-xl hover:border-purple-200 dark:hover:border-purple-500/40 transition-all duration-300">
+                          <div className="bg-primary-50 dark:bg-primary-900/20 backdrop-blur-md border border-primary-100 dark:border-primary-500/20 p-4 rounded-xl hover:border-primary-200 dark:hover:border-primary-500/40 transition-all duration-300">
                             <div className="flex items-center space-x-3">
-                              <FaChartLine className="text-purple-500 dark:text-purple-400 text-xl" />
-                              <span className="font-semibold text-purple-700 dark:text-purple-300">
+                              <FaChartLine className="text-primary-500 dark:text-primary-400 text-xl" />
+                              <span className="font-semibold text-primary-700 dark:text-primary-300">
                                 Impact: {exp.impact}
                               </span>
                             </div>
@@ -411,7 +368,7 @@ const Resume: React.FC = () => {
                   <div
                     key={edu.id}
                     className={twMerge(
-                      'relative overflow-hidden bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-8 hover:bg-white dark:hover:bg-white/10 hover:border-purple-200 dark:hover:border-white/20 transition-all duration-300 group shadow-sm',
+                      'relative overflow-hidden bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 rounded-2xl p-8 hover:bg-white dark:hover:bg-white/10 hover:border-primary-200 dark:hover:border-white/20 transition-all duration-300 group shadow-sm',
                     )}
                   >
                     {/* Watermark Background */}
@@ -445,25 +402,25 @@ const Resume: React.FC = () => {
                       <div className="flex-1 w-full">
                         <div className="flex flex-wrap justify-between items-start mb-6">
                           <div>
-                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors duration-300">
+                            <h3 className="text-2xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-300 transition-colors duration-300">
                               {edu.degree} in {edu.field}
                             </h3>
-                            <div className="text-lg font-semibold bg-gradient-to-r from-purple-400 to-blue-400 bg-clip-text text-transparent mb-3">
+                            <div className="text-lg font-semibold bg-gradient-to-r from-primary-400 to-blue-400 bg-clip-text text-transparent mb-3">
                               {edu.institution}
                             </div>
                             <div className="flex flex-wrap gap-4 text-sm text-gray-500 dark:text-gray-400">
-                              <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors duration-300">
+                              <div className="flex items-center space-x-2 hover:text-primary-300 transition-colors duration-300">
                                 <FaMapMarkerAlt />
                                 <span>{edu.location}</span>
                               </div>
-                              <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors duration-300">
+                              <div className="flex items-center space-x-2 hover:text-primary-300 transition-colors duration-300">
                                 <FaCalendarAlt />
                                 <span>
                                   {edu.startDate} - {edu.endDate}
                                 </span>
                               </div>
                               {edu.gpa && (
-                                <div className="flex items-center space-x-2 hover:text-purple-300 transition-colors duration-300">
+                                <div className="flex items-center space-x-2 hover:text-primary-300 transition-colors duration-300">
                                   <FaAward />
                                   <span>GPA: {edu.gpa}</span>
                                 </div>
@@ -526,7 +483,7 @@ const Resume: React.FC = () => {
                         {/* Background Image/Gradient */}
                         <div className="absolute inset-0 pointer-events-none">
                           {/* Gradient Overlay */}
-                          <div className="absolute inset-0 bg-gradient-to-br from-transparent to-purple-500/5 dark:to-purple-500/10 z-0" />
+                          <div className="absolute inset-0 bg-gradient-to-br from-transparent to-primary-500/5 dark:to-primary-500/10 z-0" />
 
                           {/* Logo Background - Watermark - Increased Opacity */}
                           {(cert as any).image ? (
@@ -564,10 +521,10 @@ const Resume: React.FC = () => {
                               )}
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-purple-600 dark:group-hover:text-purple-300 transition-colors duration-300 line-clamp-2">
+                              <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-2 group-hover:text-primary-600 dark:group-hover:text-primary-300 transition-colors duration-300 line-clamp-2">
                                 {cert.name}
                               </h3>
-                              <div className="bg-gradient-to-r from-purple-600 to-blue-500 bg-clip-text text-transparent font-semibold mb-1 truncate">
+                              <div className="bg-gradient-to-r from-primary-600 to-blue-500 bg-clip-text text-transparent font-semibold mb-1 truncate">
                                 {cert.issuer}
                               </div>
                               <div className="flex items-center space-x-2 text-sm text-gray-500 dark:text-gray-400">
@@ -584,7 +541,7 @@ const Resume: React.FC = () => {
                             href={cert.link || '#'}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="relative z-20 w-full mt-auto border-t border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:text-purple-600 dark:hover:text-white py-4 px-6 transition-all duration-300 font-medium text-sm flex items-center justify-center space-x-2 group/btn bg-transparent hover:bg-purple-50 dark:hover:bg-white/10"
+                            className="relative z-20 w-full mt-auto border-t border-gray-200 dark:border-white/10 text-gray-600 dark:text-gray-400 hover:text-primary-600 dark:hover:text-white py-4 px-6 transition-all duration-300 font-medium text-sm flex items-center justify-center space-x-2 group/btn bg-transparent hover:bg-primary-50 dark:hover:bg-white/10"
                           >
                             <span className="uppercase tracking-wider font-semibold">
                               {cert.link

@@ -1,5 +1,5 @@
-import { AnimatePresence, motion } from 'framer-motion';
-import React, { useEffect, useState } from 'react';
+import { motion } from 'framer-motion';
+import React, { useCallback, useEffect, useState } from 'react';
 import { FaChevronLeft, FaChevronRight, FaQuoteLeft } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 
@@ -10,8 +10,8 @@ interface Quote {
 
 const Quotes: React.FC = () => {
   const [currentQuote, setCurrentQuote] = useState(0);
-  const [direction, setDirection] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -126,144 +126,227 @@ const Quotes: React.FC = () => {
     },
   ];
 
-  const variants = {
-    enter: (direction: number) => ({
-      x: direction > 0 ? '100%' : '-100%',
-      opacity: 0,
-      scale: 0.95,
-    }),
-    center: {
-      zIndex: 1,
-      x: 0,
-      opacity: 1,
-      scale: 1,
-    },
-    exit: (direction: number) => ({
-      zIndex: 0,
-      x: direction < 0 ? '100%' : '-100%',
-      opacity: 0,
-      scale: 0.95,
-    }),
-  };
-
-  const nextQuote = () => {
-    setDirection(1);
+  const nextQuote = useCallback(() => {
     setCurrentQuote((prev) => (prev + 1) % quotes.length);
-  };
+  }, [quotes.length]);
 
-  const prevQuote = () => {
-    setDirection(-1);
+  const prevQuote = useCallback(() => {
     setCurrentQuote((prev) => (prev - 1 + quotes.length) % quotes.length);
-  };
+  }, [quotes.length]);
 
   // Auto-rotate quotes
   useEffect(() => {
+    if (isHovered) return;
+
     const interval = setInterval(() => {
-      setDirection(1);
-      setCurrentQuote((prev) => (prev + 1) % quotes.length);
+      nextQuote();
     }, 5000);
     return () => clearInterval(interval);
-  }, [quotes.length]);
+  }, [isHovered, nextQuote]);
+
+  // Logic to determine style for stacked cards
+  const getCardStyle = (index: number) => {
+    // Calculate distance accounting for wrap-around
+    const total = quotes.length;
+    let distance = (index - currentQuote + total) % total;
+
+    // Normalize distance to be between -total/2 and total/2
+    if (distance > total / 2) distance -= total;
+
+    // We only show a few cards
+    const isActive = distance === 0;
+    const isPrev = distance === -1;
+    const isNext = distance === 1;
+    const isPrev2 = distance === -2;
+    const isNext2 = distance === 2;
+
+    // Default hidden style
+    let style = {
+      x: '0%',
+      scale: 0.8,
+      opacity: 0,
+      zIndex: 0,
+      display: 'none',
+      rotateY: 0,
+    };
+
+    if (isActive) {
+      style = {
+        x: '0%',
+        scale: 1,
+        opacity: 1,
+        zIndex: 30,
+        display: 'block',
+        rotateY: 0,
+      };
+    } else if (isPrev) {
+      style = {
+        x: '-10%', // Reduced offset for mobile stacking
+        scale: 0.9,
+        opacity: 0.6,
+        zIndex: 20,
+        display: 'block',
+        rotateY: 5,
+      };
+    } else if (isNext) {
+      style = {
+        x: '10%', // Reduced offset
+        scale: 0.9,
+        opacity: 0.6,
+        zIndex: 20,
+        display: 'block',
+        rotateY: -5,
+      };
+    } else if (isPrev2) {
+      style = {
+        x: '-20%',
+        scale: 0.8,
+        opacity: 0.3,
+        zIndex: 10,
+        display: 'block',
+        rotateY: 10,
+      };
+    } else if (isNext2) {
+      style = {
+        x: '20%',
+        scale: 0.8,
+        opacity: 0.3,
+        zIndex: 10,
+        display: 'block',
+        rotateY: -10,
+      };
+    }
+
+    return style;
+  };
+
+  // Adjust styles for larger screens if needed
+  const getDesktopOverride = (index: number) => {
+    const total = quotes.length;
+    let distance = (index - currentQuote + total) % total;
+    if (distance > total / 2) distance -= total;
+
+    const isPrev = distance === -1;
+    const isNext = distance === 1;
+    const isPrev2 = distance === -2;
+    const isNext2 = distance === 2;
+
+    // Expand spacing on desktop
+    if (isPrev) return { x: '-25%' };
+    if (isNext) return { x: '25%' };
+    if (isPrev2) return { x: '-45%' };
+    if (isNext2) return { x: '45%' };
+
+    return {};
+  };
 
   return (
     <section
       id="quotes"
-      className="py-20 bg-gradient-to-br from-purple-50 to-blue-50 dark:from-purple-900/20 dark:to-blue-900/20 transition-colors duration-500"
+      className="py-20 bg-gradient-to-br from-primary-50 to-blue-50 dark:from-primary-900/20 dark:to-blue-900/20 transition-colors duration-500 overflow-hidden"
     >
-      <div className="max-w-4xl mx-auto px-6 relative">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+      <div className="max-w-6xl mx-auto px-6 relative flex flex-col items-center">
+        <div className="text-center mb-16 relative z-10">
+          <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
             Words of{' '}
-            <span className="bg-gradient-to-r from-purple-600 to-blue-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">
               Wisdom
             </span>
           </h2>
-          <p className="text-gray-600 dark:text-gray-300">
+          <p className="text-lg text-gray-600 dark:text-gray-300 max-w-2xl mx-auto">
             Inspiration from great minds in technology and beyond
           </p>
         </div>
 
         <div
           className={twMerge(
-            'relative bg-white dark:bg-gray-800 rounded-2xl shadow-xl p-8 md:p-12 transition-all duration-500 min-h-[350px] flex flex-col',
-            isVisible ? 'opacity-100 scale-100' : 'opacity-0 scale-95',
+            'relative w-full h-[320px] md:h-[360px] flex items-center justify-center perspective-1000',
+            isVisible ? 'opacity-100' : 'opacity-0',
           )}
+          style={{ perspective: '1000px' }}
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
         >
-          {/* Quote Icon */}
-          <div className="absolute top-6 left-6 text-4xl text-purple-500/20 z-0">
-            <FaQuoteLeft />
+          {/* Cards Container */}
+          <div className="relative w-full max-w-md md:max-w-2xl h-full flex items-center justify-center">
+            {quotes.map((quote, index) => {
+              const baseStyle = getCardStyle(index);
+
+              return (
+                <motion.div
+                  key={index}
+                  className="absolute w-full md:w-[600px] h-full bg-white dark:bg-gray-800 rounded-3xl shadow-xl p-8 md:p-12 flex flex-col justify-center border border-gray-100 dark:border-gray-700 cursor-grab active:cursor-grabbing"
+                  initial={false}
+                  animate={{
+                    x: baseStyle.x,
+                    scale: baseStyle.scale,
+                    opacity: baseStyle.opacity,
+                    zIndex: baseStyle.zIndex,
+                    display: baseStyle.display as any,
+                    rotateY: baseStyle.rotateY,
+                  }}
+                  transition={{
+                    type: 'spring',
+                    stiffness: 200,
+                    damping: 20,
+                  }}
+                  drag="x"
+                  dragConstraints={{ left: 0, right: 0 }}
+                  onDragEnd={(e, { offset, velocity }) => {
+                    const swipe = Math.abs(offset.x) * velocity.x;
+                    if (swipe < -10000 || offset.x < -100) {
+                      nextQuote();
+                    } else if (swipe > 10000 || offset.x > 100) {
+                      prevQuote();
+                    }
+                  }}
+                  style={{
+                    transformStyle: 'preserve-3d',
+                  }}
+                >
+                  {/* Watermark */}
+                  <div className="absolute -bottom-4 -right-4 text-9xl text-primary-100 dark:text-gray-700/30 font-black opacity-50 select-none pointer-events-none z-0 transform -rotate-12">
+                    &#10077;
+                  </div>
+
+                  {/* Quote Icon */}
+                  <div className="text-4xl text-primary-500/40 relative z-10 flex justify-center mb-4">
+                    <FaQuoteLeft />
+                  </div>
+
+                  <div className="relative z-10 flex items-center justify-center">
+                    <blockquote className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white leading-relaxed text-center">
+                      "{quote.quote}"
+                    </blockquote>
+                  </div>
+
+                  <div className="relative z-10 text-center mt-6">
+                    <cite className="text-lg font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-blue-600 not-italic">
+                      — {quote.author}
+                    </cite>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
 
-          {/* Navigation Buttons (Outside Content Clipper, Inside Card for positioning) */}
+          {/* Navigation Arrows - Hidden on mobile */}
           <button
             onClick={prevQuote}
-            className="absolute left-0 md:-left-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-800 hover:text-purple-600 dark:hover:text-purple-400 shadow-lg transition-all duration-300 z-30 flex items-center justify-center border border-gray-100 dark:border-gray-600"
+            className="hidden md:flex absolute left-4 lg:left-0 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400 shadow-lg transition-all duration-300 z-40 border border-gray-100 dark:border-gray-600 group"
             aria-label="Previous quote"
           >
-            <FaChevronLeft className="w-5 h-5" />
+            <FaChevronLeft className="w-6 h-6 group-hover:-translate-x-1 transition-transform" />
           </button>
 
           <button
             onClick={nextQuote}
-            className="absolute right-0 md:-right-5 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-purple-100 dark:hover:bg-purple-800 hover:text-purple-600 dark:hover:text-purple-400 shadow-lg transition-all duration-300 z-30 flex items-center justify-center border border-gray-100 dark:border-gray-600"
+            className="hidden md:flex absolute right-4 lg:right-0 top-1/2 -translate-y-1/2 p-4 rounded-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm text-gray-600 dark:text-gray-300 hover:bg-white dark:hover:bg-gray-700 hover:text-primary-600 dark:hover:text-primary-400 shadow-lg transition-all duration-300 z-40 border border-gray-100 dark:border-gray-600 group"
             aria-label="Next quote"
           >
-            <FaChevronRight className="w-5 h-5" />
+            <FaChevronRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
           </button>
-
-          {/* Content Clipper */}
-          <div className="relative flex-1 overflow-hidden">
-            <AnimatePresence initial={false} custom={direction}>
-              <motion.div
-                key={currentQuote}
-                custom={direction}
-                variants={variants}
-                initial="enter"
-                animate="center"
-                exit="exit"
-                transition={{
-                  x: { type: 'spring', stiffness: 300, damping: 30 },
-                  opacity: { duration: 0.2 },
-                }}
-                className="absolute top-0 left-0 w-full h-full flex flex-col justify-center items-center px-4"
-              >
-                <div className="text-center w-full max-w-3xl">
-                  <blockquote className="text-xl md:text-2xl font-medium text-gray-900 dark:text-white leading-relaxed mb-6">
-                    "{quotes[currentQuote].quote}"
-                  </blockquote>
-
-                  <div className="flex flex-col items-center">
-                    <cite className="text-lg font-semibold text-purple-600 dark:text-purple-400 not-italic">
-                      — {quotes[currentQuote].author}
-                    </cite>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          </div>
-
-          {/* Quote Indicators (Bottom Center) - Absolute relative to card */}
-          <div className="absolute bottom-6 left-0 right-0 flex justify-center space-x-2 z-20">
-            {quotes.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => {
-                  setDirection(index > currentQuote ? 1 : -1);
-                  setCurrentQuote(index);
-                }}
-                className={twMerge(
-                  'h-2 rounded-full transition-all duration-300 ease-in-out',
-                  index === currentQuote
-                    ? 'w-6 bg-purple-600'
-                    : 'w-2 bg-gray-300 dark:bg-gray-600 hover:bg-purple-400',
-                )}
-                aria-label={`Go to quote ${index + 1}`}
-              />
-            ))}
-          </div>
         </div>
-
-        {/* Quote Counter removed as per design request for cleaner look, or we can keep it if user implies. Request said "lets show only dots at the bottom" so assuming removing counter text. */}
       </div>
     </section>
   );
