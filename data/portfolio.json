@@ -557,7 +557,7 @@
       "description": "Neighborhood map application using React and Google Maps API.",
       "image": "/images/projects/neighborhood.png",
       "technologies": ["React.js", "Google Maps API"],
-      "category": "React Nanodegree",
+      "category": "Frontend Nanodegree",
       "status": "completed",
       "featured": false,
       "github": "https://github.com/lalitmee/ud-neighborhood-map",
@@ -585,6 +585,7 @@
       "status": "completed",
       "featured": false,
       "github": "https://github.com/lalitmee/ud-feedreader-testing",
+      "demo": "https://lalitmee.github.io/ud-feedreader-testing/",
       "highlights": ["Unit testing", "Test coverage", "Bug fixing"]
     },
     {
@@ -597,6 +598,7 @@
       "status": "completed",
       "featured": false,
       "github": "https://github.com/lalitmee/ud-classic-arcade-game",
+      "demo": "https://lalitmee.github.io/ud-classic-arcade-game/",
       "highlights": [
         "Game loop",
         "Collision detection",
@@ -613,6 +615,7 @@
       "status": "completed",
       "featured": false,
       "github": "https://github.com/lalitmee/ud-memory-game",
+      "demo": "https://lalitmee.github.io/ud-memory-game/",
       "highlights": ["Game logic", "Animations", "Score tracking"]
     },
     {
@@ -625,6 +628,7 @@
       "status": "completed",
       "featured": false,
       "github": "https://github.com/lalitmee/Ud-Pixel-Art-Maker",
+      "demo": "https://lalitmee.github.io/Ud-Pixel-Art-Maker/",
       "highlights": ["Grid generation", "Color picker", "Canvas manipulation"]
     },
     {
@@ -637,6 +641,7 @@
       "status": "completed",
       "featured": false,
       "github": "https://github.com/lalitmee/ud-portfolio",
+      "demo": "https://lalitmee.github.io/ud-portfolio/",
       "highlights": ["Responsive layout", "Grid system", "Custom styling"]
     }
   ],

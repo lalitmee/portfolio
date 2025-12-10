@@ -76,7 +76,7 @@ const BottomSheet: React.FC<BottomSheetProps> = ({
             dragElastic={0.05}
             onDragEnd={handleDragEnd}
             className={twMerge(
-              'fixed bottom-0 left-0 right-0 z-[101] rounded-t-3xl overflow-hidden max-h-[85vh] flex flex-col',
+              'fixed bottom-0 left-0 right-0 z-[101] rounded-t-3xl overflow-hidden max-h-[60vh] flex flex-col',
               'glass-liquid border-b-0',
               className,
             )}

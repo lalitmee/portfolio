@@ -2,6 +2,7 @@ import { AnimatePresence, motion } from 'framer-motion';
 import React, { useEffect, useRef, useState } from 'react';
 import {
   FaBrain,
+  FaChevronDown,
   FaCloud,
   FaCode,
   FaDatabase,
@@ -13,6 +14,7 @@ import { useInView } from 'react-intersection-observer';
 import { twMerge } from 'tailwind-merge';
 import portfolioData from '../data/portfolio.json';
 import { getTechIcon } from '../utils/techIcons';
+import BottomSheet from './ui/BottomSheet';
 import Tabs from './ui/Tabs';
 
 interface Skill {
@@ -224,16 +226,77 @@ const Skills: React.FC = () => {
     <section id="skills" ref={ref} className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-base text-primary-600 dark:text-primary-400 font-semibold tracking-wide uppercase">
-            {portfolioData.sections.skills.title}
+          <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white mb-6 shadow-sm">
+            <FaCode className="text-primary-600 dark:text-primary-400" />
+            <span>{portfolioData.sections.skills.title}</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+            {portfolioData.sections.skills.heading.split(' & ')[0]} &
+            <span
+              className={`bg-gradient-to-r ${currentGradient} bg-clip-text text-transparent ml-2 sm:ml-4`}
+            >
+              {portfolioData.sections.skills.heading.split(' & ')[1]}
+            </span>
           </h2>
-          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            {portfolioData.sections.skills.heading}
-          </p>
-          <p className="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400 mx-auto">
+
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
             {portfolioData.sections.skills.description}
           </p>
         </div>
+
+        {/* Mobile Custom Dropdown */}
+        <div className="md:hidden flex justify-center mb-12 px-6">
+          <div className="relative w-full max-w-sm">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-blue-500/10 rounded-xl blur-sm" />
+
+            <button
+              onClick={() => setIsDropdownOpen(true)}
+              className="relative w-full flex items-center justify-between bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl px-6 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all font-semibold shadow-sm text-base"
+            >
+              <div className="flex items-center gap-2">
+                {skillCategories.find((c) => c.name === activeCategory)?.icon}
+                <span>{activeCategory}</span>
+              </div>
+              <FaChevronDown
+                className={`w-4 h-4 text-primary-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+          </div>
+        </div>
+
+        <BottomSheet
+          isOpen={isDropdownOpen}
+          onClose={() => setIsDropdownOpen(false)}
+          title="Select Capability"
+        >
+          <div className="flex flex-col gap-2">
+            {skillCategories.map((category) => (
+              <button
+                key={category.name}
+                onClick={() => {
+                  setActiveCategory(category.name);
+                  isAutomatic.current = false;
+                  setIsDropdownOpen(false);
+                }}
+                className={twMerge(
+                  'w-full text-left px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-between',
+                  activeCategory === category.name
+                    ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400 font-bold border border-primary-500/20'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 border border-transparent',
+                )}
+              >
+                <div className="flex items-center gap-3">
+                  <div className="text-xl">{category.icon}</div>
+                  <span className="text-lg">{category.name}</span>
+                </div>
+                {activeCategory === category.name && (
+                  <div className="w-2.5 h-2.5 rounded-full bg-primary-500 shadow-sm shadow-primary-500/50" />
+                )}
+              </button>
+            ))}
+          </div>
+        </BottomSheet>
 
         {/* Category Tabs - Desktop */}
         <Tabs

@@ -5,6 +5,7 @@ import React, { useEffect, useMemo, useRef, useState } from 'react';
 import {
   FaAward,
   FaChartLine,
+  FaChevronDown,
   FaCode,
   FaCodeBranch,
   FaExternalLinkAlt,
@@ -17,6 +18,7 @@ import {
 import { useInView } from 'react-intersection-observer';
 import { generateSlug } from '../utils/slug';
 import { getTechIcon } from '../utils/techIcons';
+import BottomSheet from './ui/BottomSheet';
 import Tabs from './ui/Tabs';
 
 import portfolioData from '../data/portfolio.json';
@@ -41,10 +43,12 @@ import { twMerge } from 'tailwind-merge';
 
 const getStatusClass = (status: string) => {
   switch (status) {
+    case 'active':
+    case 'In Development':
+      return 'bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300 border border-blue-200 dark:border-blue-800';
+    case 'completed':
     case 'Live':
       return 'bg-green-100 text-green-800 dark:bg-green-900/30 dark:text-green-300 border border-green-200 dark:border-green-800';
-    case 'In Development':
-      return 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900/30 dark:text-yellow-300 border border-yellow-200 dark:border-yellow-800';
     case 'Prototype':
       return 'bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300 border border-purple-200 dark:border-purple-800';
     default:
@@ -117,16 +121,75 @@ const Projects: React.FC = () => {
     <section id="projects" ref={ref} className="py-20 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-16">
-          <h2 className="text-base text-primary-600 dark:text-primary-400 font-semibold tracking-wide uppercase">
-            {portfolioData.sections.projects.title}
+          <div className="inline-flex items-center space-x-2 bg-white/80 dark:bg-white/10 backdrop-blur-md border border-gray-200 dark:border-white/20 rounded-full px-4 py-2 text-sm text-gray-900 dark:text-white mb-6 shadow-sm">
+            <FaCode className="text-primary-600 dark:text-primary-400" />
+            <span>{portfolioData.sections.projects.title}</span>
+          </div>
+
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-gray-900 dark:text-white mb-6">
+            {portfolioData.sections.projects.heading.split(' ')[0]}
+            <span className="bg-gradient-to-r from-primary-400 to-blue-400 bg-clip-text text-transparent ml-2 sm:ml-4">
+              {portfolioData.sections.projects.heading
+                .split(' ')
+                .slice(1)
+                .join(' ')}
+            </span>
           </h2>
-          <p className="mt-2 text-3xl leading-8 font-extrabold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            {portfolioData.sections.projects.heading}
-          </p>
-          <p className="mt-4 max-w-2xl text-xl text-gray-500 dark:text-gray-400 mx-auto">
+
+          <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto mb-8 leading-relaxed">
             {portfolioData.sections.projects.description}
           </p>
         </div>
+
+        {/* Mobile Custom Dropdown */}
+        <div className="md:hidden flex justify-center mb-12 px-6">
+          <div className="relative w-full max-w-sm">
+            <div className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-blue-500/10 rounded-xl blur-sm" />
+
+            <button
+              onClick={() => setIsDropdownOpen(true)}
+              className="relative w-full flex items-center justify-between bg-white/80 dark:bg-white/5 backdrop-blur-xl border border-gray-200 dark:border-white/10 text-gray-900 dark:text-white rounded-xl px-6 py-3.5 focus:outline-none focus:ring-2 focus:ring-primary-500/50 transition-all font-semibold shadow-sm text-base"
+            >
+              <div className="flex items-center gap-2">
+                <span>{selectedCategory}</span>
+              </div>
+              <FaChevronDown
+                className={`w-4 h-4 text-primary-500 transition-transform duration-300 ${isDropdownOpen ? 'rotate-180' : ''}`}
+              />
+            </button>
+          </div>
+        </div>
+
+        <BottomSheet
+          isOpen={isDropdownOpen}
+          onClose={() => setIsDropdownOpen(false)}
+          title="Select Category"
+        >
+          <div className="flex flex-col gap-2">
+            {categories.map((category) => (
+              <button
+                key={category}
+                onClick={() => {
+                  setSelectedCategory(category);
+                  setIsDropdownOpen(false);
+                }}
+                className={twMerge(
+                  'w-full text-left px-6 py-4 rounded-xl transition-all duration-200 flex items-center justify-between',
+                  selectedCategory === category
+                    ? 'bg-primary-500/10 text-primary-600 dark:text-primary-400 font-bold border border-primary-500/20'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-white/5 border border-transparent',
+                )}
+              >
+                <div className="flex items-center gap-3">
+                  <span className="text-lg">{category}</span>
+                </div>
+                {selectedCategory === category && (
+                  <div className="w-2.5 h-2.5 rounded-full bg-primary-500 shadow-sm shadow-primary-500/50" />
+                )}
+              </button>
+            ))}
+          </div>
+        </BottomSheet>
 
         {/* Modern Tab Navigation - Desktop */}
         <Tabs

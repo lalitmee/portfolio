@@ -1,62 +1,23 @@
-import dynamic from 'next/dynamic';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
+
 import { config } from '../config';
 import portfolioData from '../data/portfolio.json';
 
-// Import Navigation component
-const Navigation = dynamic(() => import('../components/Navigation'), {
-  ssr: false,
-});
-
-import BlogArticlesSkeleton from '../components/skeletons/BlogArticlesSkeleton';
-import CertificationsSkeleton from '../components/skeletons/CertificationsSkeleton';
-import ContactSkeleton from '../components/skeletons/ContactSkeleton';
-import ProjectsSkeleton from '../components/skeletons/ProjectsSkeleton';
-import ResumeSkeleton from '../components/skeletons/ResumeSkeleton';
-import SkillsSkeleton from '../components/skeletons/SkillsSkeleton';
-
-const HomePage = dynamic(() => import('../components/HomePage'), {
-  loading: () => <LoadingSpinner size="lg" />,
-});
-const Skills = dynamic(() => import('../components/Skills'), {
-  loading: () => <SkillsSkeleton />,
-});
-const Quotes = dynamic(() => import('../components/Quotes'), {
-  loading: () => <LoadingSpinner size="lg" variant="skeleton" />,
-});
-const Projects = dynamic(() => import('../components/Projects'), {
-  loading: () => <ProjectsSkeleton />,
-});
-const Certifications = dynamic(() => import('../components/Certifications'), {
-  loading: () => <CertificationsSkeleton />,
-});
-const BlogArticles = dynamic(() => import('../components/BlogArticles'), {
-  loading: () => <BlogArticlesSkeleton />,
-});
-const DigitalMarketingProjects = dynamic(
-  () => import('../components/DigitalMarketingProjects'),
-  { loading: () => <LoadingSpinner size="lg" variant="skeleton" /> },
-);
-const Testimonials = dynamic(() => import('../components/Testimonials'), {
-  loading: () => <LoadingSpinner size="lg" variant="skeleton" />,
-});
-const Resume = dynamic(() => import('../components/Resume'), {
-  loading: () => <ResumeSkeleton />,
-});
-const Contact = dynamic(() => import('../components/Contact'), {
-  loading: () => <ContactSkeleton />,
-});
-const Footer = dynamic(() => import('../components/Footer'), {
-  loading: () => (
-    <LoadingSpinner size="sm" variant="pulse" className="bg-gray-900" />
-  ),
-});
-
-const ScrollToTop = dynamic(() => import('../components/ScrollToTop'), {
-  ssr: false,
-});
+import BlogArticles from '../components/BlogArticles';
+import Certifications from '../components/Certifications';
+import Contact from '../components/Contact';
+import DigitalMarketingProjects from '../components/DigitalMarketingProjects';
+import Footer from '../components/Footer';
+import HomePage from '../components/HomePage';
+import Navigation from '../components/Navigation';
+import Projects from '../components/Projects';
+import Quotes from '../components/Quotes';
+import Resume from '../components/Resume';
+import ScrollToTop from '../components/ScrollToTop';
+import Skills from '../components/Skills';
+import Testimonials from '../components/Testimonials';
 
 // Global state to track if splash screen has been shown in this session (SPA navigation)
 let hasShownSplash = false;
