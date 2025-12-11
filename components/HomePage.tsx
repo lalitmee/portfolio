@@ -346,7 +346,7 @@ const HomePage: React.FC = () => {
                   onClick={() => scrollToSection('projects')}
                   className="group bg-gradient-to-r from-primary-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-primary-500/25 transition-transform duration-300 flex items-center justify-center space-x-2"
                 >
-                  <FaRocket className="group-hover:animate-bounce-right" />
+                  <FaRocket className="group-hover:animate-bounce-vertical" />
                   <span>{(portfolioData.sections as any).hero.ctaPrimary}</span>
                 </button>
                 <button
@@ -470,7 +470,7 @@ const HomePage: React.FC = () => {
                     onClick={() => scrollToSection('projects')}
                     className="group bg-gradient-to-r from-primary-500 to-blue-500 text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg hover:shadow-primary-500/25 transition-transform duration-300 flex items-center space-x-2 hover:scale-[1.02] active:scale-[0.98]"
                   >
-                    <FaRocket className="group-hover:animate-bounce-right" />
+                    <FaRocket className="group-hover:animate-bounce-vertical" />
                     <span>
                       {(portfolioData.sections as any).hero.ctaPrimary}
                     </span>

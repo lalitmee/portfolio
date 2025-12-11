@@ -5,6 +5,7 @@ import { FaArrowLeft, FaBars, FaTimes } from 'react-icons/fa';
 import { twMerge } from 'tailwind-merge';
 import portfolioData from '../data/portfolio.json';
 import { Logo } from './Logo';
+import ThemeDrawer from './ThemeDrawer';
 import ThemeSwitcher from './ThemeSwitcher';
 import ThemeToggle from './ThemeToggle';
 import IconButton from './ui/IconButton';
@@ -114,6 +115,12 @@ const Navigation: React.FC<NavigationProps> = ({
     { id: 'resume', label: 'Experience' },
     { id: 'contact', label: 'Contact' },
   ];
+
+  const downloadResume = () => {
+    if (portfolioData.personal.resumeUrl) {
+      window.open(portfolioData.personal.resumeUrl, '_blank');
+    }
+  };
 
   return (
     <>
@@ -264,7 +271,11 @@ const Navigation: React.FC<NavigationProps> = ({
 
           {/* CTA Button and Theme Toggle */}
           <div className="hidden lg:flex items-center space-x-4">
-            <ThemeSwitcher />
+            {portfolioData.settings.themeSelector === 'drawer' ? (
+              <ThemeDrawer />
+            ) : (
+              <ThemeSwitcher />
+            )}
             <ThemeToggle />
             {!showBackArrow && (
               <a
@@ -285,7 +296,11 @@ const Navigation: React.FC<NavigationProps> = ({
 
           {/* Mobile Menu Button & Theme Toggle */}
           <div className="lg:hidden flex items-center space-x-4 ml-auto">
-            <ThemeSwitcher />
+            {portfolioData.settings.themeSelector === 'drawer' ? (
+              <ThemeDrawer />
+            ) : (
+              <ThemeSwitcher />
+            )}
             <ThemeToggle />
             {!showBackArrow && (
               <IconButton

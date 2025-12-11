@@ -370,11 +370,11 @@ const Resume: React.FC = () => {
                   >
                     {/* Watermark Background */}
                     {(edu as any).image && (
-                      <div className="absolute -right-4 -bottom-4 w-64 h-64 opacity-[0.15] dark:opacity-[0.10] transform rotate-12 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-6 pointer-events-none z-0">
+                      <div className="absolute -right-4 -bottom-4 w-64 h-64 opacity-[0.15] dark:opacity-[0.15] transform rotate-12 transition-transform duration-500 ease-out group-hover:scale-110 group-hover:rotate-6 pointer-events-none z-0">
                         <img
                           src={(edu as any).image}
                           alt=""
-                          className="w-full h-full object-contain grayscale"
+                          className="w-full h-full object-contain grayscale dark:brightness-0 dark:invert"
                         />
                       </div>
                     )}
@@ -389,7 +389,7 @@ const Resume: React.FC = () => {
                             <img
                               src={(edu as any).image}
                               alt={`${edu.institution} Logo`}
-                              className="w-full h-full object-contain"
+                              className="w-full h-full object-contain dark:brightness-0 dark:invert"
                             />
                           </div>
                         </div>
