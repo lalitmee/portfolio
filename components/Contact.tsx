@@ -502,7 +502,7 @@ const Contact: React.FC = () => {
                   type="submit"
                   disabled={isSubmitting}
                   className={twMerge(
-                    'w-full py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-[1.02] active:scale-[0.98]',
+                    'w-full py-4 rounded-lg font-semibold transition-all duration-300 flex items-center justify-center space-x-2 hover:scale-[1.02] active:scale-[0.98] group',
                     isSubmitting
                       ? 'bg-gray-400 cursor-not-allowed'
                       : 'bg-gradient-to-r from-primary-600 to-blue-600 hover:shadow-lg hover:shadow-primary-500/25 text-white',
@@ -515,7 +515,7 @@ const Contact: React.FC = () => {
                     </>
                   ) : (
                     <>
-                      <FaPaperPlane />
+                      <FaPaperPlane className="group-hover:animate-bounce-vertical" />
                       <span>Send Message</span>
                     </>
                   )}

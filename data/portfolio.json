@@ -670,7 +670,8 @@
     "showCertifications": true,
     "showEducation": true,
     "contactFormEnabled": true,
-    "downloadResumeEnabled": true
+    "downloadResumeEnabled": true,
+    "themeSelector": "dropdown"
   },
   "professionalImpact": [
     {

@@ -11,7 +11,7 @@ const themes = [
   { name: 'cobalt2', label: 'Cobalt2', color: '#ffc600' },
   { name: 'terminal', label: 'Terminal', color: '#4ade80' },
   { name: 'catppuccin', label: 'Catppuccin', color: '#cba6f7' },
-  { name: 'neovim', label: 'Neovim', color: '#3bda55' },
+  { name: 'neovim', label: 'Neovim', color: '#A6DBFF' },
   { name: 'dracula', label: 'Dracula', color: '#ff79c6' },
   { name: 'monokai', label: 'Monokai', color: '#e6db74' },
   { name: 'nord', label: 'Nord', color: '#88c0d0' },
@@ -107,7 +107,7 @@ const ThemeSwitcher: React.FC = () => {
             initial={{ opacity: 0, y: 10, scale: 0.95 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: 10, scale: 0.95 }}
-            className="absolute right-0 mt-2 w-48 py-2 glass-liquid rounded-xl overflow-hidden z-50"
+            className="absolute right-0 mt-2 w-48 py-2 glass-liquid-fixed rounded-xl overflow-hidden z-50"
           >
             <ThemeList />
           </motion.div>
