@@ -117,8 +117,8 @@ const Navigation: React.FC<NavigationProps> = ({
   ];
 
   const downloadResume = () => {
-    if (portfolioData.personal.resumeUrl) {
-      window.open(portfolioData.personal.resumeUrl, '_blank');
+    if (portfolioData.personal.resume) {
+      window.open(portfolioData.personal.resume, '_blank');
     }
   };
 
