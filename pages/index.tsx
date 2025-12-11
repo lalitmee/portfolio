@@ -1,9 +1,10 @@
+import { GetStaticProps } from 'next';
 import Head from 'next/head';
 import { useEffect, useState } from 'react';
 import LoadingSpinner from '../components/LoadingSpinner';
 
 import { config } from '../config';
-import portfolioData from '../data/portfolio.json';
+import portfolioDataImport from '../data/portfolio.json';
 
 import BlogArticles from '../components/BlogArticles';
 import Certifications from '../components/Certifications';
@@ -22,7 +23,11 @@ import Testimonials from '../components/Testimonials';
 // Global state to track if splash screen has been shown in this session (SPA navigation)
 let hasShownSplash = false;
 
-export default function Home() {
+interface HomeProps {
+  portfolioData: typeof portfolioDataImport;
+}
+
+export default function Home({ portfolioData }: HomeProps) {
   // Initialize state based on global variable to prevent flash on back navigation (SPA)
   const [loading, setLoading] = useState(() => {
     // If we've already shown it in this SPA session (hasShownSplash is true), don't show it again.
@@ -408,3 +413,14 @@ export default function Home() {
     </div>
   );
 }
+
+export const getStaticProps: GetStaticProps<HomeProps> = async () => {
+  // Import portfolio data at build time
+  const portfolioData = portfolioDataImport;
+
+  return {
+    props: {
+      portfolioData,
+    },
+  };
+};
