@@ -671,7 +671,7 @@
     "showEducation": true,
     "contactFormEnabled": true,
     "downloadResumeEnabled": true,
-    "themeSelector": "drawer"
+    "themeSelector": "dropdown"
   },
   "professionalImpact": [
     {

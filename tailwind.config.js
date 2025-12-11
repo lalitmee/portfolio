@@ -17,6 +17,7 @@ module.exports = {
         glow: 'glow 2s ease-in-out infinite alternate',
         shimmer: 'shimmer 2s infinite',
         'spin-slow': 'spin 20s linear infinite',
+        'spin-border': 'spin 4s linear infinite',
         'gradient-x': 'gradient-x 3s ease infinite',
         'pulse-slow': 'pulse 3s ease-in-out infinite',
         'bounce-slow': 'bounce 3s ease-in-out infinite',
