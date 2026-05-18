@@ -111,11 +111,15 @@ const Contact: React.FC = () => {
     setIsSubmitting(true);
 
     try {
-      // Replace with your actual EmailJS Service ID, Template ID, and Public Key
-      // You can find these in your EmailJS dashboard: https://dashboard.emailjs.com/
-      const SERVICE_ID = 'YOUR_SERVICE_ID';
-      const TEMPLATE_ID = 'YOUR_TEMPLATE_ID';
-      const PUBLIC_KEY = 'YOUR_PUBLIC_KEY';
+      const SERVICE_ID = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+      const TEMPLATE_ID = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+      const PUBLIC_KEY = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+
+      if (!SERVICE_ID || !TEMPLATE_ID || !PUBLIC_KEY) {
+        console.error('EmailJS env vars are missing');
+        alert('Email service is not configured. Please try again later.');
+        return;
+      }
 
       if (form.current) {
         await emailjs.sendForm(
@@ -134,19 +138,8 @@ const Contact: React.FC = () => {
         });
       }
     } catch (error) {
-      // Fallback for demo purposes if EmailJS is not configured
-      if ((error as any).text?.includes('The user ID is required')) {
-        setIsSubmitted(true);
-        setFormData({
-          name: '',
-          email: '',
-          company: '',
-          subject: '',
-          message: '',
-        });
-      } else {
-        alert('Failed to send message. Please try again later.');
-      }
+      console.error('EmailJS error:', error);
+      alert('Failed to send message. Please try again later.');
     } finally {
       setIsSubmitting(false);
     }
@@ -462,6 +455,8 @@ const Contact: React.FC = () => {
                     placeholder="What's this about?"
                     autoComplete="off"
                   />
+                  {/* Mirror subject into EmailJS {{title}} variable */}
+                  <input type="hidden" name="title" value={formData.subject} />
                   {errors.subject && (
                     <p className="text-red-500 text-sm mt-1">
                       {errors.subject}
