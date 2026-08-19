@@ -3,6 +3,7 @@ import type { AppProps } from 'next/app';
 import { Outfit } from 'next/font/google';
 import Head from 'next/head';
 import { useEffect } from 'react';
+import { Analytics } from '@vercel/analytics/next';
 import '../styles/globals.css';
 
 function FaviconUpdater() {
@@ -119,6 +120,7 @@ export default function App({ Component, pageProps }: AppProps) {
           <Component {...pageProps} />
         </main>
       </ThemeProvider>
+      <Analytics />
     </>
   );
 }
