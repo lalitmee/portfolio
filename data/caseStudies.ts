@@ -75,3 +75,6 @@ export const caseStudies: CaseStudy[] = [
       'Delivered end-to-end administration and analytics features across the React, Redux, and GraphQL platform.',
   },
 ];
+
+export const getCaseStudy = (slug: string) =>
+  caseStudies.find((study) => study.slug === slug);

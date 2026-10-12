@@ -476,6 +476,208 @@ button {
   margin: 0;
 }
 
+.content-page {
+  max-width: 900px;
+  min-height: 65vh;
+  padding-block: clamp(3rem, 8vw, 6.5rem);
+}
+
+.content-page > h1 {
+  max-width: 850px;
+  margin: 0;
+  font: 400 clamp(2.7rem, 6vw, 5rem)/1 Georgia, 'Times New Roman', serif;
+  letter-spacing: -0.045em;
+}
+
+.page-lede {
+  max-width: 720px;
+  margin: 1.5rem 0 3rem;
+  color: var(--muted);
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  line-height: 1.6;
+}
+
+.content-page > section,
+.case-detail > section {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.content-page section h2,
+.contact-grid aside h2 {
+  margin: 0 0 1rem;
+  font: 400 clamp(1.6rem, 3vw, 2.2rem)/1.15 Georgia, 'Times New Roman', serif;
+}
+
+.content-page section p,
+.content-page section li,
+.case-detail > section p,
+.case-detail > section li {
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+.case-detail > .eyebrow {
+  margin-top: 3rem;
+}
+
+.case-detail > section ul,
+.content-page > section ul {
+  padding-left: 1.2rem;
+}
+
+.career-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.career-list li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.5rem 2rem;
+  padding-block: 1.25rem;
+  border-bottom: 1px solid var(--line);
+}
+
+.career-list h3,
+.career-list p {
+  margin: 0;
+}
+
+.career-list li > p {
+  grid-column: 1 / -1;
+}
+
+.career-list time {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.project-archive {
+  margin-top: 3rem;
+  border-top: 1px solid var(--line);
+}
+
+.project-archive summary {
+  padding-block: 1.25rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.app-listing {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  margin-top: 3rem;
+  padding: clamp(1.5rem, 5vw, 3rem);
+  background: var(--panel);
+}
+
+.app-listing h2 {
+  max-width: 560px;
+  font: 400 clamp(1.7rem, 3vw, 2.5rem)/1.15 Georgia, 'Times New Roman', serif;
+}
+
+.app-listing p:not(.eyebrow) {
+  max-width: 600px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(220px, 0.6fr);
+  gap: clamp(2rem, 7vw, 6rem);
+  margin-top: 3rem;
+}
+
+.contact-grid form {
+  display: grid;
+  gap: 1.2rem;
+}
+
+.form-field {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.form-field label {
+  font-weight: 600;
+}
+
+.form-field label span {
+  color: var(--muted);
+  font-weight: 400;
+}
+
+.form-field input,
+.form-field textarea {
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: 2px;
+  padding: 0.75rem;
+  background: var(--paper);
+  color: var(--ink);
+  font: inherit;
+}
+
+.form-field [aria-invalid='true'] {
+  border-color: #a52525;
+}
+
+.field-error {
+  color: #a52525;
+  font-size: 0.9rem;
+}
+
+.dark .field-error,
+.dark .form-field [aria-invalid='true'] {
+  color: #ffaaaa;
+}
+
+.dark .form-field [aria-invalid='true'] {
+  border-color: #ffaaaa;
+}
+
+.contact-grid form > .button {
+  justify-self: start;
+  cursor: pointer;
+}
+
+.contact-grid form > .button:disabled {
+  cursor: not-allowed;
+  opacity: 0.65;
+}
+
+.form-status {
+  min-height: 1.5em;
+  margin: 0;
+  color: var(--muted);
+}
+
+.contact-grid aside {
+  padding-top: 1rem;
+}
+
+.contact-grid aside p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.detail-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
 .site-footer {
   border-top: 1px solid var(--line);
   padding-block: 2.5rem;
@@ -570,6 +772,22 @@ button {
   .career-strip {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .contact-grid,
+  .app-listing {
+    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .career-list li {
+    grid-template-columns: 1fr;
+  }
+
+  .career-list time,
+  .career-list li > p {
+    grid-column: 1;
   }
 
   .project-list {
