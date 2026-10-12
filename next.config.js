@@ -1,13 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  async redirects() {
-    return [{
-      source: '/apps/markdown-preview',
-      destination: '/apps/markdown-preview/',
-      permanent: true,
-    }];
-  },
+  trailingSlash: true,
   async rewrites() {
     return [{
       source: '/apps/markdown-preview/:path*',
