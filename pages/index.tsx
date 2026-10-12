@@ -80,6 +80,7 @@ export default function Home() {
         'about',
         'skills',
         'projects',
+        'apps',
         'resume',
         'contact',
       ];
@@ -104,6 +105,7 @@ export default function Home() {
       'about',
       'skills',
       'projects',
+      'apps',
       'resume',
       'contact',
     ];
@@ -321,6 +323,34 @@ export default function Home() {
           style={{ animationDelay: '0.8s' }}
         >
           <Projects />
+        </section>
+
+        {/* Apps Section */}
+        <section id="apps" className="py-20 bg-gray-50/50 dark:bg-black/20">
+          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="text-center mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                Apps
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-300">
+                Small tools I’ve built for the web.
+              </p>
+            </div>
+            <a
+              href="/apps/markdown-preview/"
+              className="block max-w-xl mx-auto rounded-2xl border border-gray-200 dark:border-white/10 bg-white/80 dark:bg-white/5 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                Markdown Previewer
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-5">
+                Write Markdown and preview the rendered result.
+              </p>
+              <span className="text-primary-600 dark:text-primary-400 font-medium">
+                Open app →
+              </span>
+            </a>
+          </div>
         </section>
 
         {/* Optional Sections */}

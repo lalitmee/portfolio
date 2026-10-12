@@ -1,6 +1,19 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
+  async redirects() {
+    return [{
+      source: '/apps/markdown-preview',
+      destination: '/apps/markdown-preview/',
+      permanent: true,
+    }];
+  },
+  async rewrites() {
+    return [{
+      source: '/apps/markdown-preview/:path*',
+      destination: 'https://md-reader-lalit.vercel.app/:path*',
+    }];
+  },
   images: {
     remotePatterns: [
       {

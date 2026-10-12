@@ -112,6 +112,7 @@ const Navigation: React.FC<NavigationProps> = ({
     { id: 'about', label: 'About' },
     { id: 'skills', label: 'Skills' },
     { id: 'projects', label: 'Projects' },
+    { id: 'apps', label: 'Apps' },
     { id: 'resume', label: 'Experience' },
     { id: 'contact', label: 'Contact' },
   ];
