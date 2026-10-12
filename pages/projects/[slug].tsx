@@ -2,6 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import SiteLayout from '../../components/SiteLayout';
 import portfolioData from '../../data/portfolio.json';
+import { trackEvent } from '../../utils/analytics';
 import { generateSlug } from '../../utils/slug';
 
 type Project = (typeof portfolioData.projects)[number];
@@ -17,8 +18,8 @@ export default function ProjectDetail({ project }: { project: Project }) {
         {project.highlights.length > 0 && <section><h2>What it does</h2><ul>{project.highlights.map((item) => <li key={item}>{item}</li>)}</ul></section>}
         {project.technologies.length > 0 && <section><h2>Technologies</h2><p>{project.technologies.join(' · ')}</p></section>}
         <nav className="detail-actions" aria-label="Project links">
-          {project.github && <a className="button button-outline" href={project.github} target="_blank" rel="noreferrer">View source on GitHub ↗</a>}
-          {project.demo && <a className="button button-primary" href={project.demo} target="_blank" rel="noreferrer">Open project ↗</a>}
+          {project.github && <a className="button button-outline" href={project.github} target="_blank" rel="noreferrer" onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'source' })}>View source on GitHub ↗</a>}
+          {project.demo && <a className="button button-primary" href={project.demo} target="_blank" rel="noreferrer" onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'demo' })}>Open project ↗</a>}
         </nav>
       </article>
     </SiteLayout>

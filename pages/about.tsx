@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import SiteLayout from '../components/SiteLayout';
 import portfolioData from '../data/portfolio.json';
+import { trackEvent } from '../utils/analytics';
 
 export default function AboutPage() {
   return (
@@ -25,7 +26,7 @@ export default function AboutPage() {
         <section className="resume-note">
           <h2>Résumé</h2>
           <p>The downloadable résumé is an older version and its experience summary may be out of date.</p>
-          <a className="button button-outline" href={portfolioData.personal.resume} download>Download résumé (PDF)</a>
+          <a className="button button-outline" href={portfolioData.personal.resume} download onClick={() => trackEvent({ event: 'resume_download' })}>Download résumé (PDF)</a>
         </section>
         <p><Link className="text-link" href="/contact/">Get in touch →</Link></p>
       </div>

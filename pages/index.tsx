@@ -3,6 +3,7 @@ import Link from 'next/link';
 import SiteLayout from '../components/SiteLayout';
 import { caseStudies } from '../data/caseStudies';
 import portfolio from '../data/portfolio.json';
+import { trackEvent } from '../utils/analytics';
 import { generateSlug } from '../utils/slug';
 
 const selectedProjects = [
@@ -97,7 +98,7 @@ export default function Home() {
             <h2 id="apps-title">Markdown Previewer</h2>
             <p>Preview local Markdown files, explore folders, and work with Mermaid diagrams and tables.</p>
           </div>
-          <Link className="button button-outline" href="/apps/markdown-preview/">Open the app <span aria-hidden="true">↗</span></Link>
+          <Link className="button button-outline" href="/apps/markdown-preview/" onClick={() => trackEvent({ event: 'app_launch', app_slug: 'markdown-preview' })}>Open the app <span aria-hidden="true">↗</span></Link>
         </div>
       </section>
 

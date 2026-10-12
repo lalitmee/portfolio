@@ -2,6 +2,7 @@ import emailjs from '@emailjs/browser';
 import { FormEvent, useRef, useState } from 'react';
 import portfolioData from '../data/portfolio.json';
 import { ContactFormErrors, ContactFormValues, validateContactForm } from '../utils/contactForm';
+import { trackEvent } from '../utils/analytics';
 
 const emptyForm: ContactFormValues & { company: string } = {
   name: '', email: '', company: '', subject: '', message: '',
@@ -94,9 +95,9 @@ export default function Contact() {
         </form>
         <aside>
           <h2>Or reach me directly</h2>
-          <p><a href={`mailto:${email}`}>{email}</a></p>
-          <p><a href="https://linkedin.com/in/lalitmee">LinkedIn</a></p>
-          <p><a href="https://github.com/lalitmee">GitHub</a></p>
+          <p><a href={`mailto:${email}`} onClick={() => trackEvent({ event: 'contact_click', channel: 'email' })}>{email}</a></p>
+          <p><a href="https://linkedin.com/in/lalitmee" onClick={() => trackEvent({ event: 'contact_click', channel: 'linkedin' })}>LinkedIn</a></p>
+          <p><a href="https://github.com/lalitmee" onClick={() => trackEvent({ event: 'contact_click', channel: 'github' })}>GitHub</a></p>
           <p>Based in Bengaluru, India.</p>
         </aside>
       </div>

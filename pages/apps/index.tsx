@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import SiteLayout from '../../components/SiteLayout';
+import { trackEvent } from '../../utils/analytics';
 
 export default function AppsPage() {
   return (
@@ -10,7 +11,7 @@ export default function AppsPage() {
         <p className="page-lede">Browser-based experiments and utilities. The Markdown Previewer reads local files in your browser; it does not upload them.</p>
         <section className="app-listing">
           <div><p className="eyebrow">Markdown Previewer</p><h2>Read and work with Markdown files locally.</h2><p>Browse local files and folders, search documents, preview Mermaid diagrams, and edit tables.</p></div>
-          <Link className="button button-primary" href="/apps/markdown-preview/">Open Markdown Previewer</Link>
+          <Link className="button button-primary" href="/apps/markdown-preview/" onClick={() => trackEvent({ event: 'app_launch', app_slug: 'markdown-preview' })}>Open Markdown Previewer</Link>
         </section>
       </div>
     </SiteLayout>

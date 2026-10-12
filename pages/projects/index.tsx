@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import SiteLayout from '../../components/SiteLayout';
 import portfolioData from '../../data/portfolio.json';
+import { trackEvent } from '../../utils/analytics';
 import { generateSlug } from '../../utils/slug';
 
 const curated = ['browse.nvim', 'markdown-previewer', 'codecompanion-spinners.nvim', 'cobalt2.nvim', 'dotfiles'];
@@ -9,7 +10,7 @@ const archiveProjects = portfolioData.projects.filter((project) => !curated.incl
 
 function ProjectLink({ project }: { project: (typeof portfolioData.projects)[number] }) {
   return (
-    <Link className="project-link" href={`/projects/${generateSlug(project.title)}/`}>
+    <Link className="project-link" href={`/projects/${generateSlug(project.title)}/`} onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'detail' })}>
       <span>{project.category}</span><strong>{project.title}</strong><span className="row-arrow" aria-hidden="true">↗</span>
     </Link>
   );
