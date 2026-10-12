@@ -62,7 +62,7 @@ const ProjectDetail: React.FC<ProjectDetailProps> = ({ project }) => {
   const router = useRouter();
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
-      <Navigation showBackArrow={true} />
+      <Navigation />
       <Head>
         <title>{project.title} | Project Details</title>
         <meta name="description" content={project.description} />

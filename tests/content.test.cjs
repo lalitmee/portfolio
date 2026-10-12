@@ -79,3 +79,40 @@ test('public portfolio data does not publish placeholder testimonials or unsuppo
   assert.equal(portfolio.stats.experience.value, '8+');
   assert.ok(!JSON.stringify(portfolio.stats).match(/\b(?:20\+|15\+|6\+)\b/));
 });
+
+test('editorial accents meet contrast and brand name includes its visible label', () => {
+  const css = fs.readFileSync(path.join(__dirname, '../styles/globals.css'), 'utf8');
+  const navigation = fs.readFileSync(
+    path.join(__dirname, '../components/Navigation.tsx'),
+    'utf8',
+  );
+  const contrast = (foreground, background) => {
+    const luminance = (color) =>
+      color
+        .match(/[a-f\d]{2}/gi)
+        .map((part) => parseInt(part, 16) / 255)
+        .map((channel) =>
+          channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4,
+        )
+        .reduce((sum, channel, index) => sum + channel * [0.2126, 0.7152, 0.0722][index], 0);
+    const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a);
+    return (values[0] + 0.05) / (values[1] + 0.05);
+  };
+  const lightOchre = css.match(/--ochre:\s*(#[\da-f]+)/i)?.[1];
+  const lightPaper = css.match(/--paper:\s*(#[\da-f]+)/i)?.[1];
+  const darkBlock = css.match(/\.dark\s*\{([^}]+)\}/)?.[1] || '';
+  const darkOchre = darkBlock.match(/--ochre:\s*(#[\da-f]+)/i)?.[1];
+  const darkPaper = darkBlock.match(/--paper:\s*(#[\da-f]+)/i)?.[1];
+
+  assert.ok(contrast(lightOchre, lightPaper) >= 4.5);
+  assert.ok(contrast(darkOchre, darkPaper) >= 4.5);
+  const appEyebrowRules = [
+    ...css.matchAll(/\.app-feature\s+\.eyebrow\s*\{([^}]+)\}/g),
+  ];
+  assert.equal(appEyebrowRules.length, 1);
+  assert.match(appEyebrowRules[0][1], /color:\s*var\(--paper\)/);
+  assert.match(
+    navigation,
+    /className="site-brand"\s+href="\/"\s+aria-label="LK\., Lalit Kumar home"/,
+  );
+});

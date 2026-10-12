@@ -1,440 +1,116 @@
-import Head from 'next/head';
-import { useEffect, useState } from 'react';
-import LoadingSpinner from '../components/LoadingSpinner';
+import Image from 'next/image';
+import Link from 'next/link';
+import SiteLayout from '../components/SiteLayout';
+import { caseStudies } from '../data/caseStudies';
+import portfolio from '../data/portfolio.json';
+import { generateSlug } from '../utils/slug';
 
-import { config } from '../config';
-import portfolioData from '../data/portfolio.json';
-
-import BlogArticles from '../components/BlogArticles';
-import Certifications from '../components/Certifications';
-import Contact from '../components/Contact';
-import DigitalMarketingProjects from '../components/DigitalMarketingProjects';
-import Footer from '../components/Footer';
-import HomePage from '../components/HomePage';
-import Navigation from '../components/Navigation';
-import Projects from '../components/Projects';
-import Quotes from '../components/Quotes';
-import Resume from '../components/Resume';
-import ScrollToTop from '../components/ScrollToTop';
-import Skills from '../components/Skills';
-import Testimonials from '../components/Testimonials';
-
-// Global state to track if splash screen has been shown in this session (SPA navigation)
-let hasShownSplash = false;
+const selectedProjects = [
+  'browse.nvim',
+  'cobalt2.nvim',
+  'codecompanion-spinners.nvim',
+  'markdown-previewer',
+  'dotfiles',
+].map((title) => portfolio.projects.find((project) => project.title === title)!);
 
 export default function Home() {
-  // Initialize state based on global variable to prevent flash on back navigation (SPA)
-  const [loading, setLoading] = useState(() => {
-    // If we've already shown it in this SPA session (hasShownSplash is true), don't show it again.
-    // This allows instant back navigation.
-    if (hasShownSplash) return false;
-    // Otherwise, default to true to match server-side rendering (avoids hydration mismatch).
-    return true;
-  });
-
-  const [activeSection, setActiveSection] = useState('home');
-
-  useEffect(() => {
-    // Check if we need to run splash logic
-    if (!hasShownSplash && loading) {
-      // Only check if currently loading and haven't shown splash
-      // Check session storage for page refreshes
-      const sessionLoaded = sessionStorage.getItem('portfolio_loaded');
-
-      if (sessionLoaded) {
-        setLoading(false);
-        hasShownSplash = true;
-      } else {
-        const timeout = setTimeout(() => {
-          setLoading(false);
-          sessionStorage.setItem('portfolio_loaded', 'true');
-          hasShownSplash = true;
-        }, 1500);
-        return () => clearTimeout(timeout);
-      }
-    }
-  }, [loading]);
-
-  // Track active section using IntersectionObserver for better performance
-  useEffect(() => {
-    const observerOptions = {
-      root: null,
-      rootMargin: '-20% 0px -35% 0px',
-      threshold: [0, 1],
-    };
-
-    const visibleSections = new Set<string>();
-
-    const observerCallback: IntersectionObserverCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          visibleSections.add(entry.target.id);
-        } else {
-          visibleSections.delete(entry.target.id);
-        }
-      });
-
-      // Determine the active section
-      const sections = [
-        'home',
-        'about',
-        'skills',
-        'projects',
-        'apps',
-        'resume',
-        'contact',
-      ];
-
-      // Find the first visible section from our ordered list
-      const active = sections.find((section) => visibleSections.has(section));
-
-      if (active) {
-        setActiveSection(active);
-      } else if (window.scrollY < 100) {
-        // Fallback for top of page
-        setActiveSection('home');
-      }
-    };
-
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions,
-    );
-    const sections = [
-      'home',
-      'about',
-      'skills',
-      'projects',
-      'apps',
-      'resume',
-      'contact',
-    ];
-
-    sections.forEach((section) => {
-      const element = document.getElementById(section);
-      if (element) observer.observe(element);
-    });
-
-    return () => observer.disconnect();
-  }, [loading]);
-
-  if (loading) {
-    return (
-      <div className="bg-gradient-to-br from-primary-50 to-blue-50 dark:from-gray-900 dark:to-gray-800">
-        <LoadingSpinner
-          size="xl"
-          text="Preparing an exceptional experience..."
-          className="min-h-screen"
-        />
-      </div>
-    );
-  }
-
   return (
-    <div className="min-h-screen bg-transparent transition-colors duration-500">
-      <Navigation activeSection={activeSection} />
-      <Head>
-        <title>Lalit Kumar - Senior Software Engineer | Portfolio</title>
-        <meta
-          name="description"
-          content="Portfolio of Lalit Kumar, Senior Software Engineer with 7+ years of experience in React, TypeScript, Node.js, and modern web technologies. Available for new opportunities."
-        />
-        <meta
-          name="keywords"
-          content="Senior Software Engineer, React Developer, TypeScript, Node.js, Full Stack Developer, Frontend Engineer, Web Development, JavaScript"
-        />
-        <meta name="author" content="Lalit Kumar" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-        {/* Open Graph / Facebook */}
-        <meta property="og:type" content="website" />
-        <meta
-          property="og:url"
-          content="https://lalitmee.github.io/portfolio/"
-        />
-        <meta
-          property="og:title"
-          content="Lalit Kumar - Senior Software Engineer"
-        />
-        <meta
-          property="og:description"
-          content="Senior Software Engineer with 7+ years of experience in modern web technologies"
-        />
-        <meta
-          property="og:image"
-          content="https://avatars1.githubusercontent.com/u/10762218?s=460&v=4"
-        />
-
-        {/* Twitter */}
-        <meta property="twitter:card" content="summary_large_image" />
-        <meta
-          property="twitter:url"
-          content="https://lalitmee.github.io/portfolio/"
-        />
-        <meta
-          property="twitter:title"
-          content="Lalit Kumar - Senior Software Engineer"
-        />
-        <meta
-          property="twitter:description"
-          content="Senior Software Engineer with 7+ years of experience in modern web technologies"
-        />
-        <meta
-          property="twitter:image"
-          content="https://avatars1.githubusercontent.com/u/10762218?s=460&v=4"
-        />
-
-        {/* Favicon */}
-        {/* Favicon */}
-        <link rel="icon" href="/favicon.png" type="image/png" />
-        <link rel="apple-touch-icon" href="/icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-
-        {/* Theme color */}
-        <meta name="theme-color" content="#8b5cf6" />
-        <meta name="msapplication-TileColor" content="#8b5cf6" />
-
-        {/* Preconnect to external domains */}
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link
-          rel="preconnect"
-          href="https://fonts.gstatic.com"
-          crossOrigin="anonymous"
-        />
-      </Head>
-
-      <main className="relative overflow-x-hidden">
-        {/* Hero Section */}
-        <section id="home" className="animate-fade-in-up relative">
-          <div
-            id="hero-sentinel"
-            className="absolute top-0 left-0 w-full h-[75vh] pointer-events-none bg-transparent"
-            aria-hidden="true"
+    <SiteLayout
+      title="Lalit Kumar — Senior Software Engineer"
+      description="Lalit Kumar is a senior software engineer building product experiences, useful tools, and dependable web interfaces."
+    >
+      <section className="home-hero page-width" aria-labelledby="home-title">
+        <div className="hero-copy">
+          <p className="eyebrow">Lalit Kumar <span>·</span> Senior Software Engineer</p>
+          <h1 id="home-title">Thoughtful interfaces. Useful tools. Engineering that holds up.</h1>
+          <p className="hero-intro">
+            I build web products, commerce experiences, and developer tools. My work spans product teams and open source, backed by 8+ years in software engineering.
+          </p>
+          <div className="hero-actions">
+            <Link className="button button-primary" href="/work/">Explore my work <span aria-hidden="true">↗</span></Link>
+            <Link className="text-link" href="/contact/">Get in touch <span aria-hidden="true">↗</span></Link>
+          </div>
+          <p className="hero-note">Currently building commerce experiences at Nykaa.</p>
+        </div>
+        <div className="hero-portrait">
+          <Image
+            src="/images/profile_v3.png"
+            alt="Lalit Kumar"
+            width={440}
+            height={440}
+            priority
+            sizes="(max-width: 760px) 72vw, 34vw"
           />
-          <HomePage />
-        </section>
+          <span className="portrait-caption">Bengaluru, India</span>
+        </div>
+      </section>
 
-        {/* About/Skills Section */}
-        <section
-          id="about"
-          className="animate-slide-in-left bg-gray-50/50 dark:bg-black/20 backdrop-blur-sm"
-          style={{ animationDelay: '0.2s' }}
-        >
-          <div className="py-20 bg-transparent">
-            <div className="max-w-4xl mx-auto px-6 text-center">
-              <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
-                {(portfolioData.sections as any).about.title}{' '}
-                <span className="bg-gradient-to-r from-primary-600 to-blue-600 bg-clip-text text-transparent">
-                  {(portfolioData.sections as any).about.highlight}
-                </span>
-              </h2>
-              <p className="text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed mb-8">
-                {(portfolioData.sections as any).about.description}
-              </p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mt-12">
-                <div className="text-center">
-                  <div className="text-4xl mb-4">
-                    {
-                      (portfolioData.sections as any).about.cards.innovation
-                        .icon
-                    }
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    {
-                      (portfolioData.sections as any).about.cards.innovation
-                        .title
-                    }
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {
-                      (portfolioData.sections as any).about.cards.innovation
-                        .description
-                    }
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl mb-4">
-                    {
-                      (portfolioData.sections as any).about.cards.leadership
-                        .icon
-                    }
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    {
-                      (portfolioData.sections as any).about.cards.leadership
-                        .title
-                    }
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {
-                      (portfolioData.sections as any).about.cards.leadership
-                        .description
-                    }
-                  </p>
-                </div>
-                <div className="text-center">
-                  <div className="text-4xl mb-4">
-                    {
-                      (portfolioData.sections as any).about.cards.performance
-                        .icon
-                    }
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                    {
-                      (portfolioData.sections as any).about.cards.performance
-                        .title
-                    }
-                  </h3>
-                  <p className="text-gray-600 dark:text-gray-300">
-                    {
-                      (portfolioData.sections as any).about.cards.performance
-                        .description
-                    }
-                  </p>
-                </div>
-              </div>
-            </div>
+      <section className="content-section section-rule" aria-labelledby="work-title">
+        <div className="page-width">
+          <div className="section-heading">
+            <p className="eyebrow">01 / Selected work</p>
+            <h2 id="work-title">Problems worth working through.</h2>
+            <p>Product details, measurement systems, and dense interfaces—built with the people using them in mind.</p>
           </div>
-        </section>
-
-        {/* Skills Section */}
-        <section
-          id="skills"
-          className="animate-slide-in-right"
-          style={{ animationDelay: '0.4s' }}
-        >
-          <Skills />
-        </section>
-
-        {/* Quotes Section */}
-        {config.sections.quotes && (
-          <section
-            className="animate-slide-in-left"
-            style={{ animationDelay: '0.6s' }}
-          >
-            <Quotes />
-          </section>
-        )}
-
-        {/* Projects Section */}
-        <section
-          id="projects"
-          className="animate-slide-in-right bg-gray-50/50 dark:bg-black/20 backdrop-blur-sm"
-          style={{ animationDelay: '0.8s' }}
-        >
-          <Projects />
-        </section>
-
-        {/* Apps Section */}
-        <section id="apps" className="py-20 bg-gray-50/50 dark:bg-black/20">
-          <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
-                Apps
-              </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-300">
-                Small tools I’ve built for the web.
-              </p>
-            </div>
-            <a
-              href="/apps/markdown-preview/"
-              className="block max-w-xl mx-auto rounded-2xl border border-gray-200 dark:border-white/10 bg-white/80 dark:bg-white/5 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
-            >
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
-                Markdown Previewer
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 mb-5">
-                Write Markdown and preview the rendered result.
-              </p>
-              <span className="text-primary-600 dark:text-primary-400 font-medium">
-                Open app →
-              </span>
-            </a>
+          <div className="case-list">
+            {caseStudies.map((study, index) => (
+              <Link className="case-row" href={`/work/${study.slug}/`} key={study.slug}>
+                <span className="case-index">0{index + 1}</span>
+                <div>
+                  <p className="case-meta">{study.employer} <span>·</span> {study.period}</p>
+                  <h3>{study.title}</h3>
+                  <p>{study.summary}</p>
+                </div>
+                <span className="row-arrow" aria-hidden="true">↗</span>
+              </Link>
+            ))}
           </div>
-        </section>
+          <Link className="text-link section-link" href="/work/">All professional work <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
 
-        {/* Optional Sections */}
-        {config.sections.certifications && (
-          <section
-            className="animate-slide-in-left"
-            style={{ animationDelay: '1s' }}
-          >
-            <Certifications />
-          </section>
-        )}
+      <section className="content-section section-tint" aria-labelledby="projects-title">
+        <div className="page-width">
+          <div className="section-heading section-heading-inline">
+            <div>
+              <p className="eyebrow">02 / Independent work</p>
+              <h2 id="projects-title">Tools shaped by daily use.</h2>
+            </div>
+            <Link className="text-link" href="/projects/">Browse projects <span aria-hidden="true">↗</span></Link>
+          </div>
+          <div className="project-list">
+            {selectedProjects.map((project) => (
+              <Link className="project-link" href={`/projects/${generateSlug(project.title)}/`} key={project.title}>
+                <span>{project.category}</span>
+                <strong>{project.title}</strong>
+                <span className="row-arrow" aria-hidden="true">↗</span>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        {config.sections.blogArticles && (
-          <section
-            className="animate-slide-in-right"
-            style={{ animationDelay: '1.2s' }}
-          >
-            <BlogArticles />
-          </section>
-        )}
+      <section className="content-section app-feature" aria-labelledby="apps-title">
+        <div className="page-width app-feature-inner">
+          <div>
+            <p className="eyebrow">03 / A tool you can use</p>
+            <h2 id="apps-title">Markdown Previewer</h2>
+            <p>Preview local Markdown files, explore folders, and work with Mermaid diagrams and tables.</p>
+          </div>
+          <Link className="button button-outline" href="/apps/markdown-preview/">Open the app <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
 
-        {config.sections.digitalMarketingProjects && (
-          <section
-            className="animate-slide-in-left"
-            style={{ animationDelay: '1.4s' }}
-          >
-            <DigitalMarketingProjects />
-          </section>
-        )}
-
-        {config.sections.testimonials && (
-          <section
-            className="animate-slide-in-right"
-            style={{ animationDelay: '1.6s' }}
-          >
-            <Testimonials />
-          </section>
-        )}
-
-        {/* Resume Section */}
-        <section
-          id="resume"
-          className="animate-slide-in-left"
-          style={{ animationDelay: '1.8s' }}
-        >
-          <Resume />
-        </section>
-
-        {/* Contact Section */}
-        <section
-          id="contact"
-          className="animate-slide-in-right bg-gray-50/50 dark:bg-black/20 backdrop-blur-sm"
-          style={{ animationDelay: '2s' }}
-        >
-          <Contact />
-        </section>
-
-        {/* Footer */}
-        <section
-          className="animate-fade-in-up"
-          style={{ animationDelay: '2.2s' }}
-        >
-          <Footer />
-        </section>
-      </main>
-
-      {/* Progress Indicator */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-gray-200 dark:bg-gray-700 z-50">
-        <div
-          className="h-full bg-gradient-to-r from-primary-600 to-blue-600 transition-all duration-300"
-          style={{
-            width: `${
-              typeof window !== 'undefined'
-                ? (window.scrollY /
-                    (document.documentElement.scrollHeight -
-                      window.innerHeight)) *
-                  100
-                : 0
-            }%`,
-          }}
-        />
-      </div>
-
-      <ScrollToTop />
-    </div>
+      <section className="content-section section-rule" aria-labelledby="career-title">
+        <div className="page-width career-strip">
+          <div>
+            <p className="eyebrow">04 / A little context</p>
+            <h2 id="career-title">Eight years across product teams.</h2>
+          </div>
+          <p>Nykaa · Quartic.ai · KoineArth · Cognitive Clouds</p>
+          <Link className="text-link" href="/about/">Career and background <span aria-hidden="true">↗</span></Link>
+        </div>
+      </section>
+    </SiteLayout>
   );
 }
