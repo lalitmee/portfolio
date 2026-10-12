@@ -1,18 +1,8 @@
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
+import { MdDarkMode, MdLightMode } from 'react-icons/md';
 
 export default function ThemeToggle() {
-  const [mounted, setMounted] = useState(false);
   const { resolvedTheme, setTheme } = useTheme();
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
-
   const isDark = resolvedTheme === 'dark';
 
   return (
@@ -23,7 +13,11 @@ export default function ThemeToggle() {
       aria-pressed={isDark}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
-      {isDark ? 'Light' : 'Dark'}
+      {isDark ? (
+        <MdLightMode aria-hidden="true" />
+      ) : (
+        <MdDarkMode aria-hidden="true" />
+      )}
     </button>
   );
 }
