@@ -466,7 +466,12 @@ const Skills: React.FC = () => {
           </h3>
 
           <div className="grid md:grid-cols-3 gap-8">
-            {portfolioData.professionalImpact.map((highlight, index) => (
+            {(portfolioData.professionalImpact as {
+              icon: string;
+              title: string;
+              description: string;
+              metric: string;
+            }[]).map((highlight, index) => (
               <div
                 key={index}
                 className={twMerge(
