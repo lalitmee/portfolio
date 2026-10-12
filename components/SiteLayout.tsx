@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import { useRouter } from 'next/router';
 import type { ReactNode } from 'react';
-import { useEffect, useRef } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import Footer from './Footer';
 import Navigation from './Navigation';
 
@@ -17,18 +17,10 @@ export default function SiteLayout({
   children: ReactNode;
 }) {
   const router = useRouter();
-  const mainRef = useRef<HTMLElement>(null);
-  const previousPath = useRef(router.asPath);
+  const shouldReduceMotion = useReducedMotion();
   const path = router.asPath.split(/[?#]/, 1)[0] || '/';
   const canonicalPath = path.endsWith('/') ? path : `${path}/`;
   const canonicalUrl = `${siteUrl}${canonicalPath}`;
-
-  useEffect(() => {
-    if (previousPath.current !== router.asPath) {
-      previousPath.current = router.asPath;
-      mainRef.current?.focus({ preventScroll: true });
-    }
-  }, [router.asPath]);
 
   return (
     <>
@@ -52,8 +44,21 @@ export default function SiteLayout({
           Skip to content
         </a>
         <Navigation />
-        <main id="main-content" ref={mainRef} tabIndex={-1}>
-          {children}
+        <main id="main-content" tabIndex={-1}>
+          <motion.div
+            key={path}
+            initial={{
+              opacity: shouldReduceMotion ? 1 : 0,
+              y: shouldReduceMotion ? 0 : 8,
+            }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.18,
+              ease: 'easeOut',
+            }}
+          >
+            {children}
+          </motion.div>
         </main>
         <Footer />
       </div>
