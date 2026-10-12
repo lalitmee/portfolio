@@ -23,8 +23,35 @@ test('all editorial destinations have route modules', () => {
   }
 });
 
+test('brand favicon is linked and configured in the web manifest', () => {
+  const manifest = JSON.parse(
+    fs.readFileSync(path.join(__dirname, '../public/manifest.json'), 'utf8'),
+  );
+  const icon = manifest.icons.find((item) => item.src === '/favicon.svg');
+  const document = fs.readFileSync(
+    path.join(__dirname, '../pages/_document.tsx'),
+    'utf8',
+  );
+
+  assert.deepEqual(icon, {
+    src: '/favicon.svg',
+    type: 'image/svg+xml',
+    sizes: 'any',
+  });
+  assert.ok(fs.existsSync(path.join(__dirname, '../public/favicon.svg')));
+  assert.equal(manifest.theme_color, '#f7f4ec');
+  assert.equal(manifest.background_color, '#f7f4ec');
+  assert.match(
+    document,
+    /<link rel="icon" type="image\/svg\+xml" href="\/favicon\.svg" \/>/,
+  );
+});
+
 test('career timeline does not publish legacy unverified job summaries', () => {
-  const about = fs.readFileSync(path.join(__dirname, '../pages/about.tsx'), 'utf8');
+  const about = fs.readFileSync(
+    path.join(__dirname, '../pages/about.tsx'),
+    'utf8',
+  );
   assert.match(about, /job\.position/);
   assert.match(about, /job\.company/);
   assert.match(about, /job\.startDate/);
@@ -32,7 +59,10 @@ test('career timeline does not publish legacy unverified job summaries', () => {
 });
 
 test('contact form keeps the existing EmailJS template field names', () => {
-  const contact = fs.readFileSync(path.join(__dirname, '../components/Contact.tsx'), 'utf8');
+  const contact = fs.readFileSync(
+    path.join(__dirname, '../components/Contact.tsx'),
+    'utf8',
+  );
   for (const field of ['name', 'email', 'subject', 'message']) {
     assert.match(contact, new RegExp(`name="${field}"`));
   }
@@ -42,7 +72,12 @@ test('contact form keeps the existing EmailJS template field names', () => {
 test('contact validation preserves the required fields and message minimum', () => {
   const { validateContactForm } = require('../utils/contactForm.ts');
   assert.deepEqual(
-    validateContactForm({ name: '', email: 'bad', subject: '', message: 'short' }),
+    validateContactForm({
+      name: '',
+      email: 'bad',
+      subject: '',
+      message: 'short',
+    }),
     {
       name: 'Name is required',
       email: 'Please enter a valid email address',
