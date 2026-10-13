@@ -26,11 +26,18 @@ test('interaction styles respond to hover and keyboard focus', () => {
 
 test('reduced motion disables added transforms and brand drawing', () => {
   const css = fs.readFileSync('styles/globals.css', 'utf8');
+  const motionAllowed =
+    css.match(
+      /@media \(prefers-reduced-motion: no-preference\)\s*\{([\s\S]*?)\n\}/,
+    )?.[1] ?? '';
   const reducedMotion =
     css.match(
       /@media \(prefers-reduced-motion: reduce\)\s*\{([\s\S]*?)\n\}/,
     )?.[1] ?? '';
 
+  assert.match(motionAllowed, /\.brand-link:hover[^}]*animation:/);
+  assert.match(motionAllowed, /\.interaction-arrow[^}]*transform:/);
+  assert.match(motionAllowed, /\.interactive-card:hover[^}]*transform:/);
   assert.match(reducedMotion, /\.brand-mark[^}]*animation:\s*none/);
   assert.match(reducedMotion, /\.interaction-arrow[^}]*transform:\s*none/);
   assert.match(reducedMotion, /\.interactive-card[^}]*transform:\s*none/);

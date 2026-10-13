@@ -125,26 +125,28 @@ main:focus-visible {
   vertical-align: -0.15em;
   transition: transform 160ms ease;
 }
-.brand-link:hover .brand-mark path,
-.brand-link:focus-visible .brand-mark path {
-  animation: brand-draw 420ms ease-out;
-}
-.text-link:hover .interaction-arrow,
-.text-link:focus-visible .interaction-arrow,
-.button:hover .interaction-arrow,
-.button:focus-visible .interaction-arrow {
-  transform: translateX(0.2em);
-}
 .interactive-card {
   transition:
     border-color 160ms ease,
     transform 160ms ease;
 }
-.interactive-card:hover,
-.interactive-card:focus-within,
-.interactive-card:active {
-  border-color: var(--accent);
-  transform: translateY(-2px);
+@media (prefers-reduced-motion: no-preference) {
+  .brand-link:hover .brand-mark path,
+  .brand-link:focus-visible .brand-mark path {
+    animation: brand-draw 420ms ease-out;
+  }
+  .text-link:hover .interaction-arrow,
+  .text-link:focus-visible .interaction-arrow,
+  .button:hover .interaction-arrow,
+  .button:focus-visible .interaction-arrow {
+    transform: translateX(0.2em);
+  }
+  .interactive-card:hover,
+  .interactive-card:focus-within,
+  .interactive-card:active {
+    border-color: var(--accent);
+    transform: translateY(-2px);
+  }
 }
 @keyframes brand-draw {
   from {
