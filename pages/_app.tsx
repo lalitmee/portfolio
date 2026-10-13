@@ -1,7 +1,7 @@
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { Outfit } from 'next/font/google';
-import { Analytics } from '@vercel/analytics/next';
+import AnalyticsConsent from '../components/AnalyticsConsent';
 import '../styles/globals.css';
 
 const outfit = Outfit({
@@ -14,10 +14,10 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
         <div className={`${outfit.variable} font-sans`}>
+          <AnalyticsConsent />
           <Component {...pageProps} />
         </div>
       </ThemeProvider>
-      <Analytics />
     </>
   );
 }

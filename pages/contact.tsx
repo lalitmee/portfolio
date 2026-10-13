@@ -1,6 +1,7 @@
 import { SiteLayout } from '../components/SiteLayout';
 import ContactForm from '../components/ContactForm';
 import portfolio from '../data/portfolio.json';
+import { trackEvent } from '../utils/analytics';
 
 export default function ContactPage() {
   return (
@@ -12,7 +13,7 @@ export default function ContactPage() {
         <ContactForm />
         <div className="social-links">
           {portfolio.contact.social.filter(({ platform }) => ['GitHub', 'LinkedIn'].includes(platform)).map(({ platform, url }) => (
-            <a className="text-link" href={url} key={platform} rel="noreferrer" target="_blank">{platform} ↗</a>
+            <a className="text-link" href={url} key={platform} onClick={() => trackEvent({ event: 'contact_click', channel: platform.toLowerCase() as 'github' | 'linkedin' })} rel="noreferrer" target="_blank">{platform} ↗</a>
           ))}
         </div>
       </div>

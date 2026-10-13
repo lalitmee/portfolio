@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { SiteLayout } from '../components/SiteLayout';
 import portfolio from '../data/portfolio.json';
+import { trackEvent } from '../utils/analytics';
 
 const capabilities = [
   'React', 'TypeScript', 'JavaScript', 'Next.js', 'Redux', 'Angular',
@@ -43,7 +44,7 @@ export default function AboutPage() {
         <section className="content-section">
           <h2>Résumé</h2>
           <p>The attached PDF still has an older 6+ years summary; this site reflects 8+ years.</p>
-          <a className="button button-secondary" download href={portfolio.personal.resume}>Download résumé (PDF)</a>
+          <a className="button button-secondary" download href={portfolio.personal.resume} onClick={() => trackEvent({ event: 'resume_download' })}>Download résumé (PDF)</a>
         </section>
         <p><Link className="text-link" href="/contact/">Get in touch →</Link></p>
       </div>

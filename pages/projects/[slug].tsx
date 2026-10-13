@@ -2,6 +2,7 @@ import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import { SiteLayout } from '../../components/SiteLayout';
 import portfolio from '../../data/portfolio.json';
+import { trackEvent } from '../../utils/analytics';
 import { generateSlug } from '../../utils/slug';
 
 type Project = (typeof portfolio.projects)[number];
@@ -20,8 +21,8 @@ export default function ProjectDetail({ project }: { project: Project }) {
           <ul className="tool-list">{project.technologies.map((technology) => <li key={technology}>{technology}</li>)}</ul>
         </section>
         <div className="link-row">
-          {project.github && <a className="button button-secondary" href={project.github} rel="noreferrer" target="_blank">View source ↗</a>}
-          {project.demo && <a className="button button-primary" href={project.demo}>Open demo ↗</a>}
+          {project.github && <a className="button button-secondary" href={project.github} onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'source' })} rel="noreferrer" target="_blank">View source ↗</a>}
+          {project.demo && <a className="button button-primary" href={project.demo} onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'demo' })}>Open demo ↗</a>}
         </div>
       </article>
     </SiteLayout>

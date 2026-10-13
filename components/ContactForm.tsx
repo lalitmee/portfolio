@@ -1,6 +1,7 @@
 import emailjs from '@emailjs/browser';
 import { FormEvent, useState } from 'react';
 import portfolioData from '../data/portfolio.json';
+import { trackEvent } from '../utils/analytics';
 import { ContactFields, deliverContactMessage } from '../utils/contact';
 
 const emptyFields: ContactFields = {
@@ -77,7 +78,7 @@ export default function ContactForm() {
       </button>
       <p aria-live="polite" className="form-message" role="status">{message}</p>
       <p>
-        Prefer email? <a className="text-link" href={`mailto:${portfolioData.contact.email}`}>{portfolioData.contact.email}</a>
+        Prefer email? <a className="text-link" href={`mailto:${portfolioData.contact.email}`} onClick={() => trackEvent({ event: 'contact_click', channel: 'email' })}>{portfolioData.contact.email}</a>
       </p>
     </form>
   );
