@@ -40,7 +40,7 @@ export default function Navigation({
             ← Projects
           </Link>
         )}
-        <Link className="wordmark" href="/" aria-label="Lalit Kumar home">
+        <Link className="wordmark brand-link" href="/" aria-label="Lalit Kumar home">
           <BrandMark />
           <span className="wordmark-name">Lalit Kumar</span>
         </Link>

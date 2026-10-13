@@ -89,6 +89,14 @@ main:focus-visible {
 .wordmark { display: flex; align-items: center; gap: 0.65rem; font-size: 1rem; font-weight: 700; text-decoration: none; }
 .brand-mark { width: 2.4rem; height: 2.4rem; flex: 0 0 auto; }
 .wordmark-name { color: var(--text); }
+.brand-mark path { stroke-dasharray: 180; stroke-dashoffset: 0; }
+.interaction-arrow { width: 1em; height: 1em; margin-left: 0.2em; vertical-align: -0.15em; transition: transform 160ms ease; }
+.brand-link:hover .brand-mark path, .brand-link:focus-visible .brand-mark path { animation: brand-draw 420ms ease-out; }
+.text-link:hover .interaction-arrow, .text-link:focus-visible .interaction-arrow,
+.button:hover .interaction-arrow, .button:focus-visible .interaction-arrow { transform: translateX(0.2em); }
+.interactive-card { transition: border-color 160ms ease, transform 160ms ease; }
+.interactive-card:hover, .interactive-card:focus-within, .interactive-card:active { border-color: var(--accent); transform: translateY(-2px); }
+@keyframes brand-draw { from { stroke-dashoffset: 180; } to { stroke-dashoffset: 0; } }
 .eyebrow { color: var(--accent); }
 .menu-toggle { display: none; }
 .route-links { display: grid; gap: 0.35rem; }
@@ -185,4 +193,6 @@ h3 { margin-bottom: 0.75rem; font-size: 1.4rem; line-height: 1.25; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; }
+  .brand-link .brand-mark path { animation: none; stroke-dashoffset: 0; }
+  .interaction-arrow, .interactive-card { transition: none; transform: none; }
 }

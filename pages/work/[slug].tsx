@@ -1,5 +1,6 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
+import ArrowIcon from '../../components/ArrowIcon';
 import { SiteLayout } from '../../components/SiteLayout';
 import { caseStudies } from '../../data/caseStudies';
 import type { CaseStudy } from '../../data/caseStudies';
@@ -15,7 +16,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
   return (
     <SiteLayout title={study.title} description={study.summary}>
       <article className="page-content case-page">
-        <Link className="text-link" href="/work/">← All work</Link>
+        <Link className="text-link" href="/work/">All work <ArrowIcon /></Link>
         <p className="eyebrow">{study.employer} · {study.period}</p>
         <h1>{study.title}</h1>
         <p className="page-intro">{study.summary}</p>

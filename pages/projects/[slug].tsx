@@ -1,5 +1,6 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
+import ArrowIcon from '../../components/ArrowIcon';
 import { SiteLayout } from '../../components/SiteLayout';
 import portfolio from '../../data/portfolio.json';
 import { trackEvent } from '../../utils/analytics';
@@ -11,7 +12,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
   return (
     <SiteLayout title={project.title} description={project.description}>
       <article className="page-content">
-        <Link className="text-link" href="/projects/">← All projects</Link>
+        <Link className="text-link" href="/projects/">All projects <ArrowIcon /></Link>
         <p className="eyebrow">{project.category} · {project.technologies.join(' / ')}</p>
         <h1>{project.title}</h1>
         <p className="page-intro">{project.description}</p>

@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { caseStudies } from '../data/caseStudies';
 import portfolioData from '../data/portfolio.json';
+import ArrowIcon from './ArrowIcon';
 
 const tools = ['React', 'TypeScript', 'Next.js', 'Node.js', 'Neovim'];
 
@@ -21,10 +22,10 @@ export default function HomePage() {
         </p>
         <div className="hero-actions">
           <Link className="button button-primary" href="/work">
-            Explore my work
+            Explore my work <ArrowIcon />
           </Link>
           <Link className="button button-secondary" href="/contact">
-            Get in touch
+            Get in touch <ArrowIcon />
           </Link>
         </div>
       </section>
@@ -34,7 +35,7 @@ export default function HomePage() {
           <p className="eyebrow">SELECTED CASE STUDY</p>
           <h2 id="featured-title">Product work, grounded in the details.</h2>
         </div>
-        <article className="feature-card">
+        <article className="feature-card interactive-card">
           <div>
             <p className="mono-label">
               {featuredCase.employer} · {featuredCase.period}
@@ -43,7 +44,7 @@ export default function HomePage() {
             <p>{featuredCase.summary}</p>
           </div>
           <Link className="text-link" href={`/work/${featuredCase.slug}`}>
-            Read the case study <span aria-hidden="true">→</span>
+            Read the case study <ArrowIcon />
           </Link>
         </article>
       </section>
@@ -69,7 +70,7 @@ export default function HomePage() {
           My focus is making complex product behavior clearer and more reliable.
         </p>
         <Link className="text-link" href="/about">
-          More about my experience <span aria-hidden="true">→</span>
+          More about my experience <ArrowIcon />
         </Link>
       </section>
     </div>
