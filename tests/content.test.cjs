@@ -32,7 +32,10 @@ test('case studies have the required unique slugs', () => {
     'quartic-data-interfaces',
   ]);
   assert.equal(new Set(slugs).size, slugs.length);
-  assert.equal(caseStudies.find(({ slug }) => slug === 'missing-case'), undefined);
+  assert.equal(
+    caseStudies.find(({ slug }) => slug === 'missing-case'),
+    undefined,
+  );
 });
 
 test('curated projects retain all legacy project URLs', () => {
@@ -46,7 +49,9 @@ test('curated projects retain all legacy project URLs', () => {
 });
 
 test('curated projects include the five selected tools', () => {
-  const slugs = new Set(portfolio.projects.map(({ title }) => generateSlug(title)));
+  const slugs = new Set(
+    portfolio.projects.map(({ title }) => generateSlug(title)),
+  );
   for (const slug of [
     'browse-nvim',
     'cobalt2-nvim',
@@ -60,5 +65,8 @@ test('curated projects include the five selected tools', () => {
 
 test('portfolio evidence omits unsupported impact claims', () => {
   const content = JSON.stringify({ portfolio, caseStudies });
-  assert.doesNotMatch(content, /10x daily orders|3x daily orders|60% faster|1M\+ users|99\.9% uptime/i);
+  assert.doesNotMatch(
+    content,
+    /10x daily orders|3x daily orders|60% faster|1M\+ users|99\.9% uptime/i,
+  );
 });

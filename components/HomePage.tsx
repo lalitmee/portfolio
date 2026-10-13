@@ -49,7 +49,10 @@ export default function HomePage() {
         </article>
       </section>
 
-      <section aria-labelledby="tools-title" className="content-section tools-section">
+      <section
+        aria-labelledby="tools-title"
+        className="content-section tools-section"
+      >
         <div className="section-heading">
           <p className="eyebrow">TOOLS I WORK WITH</p>
           <h2 id="tools-title">A practical engineering toolkit.</h2>
@@ -63,11 +66,13 @@ export default function HomePage() {
 
       <section aria-labelledby="career-title" className="career-summary">
         <p className="eyebrow">CAREER</p>
-        <h2 id="career-title">From product interfaces to platform workflows.</h2>
+        <h2 id="career-title">
+          From product interfaces to platform workflows.
+        </h2>
         <p>
           Over {portfolioData.personal.yearsOfExperience} years, I’ve worked on
-          web products at Cognitive Clouds, KoineArth, Quartic.ai, and Nykaa.
-          My focus is making complex product behavior clearer and more reliable.
+          web products at Cognitive Clouds, KoineArth, Quartic.ai, and Nykaa. My
+          focus is making complex product behavior clearer and more reliable.
         </p>
         <Link className="text-link" href="/about">
           More about my experience <ArrowIcon />

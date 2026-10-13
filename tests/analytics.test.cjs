@@ -17,14 +17,34 @@ function browser() {
 }
 
 test('normalizes route paths without query strings or fragments', () => {
-  assert.equal(normalizePagePath('/work/example/?email=secret#text'), '/work/example/');
+  assert.equal(
+    normalizePagePath('/work/example/?email=secret#text'),
+    '/work/example/',
+  );
   assert.equal(normalizePagePath('https://outside.example/private/'), '/');
   assert.equal(normalizePagePath('/contact/ada@example.com/'), '/');
 });
 
 test('storage failures leave consent unknown and report save failure', () => {
-  assert.equal(readConsent({ getItem() { throw new Error('blocked'); } }), 'unknown');
-  assert.equal(saveConsent({ setItem() { throw new Error('blocked'); } }, 'accepted'), false);
+  assert.equal(
+    readConsent({
+      getItem() {
+        throw new Error('blocked');
+      },
+    }),
+    'unknown',
+  );
+  assert.equal(
+    saveConsent(
+      {
+        setItem() {
+          throw new Error('blocked');
+        },
+      },
+      'accepted',
+    ),
+    false,
+  );
 });
 
 test('unknown, declined, and server-side tracking never push events', () => {
@@ -58,10 +78,30 @@ test('missing or malformed GTM and GA4 IDs never push events', () => {
 test('rejects unknown events, unsafe slugs, and contact channels', () => {
   browser();
   setAnalyticsConsent('accepted');
-  assert.equal(trackEvent({ event: 'email_sent', email: 'secret@example.com' }), false);
-  assert.equal(trackEvent({ event: 'case_study_view', case_slug: '../secret' }), false);
-  assert.equal(trackEvent({ event: 'project_open', project_slug: 'browse-nvim', destination_kind: 'email' }), false);
-  assert.equal(trackEvent({ event: 'project_open', project_slug: 'unknown-project', destination_kind: 'detail' }), false);
+  assert.equal(
+    trackEvent({ event: 'email_sent', email: 'secret@example.com' }),
+    false,
+  );
+  assert.equal(
+    trackEvent({ event: 'case_study_view', case_slug: '../secret' }),
+    false,
+  );
+  assert.equal(
+    trackEvent({
+      event: 'project_open',
+      project_slug: 'browse-nvim',
+      destination_kind: 'email',
+    }),
+    false,
+  );
+  assert.equal(
+    trackEvent({
+      event: 'project_open',
+      project_slug: 'unknown-project',
+      destination_kind: 'detail',
+    }),
+    false,
+  );
   assert.equal(trackEvent({ event: 'contact_click', channel: 'phone' }), false);
   assert.deepEqual(window.dataLayer, []);
 });
@@ -69,16 +109,29 @@ test('rejects unknown events, unsafe slugs, and contact channels', () => {
 test('rebuilds allowed payloads and drops all extra fields', () => {
   browser();
   setAnalyticsConsent('accepted');
-  assert.equal(trackEvent({ event: 'contact_click', channel: 'email', email: 'secret@example.com' }), true);
-  assert.deepEqual(window.dataLayer, [{ event: 'contact_click', channel: 'email' }]);
+  assert.equal(
+    trackEvent({
+      event: 'contact_click',
+      channel: 'email',
+      email: 'secret@example.com',
+    }),
+    true,
+  );
+  assert.deepEqual(window.dataLayer, [
+    { event: 'contact_click', channel: 'email' },
+  ]);
 });
 
 test('withdrawal disables GA4, clears queued portfolio events, and expires accessible analytics cookies', () => {
   browser();
   const writes = [];
   const document = {
-    get cookie() { return '_ga=old; _ga_ABC123=old; _gid=old; session=keep'; },
-    set cookie(value) { writes.push(value); },
+    get cookie() {
+      return '_ga=old; _ga_ABC123=old; _gid=old; session=keep';
+    },
+    set cookie(value) {
+      writes.push(value);
+    },
   };
   global.window.document = document;
   global.window.location.pathname = '/privacy/';
@@ -96,9 +149,38 @@ test('withdrawal disables GA4, clears queued portfolio events, and expires acces
 
   assert.equal(window['ga-disable-G-ABC1234567'], true);
   assert.equal(window.dataLayer, dataLayer);
-  assert.equal(window.dataLayer.some((item) => item.event === 'page_view' || item.event === 'contact_click'), false);
-  assert.equal(window.dataLayer.some((item) => item.event === 'gtm.js'), true);
-  assert.equal(window.dataLayer.some((item) => Array.isArray(item) && item[1] === 'update' && item[2].analytics_storage === 'denied'), true);
-  assert.equal(writes.some((value) => value.includes('_ga=') && value.includes('path=/') && value.includes('domain=lalitmee.com')), true);
-  assert.equal(writes.some((value) => value.includes('_ga=') && value.includes('path=/privacy;')), true);
+  assert.equal(
+    window.dataLayer.some(
+      (item) => item.event === 'page_view' || item.event === 'contact_click',
+    ),
+    false,
+  );
+  assert.equal(
+    window.dataLayer.some((item) => item.event === 'gtm.js'),
+    true,
+  );
+  assert.equal(
+    window.dataLayer.some(
+      (item) =>
+        Array.isArray(item) &&
+        item[1] === 'update' &&
+        item[2].analytics_storage === 'denied',
+    ),
+    true,
+  );
+  assert.equal(
+    writes.some(
+      (value) =>
+        value.includes('_ga=') &&
+        value.includes('path=/') &&
+        value.includes('domain=lalitmee.com'),
+    ),
+    true,
+  );
+  assert.equal(
+    writes.some(
+      (value) => value.includes('_ga=') && value.includes('path=/privacy;'),
+    ),
+    true,
+  );
 });

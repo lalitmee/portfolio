@@ -10,8 +10,19 @@ export default function AppsPage() {
         <article className="list-item">
           <p className="mono-label">WRITING TOOL</p>
           <h2>Markdown Previewer</h2>
-          <p>Write Markdown and see a rendered preview in the existing hosted app.</p>
-          <a className="button button-primary" href="/apps/markdown-preview/" onClick={() => trackEvent({ event: 'app_launch', app_slug: 'markdown-preview' })}>Launch Markdown Previewer ↗</a>
+          <p>
+            Write Markdown and see a rendered preview in the existing hosted
+            app.
+          </p>
+          <a
+            className="button button-primary"
+            href="/apps/markdown-preview/"
+            onClick={() =>
+              trackEvent({ event: 'app_launch', app_slug: 'markdown-preview' })
+            }
+          >
+            Launch Markdown Previewer ↗
+          </a>
         </article>
       </div>
     </SiteLayout>

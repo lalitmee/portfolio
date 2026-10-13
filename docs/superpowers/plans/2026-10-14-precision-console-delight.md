@@ -33,12 +33,14 @@
 ### Task 1: Brand mark and static icon family
 
 **Files:**
+
 - Create: `components/BrandMark.tsx`
 - Create: `public/favicon.svg`
 - Modify: `components/Navigation.tsx`, `pages/_document.tsx`, `public/manifest.json`, `public/favicon.ico`, `public/favicon.png`, `public/icon.png`
 - Test: `tests/branding.test.cjs`, `tests/shell.test.cjs`
 
 **Interfaces:**
+
 - Produces: default `BrandMark()` React component with decorative inline SVG; navigation supplies the accessible full name “Lalit Kumar”. `public/favicon.svg` is the static vector source for favicon and raster app-icon variants.
 - Consumes: current `Navigation` route rail and the existing public icon/manifest paths.
 
@@ -70,11 +72,13 @@ git commit -m "feat: add original LK brand icons"
 ### Task 2: Restrained interaction feedback
 
 **Files:**
+
 - Create: `components/ArrowIcon.tsx`
 - Modify: `components/Navigation.tsx`, `components/HomePage.tsx`, `pages/work/index.tsx`, `pages/work/[slug].tsx`, `pages/projects/[slug].tsx`, `styles/globals.css`
 - Test: `tests/interactions.test.cjs`
 
 **Interfaces:**
+
 - Consumes: `BrandMark()` from Task 1 and existing actionable links/cards.
 - Produces: decorative `ArrowIcon()` SVG and shared `.brand-link`, `.interaction-arrow`, and `.interactive-card` styles used only on the brand mark, visible arrows, and actionable cards.
 
@@ -106,10 +110,12 @@ git commit -m "feat: add restrained portfolio interactions"
 ### Task 3: Searchable project browser
 
 **Files:**
+
 - Create: `components/ProjectsBrowser.tsx`, `utils/projectSearch.ts`, `tests/project-search.test.cjs`, `tests/projects-browser.test.cjs`
 - Modify: `pages/projects/index.tsx`, `styles/globals.css`
 
 **Interfaces:**
+
 - Consumes: `portfolio.projects`, existing `generateSlug`, and existing `trackEvent` event payloads.
 - Produces: exported `ProjectRecord = (typeof portfolio.projects)[number]`, `filterProjects(projects: ProjectRecord[], query: string): ProjectRecord[]`, and `ProjectsBrowser({projects}: {projects: ProjectRecord[]})` for the searchable list/detail panel.
 

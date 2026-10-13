@@ -17,7 +17,8 @@ import {
 function storage() {
   return {
     getItem: (key: string) => window.localStorage.getItem(key),
-    setItem: (key: string, value: string) => window.localStorage.setItem(key, value),
+    setItem: (key: string, value: string) =>
+      window.localStorage.setItem(key, value),
   };
 }
 
@@ -33,14 +34,20 @@ function loadGtm(): void {
   if (!config) return;
 
   const browserWindow = window as Window & { dataLayer?: unknown[] };
-  const dataLayer = Array.isArray(browserWindow.dataLayer) ? browserWindow.dataLayer : [];
+  const dataLayer = Array.isArray(browserWindow.dataLayer)
+    ? browserWindow.dataLayer
+    : [];
   browserWindow.dataLayer = dataLayer;
-  dataLayer.push(['consent', 'update', {
-    analytics_storage: 'granted',
-    ad_storage: 'denied',
-    ad_user_data: 'denied',
-    ad_personalization: 'denied',
-  }]);
+  dataLayer.push([
+    'consent',
+    'update',
+    {
+      analytics_storage: 'granted',
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+    },
+  ]);
 
   if (document.querySelector('script[data-precision-console-gtm]')) return;
   dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
@@ -57,7 +64,8 @@ function trackPage(path: string, lastPage: { current: string | null }): void {
   lastPage.current = pagePath;
   trackEvent({ event: 'page_view', page_path: pagePath });
   const caseMatch = pagePath.match(/^\/work\/([a-z0-9-]+)\/$/);
-  if (caseMatch) trackEvent({ event: 'case_study_view', case_slug: caseMatch[1] });
+  if (caseMatch)
+    trackEvent({ event: 'case_study_view', case_slug: caseMatch[1] });
 }
 
 export function AnalyticsSettings() {
@@ -68,23 +76,42 @@ export function AnalyticsSettings() {
     setChoice(readConsent(storage()));
     const onConsentChange = () => setChoice(getAnalyticsConsent());
     window.addEventListener(CONSENT_CHANGE_EVENT, onConsentChange);
-    return () => window.removeEventListener(CONSENT_CHANGE_EVENT, onConsentChange);
+    return () =>
+      window.removeEventListener(CONSENT_CHANGE_EVENT, onConsentChange);
   }, []);
 
   const update = (choice: Exclude<Consent, 'unknown'>) => {
     const saved = choose(choice);
     setChoice(choice);
-    setStatus(saved ? `Analytics ${choice}.` : `Analytics ${choice} for this visit; browser storage is unavailable.`);
+    setStatus(
+      saved
+        ? `Analytics ${choice}.`
+        : `Analytics ${choice} for this visit; browser storage is unavailable.`,
+    );
   };
 
   return (
     <div className="analytics-settings" id="analytics-settings">
       <p>Current choice: {choice}.</p>
       <div className="link-row">
-        <button className="button button-primary" onClick={() => update('accepted')} type="button">Accept analytics</button>
-        <button className="button button-secondary" onClick={() => update('declined')} type="button">Decline analytics</button>
+        <button
+          className="button button-primary"
+          onClick={() => update('accepted')}
+          type="button"
+        >
+          Accept analytics
+        </button>
+        <button
+          className="button button-secondary"
+          onClick={() => update('declined')}
+          type="button"
+        >
+          Decline analytics
+        </button>
       </div>
-      <p aria-live="polite" role="status">{status}</p>
+      <p aria-live="polite" role="status">
+        {status}
+      </p>
     </div>
   );
 }
@@ -102,7 +129,8 @@ export default function AnalyticsConsent() {
 
     const onConsentChange = () => setConsent(getAnalyticsConsent());
     window.addEventListener(CONSENT_CHANGE_EVENT, onConsentChange);
-    return () => window.removeEventListener(CONSENT_CHANGE_EVENT, onConsentChange);
+    return () =>
+      window.removeEventListener(CONSENT_CHANGE_EVENT, onConsentChange);
   }, []);
 
   useEffect(() => {
@@ -126,11 +154,28 @@ export default function AnalyticsConsent() {
   if (consent !== 'unknown') return null;
   return (
     <aside aria-label="Analytics preferences" className="consent-banner">
-      <p>Optional, privacy-limited analytics help understand which work is useful. Your choice does not affect the site.</p>
+      <p>
+        Optional, privacy-limited analytics help understand which work is
+        useful. Your choice does not affect the site.
+      </p>
       <div className="link-row">
-        <button className="button button-primary" onClick={() => update('accepted')} type="button">Accept analytics</button>
-        <button className="button button-secondary" onClick={() => update('declined')} type="button">Decline analytics</button>
-          <Link className="text-link" href="/privacy/#analytics-settings">Privacy details</Link>
+        <button
+          className="button button-primary"
+          onClick={() => update('accepted')}
+          type="button"
+        >
+          Accept analytics
+        </button>
+        <button
+          className="button button-secondary"
+          onClick={() => update('declined')}
+          type="button"
+        >
+          Decline analytics
+        </button>
+        <Link className="text-link" href="/privacy/#analytics-settings">
+          Privacy details
+        </Link>
       </div>
     </aside>
   );

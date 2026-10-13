@@ -15,7 +15,10 @@ export interface EmailJsConfig {
 export async function deliverContactMessage(
   fields: ContactFields,
   config: EmailJsConfig,
-  send: (fields: ContactFields, config: Required<EmailJsConfig>) => Promise<unknown>,
+  send: (
+    fields: ContactFields,
+    config: Required<EmailJsConfig>,
+  ) => Promise<unknown>,
 ): Promise<'sent' | 'not-configured' | 'failed'> {
   if (!config.serviceId || !config.templateId || !config.publicKey) {
     return 'not-configured';

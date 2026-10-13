@@ -13,9 +13,12 @@ test('work routes statically include all cases and return notFound for unknown s
     { params: { slug: 'quartic-data-interfaces' } },
   ]);
   assert.equal(fallback, false);
-  assert.deepEqual(await work.getStaticProps({ params: { slug: 'missing-case' } }), {
-    notFound: true,
-  });
+  assert.deepEqual(
+    await work.getStaticProps({ params: { slug: 'missing-case' } }),
+    {
+      notFound: true,
+    },
+  );
 });
 
 test('project static paths preserve every project slug', async () => {

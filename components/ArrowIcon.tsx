@@ -7,7 +7,14 @@ export default function ArrowIcon() {
       viewBox="0 0 20 20"
       xmlns="http://www.w3.org/2000/svg"
     >
-      <path d="M3 10h13m-5-5 5 5-5 5" fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.7" />
+      <path
+        d="M3 10h13m-5-5 5 5-5 5"
+        fill="none"
+        stroke="currentColor"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeWidth="1.7"
+      />
     </svg>
   );
 }

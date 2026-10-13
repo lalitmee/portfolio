@@ -4,14 +4,14 @@ Analytics is optional. The site loads one GTM container only after a visitor acc
 
 In GTM, create GA4 event tags for these custom-event names and map only the listed data-layer parameters:
 
-| Event | Parameters |
-| --- | --- |
-| `page_view` | `page_path` |
-| `case_study_view` | `case_slug` |
-| `project_open` | `project_slug`, `destination_kind` |
-| `resume_download` | none |
-| `contact_click` | `channel` |
-| `app_launch` | `app_slug` |
+| Event             | Parameters                         |
+| ----------------- | ---------------------------------- |
+| `page_view`       | `page_path`                        |
+| `case_study_view` | `case_slug`                        |
+| `project_open`    | `project_slug`, `destination_kind` |
+| `resume_download` | none                               |
+| `contact_click`   | `channel`                          |
+| `app_launch`      | `app_slug`                         |
 
 Use one custom-event trigger per event. On the GA4 configuration tag, disable automatic `page_view` (`send_page_view: false`). Disable enhanced-measurement page views and outbound-click collection so they cannot duplicate events or capture arbitrary URLs. Keep advertising storage, ad user data, and ad personalization denied. Do not add user IDs, form values, filenames, document text, raw URLs, query strings, or hashes as variables or parameters.
 

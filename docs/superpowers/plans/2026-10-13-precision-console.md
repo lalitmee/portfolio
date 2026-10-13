@@ -38,6 +38,7 @@
 ### Task 1: Truthful content and stable slugs
 
 **Files:** data files, test runner/content tests, package.json. **Consumes:** existing `generateSlug(title: string): string`, résumé and repository evidence. **Produces:** CaseStudy interface/data above, preserved projects.
+
 - [ ] Write failing assertions for experience `'8+'`, all three exact case slugs, unique slugs, retention of every baseline title-derived project slug, and curated browse.nvim/cobalt2.nvim/codecompanion-spinners.nvim/markdown-previewer/dotfiles. Reject unsupported outcome numbers; snapshot the baseline before edits.
 - [ ] Run `yarn test` expecting missing case/new-content FAIL. Record `yarn type-check`, `yarn build`, `yarn lint` baseline; install from existing yarn.lock only if needed. Record blockers without changing dependency versions.
 - [ ] Implement typed case data and truthful copy; retain old titles and valid repository links, credit Cobalt2 adaptation, omit unverified numerical impact/star guarantees/availability. Update website and experience fields; do not modify the PDF or publish private context.
@@ -47,6 +48,7 @@
 ### Task 2: Accessible precision shell and homepage
 
 **Files:** SiteLayout/navigation/footer/theme, app/document wrappers, globals/Tailwind as needed, homepage. **Consumes:** Task 1 content. **Produces:** shell API above, route rail, coherent mobile navigation.
+
 - [ ] Record failing baseline in DevTools: hash-only nav, nested mains, splash, mobile portrait before proposition. Record intended small-screen/zoom acceptance failures before layout replacement.
 - [ ] Implement one main, skip link, route-specific metadata, nav Home/Work/Projects/Apps/About/Contact, active aria-current, mobile disclosure with Escape/focus restoration. Desktop route rail is structural, not an overlay on reading content. Remove old theme-cookie/customization bootstrap from active shell and preserve next-themes saved preference; no mandatory shortcuts/command palette.
 - [ ] Build homepage headline “Reliable products. Sharper tools. Clear engineering.”, Work/Contact CTAs, featured professional case, compact tool index and career summary. Default dark `#111820`, surface `#1A2632`, text `#E8EEF4`, accent `#78B9F2`, sparing `#E4B45D`; light uses near-white/ink. Use Outfit body/headings, native monospace labels only. Replace active gradient/decorative CSS. No pretend status, activity graph, terminal, percentages, or splash.
@@ -56,6 +58,7 @@
 ### Task 3: Real case, project, tool and personal routes
 
 **Files:** route set above, project detail, Contact and content tests. **Consumes:** shell, cases, baseline generateSlug. **Produces:** complete static site routes with preserved tool rewrite.
+
 - [ ] Record new routes currently returning 404; assert missing case slug has no data and all existing slug paths remain in content tests. Check contact error and PDF baseline.
 - [ ] Implement static Work paths with fallback false/notFound on missing data; keep every original project slug/static generation. Cases expose readable context/contribution/decisions/outcome and optional wide-screen contents links. Curate projects, subordinate historical archive, expose real source/demo links. Apps launches `/apps/markdown-preview/`; keep next.config.js rewrite intact.
 - [ ] Implement About chronology/skills without percentages/mentoring/education/résumé; note stale PDF summary. Contact uses configured EmailJS only, keeps existing required name/email/subject/message and 10-character message minimum, preserves input on missing configuration/rejected send, inline live-region errors/email fallback, no double submit. Build Privacy disclosure and useful 404; no invented availability or notes section.
@@ -65,13 +68,25 @@
 ### Task 4: Privacy-safe GTM/GA4 and owner handoff
 
 **Files:** analytics utility/consent component, app wrapper, events/Privacy page, analytics tests, analytics setup doc. **Consumes:** exact event union above. **Produces:** safe gated tracking and documented upstream limit.
+
 - [ ] Write failing tests: unknown/declined/server/missing or malformed IDs => no dataLayer push; normalized `/work/example/?email=secret#text` => `/work/example/`; thrown getItem => unknown, thrown setItem => false; unknown events/invalid slugs/channels rejected; extra fields dropped. Mock browser/storage/dataLayer, no Google calls.
 - [ ] Run `yarn test`, expect missing analytics implementation FAIL.
 
 Minimum pure-check example (Node `node:assert/strict`):
+
 ```js
-assert.equal(normalizePagePath('/work/example/?email=secret#text'), '/work/example/');
-assert.equal(readConsent({ getItem() { throw new Error('blocked'); } }), 'unknown');
+assert.equal(
+  normalizePagePath('/work/example/?email=secret#text'),
+  '/work/example/',
+);
+assert.equal(
+  readConsent({
+    getItem() {
+      throw new Error('blocked');
+    },
+  }),
+  'unknown',
+);
 setAnalyticsConsent('declined');
 assert.equal(trackEvent({ event: 'resume_download' }), false);
 assert.deepEqual(window.dataLayer, []);
@@ -85,6 +100,7 @@ assert.deepEqual(window.dataLayer, []);
 ### Task 5: Comparable validation and handoff
 
 **Files:** `docs/review-precision-console.md`, task-related fixes only. **Consumes:** completed candidate. **Produces:** evidence and local preview instructions.
+
 - [ ] Run tests/type-check/build, verify actual lint support (existing script is `next lint`), record exits and baseline/environment limits, do not upgrade unrelated dependencies.
 - [ ] Check all routes, keyboard, themes, reduced motion, 200% zoom, focus/labels, mobile reading density, form errors, app nested paths and consent network in DevTools. Capture Home/case/Apps screenshots; report real email/GA configuration limits.
 - [ ] Record common tasks: identify experience in 30 seconds, read case, find/launch app, download résumé, contact. Does precision remain approachable to non-engineers? Put findings and screenshot paths in review document.

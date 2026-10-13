@@ -19,7 +19,11 @@ export default function ContactForm() {
 
   const update = (
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
-  ) => setFields((current) => ({ ...current, [event.target.name]: event.target.value }));
+  ) =>
+    setFields((current) => ({
+      ...current,
+      [event.target.name]: event.target.value,
+    }));
 
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -35,18 +39,27 @@ export default function ContactForm() {
         publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
       },
       (data, config) =>
-        emailjs.send(config.serviceId, config.templateId, { ...data }, {
-          publicKey: config.publicKey,
-        }),
+        emailjs.send(
+          config.serviceId,
+          config.templateId,
+          { ...data },
+          {
+            publicKey: config.publicKey,
+          },
+        ),
     );
 
     if (result === 'sent') {
       setFields(emptyFields);
       setMessage('Message sent. Thank you.');
     } else if (result === 'not-configured') {
-      setMessage('The message form is not configured. Please email me directly.');
+      setMessage(
+        'The message form is not configured. Please email me directly.',
+      );
     } else {
-      setMessage('Message could not be sent. Your entries are still here; please email me directly.');
+      setMessage(
+        'Message could not be sent. Your entries are still here; please email me directly.',
+      );
     }
     setSubmitting(false);
   };
@@ -55,30 +68,75 @@ export default function ContactForm() {
     <form className="contact-form" onSubmit={submit}>
       <label>
         Name <span aria-hidden="true">*</span>
-        <input autoComplete="name" name="name" onChange={update} required value={fields.name} />
+        <input
+          autoComplete="name"
+          name="name"
+          onChange={update}
+          required
+          value={fields.name}
+        />
       </label>
       <label>
         Email <span aria-hidden="true">*</span>
-        <input autoComplete="email" name="email" onChange={update} required type="email" value={fields.email} />
+        <input
+          autoComplete="email"
+          name="email"
+          onChange={update}
+          required
+          type="email"
+          value={fields.email}
+        />
       </label>
       <label>
         Company
-        <input autoComplete="organization" name="company" onChange={update} value={fields.company} />
+        <input
+          autoComplete="organization"
+          name="company"
+          onChange={update}
+          value={fields.company}
+        />
       </label>
       <label>
         Subject <span aria-hidden="true">*</span>
-        <input name="subject" onChange={update} required value={fields.subject} />
+        <input
+          name="subject"
+          onChange={update}
+          required
+          value={fields.subject}
+        />
       </label>
       <label>
         Message <span aria-hidden="true">*</span>
-        <textarea minLength={10} name="message" onChange={update} required rows={6} value={fields.message} />
+        <textarea
+          minLength={10}
+          name="message"
+          onChange={update}
+          required
+          rows={6}
+          value={fields.message}
+        />
       </label>
-      <button className="button button-primary" disabled={submitting} type="submit">
+      <button
+        className="button button-primary"
+        disabled={submitting}
+        type="submit"
+      >
         {submitting ? 'Sending…' : 'Send message'}
       </button>
-      <p aria-live="polite" className="form-message" role="status">{message}</p>
+      <p aria-live="polite" className="form-message" role="status">
+        {message}
+      </p>
       <p>
-        Prefer email? <a className="text-link" href={`mailto:${portfolioData.contact.email}`} onClick={() => trackEvent({ event: 'contact_click', channel: 'email' })}>{portfolioData.contact.email}</a>
+        Prefer email?{' '}
+        <a
+          className="text-link"
+          href={`mailto:${portfolioData.contact.email}`}
+          onClick={() =>
+            trackEvent({ event: 'contact_click', channel: 'email' })
+          }
+        >
+          {portfolioData.contact.email}
+        </a>
       </p>
     </form>
   );

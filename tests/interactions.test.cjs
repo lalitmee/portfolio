@@ -18,12 +18,18 @@ test('interaction styles respond to hover and keyboard focus', () => {
   assert.match(css, /\.brand-link:focus-visible[^{]*\.brand-mark/);
   assert.match(css, /\.interaction-arrow/);
   assert.match(css, /\.interactive-card:focus-within/);
-  assert.match(css, /:focus-visible\s*,[\s\S]*?outline: 3px solid var\(--highlight\)/);
+  assert.match(
+    css,
+    /:focus-visible\s*,[\s\S]*?outline: 3px solid var\(--highlight\)/,
+  );
 });
 
 test('reduced motion disables added transforms and brand drawing', () => {
   const css = fs.readFileSync('styles/globals.css', 'utf8');
-  const reducedMotion = css.match(/@media \(prefers-reduced-motion: reduce\)\s*\{([\s\S]*?)\n\}/)?.[1] ?? '';
+  const reducedMotion =
+    css.match(
+      /@media \(prefers-reduced-motion: reduce\)\s*\{([\s\S]*?)\n\}/,
+    )?.[1] ?? '';
 
   assert.match(reducedMotion, /\.brand-mark[^}]*animation:\s*none/);
   assert.match(reducedMotion, /\.interaction-arrow[^}]*transform:\s*none/);
