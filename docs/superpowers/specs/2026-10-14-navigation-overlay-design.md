@@ -27,8 +27,8 @@ Refine the site navigation after review of the mobile screenshots: make the menu
 ## Mobile menu and materials
 
 - Make the menu toggle 40×40px with a centered 20px Material icon, matching the theme control’s circular geometry. Preserve its accessible name, `aria-expanded`, `aria-controls`, and visible focus ring.
-- Present links in a full-width overlay below the sticky header instead of expanding the document flow. Use a native modal `<dialog>` so the page behind is inert, Escape closes it, and browser focus restoration is preserved. Keep the current active route visibly marked beneath its label, not across the row; retain clear row separators without a duplicate bottom rule.
-- Reuse the current muted paper/ink palette and existing header blur for a restrained translucent overlay/backdrop. Do not add a dependency, glass styling to cards/content, or high-contrast glossy effects. Maintain text contrast in light/dark themes.
+- Present links in an immersive, full-viewport native modal `<dialog>`, not as a panel below the sticky header or document-flow content. Center the menu links vertically and horizontally; keep compact brand/theme/close controls at the top. The page behind is inert, Escape closes the modal, and browser focus restoration is preserved. Keep the active route visibly marked beneath its label; retain clear row separators without a duplicate bottom rule.
+- Use restrained liquid-glass styling on the fullscreen overlay surface: translucent muted paper/ink, subtle blur, and the existing portfolio palette. The live-site menu is a reference for composition only; do not copy its violet gradient, glow treatment, or branding. Do not add a dependency or extend glass styling to cards/content; maintain text contrast in light/dark themes and avoid high-contrast gloss.
 - Preserve close-on-route-change, keyboard access, and reduced-motion behavior. Do not add a custom focus trap if native dialog behavior covers it.
 
 ## Constraints and verification
