@@ -12,3 +12,5 @@ Ongoing repo-specific redesign of `lalitmee.com` in repository `portfolio`, work
 - Follow-up shell polish: approved spec `docs/superpowers/specs/2026-10-13-shell-polish-design.md` and plan `docs/superpowers/plans/2026-10-13-shell-polish.md`; execution is tracked in `.superpowers/sdd/2026-10-13-shell-polish/progress.md`. Local-only; no deployment or production analytics testing.
 
 Current execution status is recorded in the ledger and task commits.
+
+- Persistent navigation follow-up: approved spec `docs/superpowers/specs/2026-10-14-navigation-overlay-design.md`, plan `docs/superpowers/plans/2026-10-14-persistent-navigation.md`; completed in commits `3b4b6ff` and `ec3f636`. Tests, type-check, lint, build, production preview, and manual responsive/modal checks passed. No deployment, merge, or push.
