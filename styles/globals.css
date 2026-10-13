@@ -635,6 +635,10 @@ button {
   background: var(--panel);
 }
 
+.app-listing > .button {
+  flex-shrink: 0;
+}
+
 .app-listing h2 {
   max-width: 560px;
   font:
