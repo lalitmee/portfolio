@@ -3,6 +3,7 @@ const { test } = require('node:test');
 const portfolio = require('../data/portfolio.json');
 const { generateSlug } = require('../utils/slug.ts');
 const { caseStudies } = require('../data/caseStudies.ts');
+const { markdownExamples } = require('../data/markdownExamples.ts');
 
 const legacySlugs = [
   'browse-nvim',
@@ -44,4 +45,15 @@ test('portfolio content preserves truthful, stable evidence', () => {
 
   const content = JSON.stringify({ portfolio, caseStudies });
   assert.doesNotMatch(content, /10x|60%|1M\+|99\.9%|3x/i);
+});
+
+test('markdown examples are fixed, labelled, and ordered', () => {
+  assert.deepEqual(markdownExamples.map(({ id }) => id), ['note', 'checklist', 'table']);
+  assert.ok(markdownExamples.every(({ label, source }) => label.trim() && source.trim()));
+  assert.deepEqual(markdownExamples.map(({ source }) => source), [
+    '# A useful note\n\nSmall details make tools easier to use.',
+    '- Read the problem\n- Make the smallest useful change\n- Check the result',
+    '| Tool | Purpose |\n| --- | --- |\n| Markdown Previewer | Read local notes |',
+  ]);
+  assert.ok(markdownExamples.every((example) => !('input' in example) && !('url' in example)));
 });

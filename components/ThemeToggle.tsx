@@ -1,7 +1,5 @@
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { FaMoon, FaSun } from 'react-icons/fa';
-import IconButton from './ui/IconButton';
 
 const ThemeToggle = () => {
   const [mounted, setMounted] = useState(false);
@@ -16,12 +14,15 @@ const ThemeToggle = () => {
   }
 
   return (
-    <IconButton
+    <button
+      className="theme-toggle"
+      type="button"
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      ariaLabel="Toggle theme"
+      aria-label={`Use ${theme === 'dark' ? 'light' : 'dark'} theme`}
+      title={`Use ${theme === 'dark' ? 'light' : 'dark'} theme`}
     >
-      {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
-    </IconButton>
+      {theme === 'dark' ? '☀' : '◐'}
+    </button>
   );
 };
 
