@@ -32,6 +32,7 @@ test('case studies have the required unique slugs', () => {
     'quartic-data-interfaces',
   ]);
   assert.equal(new Set(slugs).size, slugs.length);
+  assert.equal(caseStudies.find(({ slug }) => slug === 'missing-case'), undefined);
 });
 
 test('curated projects retain all legacy project URLs', () => {
