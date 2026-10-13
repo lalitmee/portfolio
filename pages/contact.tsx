@@ -5,6 +5,7 @@ import SiteLayout from '../components/SiteLayout';
 import portfolio from '../data/portfolio.json';
 import { validateContactForm } from '../utils/contactValidation';
 import { submitContactForm } from '../utils/contactSubmission';
+import { trackEvent } from '../utils/analytics';
 
 type FieldName = 'name' | 'email' | 'subject' | 'message';
 const fields: { name: FieldName; label: string; type: string }[] = [
@@ -65,7 +66,7 @@ export default function ContactPage() {
         <p className="eyebrow">Contact</p>
         <h1 className="route-title">Have a useful problem to solve?</h1>
         <p className="route-intro">Send a note about the work you have in mind.</p>
-        <p><a href={`mailto:${portfolio.contact.email}`}>Email {portfolio.contact.email}</a></p>
+        <p><a href={`mailto:${portfolio.contact.email}`} onClick={() => trackEvent({ event: 'contact_click', channel: 'email' })}>Email {portfolio.contact.email}</a></p>
         <form className="contact-form" ref={form} onSubmit={submit} noValidate>
           <input type="hidden" name="title" defaultValue="" />
           <div className="error-summary" role="alert" aria-live="polite">{Object.values(errors).join('. ')}</div>

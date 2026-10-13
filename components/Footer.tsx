@@ -1,5 +1,6 @@
 import portfolio from '../data/portfolio.json';
 import Link from 'next/link';
+import { trackEvent } from '../utils/analytics';
 
 export default function Footer(): React.ReactElement {
   return (
@@ -10,8 +11,8 @@ export default function Footer(): React.ReactElement {
       </div>
       <nav aria-label="Footer navigation">
         <Link href="/privacy/">Privacy</Link>
-        <a href="/Lalit_Kumar_Resume.pdf">Résumé</a>
-        <a href={`mailto:${portfolio.contact.email}`}>Email</a>
+        <a href="/Lalit_Kumar_Resume.pdf" onClick={() => trackEvent({ event: 'resume_download' })}>Résumé</a>
+        <a href={`mailto:${portfolio.contact.email}`} onClick={() => trackEvent({ event: 'contact_click', channel: 'email' })}>Email</a>
       </nav>
       <small>© {new Date().getFullYear()} Lalit Kumar</small>
     </footer>

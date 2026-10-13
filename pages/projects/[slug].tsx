@@ -3,6 +3,7 @@ import Link from 'next/link';
 import SiteLayout from '../../components/SiteLayout';
 import portfolioData from '../../data/portfolio.json';
 import { generateSlug } from '../../utils/slug';
+import { trackEvent } from '../../utils/analytics';
 
 interface Project {
   id: number;
@@ -34,8 +35,8 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
         <section><h2>Highlights</h2><ul>{project.highlights.map((item) => <li key={item}>{item}</li>)}</ul></section>
         <section><h2>Technologies</h2><p>{project.technologies.join(' · ')}</p></section>
         <div className="link-row">
-          {project.github && <a href={project.github}>Source on GitHub ↗</a>}
-          {project.demo && <a href={project.demo}>Open project ↗</a>}
+          {project.github && <a href={project.github} onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'source' })}>Source on GitHub ↗</a>}
+          {project.demo && <a href={project.demo} onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'demo' })}>Open project ↗</a>}
         </div>
         <p><Link href="/projects/">← All projects</Link></p>
       </article>

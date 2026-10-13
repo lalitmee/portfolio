@@ -2,6 +2,7 @@ import Link from 'next/link';
 import SiteLayout from '../../components/SiteLayout';
 import portfolio from '../../data/portfolio.json';
 import { generateSlug } from '../../utils/slug';
+import { trackEvent } from '../../utils/analytics';
 
 const selected = ['browse.nvim', 'cobalt2.nvim', 'codecompanion-spinners.nvim', 'markdown-previewer', 'dotfiles'];
 
@@ -21,8 +22,8 @@ export default function ProjectsPage() {
               <p>{project.description}</p>
               <p className="tag-list">{project.technologies.join(' · ')}</p>
               <div className="link-row">
-                {project.github && <a href={project.github}>Source on GitHub ↗</a>}
-                {project.demo && <Link href={project.demo.startsWith('/') ? project.demo : `/projects/${generateSlug(project.title)}/`}>Open project ↗</Link>}
+                 {project.github && <a href={project.github} onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'source' })}>Source on GitHub ↗</a>}
+                 {project.demo && <Link href={project.demo.startsWith('/') ? project.demo : `/projects/${generateSlug(project.title)}/`} onClick={() => trackEvent(project.demo.startsWith('/') ? { event: 'app_launch', app_slug: 'markdown-previewer' } : { event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'demo' })}>Open project ↗</Link>}
               </div>
               {project.title === 'cobalt2.nvim' && <small>Theme by Wes Bos; Neovim adaptation by Gertjan Reynaert and contributors.</small>}
             </article>
