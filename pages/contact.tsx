@@ -32,8 +32,10 @@ export default function ContactPage() {
     setStatus('');
     if (Object.keys(nextErrors).length) return;
 
-    const { NEXT_PUBLIC_EMAILJS_SERVICE_ID, NEXT_PUBLIC_EMAILJS_TEMPLATE_ID, NEXT_PUBLIC_EMAILJS_PUBLIC_KEY } = process.env;
-    if (!NEXT_PUBLIC_EMAILJS_SERVICE_ID || !NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || !NEXT_PUBLIC_EMAILJS_PUBLIC_KEY) {
+    const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID;
+    const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
+    const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
+    if (!serviceId || !templateId || !publicKey) {
       setStatus('The message form is not configured right now. Please use the email link instead.');
       return;
     }
@@ -44,10 +46,10 @@ export default function ContactPage() {
       const title = form.current.elements.namedItem('title') as HTMLInputElement;
       title.value = values.subject;
       const sent = await submitContactForm(form.current, () => emailjs.sendForm(
-        NEXT_PUBLIC_EMAILJS_SERVICE_ID,
-        NEXT_PUBLIC_EMAILJS_TEMPLATE_ID,
+        serviceId,
+        templateId,
         form.current!,
-        NEXT_PUBLIC_EMAILJS_PUBLIC_KEY,
+        publicKey,
       ));
       setStatus(sent
         ? 'Your message was sent. Thank you.'
@@ -67,6 +69,11 @@ export default function ContactPage() {
         <h1 className="route-title">Have a useful problem to solve?</h1>
         <p className="route-intro">Send a note about the work you have in mind.</p>
         <p><a href={`mailto:${portfolio.contact.email}`} onClick={() => trackEvent({ event: 'contact_click', channel: 'email' })}>Email {portfolio.contact.email}</a></p>
+        <ul className="contact-socials">
+          {portfolio.contact.social.filter(({ platform }) => platform === 'GitHub' || platform === 'LinkedIn').map(({ platform, url }) => (
+            <li key={platform}><a href={url} target="_blank" rel="noreferrer" onClick={() => trackEvent({ event: 'contact_click', channel: platform === 'GitHub' ? 'github' : 'linkedin' })}>{platform}</a></li>
+          ))}
+        </ul>
         <form className="contact-form" ref={form} onSubmit={submit} noValidate>
           <input type="hidden" name="title" defaultValue="" />
           <div className="error-summary" role="alert" aria-live="polite">{Object.values(errors).join('. ')}</div>

@@ -1,20 +1,25 @@
 import SiteLayout from '../components/SiteLayout';
 import portfolio from '../data/portfolio.json';
 import { useEffect, useState } from 'react';
-import { loadAnalytics, readConsent, saveConsent, setAnalyticsConsent, trackEvent, type Consent } from '../utils/analytics';
+import { readConsent, saveConsent, setAnalyticsConsent, trackEvent, type Consent } from '../utils/analytics';
 
 export default function PrivacyPage() {
   const [choice, setChoice] = useState<Consent>('unknown');
 
   useEffect(() => {
     setChoice(readConsent({ getItem: (key) => window.localStorage.getItem(key) }));
+    const onChoice = (event: Event) => {
+      const next = (event as CustomEvent<Consent>).detail;
+      if (next === 'accepted' || next === 'declined' || next === 'unknown') setChoice(next);
+    };
+    window.addEventListener('portfolio-analytics-consent-change', onChoice);
+    return () => window.removeEventListener('portfolio-analytics-consent-change', onChoice);
   }, []);
 
   function choose(next: Consent) {
     saveConsent({ setItem: (key, value) => window.localStorage.setItem(key, value) }, next);
     setAnalyticsConsent(next);
     setChoice(next);
-    if (next === 'accepted') loadAnalytics();
   }
 
   return (

@@ -6,12 +6,12 @@ The portfolio sends nothing to Google until the visitor accepts analytics. There
 
 Set these public build-time variables only when a real container and property are ready:
 
-- `NEXT_PUBLIC_GTM_ID`: a Google Tag Manager ID matching `GTM-` followed by seven uppercase letters or digits.
+- `NEXT_PUBLIC_GTM_ID`: a Google Tag Manager ID matching `GTM-` followed by seven or eight uppercase letters or digits.
 - `NEXT_PUBLIC_GA4_MEASUREMENT_ID`: a GA4 measurement ID matching `G-` followed by ten uppercase letters or digits.
 
 Both values are required. The portfolio validates their formats, injects one GTM script after acceptance, and queues only the allowlisted events in `utils/analytics.ts`.
 
-In GTM, create a GA4 configuration/event setup for the custom `page_view` event and the portfolio event names (`case_study_view`, `project_open`, `resume_download`, `contact_click`, `app_launch`). Use the supplied `page_path` as the route. Construct `page_location` from the canonical site origin plus that path; do not forward query strings, fragments, email addresses, or arbitrary link parameters. Leave `page_referrer` unset or reduce it to the site origin.
+In GTM, create a GA4 configuration/event setup for the custom `page_view` event and the portfolio event names (`case_study_view`, `project_open`, `resume_download`, `contact_click`, `app_launch`). Use the supplied `page_path` as the route. Construct `page_location` from the canonical site origin plus that path; do not forward query strings, fragments, email addresses, or arbitrary link parameters. Explicitly set `page_referrer` to the canonical site origin (or an empty value); do not leave it unset, because the default may use the browser referrer including its query string.
 
 Disable GA4 automatic page views, enhanced measurement page views, outbound-click tracking, and other automatic collection that could bypass the allowlist. Do not configure advertising tags or advertising consent. The app demo does not emit a demo event; `app_launch` records only the explicit launch link. Actual first/repeat use inside the separately hosted Markdown Previewer requires separate upstream instrumentation and consent work.
 

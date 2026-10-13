@@ -10,7 +10,7 @@ The portfolio keeps the requested tasks visible while making room for a small, c
 - **Read a case:** Work links lead to static case pages organized as Context, Contribution, Decisions, and Outcome.
 - **Launch the app:** Apps links to `/apps/markdown-preview/`. The upstream route and its nested JavaScript/CSS assets returned 200; the app remains a separately maintained service.
 - **Get the résumé:** the résumé link resolves to `public/Lalit_Kumar_Resume.pdf` (HTTP 200, `application/pdf`). The About page discloses that the PDF summary predates the current 8+ years copy.
-- **Contact:** the form exposes required name, email, subject, and message fields and inline validation; absent EmailJS configuration leaves entries intact and offers the email fallback. A mocked rejected send also retains the entered values. No real email was sent.
+- **Contact:** the form exposes required name, email, subject, and message fields and inline validation, plus the existing GitHub and LinkedIn destinations; absent EmailJS configuration leaves entries intact and offers the email fallback. A mocked rejected send also retains the entered values. No real email was sent.
 
 ## Browser and route checks
 
@@ -32,13 +32,19 @@ The first Lighthouse snapshot found two accessibility defects: the demo eyebrow 
 
 The stylesheet includes a `prefers-reduced-motion: reduce` rule; the demo and navigation do not require animation. This Chrome DevTools session did not provide an OS reduced-motion override, so reduced-motion behavior was source-inspected rather than browser-emulated.
 
-Consent checks on the existing browser verified no Google script/request before choice or after acceptance/decline while measurement IDs were absent; choices and the blocked-storage in-memory fallback were checked in Task 4. There are no live GTM/GA IDs, so delivery and withdrawal after a real tag load were not exercised against Google. Automatic collection and sanitized path guidance are documented in `docs/analytics-setup.md`; upstream app analytics are outside this portfolio.
+Consent checks on the existing browser verified no Google script/request before choice or after acceptance/decline while measurement IDs were absent; choices and the blocked-storage in-memory fallback were checked in Task 4. The Privacy status now follows banner choices and cross-tab storage changes. There are no live GTM/GA IDs, so delivery and withdrawal after a real tag load were not exercised against Google. Automatic collection and explicit sanitized page-referrer guidance are documented in `docs/analytics-setup.md`; upstream app analytics are outside this portfolio.
 
 ## Validation and limits
 
-- `yarn test`: 13/13 pass, including visible brand-name and demo contrast-selector regressions.
+- `yarn test`: 22/22 pass, including accessibility and final-review lifecycle/configuration regressions.
 - `yarn type-check`: pass.
 - `yarn lint`: pass with existing warnings in legacy `components/Contact.tsx` (`console`) and Next.js `next lint` deprecation.
-- `yarn build`: pass; 27 static pages generated.
+- `yarn build`: pass; 27 static pages generated. A separate build with synthetic EmailJS placeholders confirmed the direct public environment-variable references are inlined into the Contact client bundle; no real values were used and no message was sent.
 - `git diff --check`: pass before this commit.
 - EmailJS live delivery is unverified because no EmailJS configuration is present. No Google measurement IDs or container access were supplied. Nothing was deployed.
+
+## Final review follow-up
+
+The independent branch review found and prompted fixes for build-time EmailJS configuration access, seven/eight-character GTM IDs, dataLayer identity and duplicate loader protection after withdrawal, missing page/case views on re-acceptance, cross-tab consent synchronization, stale Privacy status, unsanitized default referrers in setup guidance, and missing GitHub/LinkedIn links. Regression tests cover these paths; a build using synthetic EmailJS values confirmed Next.js inlined direct public environment references into the Contact bundle. No real email was sent and no live Google tag was loaded.
+
+Deferred minor polish: the About page does not yet use the existing portrait; the consent banner remains outside the Outfit font wrapper. Neither blocks the requested common tasks or consent flow.

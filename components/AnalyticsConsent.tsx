@@ -3,25 +3,24 @@ import { useRouter } from 'next/router';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   loadAnalytics,
-  normalizePagePath,
   readConsent,
   saveConsent,
   setAnalyticsConsent,
-  trackEvent,
+  syncConsentFromStorage,
+  trackPageView,
   type Consent,
 } from '../utils/analytics';
 
 export default function AnalyticsConsent(): React.ReactElement | null {
   const router = useRouter();
   const [choice, setChoice] = useState<Consent>('unknown');
-  const initialViewSent = useRef(false);
+  const lastSentPath = useRef<string | null>(null);
 
   const choose = useCallback((next: Consent) => {
     if (typeof window === 'undefined') return;
     saveConsent({ setItem: (key, value) => window.localStorage.setItem(key, value) }, next);
     setAnalyticsConsent(next);
     setChoice(next);
-    if (next === 'accepted') loadAnalytics();
   }, []);
 
   useEffect(() => {
@@ -37,21 +36,22 @@ export default function AnalyticsConsent(): React.ReactElement | null {
       setChoice(next);
       if (next === 'accepted') loadAnalytics();
     };
+    const onStorage = (event: StorageEvent) => syncConsentFromStorage(event.key, event.newValue);
     window.addEventListener('portfolio-analytics-consent-change', onChoice);
-    return () => window.removeEventListener('portfolio-analytics-consent-change', onChoice);
+    window.addEventListener('storage', onStorage);
+    return () => {
+      window.removeEventListener('portfolio-analytics-consent-change', onChoice);
+      window.removeEventListener('storage', onStorage);
+    };
   }, []);
 
   useEffect(() => {
     const sendPageView = (route: string) => {
-      const path = normalizePagePath(route);
-      if (!trackEvent({ event: 'page_view', page_path: path })) return;
-      initialViewSent.current = true;
-      const caseMatch = path.match(/^\/work\/([^/]+)\/?$/);
-      if (caseMatch) trackEvent({ event: 'case_study_view', case_slug: caseMatch[1] });
+      lastSentPath.current = trackPageView(route, lastSentPath.current);
     };
     const onRouteChange = (route: string) => sendPageView(route);
     router.events.on('routeChangeComplete', onRouteChange);
-    if (router.isReady && choice === 'accepted' && !initialViewSent.current) sendPageView(router.asPath);
+    if (router.isReady && choice === 'accepted') sendPageView(router.asPath);
     return () => router.events.off('routeChangeComplete', onRouteChange);
   }, [choice, router.asPath, router.events, router.isReady]);
 

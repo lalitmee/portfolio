@@ -33,7 +33,7 @@ function validConsent(value: unknown): value is Consent {
 function analyticsIds() {
   const gtm = process.env.NEXT_PUBLIC_GTM_ID || '';
   const ga4 = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || '';
-  return /^GTM-[A-Z0-9]{7}$/.test(gtm) && /^G-[A-Z0-9]{10}$/.test(ga4) ? { gtm, ga4 } : null;
+  return /^GTM-[A-Z0-9]{7,8}$/.test(gtm) && /^G-[A-Z0-9]{10}$/.test(ga4) ? { gtm, ga4 } : null;
 }
 
 export function normalizePagePath(url: string): string {
@@ -45,6 +45,7 @@ export function normalizePagePath(url: string): string {
 }
 
 export function readConsent(storage: Pick<Storage, 'getItem'>): Consent {
+  if (consent !== 'unknown') return consent;
   try {
     const value = storage.getItem(CONSENT_KEY);
     return value === 'accepted' || value === 'declined' ? value : 'unknown';
@@ -87,8 +88,12 @@ export function setAnalyticsConsent(choice: Consent): void {
   if (typeof window !== 'undefined') {
     const ids = analyticsIds();
     if (ids) window[`ga-disable-${ids.ga4}`] = choice !== 'accepted';
-    if (choice === 'declined') {
-      if (window.dataLayer) window.dataLayer = window.dataLayer.filter(({ event }) => !eventNames.has(String(event)));
+    if (choice !== 'accepted') {
+      if (window.dataLayer) {
+        for (let i = window.dataLayer.length - 1; i >= 0; i--) {
+          if (eventNames.has(String(window.dataLayer[i].event))) window.dataLayer.splice(i, 1);
+        }
+      }
       if (typeof document !== 'undefined') document.getElementById('portfolio-google-tag-manager')?.remove();
       clearAnalyticsCookies();
     }
@@ -98,20 +103,40 @@ export function setAnalyticsConsent(choice: Consent): void {
   }
 }
 
+export function syncConsentFromStorage(key: string | null, value: string | null): Consent | null {
+  if (key !== CONSENT_KEY && key !== null) return null;
+  const next = value === 'accepted' || value === 'declined' ? value : 'unknown';
+  setAnalyticsConsent(next);
+  return next;
+}
+
 export function loadAnalytics(): boolean {
   if (typeof window === 'undefined' || typeof document === 'undefined' || consent !== 'accepted') return false;
   const ids = analyticsIds();
   if (!ids) return false;
   window[`ga-disable-${ids.ga4}`] = false;
-  if (document.getElementById('portfolio-google-tag-manager')) return true;
+  if (window['portfolioGtmInitialized'] || document.getElementById('portfolio-google-tag-manager')) {
+    window['portfolioGtmInitialized'] = true;
+    return true;
+  }
   window.dataLayer = window.dataLayer || [];
   window.dataLayer.push({ 'gtm.start': Date.now(), event: 'gtm.js' });
   const script = document.createElement('script');
   script.id = 'portfolio-google-tag-manager';
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtm.js?id=${ids.gtm}`;
+  script.onerror = () => { window['portfolioGtmInitialized'] = false; };
+  window['portfolioGtmInitialized'] = true;
   document.head.appendChild(script);
   return true;
+}
+
+export function trackPageView(path: string, lastPath: string | null): string | null {
+  const normalized = normalizePagePath(path);
+  if (normalized === lastPath || !trackEvent({ event: 'page_view', page_path: normalized })) return lastPath;
+  const caseMatch = normalized.match(/^\/work\/([^/]+)\/?$/);
+  if (caseMatch) trackEvent({ event: 'case_study_view', case_slug: caseMatch[1] });
+  return normalized;
 }
 
 function sanitizeEvent(value: unknown): AnalyticsEvent | null {

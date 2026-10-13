@@ -157,6 +157,8 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .timeline > li { padding: 0 0 1.5rem 1rem; }
 .timeline h3 { margin: .3rem 0; }
 .contact-form { display: grid; gap: 1rem; max-width: 620px; margin-top: 2rem; }
+.contact-socials { display: flex; gap: 1rem; padding: 0; list-style: none; }
+.contact-socials a { color: var(--cobalt); font-weight: 700; }
 .form-field { display: grid; gap: .4rem; }
 .form-field label { font-weight: 700; }
 .form-field input, .form-field textarea { width: 100%; padding: .8rem; border: 1px solid var(--line); border-radius: .45rem; background: var(--canvas); color: var(--ink); font: inherit; }
