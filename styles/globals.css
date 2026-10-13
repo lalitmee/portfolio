@@ -133,14 +133,41 @@ button {
 .desktop-nav a:hover,
 .mobile-nav a:hover,
 .site-footer nav a:hover,
-.desktop-nav a[aria-current='page'] {
+.desktop-nav a[aria-current='page'],
+.mobile-nav a[aria-current='page'] {
   color: var(--ink);
 }
 
-.desktop-nav a[aria-current='page'] {
-  text-decoration: underline;
-  text-decoration-color: var(--ochre);
-  text-underline-offset: 0.45rem;
+.desktop-nav a,
+.mobile-nav a {
+  position: relative;
+}
+
+.desktop-nav a {
+  display: inline-block;
+}
+
+.desktop-nav a::after,
+.mobile-nav a::after {
+  position: absolute;
+  right: 0;
+  bottom: -0.45rem;
+  left: 0;
+  height: 1px;
+  background: var(--ochre);
+  content: '';
+  transform: scaleX(0);
+  transform-origin: center;
+  transition: transform 180ms ease;
+}
+
+.desktop-nav a[aria-current='page']::after,
+.mobile-nav a[aria-current='page']::after,
+.desktop-nav a:hover::after,
+.mobile-nav a:hover::after,
+.desktop-nav a:focus-visible::after,
+.mobile-nav a:focus-visible::after {
+  transform: scaleX(1);
 }
 
 .nav-actions {
@@ -811,6 +838,7 @@ button {
   }
 
   .mobile-nav a {
+    display: block;
     padding: 0.8rem 0.2rem;
     border-bottom: 1px solid var(--line);
     font-size: 1rem;
