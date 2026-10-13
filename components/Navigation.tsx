@@ -38,7 +38,7 @@ export default function Navigation(_props: { showBackArrow?: boolean } = {}): Re
   return (
     <header className="site-header">
       <nav className="nav-wrap" aria-label="Main navigation">
-        <Link className="wordmark" href="/" aria-label="Lalit Kumar home">LK<span>.</span></Link>
+        <Link className="wordmark" href="/" aria-label="LK. Lalit Kumar home">LK<span>.</span></Link>
         <div className="desktop-nav">
           {links.map(([href, label]) => (
             <Link key={href} href={href} aria-current={active(href) ? 'page' : undefined}>
