@@ -18,24 +18,49 @@ export default function Navigation() {
   const router = useRouter();
   const [menuOpen, setMenuOpen] = useState(false);
   const menuButton = useRef<HTMLButtonElement>(null);
+  const mobileDialog = useRef<HTMLDialogElement>(null);
+  const restoreMenuFocus = useRef(true);
   const shouldReduceMotion = useReducedMotion();
   const pathname = router.asPath.split(/[?#]/, 1)[0] || '/';
 
   useEffect(() => {
-    if (!menuOpen) return;
+    if (mobileDialog.current?.open) restoreMenuFocus.current = false;
+    setMenuOpen(false);
+  }, [router.asPath]);
 
-    const onKeyDown = (event: KeyboardEvent) => {
-      if (event.key === 'Escape') {
-        setMenuOpen(false);
-        menuButton.current?.focus();
-      }
+  useEffect(() => {
+    const desktop = window.matchMedia('(min-width: 761px)');
+    const closeOnDesktop = () => {
+      if (desktop.matches) setMenuOpen(false);
     };
 
-    document.addEventListener('keydown', onKeyDown);
-    return () => document.removeEventListener('keydown', onKeyDown);
+    desktop.addEventListener('change', closeOnDesktop);
+    return () => desktop.removeEventListener('change', closeOnDesktop);
+  }, []);
+
+  useEffect(() => {
+    const dialog = mobileDialog.current;
+    if (!dialog) return;
+
+    if (menuOpen && !dialog.open) {
+      restoreMenuFocus.current = true;
+      dialog.showModal();
+    }
+    if (!menuOpen && dialog.open) {
+      dialog.close();
+      if (
+        restoreMenuFocus.current &&
+        !window.matchMedia('(min-width: 761px)').matches
+      ) {
+        menuButton.current?.focus();
+      }
+      restoreMenuFocus.current = true;
+    }
   }, [menuOpen]);
 
-  useEffect(() => setMenuOpen(false), [router.asPath]);
+  const closeMobileMenu = () => {
+    setMenuOpen(false);
+  };
 
   const isCurrent = (href: string) =>
     href === '/' ? pathname === '/' : pathname.startsWith(href);
@@ -93,50 +118,71 @@ export default function Navigation() {
           </button>
         </div>
       </div>
-      <motion.nav
+      <dialog
+        ref={mobileDialog}
         id="mobile-navigation"
-        className="mobile-nav"
+        className="mobile-menu-dialog"
         aria-label="Mobile navigation"
-        aria-hidden={!menuOpen}
-        inert={!menuOpen}
-        initial={false}
-        animate={menuOpen ? 'open' : 'closed'}
-        variants={{
-          open: { height: 'auto', opacity: 1, y: 0 },
-          closed: { height: 0, opacity: 0, y: shouldReduceMotion ? 0 : -8 },
+        onCancel={(event) => {
+          event.preventDefault();
+          closeMobileMenu();
         }}
-        transition={{
-          duration: shouldReduceMotion ? 0 : 0.18,
-          ease: 'easeOut',
+        onClose={() => {
+          if (menuOpen) closeMobileMenu();
+        }}
+        onClick={(event) => {
+          if (event.target === mobileDialog.current) closeMobileMenu();
         }}
       >
-        <AnimatePresence initial={false}>
-          {menuOpen && (
-            <motion.div className="mobile-nav-links" key="mobile-nav-links">
-              {links.map((link, index) => (
-                <motion.div
-                  key={link.href}
-                  initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -4 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -4 }}
-                  transition={{
-                    duration: shouldReduceMotion ? 0 : 0.12,
-                    delay: shouldReduceMotion ? 0 : index * 0.025,
-                  }}
-                >
-                  <Link
-                    href={link.href}
-                    aria-current={isCurrent(link.href) ? 'page' : undefined}
-                    onClick={() => setMenuOpen(false)}
+        <div className="mobile-menu-topbar">
+          <Link
+            className="site-brand"
+            href="/"
+            aria-label="LK., Lalit Kumar home"
+          >
+            LK<span aria-hidden="true">.</span>
+          </Link>
+          <div className="nav-actions">
+            <ThemeToggle />
+            <button
+              className="menu-toggle"
+              type="button"
+              aria-label="Close navigation menu"
+              onClick={closeMobileMenu}
+            >
+              <MdClose aria-hidden="true" />
+            </button>
+          </div>
+        </div>
+        <nav className="mobile-nav" aria-label="Mobile navigation links">
+          <AnimatePresence initial={false}>
+            {menuOpen && (
+              <motion.div className="mobile-nav-links" key="mobile-nav-links">
+                {links.map((link, index) => (
+                  <motion.div
+                    key={link.href}
+                    initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -4 }}
+                    transition={{
+                      duration: shouldReduceMotion ? 0 : 0.12,
+                      delay: shouldReduceMotion ? 0 : index * 0.025,
+                    }}
                   >
-                    <span>{link.label}</span>
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </motion.nav>
+                    <Link
+                      href={link.href}
+                      aria-current={isCurrent(link.href) ? 'page' : undefined}
+                      onClick={() => setMenuOpen(false)}
+                    >
+                      <span>{link.label}</span>
+                    </Link>
+                  </motion.div>
+                ))}
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </nav>
+      </dialog>
     </header>
   );
 }
