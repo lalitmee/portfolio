@@ -473,10 +473,7 @@
       "status": "active",
       "featured": true,
       "github": "https://github.com/lalitmee/browse.nvim",
-      "highlights": [
-        "Browse from Neovim",
-        "Configurable methods"
-      ]
+      "highlights": ["Browse from Neovim", "Configurable methods"]
     },
     {
       "id": 2,
@@ -488,10 +485,7 @@
       "status": "active",
       "featured": true,
       "github": "https://github.com/lalitmee/cobalt2.nvim",
-      "highlights": [
-        "Cobalt2 color palette",
-        "Neovim and Colorbuddy"
-      ]
+      "highlights": ["Cobalt2 color palette", "Neovim and Colorbuddy"]
     },
     {
       "id": 3,

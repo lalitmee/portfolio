@@ -10,5 +10,8 @@ test('brand accessible name includes its visible wordmark', () => {
 });
 
 test('demo eyebrow uses ink color on the blue panel', () => {
-  assert.match(styles, /\.demo-panel > \.demo-heading \.eyebrow\s*\{[^}]*color:\s*var\(--ink\)/);
+  assert.match(
+    styles,
+    /\.demo-panel > \.demo-heading \.eyebrow\s*\{[^}]*color:\s*var\(--ink\)/,
+  );
 });

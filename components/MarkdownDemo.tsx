@@ -15,7 +15,13 @@ export default function MarkdownDemo(): React.ReactElement {
           <p className="eyebrow">A small, working interaction</p>
           <h2 id="demo-title">Markdown, made tangible.</h2>
         </div>
-        <Link className="text-link" href="/apps/markdown-preview/" onClick={() => trackEvent({ event: 'app_launch', app_slug: 'markdown-previewer' })}>
+        <Link
+          className="text-link"
+          href="/apps/markdown-preview/"
+          onClick={() =>
+            trackEvent({ event: 'app_launch', app_slug: 'markdown-previewer' })
+          }
+        >
           Open the full Markdown Previewer <span aria-hidden="true">↗</span>
         </Link>
       </div>
@@ -34,7 +40,9 @@ export default function MarkdownDemo(): React.ReactElement {
             ))}
           </div>
           <pre className="example-source">
-            <code>{markdownExamples.find(({ id }) => id === selected)?.source}</code>
+            <code>
+              {markdownExamples.find(({ id }) => id === selected)?.source}
+            </code>
           </pre>
         </div>
         <div className="example-preview" aria-live="polite">
@@ -55,16 +63,25 @@ export default function MarkdownDemo(): React.ReactElement {
           {selected === 'table' && (
             <table>
               <thead>
-                <tr><th>Tool</th><th>Purpose</th></tr>
+                <tr>
+                  <th>Tool</th>
+                  <th>Purpose</th>
+                </tr>
               </thead>
               <tbody>
-                <tr><td>Markdown Previewer</td><td>Read local notes</td></tr>
+                <tr>
+                  <td>Markdown Previewer</td>
+                  <td>Read local notes</td>
+                </tr>
               </tbody>
             </table>
           )}
         </div>
       </div>
-      <p className="demo-note">Three fixed examples, rendered as semantic HTML—not a general Markdown parser.</p>
+      <p className="demo-note">
+        Three fixed examples, rendered as semantic HTML—not a general Markdown
+        parser.
+      </p>
     </section>
   );
 }

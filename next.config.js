@@ -3,10 +3,12 @@ const nextConfig = {
   reactStrictMode: true,
   trailingSlash: true,
   async rewrites() {
-    return [{
-      source: '/apps/markdown-preview/:path*',
-      destination: 'https://md-reader-lalit.vercel.app/:path*',
-    }];
+    return [
+      {
+        source: '/apps/markdown-preview/:path*',
+        destination: 'https://md-reader-lalit.vercel.app/:path*',
+      },
+    ];
   },
   images: {
     remotePatterns: [

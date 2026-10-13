@@ -24,15 +24,24 @@ const legacySlugs = [
 test('portfolio content preserves truthful, stable evidence', () => {
   assert.equal(portfolio.personal.yearsOfExperience, '8+');
   assert.equal(portfolio.stats.experience.value, '8+');
-  assert.deepEqual(caseStudies.map(({ slug }) => slug), [
-    'nykaa-cart-reliability',
-    'nykaa-measurement-attribution',
-    'quartic-data-interfaces',
-  ]);
-  assert.equal(new Set(caseStudies.map(({ slug }) => slug)).size, caseStudies.length);
+  assert.deepEqual(
+    caseStudies.map(({ slug }) => slug),
+    [
+      'nykaa-cart-reliability',
+      'nykaa-measurement-attribution',
+      'quartic-data-interfaces',
+    ],
+  );
+  assert.equal(
+    new Set(caseStudies.map(({ slug }) => slug)).size,
+    caseStudies.length,
+  );
 
-  const projectSlugs = portfolio.projects.map(({ title }) => generateSlug(title));
-  for (const slug of legacySlugs) assert.ok(projectSlugs.includes(slug), `missing ${slug}`);
+  const projectSlugs = portfolio.projects.map(({ title }) =>
+    generateSlug(title),
+  );
+  for (const slug of legacySlugs)
+    assert.ok(projectSlugs.includes(slug), `missing ${slug}`);
   for (const title of [
     'browse.nvim',
     'cobalt2.nvim',
@@ -40,7 +49,10 @@ test('portfolio content preserves truthful, stable evidence', () => {
     'markdown-previewer',
     'dotfiles',
   ]) {
-    assert.ok(portfolio.projects.some((project) => project.title === title), `missing ${title}`);
+    assert.ok(
+      portfolio.projects.some((project) => project.title === title),
+      `missing ${title}`,
+    );
   }
 
   const content = JSON.stringify({ portfolio, caseStudies });
@@ -48,12 +60,26 @@ test('portfolio content preserves truthful, stable evidence', () => {
 });
 
 test('markdown examples are fixed, labelled, and ordered', () => {
-  assert.deepEqual(markdownExamples.map(({ id }) => id), ['note', 'checklist', 'table']);
-  assert.ok(markdownExamples.every(({ label, source }) => label.trim() && source.trim()));
-  assert.deepEqual(markdownExamples.map(({ source }) => source), [
-    '# A useful note\n\nSmall details make tools easier to use.',
-    '- Read the problem\n- Make the smallest useful change\n- Check the result',
-    '| Tool | Purpose |\n| --- | --- |\n| Markdown Previewer | Read local notes |',
-  ]);
-  assert.ok(markdownExamples.every((example) => !('input' in example) && !('url' in example)));
+  assert.deepEqual(
+    markdownExamples.map(({ id }) => id),
+    ['note', 'checklist', 'table'],
+  );
+  assert.ok(
+    markdownExamples.every(
+      ({ label, source }) => label.trim() && source.trim(),
+    ),
+  );
+  assert.deepEqual(
+    markdownExamples.map(({ source }) => source),
+    [
+      '# A useful note\n\nSmall details make tools easier to use.',
+      '- Read the problem\n- Make the smallest useful change\n- Check the result',
+      '| Tool | Purpose |\n| --- | --- |\n| Markdown Previewer | Read local notes |',
+    ],
+  );
+  assert.ok(
+    markdownExamples.every(
+      (example) => !('input' in example) && !('url' in example),
+    ),
+  );
 });

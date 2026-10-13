@@ -29,9 +29,13 @@ export default function SiteLayout({
         <meta property="og:title" content={`${title} | Lalit Kumar`} />
         <meta property="og:description" content={description} />
       </Head>
-      <a className="skip-link" href="#main-content">Skip to content</a>
+      <a className="skip-link" href="#main-content">
+        Skip to content
+      </a>
       <Navigation />
-      <main id="main-content" tabIndex={-1}>{children}</main>
+      <main id="main-content" tabIndex={-1}>
+        {children}
+      </main>
       <Footer />
     </>
   );

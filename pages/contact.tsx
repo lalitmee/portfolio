@@ -26,7 +26,9 @@ export default function ContactPage() {
     event.preventDefault();
     if (!form.current || sending.current) return;
     const data = new FormData(form.current);
-    const values = Object.fromEntries(fields.map(({ name }) => [name, String(data.get(name) || '')])) as Record<FieldName, string>;
+    const values = Object.fromEntries(
+      fields.map(({ name }) => [name, String(data.get(name) || '')]),
+    ) as Record<FieldName, string>;
     const nextErrors = validateContactForm(values);
     setErrors(nextErrors);
     setStatus('');
@@ -36,26 +38,31 @@ export default function ContactPage() {
     const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID;
     const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY;
     if (!serviceId || !templateId || !publicKey) {
-      setStatus('The message form is not configured right now. Please use the email link instead.');
+      setStatus(
+        'The message form is not configured right now. Please use the email link instead.',
+      );
       return;
     }
 
     sending.current = true;
     setBusy(true);
     try {
-      const title = form.current.elements.namedItem('title') as HTMLInputElement;
+      const title = form.current.elements.namedItem(
+        'title',
+      ) as HTMLInputElement;
       title.value = values.subject;
-      const sent = await submitContactForm(form.current, () => emailjs.sendForm(
-        serviceId,
-        templateId,
-        form.current!,
-        publicKey,
-      ));
-      setStatus(sent
-        ? 'Your message was sent. Thank you.'
-        : 'Your message could not be sent. Your entries are still here; please try again or use the email link.');
+      const sent = await submitContactForm(form.current, () =>
+        emailjs.sendForm(serviceId, templateId, form.current!, publicKey),
+      );
+      setStatus(
+        sent
+          ? 'Your message was sent. Thank you.'
+          : 'Your message could not be sent. Your entries are still here; please try again or use the email link.',
+      );
     } catch {
-      setStatus('Your message could not be sent. Your entries are still here; please try again or use the email link.');
+      setStatus(
+        'Your message could not be sent. Your entries are still here; please try again or use the email link.',
+      );
     } finally {
       sending.current = false;
       setBusy(false);
@@ -67,28 +74,93 @@ export default function ContactPage() {
       <div className="page-content">
         <p className="eyebrow">Contact</p>
         <h1 className="route-title">Have a useful problem to solve?</h1>
-        <p className="route-intro">Send a note about the work you have in mind.</p>
-        <p><a href={`mailto:${portfolio.contact.email}`} onClick={() => trackEvent({ event: 'contact_click', channel: 'email' })}>Email {portfolio.contact.email}</a></p>
+        <p className="route-intro">
+          Send a note about the work you have in mind.
+        </p>
+        <p>
+          <a
+            href={`mailto:${portfolio.contact.email}`}
+            onClick={() =>
+              trackEvent({ event: 'contact_click', channel: 'email' })
+            }
+          >
+            Email {portfolio.contact.email}
+          </a>
+        </p>
         <ul className="contact-socials">
-          {portfolio.contact.social.filter(({ platform }) => platform === 'GitHub' || platform === 'LinkedIn').map(({ platform, url }) => (
-            <li key={platform}><a href={url} target="_blank" rel="noreferrer" onClick={() => trackEvent({ event: 'contact_click', channel: platform === 'GitHub' ? 'github' : 'linkedin' })}>{platform}</a></li>
-          ))}
+          {portfolio.contact.social
+            .filter(
+              ({ platform }) =>
+                platform === 'GitHub' || platform === 'LinkedIn',
+            )
+            .map(({ platform, url }) => (
+              <li key={platform}>
+                <a
+                  href={url}
+                  target="_blank"
+                  rel="noreferrer"
+                  onClick={() =>
+                    trackEvent({
+                      event: 'contact_click',
+                      channel: platform === 'GitHub' ? 'github' : 'linkedin',
+                    })
+                  }
+                >
+                  {platform}
+                </a>
+              </li>
+            ))}
         </ul>
         <form className="contact-form" ref={form} onSubmit={submit} noValidate>
           <input type="hidden" name="title" defaultValue="" />
-          <div className="error-summary" role="alert" aria-live="polite">{Object.values(errors).join('. ')}</div>
+          <div className="error-summary" role="alert" aria-live="polite">
+            {Object.values(errors).join('. ')}
+          </div>
           {fields.map(({ name, label, type }) => {
             const id = `contact-${name}`;
-            return <div className="form-field" key={name}>
-              <label htmlFor={id}>{label}</label>
-              {type === 'textarea'
-                ? <textarea id={id} name={name} rows={6} required aria-invalid={Boolean(errors[name])} aria-describedby={errors[name] ? `${id}-error` : undefined} />
-                : <input id={id} name={name} type={type} required autoComplete={name === 'name' || name === 'email' ? name : undefined} aria-invalid={Boolean(errors[name])} aria-describedby={errors[name] ? `${id}-error` : undefined} />}
-              {errors[name] && <span className="field-error" id={`${id}-error`}>{errors[name]}</span>}
-            </div>;
+            return (
+              <div className="form-field" key={name}>
+                <label htmlFor={id}>{label}</label>
+                {type === 'textarea' ? (
+                  <textarea
+                    id={id}
+                    name={name}
+                    rows={6}
+                    required
+                    aria-invalid={Boolean(errors[name])}
+                    aria-describedby={errors[name] ? `${id}-error` : undefined}
+                  />
+                ) : (
+                  <input
+                    id={id}
+                    name={name}
+                    type={type}
+                    required
+                    autoComplete={
+                      name === 'name' || name === 'email' ? name : undefined
+                    }
+                    aria-invalid={Boolean(errors[name])}
+                    aria-describedby={errors[name] ? `${id}-error` : undefined}
+                  />
+                )}
+                {errors[name] && (
+                  <span className="field-error" id={`${id}-error`}>
+                    {errors[name]}
+                  </span>
+                )}
+              </div>
+            );
           })}
-          <button className="button button-primary" type="submit" disabled={busy}>{busy ? 'Sending…' : 'Send message'}</button>
-          <p className="form-status" role="status" aria-live="polite">{status}</p>
+          <button
+            className="button button-primary"
+            type="submit"
+            disabled={busy}
+          >
+            {busy ? 'Sending…' : 'Send message'}
+          </button>
+          <p className="form-status" role="status" aria-live="polite">
+            {status}
+          </p>
         </form>
       </div>
     </SiteLayout>

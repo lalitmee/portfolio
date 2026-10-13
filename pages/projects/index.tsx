@@ -4,13 +4,26 @@ import portfolio from '../../data/portfolio.json';
 import { generateSlug } from '../../utils/slug';
 import { trackEvent } from '../../utils/analytics';
 
-const selected = ['browse.nvim', 'cobalt2.nvim', 'codecompanion-spinners.nvim', 'markdown-previewer', 'dotfiles'];
+const selected = [
+  'browse.nvim',
+  'cobalt2.nvim',
+  'codecompanion-spinners.nvim',
+  'markdown-previewer',
+  'dotfiles',
+];
 
 export default function ProjectsPage() {
-  const projects = portfolio.projects.filter((project) => selected.includes(project.title));
-  const earlier = portfolio.projects.filter((project) => !selected.includes(project.title));
+  const projects = portfolio.projects.filter((project) =>
+    selected.includes(project.title),
+  );
+  const earlier = portfolio.projects.filter(
+    (project) => !selected.includes(project.title),
+  );
   return (
-    <SiteLayout title="Projects" description="Open-source tools and earlier experiments.">
+    <SiteLayout
+      title="Projects"
+      description="Open-source tools and earlier experiments."
+    >
       <div className="page-content">
         <p className="eyebrow">Independent work</p>
         <h1 className="route-title">Tools and experiments I maintain.</h1>
@@ -22,16 +35,67 @@ export default function ProjectsPage() {
               <p>{project.description}</p>
               <p className="tag-list">{project.technologies.join(' · ')}</p>
               <div className="link-row">
-                 {project.github && <a href={project.github} onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'source' })}>Source on GitHub ↗</a>}
-                 {project.demo && <Link href={project.demo.startsWith('/') ? project.demo : `/projects/${generateSlug(project.title)}/`} onClick={() => trackEvent(project.demo.startsWith('/') ? { event: 'app_launch', app_slug: 'markdown-previewer' } : { event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'demo' })}>Open project ↗</Link>}
+                {project.github && (
+                  <a
+                    href={project.github}
+                    onClick={() =>
+                      trackEvent({
+                        event: 'project_open',
+                        project_slug: generateSlug(project.title),
+                        destination_kind: 'source',
+                      })
+                    }
+                  >
+                    Source on GitHub ↗
+                  </a>
+                )}
+                {project.demo && (
+                  <Link
+                    href={
+                      project.demo.startsWith('/')
+                        ? project.demo
+                        : `/projects/${generateSlug(project.title)}/`
+                    }
+                    onClick={() =>
+                      trackEvent(
+                        project.demo.startsWith('/')
+                          ? {
+                              event: 'app_launch',
+                              app_slug: 'markdown-previewer',
+                            }
+                          : {
+                              event: 'project_open',
+                              project_slug: generateSlug(project.title),
+                              destination_kind: 'demo',
+                            },
+                      )
+                    }
+                  >
+                    Open project ↗
+                  </Link>
+                )}
               </div>
-              {project.title === 'cobalt2.nvim' && <small>Theme by Wes Bos; Neovim adaptation by Gertjan Reynaert and contributors.</small>}
+              {project.title === 'cobalt2.nvim' && (
+                <small>
+                  Theme by Wes Bos; Neovim adaptation by Gertjan Reynaert and
+                  contributors.
+                </small>
+              )}
             </article>
           ))}
         </div>
         <section className="route-section">
           <h2>Earlier experiments</h2>
-          <ul className="archive-list">{earlier.map((project) => <li key={project.title}><Link href={`/projects/${generateSlug(project.title)}/`}>{project.title}</Link><span>{project.description}</span></li>)}</ul>
+          <ul className="archive-list">
+            {earlier.map((project) => (
+              <li key={project.title}>
+                <Link href={`/projects/${generateSlug(project.title)}/`}>
+                  {project.title}
+                </Link>
+                <span>{project.description}</span>
+              </li>
+            ))}
+          </ul>
         </section>
       </div>
     </SiteLayout>

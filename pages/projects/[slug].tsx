@@ -32,13 +32,51 @@ const ProjectDetail = ({ project }: ProjectDetailProps) => {
         <p className="eyebrow">{project.category}</p>
         <h1 className="route-title">{project.title}</h1>
         <p className="route-intro">{project.description}</p>
-        <section><h2>Highlights</h2><ul>{project.highlights.map((item) => <li key={item}>{item}</li>)}</ul></section>
-        <section><h2>Technologies</h2><p>{project.technologies.join(' · ')}</p></section>
+        <section>
+          <h2>Highlights</h2>
+          <ul>
+            {project.highlights.map((item) => (
+              <li key={item}>{item}</li>
+            ))}
+          </ul>
+        </section>
+        <section>
+          <h2>Technologies</h2>
+          <p>{project.technologies.join(' · ')}</p>
+        </section>
         <div className="link-row">
-          {project.github && <a href={project.github} onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'source' })}>Source on GitHub ↗</a>}
-          {project.demo && <a href={project.demo} onClick={() => trackEvent({ event: 'project_open', project_slug: generateSlug(project.title), destination_kind: 'demo' })}>Open project ↗</a>}
+          {project.github && (
+            <a
+              href={project.github}
+              onClick={() =>
+                trackEvent({
+                  event: 'project_open',
+                  project_slug: generateSlug(project.title),
+                  destination_kind: 'source',
+                })
+              }
+            >
+              Source on GitHub ↗
+            </a>
+          )}
+          {project.demo && (
+            <a
+              href={project.demo}
+              onClick={() =>
+                trackEvent({
+                  event: 'project_open',
+                  project_slug: generateSlug(project.title),
+                  destination_kind: 'demo',
+                })
+              }
+            >
+              Open project ↗
+            </a>
+          )}
         </div>
-        <p><Link href="/projects/">← All projects</Link></p>
+        <p>
+          <Link href="/projects/">← All projects</Link>
+        </p>
       </article>
     </SiteLayout>
   );

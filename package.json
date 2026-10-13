@@ -54,6 +54,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
+    "format": "prettier --write 'components/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' 'data/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' 'pages/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' 'styles/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' 'tests/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' 'utils/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' config.ts types.d.ts *.config.js *.json .eslintrc.js",
+    "format:check": "prettier --check 'components/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' 'data/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' 'pages/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' 'styles/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' 'tests/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' 'utils/**/*.{js,jsx,ts,tsx,cjs,mjs,json,css}' config.ts types.d.ts *.config.js *.json .eslintrc.js",
     "type-check": "tsc --noEmit",
     "test": "node --require ./tests/register.cjs --test tests/*.test.cjs"
   },

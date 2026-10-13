@@ -4,13 +4,29 @@ const { validateContactForm } = require('../utils/contactValidation.ts');
 const { submitContactForm } = require('../utils/contactSubmission.ts');
 
 test('contact form requires valid name, email, subject, and a 10-character message', () => {
-  assert.deepEqual(validateContactForm({ name: '', email: 'bad', subject: ' ', message: 'short' }), {
-    name: 'Name is required',
-    email: 'Please enter a valid email address',
-    subject: 'Subject is required',
-    message: 'Message must be at least 10 characters.',
-  });
-  assert.deepEqual(validateContactForm({ name: ' Ada ', email: 'ada@example.com', subject: 'Hello', message: '1234567890' }), {});
+  assert.deepEqual(
+    validateContactForm({
+      name: '',
+      email: 'bad',
+      subject: ' ',
+      message: 'short',
+    }),
+    {
+      name: 'Name is required',
+      email: 'Please enter a valid email address',
+      subject: 'Subject is required',
+      message: 'Message must be at least 10 characters.',
+    },
+  );
+  assert.deepEqual(
+    validateContactForm({
+      name: ' Ada ',
+      email: 'ada@example.com',
+      subject: 'Hello',
+      message: '1234567890',
+    }),
+    {},
+  );
 });
 
 test('a rejected contact send preserves entered fields', async () => {

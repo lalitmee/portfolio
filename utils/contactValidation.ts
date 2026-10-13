@@ -5,7 +5,9 @@ export type ContactFields = {
   message: string;
 };
 
-export function validateContactForm(fields: ContactFields): Record<string, string> {
+export function validateContactForm(
+  fields: ContactFields,
+): Record<string, string> {
   const errors: Record<string, string> = {};
   if (!fields.name.trim()) errors.name = 'Name is required';
   if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fields.email.trim())) {
