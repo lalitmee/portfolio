@@ -3,16 +3,16 @@
     "name": "Lalit Kumar",
     "title": "Senior Software Engineer",
     "subtitle": "Product-Minded Senior Engineer",
-    "yearsOfExperience": "7+",
+    "yearsOfExperience": "8+",
     "email": "lalitkumar.meena.lk@gmail.com",
     "phone": "+91 97-1261-8438",
-    "website": "https://lalitmee.github.io/portfolio",
-    "bio": "Senior Software Engineer @Nykaa | Neovim Enthusiast | Open Source Advocate. Pioneering Agentic Coding workflows and building high-performance web applications. Focused on productivity and developer experience.",
+    "website": "https://www.lalitmee.com/",
+    "bio": "Senior software engineer working on product reliability, measurement systems, and developer tools.",
     "profileImage": "/images/profile_v3.png",
     "resume": "/Lalit_Kumar_Resume.pdf",
     "availability": {
-      "status": "available",
-      "message": "Available for opportunities"
+      "status": "unspecified",
+      "message": "Availability not specified"
     }
   },
   "contact": {
@@ -55,20 +55,20 @@
   },
   "stats": {
     "experience": {
-      "value": "7+",
+      "value": "8+",
       "label": "Years Experience"
     },
     "projects": {
-      "value": "20+",
-      "label": "Projects Delivered"
+      "value": "Selected",
+      "label": "Projects"
     },
     "technologies": {
-      "value": "15+",
-      "label": "Technologies"
+      "value": "Practical",
+      "label": "Capabilities"
     },
     "teamMembers": {
-      "value": "6+",
-      "label": "Team Members Led"
+      "value": "Cross-functional",
+      "label": "Teams"
     }
   },
   "skills": {
@@ -260,7 +260,7 @@
       "achievements": [
         "Spearheading the development of nysaa.com, managing end-to-end integration",
         "Significantly increasing application performance and user experience",
-        "Led Martech integration (GTM, GA4, Meta, etc.) resulting in 3x daily orders",
+        "Led marketing technology integrations across GTM, GA4, Meta, Snapchat, TikTok, and MoEngage",
         "Designed attribution system using BigQuery and Looker Studio",
         "Revamped cart operations and implemented cart merging feature"
       ],
@@ -273,7 +273,7 @@
         "BigQuery"
       ],
       "teamSize": "Cross-functional",
-      "impact": "10x Daily Orders"
+      "impact": "Cart reliability"
     },
     {
       "id": 2,
@@ -482,7 +482,7 @@
     {
       "id": 2,
       "title": "cobalt2.nvim",
-      "description": "Cobalt2 theme for Neovim in Lua using colorbuddy.",
+      "description": "A Lua Neovim port drawing on Gertjan Reynaert's Cobalt2 Vim theme and Wes Bos's Cobalt2 VS Code theme, using colorbuddy.",
       "image": "/images/projects/cobalt2-nvim.png",
       "technologies": ["Lua", "Neovim", "Colorbuddy"],
       "category": "Featured",
@@ -490,9 +490,9 @@
       "featured": true,
       "github": "https://github.com/lalitmee/cobalt2.nvim",
       "highlights": [
-        "Vibrant color scheme",
-        "Eye-friendly",
-        "Easy installation"
+        "Lua colorscheme for Neovim",
+        "Uses colorbuddy",
+        "Credits the original Cobalt2 themes"
       ]
     },
     {
@@ -534,6 +534,34 @@
       "featured": true,
       "github": "https://github.com/lalitmee/portfolio",
       "highlights": ["Responsive design", "Dark mode", "High performance"]
+    },
+    {
+      "id": 14,
+      "title": "codecompanion-spinners.nvim",
+      "description": "A CodeCompanion extension with configurable status spinners and notifications for AI activity.",
+      "image": "",
+      "technologies": ["Lua", "Neovim", "CodeCompanion"],
+      "category": "Open Source",
+      "status": "Open source",
+      "featured": true,
+      "github": "https://github.com/lalitmee/codecompanion-spinners.nvim",
+      "highlights": [
+        "Multiple spinner styles",
+        "Configurable status messages",
+        "Integrates with CodeCompanion"
+      ]
+    },
+    {
+      "id": 15,
+      "title": "markdown-previewer",
+      "description": "A Markdown writing and preview app, available at its existing app route.",
+      "image": "",
+      "technologies": ["Markdown"],
+      "category": "App",
+      "status": "Available",
+      "featured": true,
+      "demo": "/apps/markdown-preview/",
+      "highlights": ["Write Markdown", "Preview rendered output"]
     },
     {
       "id": 6,
@@ -675,22 +703,22 @@
   },
   "professionalImpact": [
     {
-      "icon": "🚀",
-      "title": "Performance Optimization",
-      "description": "Improved application performance by 60% through advanced optimization techniques and modern architecture patterns",
-      "metric": "60% faster"
+      "icon": "🛒",
+      "title": "Cart reliability",
+      "description": "Revamped cart operations, addressed archived-product handling, and built cart merging across sessions.",
+      "metric": "Nykaa"
     },
     {
-      "icon": "👥",
-      "title": "Team Leadership",
-      "description": "Led cross-functional teams of 10+ developers, delivering complex projects on time with exceptional quality",
-      "metric": "10+ developers"
+      "icon": "📊",
+      "title": "Measurement and attribution",
+      "description": "Integrated marketing measurement platforms and designed order-source attribution with BigQuery and Looker Studio.",
+      "metric": "Nykaa"
     },
     {
-      "icon": "🏗️",
-      "title": "Architecture Design",
-      "description": "Designed scalable microservices architecture serving 1M+ users with 99.9% uptime and reliability",
-      "metric": "99.9% uptime"
+      "icon": "🧭",
+      "title": "Complex data interfaces",
+      "description": "Built a virtualized LDAP user table and worked on administration and analytics workflows.",
+      "metric": "Quartic.ai"
     }
   ],
   "sections": {
@@ -706,7 +734,7 @@
     "about": {
       "title": "About",
       "highlight": "Me",
-      "description": "I'm a passionate Senior Software Engineer with over 7 years of experience building scalable web applications and leading high-performing teams. I specialize in modern JavaScript frameworks, cloud architecture, and creating exceptional user experiences that drive business growth.",
+      "description": "I'm a Senior Software Engineer with 8+ years of experience building web products, data interfaces, and developer tools.",
       "cards": {
         "innovation": {
           "icon": "🚀",
