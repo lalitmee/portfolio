@@ -57,7 +57,18 @@ export default function Navigation() {
               href={link.href}
               aria-current={isCurrent(link.href) ? 'page' : undefined}
             >
-              {link.label}
+              <span>{link.label}</span>
+              {isCurrent(link.href) && (
+                <motion.span
+                  className="desktop-nav-indicator"
+                  layoutId="desktop-nav-indicator"
+                  transition={{
+                    duration: shouldReduceMotion ? 0 : 0.28,
+                    ease: 'easeInOut',
+                  }}
+                  aria-hidden="true"
+                />
+              )}
             </Link>
           ))}
         </nav>
@@ -118,7 +129,7 @@ export default function Navigation() {
                     aria-current={isCurrent(link.href) ? 'page' : undefined}
                     onClick={() => setMenuOpen(false)}
                   >
-                    {link.label}
+                    <span>{link.label}</span>
                   </Link>
                 </motion.div>
               ))}

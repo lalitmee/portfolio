@@ -3,7 +3,6 @@ import { useRouter } from 'next/router';
 import type { ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import Footer from './Footer';
-import Navigation from './Navigation';
 
 const siteUrl = 'https://www.lalitmee.com';
 
@@ -40,10 +39,6 @@ export default function SiteLayout({
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <div className="site-page">
-        <a className="skip-link" href="#main-content">
-          Skip to content
-        </a>
-        <Navigation />
         <main id="main-content" tabIndex={-1}>
           <motion.div
             key={path}

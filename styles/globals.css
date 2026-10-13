@@ -59,7 +59,7 @@ button {
 }
 
 .site-page {
-  min-height: 100vh;
+  min-height: calc(100vh - 4.5rem);
   background: var(--paper);
   color: var(--ink);
 }
@@ -147,8 +147,7 @@ button {
   display: inline-block;
 }
 
-.desktop-nav a::after,
-.mobile-nav a::after {
+.mobile-nav a > span::after {
   position: absolute;
   right: 0;
   bottom: -0.45rem;
@@ -161,13 +160,20 @@ button {
   transition: transform 180ms ease;
 }
 
-.desktop-nav a[aria-current='page']::after,
-.mobile-nav a[aria-current='page']::after,
-.desktop-nav a:hover::after,
-.mobile-nav a:hover::after,
-.desktop-nav a:focus-visible::after,
-.mobile-nav a:focus-visible::after {
+.mobile-nav a[aria-current='page'] > span::after,
+.mobile-nav a:hover > span::after,
+.mobile-nav a:focus-visible > span::after {
   transform: scaleX(1);
+}
+
+.desktop-nav-indicator {
+  position: absolute;
+  right: 0;
+  bottom: -0.45rem;
+  left: 0;
+  height: 1px;
+  background: var(--ochre);
+  pointer-events: none;
 }
 
 .nav-actions {
@@ -838,8 +844,13 @@ button {
   }
 
   .menu-toggle {
-    display: block;
-    min-width: 3.5rem;
+    display: grid;
+    width: 2.5rem;
+    height: 2.5rem;
+    min-width: 0;
+    place-items: center;
+    padding: 0;
+    font-size: 1.2rem;
   }
 
   .mobile-nav {
@@ -859,6 +870,19 @@ button {
     padding: 0.8rem 0.2rem;
     border-bottom: 1px solid var(--line);
     font-size: 1rem;
+  }
+
+  .mobile-nav a > span {
+    position: relative;
+    display: inline-block;
+  }
+
+  .mobile-nav a > span::after {
+    bottom: -0.2rem;
+  }
+
+  .mobile-nav-links > :last-child a {
+    border-bottom: 0;
   }
 
   .home-hero {

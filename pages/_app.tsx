@@ -4,6 +4,7 @@ import { Outfit } from 'next/font/google';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import AnalyticsConsent from '../components/AnalyticsConsent';
+import Navigation from '../components/Navigation';
 import '../styles/globals.css';
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
@@ -22,6 +23,10 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
       <div className={`${outfit.variable} font-sans`}>
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
+        <Navigation />
         <Component {...pageProps} />
         <AnalyticsConsent />
       </div>
