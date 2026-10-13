@@ -1,6 +1,12 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
-import { MdArrowBack } from 'react-icons/md';
+import {
+  MdArrowBack,
+  MdBuild,
+  MdInfoOutline,
+  MdTrendingUp,
+  MdTune,
+} from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
 import {
   caseStudies,
@@ -24,11 +30,15 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
         <h1>{study.title}</h1>
         <p className="page-lede">{study.summary}</p>
         <section>
-          <h2>Context</h2>
+          <h2>
+            <MdInfoOutline aria-hidden="true" /> Context
+          </h2>
           <p>{study.context}</p>
         </section>
         <section>
-          <h2>Contribution</h2>
+          <h2>
+            <MdBuild aria-hidden="true" /> Contribution
+          </h2>
           <ul>
             {study.contribution.map((item) => (
               <li key={item}>{item}</li>
@@ -36,7 +46,9 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
           </ul>
         </section>
         <section>
-          <h2>Decisions</h2>
+          <h2>
+            <MdTune aria-hidden="true" /> Decisions
+          </h2>
           <ul>
             {study.decisions.map((item) => (
               <li key={item}>{item}</li>
@@ -44,7 +56,9 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
           </ul>
         </section>
         <section>
-          <h2>Outcome</h2>
+          <h2>
+            <MdTrendingUp aria-hidden="true" /> Outcome
+          </h2>
           <p>{study.outcome}</p>
         </section>
       </article>

@@ -1,6 +1,11 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
-import { MdArrowBack, MdArrowOutward } from 'react-icons/md';
+import {
+  MdArrowBack,
+  MdArrowOutward,
+  MdCode,
+  MdLightbulbOutline,
+} from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
 import portfolioData from '../../data/portfolio.json';
 import { trackEvent } from '../../utils/analytics';
@@ -25,7 +30,9 @@ export default function ProjectDetail({ project }: { project: Project }) {
         <p className="page-lede">{project.description}</p>
         {project.highlights.length > 0 && (
           <section>
-            <h2>What it does</h2>
+            <h2>
+              <MdLightbulbOutline aria-hidden="true" /> What it does
+            </h2>
             <ul>
               {project.highlights.map((item) => (
                 <li key={item}>{item}</li>
@@ -35,7 +42,9 @@ export default function ProjectDetail({ project }: { project: Project }) {
         )}
         {project.technologies.length > 0 && (
           <section>
-            <h2>Technologies</h2>
+            <h2>
+              <MdCode aria-hidden="true" /> Technologies
+            </h2>
             <p>{project.technologies.join(' · ')}</p>
           </section>
         )}

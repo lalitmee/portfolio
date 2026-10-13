@@ -554,6 +554,19 @@ button {
     serif;
 }
 
+.case-detail > section h2 {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+}
+
+.case-detail > section h2 svg {
+  width: 0.8em;
+  height: 0.8em;
+  flex: none;
+  color: var(--muted);
+}
+
 .content-page section p,
 .content-page section li,
 .case-detail > section p,
