@@ -1,6 +1,6 @@
 # Editorial portfolio redesign
 
-Ongoing repo-specific redesign of `lalitmee.com` in the `feat/ui-revamp` worktree.
+Ongoing repo-specific redesign of `lalitmee.com` in repository `portfolio`, worktree `feat-ui-revamp`, branch `feat/ui-revamp`.
 
 - Approved design: `docs/superpowers/specs/2026-10-13-editorial-workshop-design.md`
 - Approved implementation plan: `docs/superpowers/plans/2026-10-13-editorial-workshop.md`
