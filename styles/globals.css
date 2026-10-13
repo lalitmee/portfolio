@@ -271,6 +271,11 @@ button {
   text-underline-offset: 0.3rem;
 }
 
+.text-link svg {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 .text-link:hover {
   text-decoration-color: currentColor;
 }

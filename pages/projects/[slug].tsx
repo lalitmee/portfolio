@@ -1,6 +1,6 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
-import { MdArrowBack } from 'react-icons/md';
+import { MdArrowBack, MdArrowOutward } from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
 import portfolioData from '../../data/portfolio.json';
 import { trackEvent } from '../../utils/analytics';
@@ -54,7 +54,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                 })
               }
             >
-              View source on GitHub ↗
+              View source on GitHub <MdArrowOutward aria-hidden="true" />
             </a>
           )}
           {project.demo && (
@@ -71,7 +71,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                 })
               }
             >
-              Open project ↗
+              Open project <MdArrowOutward aria-hidden="true" />
             </a>
           )}
         </nav>
