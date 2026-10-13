@@ -11,8 +11,8 @@ export default function App({ Component, pageProps }: AppProps) {
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
       <div className={`${outfit.variable} font-sans`}>
         <Component {...pageProps} />
+        <AnalyticsConsent />
       </div>
-      <AnalyticsConsent />
     </ThemeProvider>
   );
 }
