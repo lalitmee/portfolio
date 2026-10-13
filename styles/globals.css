@@ -86,8 +86,10 @@ main:focus-visible {
 }
 
 .rail-top { display: flex; align-items: center; justify-content: space-between; }
-.wordmark { font-size: 1.4rem; font-weight: 700; text-decoration: none; }
-.wordmark span, .eyebrow { color: var(--accent); }
+.wordmark { display: flex; align-items: center; gap: 0.65rem; font-size: 1rem; font-weight: 700; text-decoration: none; }
+.brand-mark { width: 2.4rem; height: 2.4rem; flex: 0 0 auto; }
+.wordmark-name { color: var(--text); }
+.eyebrow { color: var(--accent); }
 .menu-toggle { display: none; }
 .route-links { display: grid; gap: 0.35rem; }
 .route-link { padding: 0.55rem 0.75rem; color: var(--muted); text-decoration: none; }

@@ -55,4 +55,7 @@ test('site shell renders one main and current route links', () => {
     assert.match(html, new RegExp(`href="${path.replaceAll('/', '\\/')}"`));
   }
   assert.match(html, /aria-current="page"[^>]*href="\/"/);
+  const wordmark = html.match(/<a\b[^>]*class="wordmark"[^>]*>[\s\S]*?<\/a>/)?.[0] || '';
+  assert.match(wordmark, /Lalit Kumar/);
+  assert.match(wordmark, /<svg\b/);
 });

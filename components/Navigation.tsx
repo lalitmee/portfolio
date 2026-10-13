@@ -1,6 +1,7 @@
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
+import BrandMark from './BrandMark';
 import ThemeToggle from './ThemeToggle';
 
 const routes = [
@@ -40,7 +41,8 @@ export default function Navigation({
           </Link>
         )}
         <Link className="wordmark" href="/" aria-label="Lalit Kumar home">
-          LK<span aria-hidden="true">.</span>
+          <BrandMark />
+          <span className="wordmark-name">Lalit Kumar</span>
         </Link>
         <button
           aria-controls="site-navigation"
