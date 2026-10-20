@@ -1,6 +1,6 @@
 # Portfolio motion and interaction — design
 
-Status: proposed; awaiting written-spec approval. No implementation is authorized by this document alone.
+Status: approved; implementation awaits plan review and execution-method selection. No implementation is authorized by this document alone.
 
 Repository: `portfolio` (`https://github.com/lalitmee/portfolio.git`)
 Worktree: `/home/lalitmee/Projects/Personal/Github/portfolio-worktrees/feat-ui-revamp`
