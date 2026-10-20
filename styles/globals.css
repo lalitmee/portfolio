@@ -48,7 +48,8 @@ a {
 
 a:focus-visible,
 button:focus-visible,
-main:focus-visible {
+main:focus-visible,
+summary:focus-visible {
   outline: 3px solid var(--ochre);
   outline-offset: 4px;
 }
@@ -657,6 +658,31 @@ html:has(.mobile-menu-dialog[open]) {
   border-top: 1px solid var(--line);
 }
 
+.case-detail > details {
+  margin-top: 3.5rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--line);
+}
+
+.case-detail > details > summary {
+  margin-bottom: 1rem;
+  cursor: pointer;
+  font:
+    400 clamp(1.6rem, 3vw, 2.2rem) / 1.15 Georgia,
+    'Times New Roman',
+    serif;
+}
+
+.case-detail-number {
+  margin-right: 0.65rem;
+  color: var(--ochre);
+  font-family: var(--font-outfit), 'Segoe UI', sans-serif;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  vertical-align: middle;
+}
+
 .content-page section h2,
 .contact-grid aside h2 {
   margin: 0 0 1rem;
@@ -689,11 +715,20 @@ html:has(.mobile-menu-dialog[open]) {
   line-height: 1.7;
 }
 
+.case-detail > details p,
+.case-detail > details li {
+  max-width: 720px;
+  color: var(--muted);
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
 .case-detail > .eyebrow {
   margin-top: 3rem;
 }
 
 .case-detail > section ul,
+.case-detail > details ul,
 .content-page > section ul {
   padding-left: 1.2rem;
 }

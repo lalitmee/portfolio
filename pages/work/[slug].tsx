@@ -1,12 +1,6 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
-import {
-  MdArrowBack,
-  MdBuild,
-  MdInfoOutline,
-  MdTrendingUp,
-  MdTune,
-} from 'react-icons/md';
+import { MdArrowBack } from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
 import {
   caseStudies,
@@ -29,38 +23,71 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
         </p>
         <h1>{study.title}</h1>
         <p className="page-lede">{study.summary}</p>
-        <section>
-          <h2>
-            <MdInfoOutline aria-hidden="true" /> Context
-          </h2>
-          <p>{study.context}</p>
-        </section>
-        <section>
-          <h2>
-            <MdBuild aria-hidden="true" /> Contribution
-          </h2>
-          <ul>
-            {study.contribution.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <h2>
-            <MdTune aria-hidden="true" /> Decisions
-          </h2>
-          <ul>
-            {study.decisions.map((item) => (
-              <li key={item}>{item}</li>
-            ))}
-          </ul>
-        </section>
-        <section>
-          <h2>
-            <MdTrendingUp aria-hidden="true" /> Outcome
-          </h2>
-          <p>{study.outcome}</p>
-        </section>
+        {study.slug === 'nykaa-cart-reliability' ? (
+          <>
+            <details>
+              <summary>
+                <span className="case-detail-number" aria-hidden="true">
+                  01
+                </span>
+                The challenge
+              </summary>
+              <p>{study.context}</p>
+            </details>
+            <details>
+              <summary>
+                <span className="case-detail-number" aria-hidden="true">
+                  02
+                </span>
+                What I did and why
+              </summary>
+              <ul>
+                {study.contribution.map((item) => (
+                  <li key={`contribution-${item}`}>{item}</li>
+                ))}
+                {study.decisions.map((item) => (
+                  <li key={`decision-${item}`}>{item}</li>
+                ))}
+              </ul>
+            </details>
+            <details>
+              <summary>
+                <span className="case-detail-number" aria-hidden="true">
+                  03
+                </span>
+                The outcome
+              </summary>
+              <p>{study.outcome}</p>
+            </details>
+          </>
+        ) : (
+          <>
+            <section>
+              <h2>Context</h2>
+              <p>{study.context}</p>
+            </section>
+            <section>
+              <h2>Contribution</h2>
+              <ul>
+                {study.contribution.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
+            <section>
+              <h2>Decisions</h2>
+              <ul>
+                {study.decisions.map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
+            </section>
+            <section>
+              <h2>Outcome</h2>
+              <p>{study.outcome}</p>
+            </section>
+          </>
+        )}
       </article>
     </SiteLayout>
   );
