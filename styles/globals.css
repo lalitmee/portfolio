@@ -330,6 +330,21 @@ html:has(.mobile-menu-dialog[open]) {
   border-radius: 0.25rem;
   font-weight: 600;
   text-decoration: none;
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    filter 160ms ease;
+}
+
+.button:hover,
+.button:focus-visible {
+  transform: translateY(-2px);
+  filter: brightness(0.96);
+}
+
+.button:active {
+  transform: translateY(0) scale(0.98);
+  box-shadow: inset 0 0 0 1px currentColor;
 }
 
 .button-primary {
@@ -346,6 +361,7 @@ html:has(.mobile-menu-dialog[open]) {
 }
 
 .text-link {
+  position: relative;
   color: var(--blue);
   font-weight: 600;
   text-decoration-color: transparent;
@@ -355,10 +371,38 @@ html:has(.mobile-menu-dialog[open]) {
 .text-link svg {
   display: inline-block;
   vertical-align: middle;
+  transition:
+    transform 160ms ease,
+    filter 160ms ease;
 }
 
-.text-link:hover {
+.text-link:hover,
+.text-link:focus-visible {
   text-decoration-color: currentColor;
+}
+
+.text-link:hover svg,
+.text-link:focus-visible svg {
+  transform: translateX(3px);
+  filter: drop-shadow(-0.2rem 0 0 currentColor)
+    drop-shadow(-0.4rem 0 0 currentColor);
+}
+
+.text-link:active svg {
+  transform: translateX(1px);
+}
+
+.theme-toggle svg,
+.menu-toggle svg {
+  transition: transform 160ms ease;
+}
+
+.theme-toggle[aria-pressed='true'] svg {
+  transform: rotate(35deg);
+}
+
+.menu-toggle[aria-expanded='true'] svg {
+  transform: rotate(90deg);
 }
 
 .hero-note {
@@ -481,8 +525,22 @@ html:has(.mobile-menu-dialog[open]) {
 }
 
 .row-arrow {
+  display: inline-block;
   color: var(--blue);
   font-size: 1.25rem;
+  transition: transform 160ms ease;
+}
+
+.case-row:hover .row-arrow,
+.case-row:focus-visible .row-arrow,
+.project-link:hover .row-arrow,
+.project-link:focus-visible .row-arrow {
+  transform: translate(3px, -3px);
+}
+
+.case-row:active .row-arrow,
+.project-link:active .row-arrow {
+  transform: translate(1px, -1px);
 }
 
 .section-link {
@@ -1012,5 +1070,39 @@ html:has(.mobile-menu-dialog[open]) {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+  }
+
+  .text-link:hover svg,
+  .text-link:focus-visible svg,
+  .text-link:active svg,
+  .case-row:hover .row-arrow,
+  .case-row:focus-visible .row-arrow,
+  .case-row:active .row-arrow,
+  .project-link:hover .row-arrow,
+  .project-link:focus-visible .row-arrow,
+  .project-link:active .row-arrow,
+  .button:hover,
+  .button:focus-visible,
+  .button:active,
+  .theme-toggle[aria-pressed='true'] svg,
+  .menu-toggle[aria-expanded='true'] svg {
+    transform: none !important;
+    filter: none !important;
+  }
+
+  .text-link:hover svg,
+  .text-link:focus-visible svg {
+    color: var(--blue);
+  }
+
+  .button:hover,
+  .button:focus-visible {
+    box-shadow: 0 0 0 1px currentColor;
+    filter: none;
+  }
+
+  .button:active {
+    box-shadow: inset 0 0 0 1px currentColor;
+    filter: none;
   }
 }
