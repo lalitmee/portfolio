@@ -89,9 +89,7 @@ export default function Home() {
                   <h3>{study.title}</h3>
                   <p>{study.summary}</p>
                 </div>
-                <span className="row-arrow" aria-hidden="true">
-                  ↗
-                </span>
+                <MdArrowOutward className="row-arrow" aria-hidden="true" />
               </Link>
             ))}
           </div>
@@ -124,9 +122,7 @@ export default function Home() {
               >
                 <span>{project.category}</span>
                 <strong>{project.title}</strong>
-                <span className="row-arrow" aria-hidden="true">
-                  ↗
-                </span>
+                <MdArrowOutward className="row-arrow" aria-hidden="true" />
               </Link>
             ))}
           </div>

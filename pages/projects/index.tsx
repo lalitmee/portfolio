@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { MdArrowOutward } from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
 import portfolioData from '../../data/portfolio.json';
 import { trackEvent } from '../../utils/analytics';
@@ -37,9 +38,7 @@ function ProjectLink({
     >
       <span>{project.category}</span>
       <strong>{project.title}</strong>
-      <span className="row-arrow" aria-hidden="true">
-        ↗
-      </span>
+      <MdArrowOutward className="row-arrow" aria-hidden="true" />
     </Link>
   );
 }

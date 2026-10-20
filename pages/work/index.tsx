@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { MdArrowOutward } from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
 import { caseStudies } from '../../data/caseStudies';
 
@@ -30,9 +31,7 @@ export default function WorkPage() {
                 <h2>{study.title}</h2>
                 <p>{study.summary}</p>
               </div>
-              <span className="row-arrow" aria-hidden="true">
-                ↗
-              </span>
+              <MdArrowOutward className="row-arrow" aria-hidden="true" />
             </Link>
           ))}
         </div>
