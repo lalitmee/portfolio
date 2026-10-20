@@ -393,16 +393,17 @@ html:has(.mobile-menu-dialog[open]) {
   transform: translateX(1px);
 }
 
-.theme-toggle svg,
-.menu-toggle svg {
+.theme-toggle-icon,
+.menu-toggle-icon {
+  display: inline-flex;
   transition: transform 160ms ease;
 }
 
-.theme-toggle[aria-pressed='true'] svg {
+.theme-toggle[aria-pressed='true'] .theme-toggle-icon {
   transform: rotate(35deg);
 }
 
-.menu-toggle[aria-expanded='true'] svg {
+.menu-toggle[aria-expanded='true'] .menu-toggle-icon {
   transform: rotate(90deg);
 }
 
@@ -1119,8 +1120,8 @@ html:has(.mobile-menu-dialog[open]) {
   .button:hover,
   .button:focus-visible,
   .button:active,
-  .theme-toggle[aria-pressed='true'] svg,
-  .menu-toggle[aria-expanded='true'] svg {
+  .theme-toggle[aria-pressed='true'] .theme-toggle-icon,
+  .menu-toggle[aria-expanded='true'] .menu-toggle-icon {
     transform: none !important;
     filter: none !important;
   }

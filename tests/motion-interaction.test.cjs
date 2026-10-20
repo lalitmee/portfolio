@@ -8,6 +8,14 @@ const css = fs.readFileSync(
   path.join(__dirname, '../styles/globals.css'),
   'utf8',
 );
+const themeToggle = fs.readFileSync(
+  path.join(__dirname, '../components/ThemeToggle.tsx'),
+  'utf8',
+);
+const navigation = fs.readFileSync(
+  path.join(__dirname, '../components/Navigation.tsx'),
+  'utf8',
+);
 const root = postcss.parse(css);
 
 function findRule(selector) {
@@ -50,11 +58,17 @@ test('buttons have hover and pressed feedback without layout changes', () => {
   assert.match(declarations(pressed).transform, /scale|translateY/);
 });
 
-test('state-changing control icons use state-based feedback', () => {
-  const theme = findRule(".theme-toggle[aria-pressed='true'] svg");
-  const menu = findRule(".menu-toggle[aria-expanded='true'] svg");
-  const icons = findRule('.theme-toggle svg,\n.menu-toggle svg');
+test('state-changing control icons animate their persistent wrapper', () => {
+  const theme = findRule(
+    ".theme-toggle[aria-pressed='true'] .theme-toggle-icon",
+  );
+  const menu = findRule(
+    ".menu-toggle[aria-expanded='true'] .menu-toggle-icon",
+  );
+  const icons = findRule('.theme-toggle-icon,\n.menu-toggle-icon');
 
+  assert.match(themeToggle, /className="theme-toggle-icon"/);
+  assert.match(navigation, /className="menu-toggle-icon"/);
   assert.match(declarations(theme).transform, /rotate/);
   assert.match(declarations(menu).transform, /rotate/);
   assert.match(declarations(icons).transition, /transform/);
@@ -73,6 +87,8 @@ test('reduced motion removes movement but keeps interaction states', () => {
   assert.match(reducedSelectors, /\.row-arrow/);
   assert.match(reducedSelectors, /\.button:hover/);
   assert.match(reducedSelectors, /\.button:active/);
+  assert.match(reducedSelectors, /\.theme-toggle-icon/);
+  assert.match(reducedSelectors, /\.menu-toggle-icon/);
   assert.ok(rules.some((rule) => declarations(rule).transform === 'none'));
   assert.ok(rules.some((rule) => declarations(rule).filter === 'none'));
   assert.ok(rules.some((rule) => declarations(rule)['box-shadow']));

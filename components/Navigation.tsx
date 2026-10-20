@@ -110,11 +110,13 @@ export default function Navigation() {
             }
             onClick={() => setMenuOpen((open) => !open)}
           >
-            {menuOpen ? (
-              <MdClose aria-hidden="true" />
-            ) : (
-              <MdMenu aria-hidden="true" />
-            )}
+            <span className="menu-toggle-icon">
+              {menuOpen ? (
+                <MdClose aria-hidden="true" />
+              ) : (
+                <MdMenu aria-hidden="true" />
+              )}
+            </span>
           </button>
         </div>
       </div>

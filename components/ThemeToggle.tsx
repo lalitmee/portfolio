@@ -21,11 +21,13 @@ export default function ThemeToggle() {
       aria-pressed={mounted ? isDark : undefined}
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
     >
-      {mounted && isDark ? (
-        <MdLightMode aria-hidden="true" />
-      ) : (
-        <MdDarkMode aria-hidden="true" />
-      )}
+      <span className="theme-toggle-icon">
+        {mounted && isDark ? (
+          <MdLightMode aria-hidden="true" />
+        ) : (
+          <MdDarkMode aria-hidden="true" />
+        )}
+      </span>
     </button>
   );
 }
