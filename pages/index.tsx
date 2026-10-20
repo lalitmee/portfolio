@@ -191,8 +191,8 @@ export default function Home() {
         <link rel="manifest" href="/manifest.json" />
 
         {/* Theme color */}
-        <meta name="theme-color" content="#8b5cf6" />
-        <meta name="msapplication-TileColor" content="#8b5cf6" />
+        <meta name="theme-color" content="#111827" />
+        <meta name="msapplication-TileColor" content="#111827" />
 
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://fonts.googleapis.com" />
