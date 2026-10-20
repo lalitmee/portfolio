@@ -1,9 +1,9 @@
 # Analytics setup
 
-Analytics is optional and consent-gated. Set the public build variables
-`NEXT_PUBLIC_GTM_ID` (`GTM-…`) and `NEXT_PUBLIC_GA4_MEASUREMENT_ID` (`G-…`)
-to valid IDs before deploying. If either is absent or malformed, the site adds
-no Google tag and emits no events. Consent is stored as
+Analytics is optional and consent-gated. The public build variables
+`NEXT_PUBLIC_GTM_ID` and `NEXT_PUBLIC_GA4_MEASUREMENT_ID` default to
+`GTM-M8B2D5JZ` and `G-QLXWYJ6CVN`; set them only to override these IDs.
+Malformed values disable Google tags and events. Consent is stored as
 `portfolio-analytics-consent`; blocked storage falls back to an in-memory
 choice for the current page session.
 

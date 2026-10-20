@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { MdArrowForward, MdArrowOutward } from 'react-icons/md';
+import { MdArrowOutward } from 'react-icons/md';
+import DirectionalArrow from '../components/DirectionalArrow';
 import SiteLayout from '../components/SiteLayout';
 import { caseStudies } from '../data/caseStudies';
 import portfolio from '../data/portfolio.json';
@@ -41,7 +42,7 @@ export default function Home() {
               Explore my work <MdArrowOutward aria-hidden="true" />
             </Link>
             <Link className="text-link" href="/contact/">
-              Get in touch <MdArrowForward aria-hidden="true" />
+              Get in touch <DirectionalArrow direction="forward" />
             </Link>
           </div>
           <p className="hero-note">
@@ -94,7 +95,7 @@ export default function Home() {
             ))}
           </div>
           <Link className="text-link section-link" href="/work/">
-            All professional work <MdArrowForward aria-hidden="true" />
+            All professional work <DirectionalArrow direction="forward" />
           </Link>
         </div>
       </section>
@@ -110,7 +111,7 @@ export default function Home() {
               <h2 id="projects-title">Tools shaped by daily use.</h2>
             </div>
             <Link className="text-link" href="/projects/">
-              Browse projects <MdArrowForward aria-hidden="true" />
+              Browse projects <DirectionalArrow direction="forward" />
             </Link>
           </div>
           <div className="project-list">
@@ -134,22 +135,59 @@ export default function Home() {
         aria-labelledby="apps-title"
       >
         <div className="page-width app-feature-inner">
-          <div>
-            <p className="eyebrow">03 / A tool you can use</p>
-            <h2 id="apps-title">Markdown Previewer</h2>
-            <p>
-              Preview local Markdown files, explore folders, and work with
-              Mermaid diagrams and tables.
-            </p>
+          <p className="eyebrow">03 / Useful apps</p>
+          <h2 id="apps-title">Small tools, ready to use.</h2>
+          <p className="app-feature-intro">
+            Practical browser tools built to make everyday work a little easier.
+          </p>
+          <div className="app-feature-list">
+            <Link
+              className="app-feature-row"
+              href="/apps/markdown-preview/"
+              onClick={() =>
+                trackEvent({
+                  event: 'app_launch',
+                  app_slug: 'markdown-preview',
+                })
+              }
+            >
+              <div>
+                <h3>Markdown Previewer</h3>
+                <p>
+                  Preview local Markdown files, explore folders, and work with
+                  Mermaid diagrams and tables.
+                </p>
+              </div>
+              <MdArrowOutward
+                className="app-feature-arrow"
+                aria-hidden="true"
+              />
+            </Link>
+            <Link
+              className="app-feature-row"
+              href="/apps/json-assistant/"
+              onClick={() =>
+                trackEvent({
+                  event: 'app_launch',
+                  app_slug: 'json-assistant',
+                })
+              }
+            >
+              <div>
+                <h3>JSON Assistant</h3>
+                <p>
+                  Inspect and edit JSON in Code, Tree, or Split view. Your data
+                  stays in your browser.
+                </p>
+              </div>
+              <MdArrowOutward
+                className="app-feature-arrow"
+                aria-hidden="true"
+              />
+            </Link>
           </div>
-          <Link
-            className="button button-outline"
-            href="/apps/markdown-preview/"
-            onClick={() =>
-              trackEvent({ event: 'app_launch', app_slug: 'markdown-preview' })
-            }
-          >
-            Open the app <MdArrowOutward aria-hidden="true" />
+          <Link className="text-link app-feature-browse" href="/apps/">
+            Browse all apps <DirectionalArrow direction="forward" />
           </Link>
         </div>
       </section>
@@ -165,7 +203,7 @@ export default function Home() {
           </div>
           <p>Nykaa · Quartic.ai · KoineArth · Cognitive Clouds</p>
           <Link className="text-link" href="/about/">
-            Career and background <MdArrowForward aria-hidden="true" />
+            Career and background <DirectionalArrow direction="forward" />
           </Link>
         </div>
       </section>

@@ -1,4 +1,6 @@
 export type Consent = 'accepted' | 'declined' | 'unknown';
+export const DEFAULT_GTM_ID = 'GTM-M8B2D5JZ';
+export const DEFAULT_GA4_MEASUREMENT_ID = 'G-QLXWYJ6CVN';
 
 export type AnalyticsEvent =
   | { event: 'page_view'; page_path: string }
@@ -56,8 +58,13 @@ export function setAnalyticsConsent(choice: Consent): void {
 
 function validConfig(): boolean {
   return (
-    /^GTM-[A-Z0-9]+$/.test(process.env.NEXT_PUBLIC_GTM_ID || '') &&
-    /^G-[A-Z0-9]+$/.test(process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || '')
+    /^GTM-[A-Z0-9]+$/.test(
+      process.env.NEXT_PUBLIC_GTM_ID || DEFAULT_GTM_ID,
+    ) &&
+    /^G-[A-Z0-9]+$/.test(
+      process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID ||
+        DEFAULT_GA4_MEASUREMENT_ID,
+    )
   );
 }
 

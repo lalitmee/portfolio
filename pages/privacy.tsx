@@ -20,8 +20,8 @@ export default function PrivacyPage() {
             cookies in your browser is also available.
           </p>
           <p>
-            Use the analytics settings control below to accept or decline. If
-            analytics IDs are not configured, no Google tags are loaded.
+            Use the analytics settings control below to accept or decline. Google
+            tags load only after you accept.
           </p>
         </section>
         <section>

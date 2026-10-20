@@ -1,7 +1,7 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
-import { MdArrowBack } from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
+import DirectionalArrow from '../../components/DirectionalArrow';
 import {
   caseStudies,
   getCaseStudy,
@@ -16,7 +16,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
     >
       <article className="page-width content-page case-detail">
         <Link className="text-link" href="/work/">
-          <MdArrowBack aria-hidden="true" /> All selected work
+          <DirectionalArrow direction="back" /> All selected work
         </Link>
         <p className="eyebrow">
           {study.employer} <span>·</span> {study.period}
@@ -25,22 +25,22 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
         <p className="page-lede">{study.summary}</p>
         {study.slug === 'nykaa-cart-reliability' ? (
           <>
-            <details>
-              <summary>
+            <section className="case-narrative">
+              <h2>
                 <span className="case-detail-number" aria-hidden="true">
                   01
                 </span>
                 The challenge
-              </summary>
+              </h2>
               <p>{study.context}</p>
-            </details>
-            <details>
-              <summary>
+            </section>
+            <section className="case-narrative">
+              <h2>
                 <span className="case-detail-number" aria-hidden="true">
                   02
                 </span>
                 What I did and why
-              </summary>
+              </h2>
               <ul>
                 {study.contribution.map((item) => (
                   <li key={`contribution-${item}`}>{item}</li>
@@ -49,16 +49,16 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
                   <li key={`decision-${item}`}>{item}</li>
                 ))}
               </ul>
-            </details>
-            <details>
-              <summary>
+            </section>
+            <section className="case-narrative">
+              <h2>
                 <span className="case-detail-number" aria-hidden="true">
                   03
                 </span>
                 The outcome
-              </summary>
+              </h2>
               <p>{study.outcome}</p>
-            </details>
+            </section>
           </>
         ) : (
           <>

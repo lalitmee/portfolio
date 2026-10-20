@@ -22,7 +22,8 @@ function findRule(selector) {
   const expectedSelector = selector.replace(/\s+/g, ' ');
   return root.nodes.find(
     (node) =>
-      node.type === 'rule' && node.selector.replace(/\s+/g, ' ') === expectedSelector,
+      node.type === 'rule' &&
+      node.selector.replace(/\s+/g, ' ') === expectedSelector,
   );
 }
 
@@ -37,34 +38,101 @@ function declarations(rule) {
 
 test('directional arrows respond to hover and keyboard focus', () => {
   const linkArrow = findRule(
-    '.text-link:hover svg,\n.text-link:focus-visible svg',
+    '.text-link:hover .directional-arrow-forward .arrow-current,\n.text-link:focus-visible .directional-arrow-forward .arrow-current',
   );
   const rowArrow = findRule(
     '.case-row:hover .row-arrow,\n.case-row:focus-visible .row-arrow,\n.project-link:hover .row-arrow,\n.project-link:focus-visible .row-arrow',
   );
 
   assert.ok(linkArrow, 'text-link arrow has pointer and keyboard states');
-  assert.match(declarations(linkArrow).transform, /translate/);
+  assert.match(declarations(linkArrow).animation, /arrow-relay-forward/);
   assert.ok(rowArrow, 'row arrows have pointer and keyboard states');
-  assert.match(declarations(rowArrow).transform, /translate/);
+  assert.match(declarations(rowArrow).animation, /arrow-bounce-tilt/);
   assert.match(declarations(findRule('.row-arrow')).transition, /transform/);
+});
+
+test('text links align labels and icons with one consistent gap', () => {
+  const link = declarations(findRule('.text-link'));
+  const icon = declarations(findRule('.text-link svg'));
+  const appBrowse = declarations(findRule('.app-feature-browse'));
+
+  assert.equal(link.display, 'inline-flex');
+  assert.equal(link['align-items'], 'center');
+  assert.equal(link.gap, '0.5em');
+  assert.equal(link['white-space'], 'nowrap');
+  assert.equal(icon['margin-inline-start'], undefined);
+  assert.doesNotMatch(
+    css,
+    /\.directional-arrow-(?:forward|back)\s*\{[^}]*margin-/s,
+  );
+  assert.equal(appBrowse.gap, undefined);
+});
+
+test('selected work arrows are vertically centered in their rows', () => {
+  const caseArrow = declarations(findRule('.case-row .row-arrow'));
+  const projectArrow = declarations(findRule('.project-link .row-arrow'));
+
+  assert.equal(caseArrow['align-self'], 'center');
+  assert.equal(projectArrow['align-self'], 'center');
+});
+
+test('horizontal arrows relay in opposite directions without shadows', () => {
+  const forward = declarations(
+    findRule(
+      '.text-link:hover .directional-arrow-forward .arrow-current,\n.text-link:focus-visible .directional-arrow-forward .arrow-current',
+    ),
+  );
+  const back = declarations(
+    findRule(
+      '.text-link:hover .directional-arrow-back .arrow-current,\n.text-link:focus-visible .directional-arrow-back .arrow-current',
+    ),
+  );
+  const track = declarations(findRule('.directional-arrow'));
+
+  assert.equal(track.overflow, 'hidden');
+  assert.match(forward.animation, /arrow-relay-forward/);
+  assert.match(back.animation, /arrow-relay-back/);
+  assert.doesNotMatch(css, /drop-shadow\([^)]*currentColor/);
+});
+
+test('diagonal row arrows bounce and tilt only during interaction', () => {
+  const interaction = findRule(
+    '.case-row:hover .row-arrow,\n.case-row:focus-visible .row-arrow,\n.project-link:hover .row-arrow,\n.project-link:focus-visible .row-arrow',
+  );
+
+  assert.match(declarations(interaction).animation, /arrow-bounce-tilt/);
 });
 
 test('buttons have hover and pressed feedback without layout changes', () => {
   const hover = findRule('.button:hover,\n.button:focus-visible');
+  const iconHover = findRule(
+    '.button:hover svg:not(.send-icon),\n.button:focus-visible svg:not(.send-icon)',
+  );
   const pressed = findRule('.button:active');
 
   assert.match(declarations(hover).transform, /translateY/);
+  assert.match(declarations(iconHover).animation, /arrow-bounce-tilt/);
   assert.match(declarations(pressed).transform, /scale|translateY/);
+});
+
+test('send icon keeps a slight tilt while bouncing on interaction', () => {
+  const sendIcon = findRule('.button .send-icon');
+  const sendHover = findRule(
+    '.button:hover .send-icon,\n.button:focus-visible .send-icon',
+  );
+
+  assert.equal(declarations(sendIcon).rotate, '-45deg');
+  assert.match(declarations(sendHover).animation, /send-icon-bounce/);
+  assert.match(css, /@keyframes send-icon-bounce[\s\S]*translate\(4px, -4px\)/);
+  assert.match(css, /@keyframes send-icon-bounce[\s\S]*translate\(-1px, 1px\)/);
+  assert.doesNotMatch(declarations(sendHover).animation, /arrow-bounce-tilt/);
 });
 
 test('state-changing control icons animate their persistent wrapper', () => {
   const theme = findRule(
     ".theme-toggle[aria-pressed='true'] .theme-toggle-icon",
   );
-  const menu = findRule(
-    ".menu-toggle[aria-expanded='true'] .menu-toggle-icon",
-  );
+  const menu = findRule(".menu-toggle[aria-expanded='true'] .menu-toggle-icon");
   const icons = findRule('.theme-toggle-icon,\n.menu-toggle-icon');
 
   assert.match(themeToggle, /className="theme-toggle-icon"/);
@@ -76,7 +144,9 @@ test('state-changing control icons animate their persistent wrapper', () => {
 
 test('reduced motion removes movement but keeps interaction states', () => {
   const reducedMotion = root.nodes.find(
-    (node) => node.type === 'atrule' && /prefers-reduced-motion:\s*reduce/.test(node.params),
+    (node) =>
+      node.type === 'atrule' &&
+      /prefers-reduced-motion:\s*reduce/.test(node.params),
   );
   const rules = reducedMotion.nodes.filter((node) => node.type === 'rule');
   const reducedSelectors = rules
@@ -84,6 +154,7 @@ test('reduced motion removes movement but keeps interaction states', () => {
     .join('\n');
 
   assert.match(reducedSelectors, /\.text-link:hover svg/);
+  assert.match(reducedSelectors, /\.directional-arrow/);
   assert.match(reducedSelectors, /\.row-arrow/);
   assert.match(reducedSelectors, /\.button:hover/);
   assert.match(reducedSelectors, /\.button:active/);

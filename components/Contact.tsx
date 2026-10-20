@@ -1,6 +1,7 @@
 import emailjs from '@emailjs/browser';
 import { FormEvent, useRef, useState } from 'react';
-import { MdArrowForward } from 'react-icons/md';
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
+import { MdArrowForward, MdEmail, MdLocationOn, MdSend } from 'react-icons/md';
 import portfolioData from '../data/portfolio.json';
 import {
   ContactFormErrors,
@@ -172,6 +173,7 @@ export default function Contact() {
               : submitted
                 ? 'Message sent'
                 : 'Send message'}
+            <MdSend className="send-icon" aria-hidden="true" />
           </button>
           <p className="form-status" role="status" aria-live="polite">
             {status}
@@ -192,7 +194,7 @@ export default function Contact() {
                 trackEvent({ event: 'contact_click', channel: 'email' })
               }
             >
-              {email}
+              <MdEmail aria-hidden="true" /> {email}
             </a>
           </p>
           <p>
@@ -202,7 +204,7 @@ export default function Contact() {
                 trackEvent({ event: 'contact_click', channel: 'linkedin' })
               }
             >
-              LinkedIn
+              <FaLinkedin aria-hidden="true" /> LinkedIn
             </a>
           </p>
           <p>
@@ -212,10 +214,12 @@ export default function Contact() {
                 trackEvent({ event: 'contact_click', channel: 'github' })
               }
             >
-              GitHub
+              <FaGithub aria-hidden="true" /> GitHub
             </a>
           </p>
-          <p>Based in Bengaluru, India.</p>
+          <p className="contact-location">
+            <MdLocationOn aria-hidden="true" /> Based in Bengaluru, India.
+          </p>
         </aside>
       </div>
     </div>

@@ -123,8 +123,9 @@ test('editorial accents meet contrast and brand name includes its visible label'
   const appEyebrowRules = [
     ...css.matchAll(/\.app-feature\s+\.eyebrow\s*\{([^}]+)\}/g),
   ];
-  assert.equal(appEyebrowRules.length, 1);
+  assert.equal(appEyebrowRules.length, 2);
   assert.match(appEyebrowRules[0][1], /color:\s*var\(--paper\)/);
+  assert.match(appEyebrowRules[1][1], /color:\s*var\(--blue\)/);
   assert.match(
     navigation,
     /className="site-brand"\s+href="\/"\s+aria-label="LK\., Lalit Kumar home"/,

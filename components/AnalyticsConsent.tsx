@@ -6,6 +6,8 @@ import {
   saveConsent,
   setAnalyticsConsent,
   trackEvent,
+  DEFAULT_GA4_MEASUREMENT_ID,
+  DEFAULT_GTM_ID,
   type Consent,
 } from '../utils/analytics';
 
@@ -132,8 +134,9 @@ export default function AnalyticsConsent() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const initialPageSent = useRef(false);
   const restoredAccepted = useRef(false);
-  const gtmId = process.env.NEXT_PUBLIC_GTM_ID || '';
-  const measurementId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || '';
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID || DEFAULT_GTM_ID;
+  const measurementId =
+    process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || DEFAULT_GA4_MEASUREMENT_ID;
   const configured =
     /^GTM-[A-Z0-9]+$/.test(gtmId) && /^G-[A-Z0-9]+$/.test(measurementId);
 

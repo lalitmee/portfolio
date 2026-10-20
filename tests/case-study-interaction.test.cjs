@@ -12,17 +12,11 @@ const styles = fs.readFileSync(
   'utf8',
 );
 
-test('Nykaa case page has the three named native disclosures', () => {
-  assert.match(page, /study\.slug\s*===\s*['"]nykaa-cart-reliability['"]/);
-  assert.equal((page.match(/<details\b/g) || []).length, 3);
-  assert.equal((page.match(/<summary\b/g) || []).length, 3);
+test('Nykaa case page presents its narrative as three always-visible sections', () => {
+  assert.doesNotMatch(page, /<details\b|<summary\b/);
+  assert.equal((page.match(/className="case-narrative"/g) || []).length, 3);
 
-  for (const [number, label] of [
-    ['01', 'The challenge'],
-    ['02', 'What I did and why'],
-    ['03', 'The outcome'],
-  ]) {
-    assert.ok(page.includes(number));
+  for (const label of ['The challenge', 'What I did and why', 'The outcome']) {
     assert.ok(page.includes(label));
   }
 });
@@ -32,8 +26,7 @@ test('Nykaa decision path uses existing fields without invented metrics', () => 
   assert.match(page, /study\.contribution\.map/);
   assert.match(page, /study\.decisions\.map/);
   assert.match(page, /study\.outcome/);
-  assert.match(styles, /\.case-detail\s*>\s*details\s*\{/);
-  assert.match(styles, /summary:focus-visible/);
+  assert.match(styles, /\.case-narrative/);
 });
 
 test('other cases retain the four-section presentation', () => {

@@ -137,3 +137,15 @@ test('queues GTM commands using the supported gtag arguments shape', () => {
     /dataLayer\.push\(arguments\)/,
   );
 });
+
+test('configures the supplied GTM and GA4 IDs by default', () => {
+  const source = fs.readFileSync(
+    path.join(__dirname, '..', 'utils/analytics.ts'),
+    'utf8',
+  );
+  assert.match(source, /DEFAULT_GTM_ID\s*=\s*'GTM-M8B2D5JZ'/);
+  assert.match(
+    source,
+    /DEFAULT_GA4_MEASUREMENT_ID\s*=\s*'G-QLXWYJ6CVN'/,
+  );
+});

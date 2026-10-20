@@ -1,12 +1,12 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import {
-  MdArrowBack,
   MdArrowOutward,
   MdCode,
   MdLightbulbOutline,
 } from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
+import DirectionalArrow from '../../components/DirectionalArrow';
 import portfolioData from '../../data/portfolio.json';
 import { trackEvent } from '../../utils/analytics';
 import { generateSlug } from '../../utils/slug';
@@ -21,7 +21,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
     >
       <article className="page-width content-page case-detail">
         <Link className="text-link" href="/projects/">
-          <MdArrowBack aria-hidden="true" /> All projects
+          <DirectionalArrow direction="back" /> All projects
         </Link>
         <p className="eyebrow">
           {project.category} <span>·</span> {project.status}
