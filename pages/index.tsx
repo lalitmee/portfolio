@@ -350,6 +350,20 @@ export default function Home() {
                 Open app →
               </span>
             </a>
+            <a
+              href="/apps/json-assistant/"
+              className="block max-w-xl mx-auto mt-6 rounded-2xl border border-gray-200 dark:border-white/10 bg-white/80 dark:bg-white/5 p-6 shadow-sm transition hover:-translate-y-1 hover:shadow-lg"
+            >
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                JSON Assistant
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 mb-5">
+                A browser-based JSON editor and viewer.
+              </p>
+              <span className="text-primary-600 dark:text-primary-400 font-medium">
+                Open app →
+              </span>
+            </a>
           </div>
         </section>
 
