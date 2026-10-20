@@ -5,9 +5,13 @@ export interface ContactFormValues {
   message: string;
 }
 
-export type ContactFormErrors = Partial<Record<keyof ContactFormValues, string>>;
+export type ContactFormErrors = Partial<
+  Record<keyof ContactFormValues, string>
+>;
 
-export function validateContactForm(values: ContactFormValues): ContactFormErrors {
+export function validateContactForm(
+  values: ContactFormValues,
+): ContactFormErrors {
   const errors: ContactFormErrors = {};
   if (!values.name.trim()) errors.name = 'Name is required';
   if (!values.email.trim()) errors.email = 'Email is required';

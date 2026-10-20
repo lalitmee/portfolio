@@ -16,7 +16,12 @@ const consentState = {
   ad_personalization: 'denied',
 };
 const customEventNames = new Set([
-  'page_view', 'case_study_view', 'project_open', 'resume_download', 'contact_click', 'app_launch',
+  'page_view',
+  'case_study_view',
+  'project_open',
+  'resume_download',
+  'contact_click',
+  'app_launch',
 ]);
 let gtmInitialized = false;
 
@@ -26,11 +31,17 @@ type AnalyticsWindow = Window & {
 };
 
 function setMeasurementDisabled(measurementId: string, disabled: boolean) {
-  (window as unknown as Record<string, boolean>)[`ga-disable-${measurementId}`] = disabled;
+  (window as unknown as Record<string, boolean>)[
+    `ga-disable-${measurementId}`
+  ] = disabled;
 }
 
 function storage(): Storage | undefined {
-  try { return window.localStorage; } catch { return undefined; }
+  try {
+    return window.localStorage;
+  } catch {
+    return undefined;
+  }
 }
 
 const gtag = function () {
@@ -45,7 +56,10 @@ function loadGtm(gtmId: string, measurementId: string) {
   target.dataLayer ||= [];
   target.gtag = gtag;
   if (gtmInitialized) {
-    gtag('consent', 'update', { ...consentState, analytics_storage: 'granted' });
+    gtag('consent', 'update', {
+      ...consentState,
+      analytics_storage: 'granted',
+    });
     return;
   }
   gtag('consent', 'default', consentState);
@@ -62,8 +76,12 @@ function loadGtm(gtmId: string, measurementId: string) {
 }
 
 function clearAnalyticsCookies() {
-  const names = document.cookie.split(';').map((entry) => entry.trim().split('=')[0]);
-  const analyticsNames = names.filter((name) => name === '_ga' || name.startsWith('_ga_'));
+  const names = document.cookie
+    .split(';')
+    .map((entry) => entry.trim().split('=')[0]);
+  const analyticsNames = names.filter(
+    (name) => name === '_ga' || name.startsWith('_ga_'),
+  );
   const hostname = location.hostname;
   const labels = hostname.split('.');
   const domains = new Set([hostname, `.${hostname}`]);
@@ -98,7 +116,10 @@ function revokeAnalytics(measurementId: string) {
   target.gtag?.('consent', 'update', consentState);
   if (Array.isArray(target.dataLayer)) {
     const retained = target.dataLayer.filter(
-      (entry) => !entry || typeof entry !== 'object' || !customEventNames.has(String((entry as { event?: unknown }).event)),
+      (entry) =>
+        !entry ||
+        typeof entry !== 'object' ||
+        !customEventNames.has(String((entry as { event?: unknown }).event)),
     );
     target.dataLayer.splice(0, target.dataLayer.length, ...retained);
   }
@@ -113,7 +134,8 @@ export default function AnalyticsConsent() {
   const restoredAccepted = useRef(false);
   const gtmId = process.env.NEXT_PUBLIC_GTM_ID || '';
   const measurementId = process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || '';
-  const configured = /^GTM-[A-Z0-9]+$/.test(gtmId) && /^G-[A-Z0-9]+$/.test(measurementId);
+  const configured =
+    /^GTM-[A-Z0-9]+$/.test(gtmId) && /^G-[A-Z0-9]+$/.test(measurementId);
 
   useEffect(() => {
     if (!configured) return;
@@ -136,7 +158,10 @@ export default function AnalyticsConsent() {
 
     loadGtm(gtmId, measurementId);
     if (!initialPageSent.current) {
-      trackEvent({ event: 'page_view', page_path: normalizePagePath(window.location.pathname) });
+      trackEvent({
+        event: 'page_view',
+        page_path: normalizePagePath(window.location.pathname),
+      });
       const initialCase = caseSlugFromPath(window.location.pathname);
       if (restoredAccepted.current && initialCase) {
         trackEvent({ event: 'case_study_view', case_slug: initialCase });
@@ -151,44 +176,78 @@ export default function AnalyticsConsent() {
     const onRouteComplete = (url: string) => {
       trackEvent({ event: 'page_view', page_path: normalizePagePath(url) });
       const caseSlug = caseSlugFromPath(url);
-      if (caseSlug) trackEvent({ event: 'case_study_view', case_slug: caseSlug });
+      if (caseSlug)
+        trackEvent({ event: 'case_study_view', case_slug: caseSlug });
     };
     router.events.on('routeChangeComplete', onRouteComplete);
     return () => router.events.off('routeChangeComplete', onRouteComplete);
   }, [choice, configured, router.events, router.isReady]);
 
   function select(next: Exclude<Consent, 'unknown'>) {
-    saveConsent(storage() || { setItem: () => { throw new Error('storage unavailable'); } }, next);
+    saveConsent(
+      storage() || {
+        setItem: () => {
+          throw new Error('storage unavailable');
+        },
+      },
+      next,
+    );
     if (next === 'declined' && configured) revokeAnalytics(measurementId);
     else setAnalyticsConsent(next);
     setChoice(next);
     setSettingsOpen(false);
   }
 
-  if (!configured || (choice !== 'unknown' && router.pathname !== '/privacy')) return null;
+  if (!configured || (choice !== 'unknown' && router.pathname !== '/privacy'))
+    return null;
 
   return (
     <aside className="consent-panel" aria-label="Analytics privacy settings">
-      {choice === 'unknown' && <div className="consent-prompt">
-        <p>Optional analytics help me understand which work and tools are useful. No analytics run unless you accept.</p>
-        <button type="button" onClick={() => select('accepted')}>Accept analytics</button>
-        <button type="button" onClick={() => select('declined')}>Decline</button>
-      </div>}
-      {router.pathname === '/privacy' && <div className="consent-settings">
-        <button type="button" className="text-link" onClick={() => setSettingsOpen((open) => !open)}>
-          {settingsOpen ? 'Close analytics settings' : 'Change analytics settings'}
-        </button>
-        {settingsOpen && <div>
-          <p>Optional analytics are currently {choice}.</p>
-          <button type="button" onClick={() => select('accepted')}>Accept analytics</button>
-          <button type="button" onClick={() => select('declined')}>Decline analytics</button>
-        </div>}
-      </div>}
+      {choice === 'unknown' && (
+        <div className="consent-prompt">
+          <p>
+            Optional analytics help me understand which work and tools are
+            useful. No analytics run unless you accept.
+          </p>
+          <button type="button" onClick={() => select('accepted')}>
+            Accept analytics
+          </button>
+          <button type="button" onClick={() => select('declined')}>
+            Decline
+          </button>
+        </div>
+      )}
+      {router.pathname === '/privacy' && (
+        <div className="consent-settings">
+          <button
+            type="button"
+            className="text-link"
+            onClick={() => setSettingsOpen((open) => !open)}
+          >
+            {settingsOpen
+              ? 'Close analytics settings'
+              : 'Change analytics settings'}
+          </button>
+          {settingsOpen && (
+            <div>
+              <p>Optional analytics are currently {choice}.</p>
+              <button type="button" onClick={() => select('accepted')}>
+                Accept analytics
+              </button>
+              <button type="button" onClick={() => select('declined')}>
+                Decline analytics
+              </button>
+            </div>
+          )}
+        </div>
+      )}
     </aside>
   );
 }
 
 function caseSlugFromPath(url: string): string | undefined {
-  const match = normalizePagePath(url).match(/^\/work\/([a-z0-9]+(?:-[a-z0-9]+)*)\/$/);
+  const match = normalizePagePath(url).match(
+    /^\/work\/([a-z0-9]+(?:-[a-z0-9]+)*)\/$/,
+  );
   return match?.[1];
 }

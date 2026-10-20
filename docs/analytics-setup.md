@@ -17,14 +17,14 @@ choice for the current page session.
 3. Add a GA4 Event tag for each event below, triggered by its matching GTM
    Custom Event. Map only the listed event parameters.
 4. Build `page_location` from the canonical site origin and normalized
-    `page_path`; omit query strings and fragments. Send a sanitized `page_referrer`
-    containing only the same-site origin and path (or the external origin only),
-    never its query or fragment.
+   `page_path`; omit query strings and fragments. Send a sanitized `page_referrer`
+   containing only the same-site origin and path (or the external origin only),
+   never its query or fragment.
 5. Keep advertising-related consent denied. The implementation grants only
    `analytics_storage` after acceptance, loads one GTM script after opt-in, and
    sends no pre-consent events. On withdrawal it disables the configured GA4
-    measurement ID, denies analytics consent, clears accessible `_ga` cookies,
-    and drops queued custom events.
+   measurement ID, denies analytics consent, clears accessible `_ga` cookies,
+   and drops queued custom events.
 
 Create GTM Custom JavaScript variables for the sanitized URL values and map
 them to the corresponding Google tag fields on the event tags:
@@ -50,14 +50,14 @@ function () {
 
 ## Event contract
 
-| Event | Allowed parameters |
-| --- | --- |
-| `page_view` | `page_path` |
-| `case_study_view` | `case_slug` |
-| `project_open` | `project_slug`, `destination_kind` (`source`, `demo`, `detail`) |
-| `resume_download` | none |
-| `contact_click` | `channel` (`email`, `github`, `linkedin`) |
-| `app_launch` | `app_slug` |
+| Event             | Allowed parameters                                              |
+| ----------------- | --------------------------------------------------------------- |
+| `page_view`       | `page_path`                                                     |
+| `case_study_view` | `case_slug`                                                     |
+| `project_open`    | `project_slug`, `destination_kind` (`source`, `demo`, `detail`) |
+| `resume_download` | none                                                            |
+| `contact_click`   | `channel` (`email`, `github`, `linkedin`)                       |
+| `app_launch`      | `app_slug`                                                      |
 
 The runtime reconstructs event objects from this allowlist; extra fields are
 discarded. Do not enable automatic events that expand it. The Markdown app is

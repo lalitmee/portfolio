@@ -652,7 +652,11 @@
       "status": "active",
       "featured": true,
       "github": "https://github.com/lalitmee/codecompanion-spinners.nvim",
-      "highlights": ["Thinking and tool states", "Review feedback", "CodeCompanion integration"]
+      "highlights": [
+        "Thinking and tool states",
+        "Review feedback",
+        "CodeCompanion integration"
+      ]
     },
     {
       "id": 15,
@@ -664,7 +668,11 @@
       "status": "active",
       "featured": true,
       "github": "https://github.com/lalitmee/markdown-previewer",
-      "highlights": ["Local file and folder browsing", "Mermaid diagrams", "Resizable and collapsible tables"]
+      "highlights": [
+        "Local file and folder browsing",
+        "Mermaid diagrams",
+        "Resizable and collapsible tables"
+      ]
     }
   ],
   "testimonials": [],

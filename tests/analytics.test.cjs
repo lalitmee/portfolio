@@ -19,12 +19,32 @@ function withWindow(dataLayer = []) {
 }
 
 test('normalizes page URLs without query or fragment', () => {
-  assert.equal(analytics.normalizePagePath('/work/example/?email=secret#text'), '/work/example/');
+  assert.equal(
+    analytics.normalizePagePath('/work/example/?email=secret#text'),
+    '/work/example/',
+  );
 });
 
 test('blocked storage is treated as unknown and failed writes return false', () => {
-  assert.equal(analytics.readConsent({ getItem() { throw new Error('blocked'); } }), 'unknown');
-  assert.equal(analytics.saveConsent({ setItem() { throw new Error('blocked'); } }, 'accepted'), false);
+  assert.equal(
+    analytics.readConsent({
+      getItem() {
+        throw new Error('blocked');
+      },
+    }),
+    'unknown',
+  );
+  assert.equal(
+    analytics.saveConsent(
+      {
+        setItem() {
+          throw new Error('blocked');
+        },
+      },
+      'accepted',
+    ),
+    false,
+  );
   assert.equal(analytics.saveConsent({ setItem() {} }, 'unknown'), false);
 });
 
@@ -49,7 +69,15 @@ test('reconstructs only allowlisted event fields', () => {
   const restore = withWindow(layer);
   validConfig();
   analytics.setAnalyticsConsent('accepted');
-  assert.equal(analytics.trackEvent({ event: 'contact_click', channel: 'email', email: 'person@example.com', message: 'private' }), true);
+  assert.equal(
+    analytics.trackEvent({
+      event: 'contact_click',
+      channel: 'email',
+      email: 'person@example.com',
+      message: 'private',
+    }),
+    true,
+  );
   assert.deepEqual(layer, [{ event: 'contact_click', channel: 'email' }]);
   restore();
 });
@@ -59,19 +87,41 @@ test('rejects malformed event names, slugs, and channels', () => {
   validConfig();
   analytics.setAnalyticsConsent('accepted');
   assert.equal(analytics.trackEvent({ event: 'secret_event' }), false);
-  assert.equal(analytics.trackEvent({ event: 'case_study_view', case_slug: 'someone@example.com' }), false);
-  assert.equal(analytics.trackEvent({ event: 'app_launch', app_slug: '../settings' }), false);
-  assert.equal(analytics.trackEvent({ event: 'contact_click', channel: 'phone' }), false);
+  assert.equal(
+    analytics.trackEvent({
+      event: 'case_study_view',
+      case_slug: 'someone@example.com',
+    }),
+    false,
+  );
+  assert.equal(
+    analytics.trackEvent({ event: 'app_launch', app_slug: '../settings' }),
+    false,
+  );
+  assert.equal(
+    analytics.trackEvent({ event: 'contact_click', channel: 'phone' }),
+    false,
+  );
   restore();
 });
 
 test('wires the six allowed events to their intended interactions', () => {
-  const source = (file) => fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
+  const source = (file) =>
+    fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
   assert.match(source('pages/_app.tsx'), /<AnalyticsConsent\s*\/>/);
-  assert.match(source('components/AnalyticsConsent.tsx'), /event: 'case_study_view'/);
+  assert.match(
+    source('components/AnalyticsConsent.tsx'),
+    /event: 'case_study_view'/,
+  );
   assert.doesNotMatch(source('pages/work/[slug].tsx'), /trackEvent|useEffect/);
-  assert.match(source('pages/projects/index.tsx'), /destination_kind: 'detail'/);
-  assert.match(source('pages/projects/[slug].tsx'), /destination_kind: 'source'/);
+  assert.match(
+    source('pages/projects/index.tsx'),
+    /destination_kind: 'detail'/,
+  );
+  assert.match(
+    source('pages/projects/[slug].tsx'),
+    /destination_kind: 'source'/,
+  );
   assert.match(source('pages/projects/[slug].tsx'), /destination_kind: 'demo'/);
   assert.match(source('pages/about.tsx'), /event: 'resume_download'/);
   assert.match(source('components/Contact.tsx'), /event: 'contact_click'/);
@@ -79,5 +129,11 @@ test('wires the six allowed events to their intended interactions', () => {
 });
 
 test('queues GTM commands using the supported gtag arguments shape', () => {
-  assert.match(fs.readFileSync(path.join(__dirname, '..', 'components/AnalyticsConsent.tsx'), 'utf8'), /dataLayer\.push\(arguments\)/);
+  assert.match(
+    fs.readFileSync(
+      path.join(__dirname, '..', 'components/AnalyticsConsent.tsx'),
+      'utf8',
+    ),
+    /dataLayer\.push\(arguments\)/,
+  );
 });

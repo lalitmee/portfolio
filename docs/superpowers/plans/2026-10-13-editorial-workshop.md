@@ -39,6 +39,7 @@
 
 **Files:** `data/portfolio.json`, `data/caseStudies.ts`, `tests/register.cjs`, `tests/content.test.cjs`, `package.json`.
 **Consumes:** existing `generateSlug(title: string): string`, résumé/README evidence. **Produces:** the CaseStudy interface/data above and stable legacy project list.
+
 - [ ] Write the content test and minimal runner: snapshot all baseline `generateSlug(project.title)` values; assert every baseline slug remains, all slugs are unique, `personal.yearsOfExperience === '8+'`, and the three case slugs exactly match the list above. Assert curated projects include browse.nvim, cobalt2.nvim, codecompanion-spinners.nvim, markdown-previewer, dotfiles; no unverified numerical outcomes.
 - [ ] Run `yarn test`; expect FAIL because case data/new curated entries/updated experience are absent. Record `yarn type-check`, `yarn build`, `yarn lint` baseline separately; install only from `yarn.lock` if dependencies are missing, without changing it. Record environment/network blockers, not false passes.
 - [ ] Implement the exact case interface and evidence-backed prose; preserve every existing title used in slugs. Add real repository links for new curated projects, omit speculative demo links and metrics; update website/experience metadata, credit Cobalt2 adaptation, flag stale résumé in About copy later. Do not expose private research.
@@ -49,6 +50,7 @@
 
 **Files:** shell/navigation/footer/theme files, `_app.tsx`, `_document.tsx`, globals/Tailwind as needed, `pages/index.tsx`.
 **Consumes:** Task 1 data. **Produces:** SiteLayout interface above; route navigation and color tokens for all later pages.
+
 - [ ] Before editing, reproduce current nested-main, hash-only navigation, splash delay, and mobile proposition ordering in DevTools; record failing acceptance observations. Test red can be browser evidence for layout, not a fabricated unit pass.
 - [ ] Implement SiteLayout's single main, route-specific title/description/canonical/OG metadata; navigation links Home `/`, Work `/work/`, Projects `/projects/`, Apps `/apps/`, About `/about/`, Contact `/contact/`. Add skip link, active `aria-current`, mobile disclosure/Escape/focus restoration, simple theme toggle. Remove old theme-cookie bootstrap/customization from active shell and preserve next-themes preference.
 - [ ] Build the homepage with headline “Thoughtful interfaces. Useful tools. Engineering that holds up.” and CTAs to Work/Contact, selected cases/tools and short career context. Use paper `#F7F4EC`, ink `#17202A`, cobalt `#1749C6`, ochre `#A66B00`; dark ink surfaces with accessible lighter blue. Keep Outfit body, native serif display stack, no extra font fetch/package. Replace active global decorative rules rather than layering new styles under old gradients. No loading delay, particles, percentages, or quote carousel.
@@ -59,6 +61,7 @@
 
 **Files:** route files listed above, existing project detail template, `components/Contact.tsx`, content tests as needed.
 **Consumes:** SiteLayout, caseStudies, generateSlug, portfolio data. **Produces:** complete static route set and working contact/resumé/app links.
+
 - [ ] Write/check failing route assertions against the running server: new routes should currently 404; retain baseline slug list in tests and assert case lookup rejects unknown slug. Record current contact error behavior and public PDF availability.
 - [ ] Implement Work static paths using `fallback: false`, return `notFound: true` for missing cases; retain the same legacy project static path generation. Render context/contribution/decisions/outcome and honest external links; lead Projects with curated tools, preserve smaller historical archive. App directory links `/apps/markdown-preview/`; do not touch its existing rewrite in `next.config.js`.
 - [ ] Implement About/career/mentoring/education/résumé, Contact, Privacy content, and 404. Restyle existing Contact validation/send flow, retaining name/email/subject/message requirements and 10-character message minimum. Use inline live-region errors, preserve values on failed/config-missing sends, disable duplicate submits, reset only on success; fall back to email. No availability claim. PDF remains unchanged and About notes its stale summary.
@@ -69,13 +72,25 @@
 
 **Files:** `utils/analytics.ts`, `components/AnalyticsConsent.tsx`, `_app.tsx`, clickable/view event call sites, Privacy page, `tests/analytics.test.cjs`, `docs/analytics-setup.md`.
 **Consumes:** Task 3 routes and exact AnalyticsEvent union above. **Produces:** safe trackEvent, persistent controls, local event evidence and upstream handoff.
+
 - [ ] Write failing tests: denied/unknown/server/invalid config => no push; `normalizePagePath('/work/example/?email=secret#text') === '/work/example/'`; readConsent throws storage => unknown; saveConsent throws => false; payload fields beyond the union are dropped; malformed slug/channel/event is rejected. Stub browser/dataLayer locally, never call Google in tests.
 - [ ] Run `yarn test`; expect missing analytics module assertions to FAIL.
 
 Minimum pure-check example for the test step (using Node's `node:assert/strict`):
+
 ```js
-assert.equal(normalizePagePath('/work/example/?email=secret#text'), '/work/example/');
-assert.equal(readConsent({ getItem() { throw new Error('blocked'); } }), 'unknown');
+assert.equal(
+  normalizePagePath('/work/example/?email=secret#text'),
+  '/work/example/',
+);
+assert.equal(
+  readConsent({
+    getItem() {
+      throw new Error('blocked');
+    },
+  }),
+  'unknown',
+);
 setAnalyticsConsent('declined');
 assert.equal(trackEvent({ event: 'resume_download' }), false);
 assert.deepEqual(window.dataLayer, []);
@@ -90,6 +105,7 @@ assert.deepEqual(window.dataLayer, []);
 
 **Files:** `docs/review-editorial-workshop.md`; fix only task-related defects in their owning files.
 **Consumes:** completed candidate and acceptance contract. **Produces:** reproducible review record, not a deployment.
+
 - [ ] Execute `yarn test`, `yarn type-check`, `yarn build`, and verified supported lint command; report command/exit status and distinguish baseline/tooling failures. Don't upgrade dependencies to disguise unrelated failures.
 - [ ] In DevTools validate all routes at desktop/mobile, themes, 200% zoom, reduced motion, keyboard focus/navigation, privacy choices, form error states, tool rewrite, console errors and layout overflow. Capture representative Home, case, and Apps screenshots; identify live analytics/email limits explicitly.
 - [ ] Run the common selection tasks: identify experience in 30 seconds, read a professional case, launch the app, download PDF, contact. Record routes, findings and screenshots in the review document; no self-awarded success without evidence.

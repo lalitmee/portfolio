@@ -69,7 +69,10 @@ test('public portfolio content has accurate experience and project curation', ()
     '1m+ users',
     '99.9% uptime',
   ]) {
-    assert.ok(!content.includes(unsupportedClaim), `remove ${unsupportedClaim}`);
+    assert.ok(
+      !content.includes(unsupportedClaim),
+      `remove ${unsupportedClaim}`,
+    );
   }
 });
 
@@ -81,7 +84,10 @@ test('public portfolio data does not publish placeholder testimonials or unsuppo
 });
 
 test('editorial accents meet contrast and brand name includes its visible label', () => {
-  const css = fs.readFileSync(path.join(__dirname, '../styles/globals.css'), 'utf8');
+  const css = fs.readFileSync(
+    path.join(__dirname, '../styles/globals.css'),
+    'utf8',
+  );
   const navigation = fs.readFileSync(
     path.join(__dirname, '../components/Navigation.tsx'),
     'utf8',
@@ -92,10 +98,18 @@ test('editorial accents meet contrast and brand name includes its visible label'
         .match(/[a-f\d]{2}/gi)
         .map((part) => parseInt(part, 16) / 255)
         .map((channel) =>
-          channel <= 0.04045 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4,
+          channel <= 0.04045
+            ? channel / 12.92
+            : ((channel + 0.055) / 1.055) ** 2.4,
         )
-        .reduce((sum, channel, index) => sum + channel * [0.2126, 0.7152, 0.0722][index], 0);
-    const values = [luminance(foreground), luminance(background)].sort((a, b) => b - a);
+        .reduce(
+          (sum, channel, index) =>
+            sum + channel * [0.2126, 0.7152, 0.0722][index],
+          0,
+        );
+    const values = [luminance(foreground), luminance(background)].sort(
+      (a, b) => b - a,
+    );
     return (values[0] + 0.05) / (values[1] + 0.05);
   };
   const lightOchre = css.match(/--ochre:\s*(#[\da-f]+)/i)?.[1];
