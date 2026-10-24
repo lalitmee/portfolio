@@ -4,6 +4,7 @@ import { MdArrowOutward } from 'react-icons/md';
 import DirectionalArrow from '../components/DirectionalArrow';
 import SiteLayout from '../components/SiteLayout';
 import { caseStudies } from '../data/caseStudies';
+import { featuredApp } from '../data/apps';
 import portfolio from '../data/portfolio.json';
 import { trackEvent } from '../utils/analytics';
 import { generateSlug } from '../utils/slug';
@@ -136,55 +137,41 @@ export default function Home() {
       >
         <div className="page-width app-feature-inner">
           <p className="eyebrow">03 / Useful apps</p>
-          <h2 id="apps-title">Small tools, ready to use.</h2>
+          <h2 id="apps-title">A more comfortable place to read.</h2>
           <p className="app-feature-intro">
-            Practical browser tools built to make everyday work a little easier.
+            A featured app, still evolving through everyday use.
           </p>
           <div className="app-feature-list">
-            <Link
-              className="app-feature-row"
-              href="/apps/markdown-preview/"
-              onClick={() =>
-                trackEvent({
-                  event: 'app_launch',
-                  app_slug: 'markdown-preview',
-                })
-              }
-            >
+            <article className="app-feature-row">
               <div>
-                <h3>Markdown Previewer</h3>
-                <p>
-                  Preview local Markdown files, explore folders, and work with
-                  Mermaid diagrams and tables.
-                </p>
+                <h3>{featuredApp.name}</h3>
+                <p>{featuredApp.description}</p>
               </div>
-              <MdArrowOutward
-                className="app-feature-arrow"
-                aria-hidden="true"
-              />
-            </Link>
-            <Link
-              className="app-feature-row"
-              href="/apps/json-assistant/"
-              onClick={() =>
-                trackEvent({
-                  event: 'app_launch',
-                  app_slug: 'json-assistant',
-                })
-              }
-            >
-              <div>
-                <h3>JSON Assistant</h3>
-                <p>
-                  Inspect and edit JSON in Code, Tree, or Split view. Your data
-                  stays in your browser.
-                </p>
+              <div className="app-actions">
+                <Link className="text-link" href={`/apps/${featuredApp.slug}/`}>
+                  Read the story <DirectionalArrow direction="forward" />
+                </Link>
+                <a
+                  className="text-link"
+                  href={featuredApp.liveUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  aria-label={`Open ${featuredApp.name} in a new tab`}
+                  onClick={() =>
+                    trackEvent({
+                      event: 'app_launch',
+                      app_slug: featuredApp.slug,
+                    })
+                  }
+                >
+                  Open app{' '}
+                  <MdArrowOutward
+                    className="app-feature-arrow"
+                    aria-hidden="true"
+                  />
+                </a>
               </div>
-              <MdArrowOutward
-                className="app-feature-arrow"
-                aria-hidden="true"
-              />
-            </Link>
+            </article>
           </div>
           <Link className="text-link app-feature-browse" href="/apps/">
             Browse all apps <DirectionalArrow direction="forward" />

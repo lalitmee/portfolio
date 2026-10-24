@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { MdClose, MdMenu } from 'react-icons/md';
 import ThemeToggle from './ThemeToggle';
+import AppearanceMenu from './AppearanceMenu';
 
 const links = [
   { href: '/', label: 'Home' },
@@ -66,7 +67,7 @@ export default function Navigation() {
     href === '/' ? pathname === '/' : pathname.startsWith(href);
 
   return (
-    <header className="site-header">
+    <motion.header className="site-header" layoutRoot>
       <div className="site-nav">
         <Link
           className="site-brand"
@@ -98,6 +99,7 @@ export default function Navigation() {
           ))}
         </nav>
         <div className="nav-actions">
+          <AppearanceMenu />
           <ThemeToggle />
           <button
             ref={menuButton}
@@ -145,6 +147,7 @@ export default function Navigation() {
             LK<span aria-hidden="true">.</span>
           </Link>
           <div className="nav-actions">
+            <AppearanceMenu />
             <ThemeToggle />
             <button
               className="menu-toggle"
@@ -185,6 +188,6 @@ export default function Navigation() {
           </AnimatePresence>
         </nav>
       </dialog>
-    </header>
+    </motion.header>
   );
 }

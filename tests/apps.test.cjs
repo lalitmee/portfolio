@@ -4,103 +4,147 @@ const path = require('node:path');
 const test = require('node:test');
 const nextConfig = require('../next.config.js');
 
-const page = fs.readFileSync(
-  path.join(__dirname, '../pages/apps/index.tsx'),
-  'utf8',
-);
-const styles = fs.readFileSync(
-  path.join(__dirname, '../styles/globals.css'),
-  'utf8',
-);
-
-test('JSON Assistant has a same-origin app proxy route', async () => {
-  const rewrites = await nextConfig.rewrites();
-
+test('app records publish three verified destinations and reject unknown slugs', () => {
   assert.ok(
-    rewrites.some(
-      ({ source, destination }) =>
-        source === '/apps/json-assistant/:path*' &&
-        destination === 'https://json-assistant-one.vercel.app/:path*',
-    ),
+    fs.existsSync(path.join(__dirname, '../data/apps.ts')),
+    'app records exist',
   );
+  const { apps, featuredApp, getApp } = require('../data/apps.ts');
+  assert.deepEqual(
+    apps.map((app) => app.slug),
+    ['hn-revamped', 'markdown-preview', 'json-assistant'],
+  );
+  assert.equal(new Set(apps.map((app) => app.slug)).size, 3);
+  assert.equal(featuredApp, apps[0]);
+  assert.equal(getApp('hn-revamped'), apps[0]);
+  for (const slug of ['unknown', undefined, ['hn-revamped']])
+    assert.equal(getApp(slug), undefined);
+  assert.deepEqual(
+    apps.map((app) => app.liveUrl),
+    [
+      'https://hn-revamped.vercel.app/',
+      'https://markdown-assistant.vercel.app/',
+      'https://json-assistant-one.vercel.app/',
+    ],
+  );
+  for (const app of apps) {
+    assert.ok(
+      fs.existsSync(path.join(__dirname, '../public', app.screenshot.src)),
+    );
+    assert.ok(app.screenshot.width > 0 && app.screenshot.height > 0);
+    assert.ok(app.motivation);
+    assert.match(app.sourceUrl, /^https:\/\/github.com\/lalitmee\//);
+  }
+  assert.match(apps[1].motivation, /LLM-assisted and agentic coding/);
 });
 
-test('apps page lists JSON Assistant with its privacy note and tracked launch', () => {
-  assert.match(page, /JSON Assistant/);
-  assert.match(page, /Code, Tree, and Split/);
-  assert.match(page, /not uploaded/);
-  assert.match(page, /href="\/apps\/json-assistant\/"/);
-  assert.match(page, /app_slug:\s*'json-assistant'/);
+test('app roots are local stories, not external proxies or redirects', async () => {
+  const rewrites = (await nextConfig.rewrites?.()) ?? [];
+  assert.ok(!rewrites.some((rule) => rule.source.startsWith('/apps/')));
+  const redirects = (await nextConfig.redirects?.()) ?? [];
+  assert.ok(!redirects.some((rule) => rule.source.startsWith('/apps/')));
 });
 
-test('apps listing uses local README screenshots beside each app description', () => {
-  assert.match(page, /src="\/images\/apps\/markdown-previewer\.png"/);
-  assert.match(page, /alt="Markdown Previewer app screenshot"/);
-  assert.match(page, /src="\/images\/apps\/json-assistant\.png"/);
-  assert.match(page, /alt="JSON Assistant app screenshot"/);
-  assert.equal(
-    (page.match(/className="app-listing-preview"/g) || []).length,
-    2,
+test('app detail statically generates known stories with ongoing-project copy', () => {
+  const file = path.join(__dirname, '../pages/apps/[slug].tsx');
+  assert.ok(fs.existsSync(file), 'app detail route exists');
+  const page = fs.readFileSync(file, 'utf8');
+  for (const expression of [
+    /getStaticPaths/,
+    /getStaticProps/,
+    /apps\.map/,
+    /fallback: false/,
+    /getApp\(params\?\.slug\)/,
+    /notFound: true/,
+    /Actively evolving/,
+    /This is an ongoing project/,
+    /All apps/,
+    /View source/,
+  ])
+    assert.match(page, expression);
+});
+
+test('directory renders separate story and launch actions from shared records', () => {
+  const page = fs.readFileSync(
+    path.join(__dirname, '../pages/apps/index.tsx'),
+    'utf8',
   );
-  assert.equal(
-    (page.match(/className="app-listing-preview-frame"/g) || []).length,
-    2,
+  assert.match(page, /apps\.map/);
+  assert.match(page, /<article className="app-listing"/);
+  assert.match(page, /href=\{app\.liveUrl\}/);
+  assert.match(page, /Read the story/);
+  assert.match(page, /Open app/);
+  assert.match(page, /target="_blank"/);
+  assert.match(page, /rel="noreferrer"/);
+  assert.match(page, /src=\{app\.screenshot\.src\}/);
+  assert.doesNotMatch(page, /keep your files and data in your browser/);
+});
+
+test('only external launch anchors track app_launch, never story links', () => {
+  for (const file of [
+    'pages/index.tsx',
+    'pages/apps/index.tsx',
+    'pages/apps/[slug].tsx',
+  ]) {
+    const page = fs.readFileSync(path.join(__dirname, '..', file), 'utf8');
+    const links = page.match(/<Link\b[\s\S]*?<\/Link>/g) ?? [];
+    for (const link of links) assert.doesNotMatch(link, /app_launch|<a\b/);
+    const launches = (page.match(/<a\b[\s\S]*?<\/a>/g) ?? []).filter((anchor) =>
+      anchor.includes('app_launch'),
+    );
+    assert.equal(launches.length, 1, file);
+    assert.match(launches[0], /href=\{(?:app|featuredApp)\.liveUrl\}/);
+    assert.match(launches[0], /target="_blank"/);
+  }
+});
+
+test('app actions retain decorative arrows and reduced motion', () => {
+  const styles = fs.readFileSync(
+    path.join(__dirname, '../styles/globals.css'),
+    'utf8',
   );
-  assert.match(
-    styles,
-    /\.app-listing\s*\{[^}]*grid-template-columns:\s*40% minmax\(0, 1fr\) auto/s,
-  );
-  assert.match(
-    styles,
-    /\.app-listing-preview-frame:hover \.app-listing-preview,\s*\.app-listing:focus-visible \.app-listing-preview\s*\{[^}]*transform:\s*scale\(1\.05\)/s,
-  );
+  assert.match(styles, /\.app-detail-preview\s*\{[^}]*height:\s*auto/s);
+  assert.match(styles, /\.app-listing:focus-within \.app-launch-arrow/);
   assert.match(
     styles.slice(styles.indexOf('@media (prefers-reduced-motion: reduce)')),
-    /\.app-listing-preview-frame:hover \.app-listing-preview,[\s\S]*?transform:\s*none !important/s,
+    /animation:\s*none !important/,
   );
 });
 
-test('each apps listing card is one accessible link with tracked launch', () => {
-  const listings =
-    page.match(/<Link\s+className="app-listing"[\s\S]*?<\/Link>/g) || [];
-
-  assert.equal(listings.length, 2);
-  assert.match(listings[0], /href="\/apps\/markdown-preview\/"/);
-  assert.match(listings[0], /aria-label="Open Markdown Previewer"/);
-  assert.match(listings[0], /app_slug:\s*'markdown-preview'/);
-  assert.match(listings[1], /href="\/apps\/json-assistant\/"/);
-  assert.match(listings[1], /aria-label="Open JSON Assistant"/);
-  assert.match(listings[1], /app_slug:\s*'json-assistant'/);
-  assert.equal((page.match(/className="app-launch"/g) || []).length, 2);
-  assert.doesNotMatch(page, /<section className="app-listing">/);
+test('app detail has section icons and a scroll-revealed action dock', () => {
+  const page = fs.readFileSync('pages/apps/[slug].tsx', 'utf8');
+  for (const icon of [
+    'MdLightbulbOutline',
+    'MdWidgets',
+    'MdTune',
+    'MdConstruction',
+  ])
+    assert.match(page, new RegExp(`<${icon} aria-hidden="true"`));
+  assert.match(page, /className="detail-actions app-detail-actions"/);
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  assert.doesNotMatch(css, /\.app-detail-actions\s*\{[^}]*position: sticky/);
+  assert.match(css, /\.app-action-dock\s*\{[^}]*position: fixed/);
+  assert.match(
+    page,
+    /addEventListener\('scroll', syncDock, \{ passive: true \}\)/,
+  );
+  assert.match(page, /getBoundingClientRect\(\).bottom/);
+  assert.match(page, /<FiExternalLink aria-hidden="true"/);
+  assert.match(page, /<FaGithub aria-hidden="true"/);
+  assert.match(page, /<AnimatePresence/);
 });
 
-test('apps use accessible tilted arrow launch controls with reduced-motion support', () => {
-  const reducedMotion = styles.slice(
-    styles.indexOf('@media (prefers-reduced-motion: reduce)'),
-  );
-
-  assert.equal((page.match(/className="app-launch"/g) || []).length, 2);
-  assert.match(page, /aria-label="Open Markdown Previewer"/);
-  assert.match(page, /aria-label="Open JSON Assistant"/);
-  assert.equal((page.match(/className="app-listing"/g) || []).length, 2);
-  assert.equal(
-    (
-      page.match(
-        /<MdArrowOutward className="app-launch-arrow" aria-hidden="true" \/>/g,
-      ) || []
-    ).length,
-    2,
-  );
-  assert.doesNotMatch(styles, /\.app-launch\s*\{[^}]*border(?:-radius)?:/s);
+test('narrow mobile dock uses named icon-only links with touch-sized targets', () => {
+  const page = fs.readFileSync('pages/apps/[slug].tsx', 'utf8');
+  assert.match(page, /aria-label="Open app"/);
+  assert.match(page, /aria-label="View source"/);
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
   assert.match(
-    styles,
-    /\.app-listing:hover \.app-launch-arrow,\s*\.app-listing:focus-within \.app-launch-arrow\s*\{[^}]*animation:\s*arrow-bounce-tilt/s,
+    css,
+    /@media \(max-width: 359px\)[\s\S]*\.app-dock-links \.app-action-label\s*\{\s*display: none/,
   );
-  assert.match(reducedMotion, /\.app-listing:hover \.app-launch-arrow/);
   assert.match(
-    reducedMotion,
-    /\.app-feature-row:focus-visible \.app-feature-arrow/,
+    css,
+    /@media \(max-width: 359px\)[\s\S]*min-width: 44px;[\s\S]*min-height: 44px;/,
   );
-  assert.match(reducedMotion, /animation:\s*none !important/);
 });

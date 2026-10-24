@@ -12,43 +12,44 @@ const styles = fs.readFileSync(
   'utf8',
 );
 
-test('homepage app feature lists both apps and links to the full apps page', () => {
+test('homepage features only the shared HN selection with separate actions', () => {
   const feature = home.match(
     /<section\s+className="content-section app-feature"[\s\S]*?<\/section>/,
   )?.[0];
 
   assert.ok(feature, 'homepage app feature exists');
-  assert.match(feature, /Markdown Previewer/);
-  assert.match(feature, /JSON Assistant/);
-  assert.match(feature, /href="\/apps\/markdown-preview\/"/);
-  assert.match(feature, /href="\/apps\/json-assistant\/"/);
+  assert.match(feature, /featuredApp\.name/);
+  assert.match(feature, /featuredApp\.slug/);
+  assert.match(feature, /featuredApp\.liveUrl/);
+  assert.match(feature, /Read the story/);
+  assert.match(feature, /Open app/);
+  assert.doesNotMatch(
+    feature,
+    /Markdown Previewer|JSON Assistant|markdown-preview|json-assistant/,
+  );
   assert.match(feature, /Browse all apps/);
   assert.match(feature, /href="\/apps\/"/);
-  assert.match(feature, /app_slug:\s*'markdown-preview'/);
-  assert.match(feature, /app_slug:\s*'json-assistant'/);
-  assert.equal(
-    (feature.match(/<Link\s+className="app-feature-row"/g) || []).length,
-    2,
-  );
-  assert.doesNotMatch(feature, /<div className="app-feature-row">/);
-  assert.doesNotMatch(feature, /className="app-feature-launch"/);
-  assert.equal(
-    (feature.match(/className="app-feature-arrow"/g) || []).length,
-    2,
-  );
-  assert.match(
-    styles,
-    /\.app-feature-row:hover \.app-feature-arrow,\s*\.app-feature-row:focus-visible \.app-feature-arrow\s*\{[^}]*animation:\s*arrow-bounce-tilt/s,
-  );
-  assert.doesNotMatch(
-    styles,
-    /\.app-feature-row\s*\{[^}]*border(?:-radius)?:/s,
-  );
+  assert.match(feature, /app_slug:\s*featuredApp\.slug/);
+  assert.match(feature, /<article className="app-feature-row">/);
 });
 
-test('app feature uses a dark surface with readable text in dark mode', () => {
+test('app feature follows the active theme without an inverted palette', () => {
   assert.match(
     styles,
-    /\.dark \.app-feature\s*\{[^}]*background:\s*var\(--panel\)[^}]*color:\s*var\(--ink\)/s,
+    /(?:^|\n)\.app-feature\s*\{[^}]*background:\s*var\(--paper\)[^}]*color:\s*var\(--ink\)/s,
   );
+  assert.match(
+    styles,
+    /(?:^|\n)\.app-feature\s*\{[^}]*border-top:\s*1px solid var\(--line\)/s,
+  );
+  assert.match(styles, /\.section-tint\s*\{[^}]*background:\s*var\(--panel\)/s);
+  assert.match(
+    styles,
+    /(?:^|\n)\.app-feature \.eyebrow\s*\{[^}]*color:\s*var\(--blue\)/s,
+  );
+  assert.match(
+    styles,
+    /\.app-feature-intro,\s*\.app-feature-row p\s*\{[^}]*color:\s*var\(--muted\)/s,
+  );
+  assert.doesNotMatch(styles, /\.dark \.app-feature/);
 });

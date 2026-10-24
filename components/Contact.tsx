@@ -164,16 +164,20 @@ export default function Contact() {
             )}
           </div>
           <button
-            className="button button-primary"
+            className="button button-primary send-button"
             type="submit"
             disabled={submitting || submitted}
           >
-            {submitting
-              ? 'Sending…'
-              : submitted
-                ? 'Message sent'
-                : 'Send message'}
-            <MdSend className="send-icon" aria-hidden="true" />
+            <span className="send-label">
+              {submitting
+                ? 'Sending…'
+                : submitted
+                  ? 'Message sent'
+                  : 'Send message'}
+            </span>
+            <span className="send-icon" aria-hidden="true">
+              <MdSend className="send-plane" />
+            </span>
           </button>
           <p className="form-status" role="status" aria-live="polite">
             {status}

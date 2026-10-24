@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
 import { MdDarkMode, MdLightMode } from 'react-icons/md';
+import { animateAppearanceChange } from '../utils/appearance-motion';
 
 export default function ThemeToggle() {
   const { resolvedTheme, setTheme } = useTheme();
@@ -19,7 +20,13 @@ export default function ThemeToggle() {
           : 'Toggle color theme'
       }
       aria-pressed={mounted ? isDark : undefined}
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      onClick={(event) =>
+        animateAppearanceChange(
+          event,
+          () => setTheme(isDark ? 'light' : 'dark'),
+          'theme',
+        )
+      }
     >
       <span className="theme-toggle-icon">
         {mounted && isDark ? (

@@ -112,10 +112,14 @@ test('editorial accents meet contrast and brand name includes its visible label'
     );
     return (values[0] + 0.05) / (values[1] + 0.05);
   };
-  const lightOchre = css.match(/--ochre:\s*(#[\da-f]+)/i)?.[1];
+  const lightOchre = css.match(
+    /--blue:\s*var\(--accent-light,\s*(#[\da-f]+)/i,
+  )?.[1];
   const lightPaper = css.match(/--paper:\s*(#[\da-f]+)/i)?.[1];
   const darkBlock = css.match(/\.dark\s*\{([^}]+)\}/)?.[1] || '';
-  const darkOchre = darkBlock.match(/--ochre:\s*(#[\da-f]+)/i)?.[1];
+  const darkOchre = darkBlock.match(
+    /--blue:\s*var\(--accent-dark,\s*(#[\da-f]+)/i,
+  )?.[1];
   const darkPaper = darkBlock.match(/--paper:\s*(#[\da-f]+)/i)?.[1];
 
   assert.ok(contrast(lightOchre, lightPaper) >= 4.5);
@@ -123,9 +127,8 @@ test('editorial accents meet contrast and brand name includes its visible label'
   const appEyebrowRules = [
     ...css.matchAll(/\.app-feature\s+\.eyebrow\s*\{([^}]+)\}/g),
   ];
-  assert.equal(appEyebrowRules.length, 2);
-  assert.match(appEyebrowRules[0][1], /color:\s*var\(--paper\)/);
-  assert.match(appEyebrowRules[1][1], /color:\s*var\(--blue\)/);
+  assert.equal(appEyebrowRules.length, 1);
+  assert.match(appEyebrowRules[0][1], /color:\s*var\(--blue\)/);
   assert.match(
     navigation,
     /className="site-brand"\s+href="\/"\s+aria-label="LK\., Lalit Kumar home"/,

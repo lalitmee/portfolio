@@ -14,6 +14,7 @@ test('all editorial destinations have route modules', () => {
     'work/[slug].tsx',
     'projects/index.tsx',
     'apps/index.tsx',
+    'apps/[slug].tsx',
     'about.tsx',
     'contact.tsx',
     'privacy.tsx',

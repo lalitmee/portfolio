@@ -20,7 +20,10 @@ test('contact actions keep text labels and have decorative icons', () => {
   }
 
   assert.equal((contact.match(/aria-hidden="true"/g) || []).length >= 4, true);
-  assert.match(contact, /<MdSend className="send-icon" aria-hidden="true" \/>/);
+  assert.match(
+    contact,
+    /<span className="send-icon" aria-hidden="true">\s*<MdSend className="send-plane" \/>\s*<\/span>/,
+  );
 });
 
 test('contact links retain their existing destinations and event channels', () => {

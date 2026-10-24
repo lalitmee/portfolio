@@ -1,4 +1,6 @@
 import Link from 'next/link';
+import { useState } from 'react';
+import { motion, useReducedMotion } from 'framer-motion';
 import { MdArrowOutward } from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
 import portfolioData from '../../data/portfolio.json';
@@ -44,6 +46,8 @@ function ProjectLink({
 }
 
 export default function ProjectsPage() {
+  const [archiveOpen, setArchiveOpen] = useState(false);
+  const shouldReduceMotion = useReducedMotion();
   return (
     <SiteLayout
       title="Projects | Lalit Kumar"
@@ -64,16 +68,55 @@ export default function ProjectsPage() {
             ))}
           </div>
         </section>
-        <details className="project-archive">
-          <summary>
-            Earlier projects and learning work ({archiveProjects.length})
-          </summary>
-          <div className="project-list">
-            {archiveProjects.map((project) => (
-              <ProjectLink project={project} key={project.id} />
-            ))}
-          </div>
-        </details>
+        <div className="project-archive" data-open={archiveOpen}>
+          <button
+            className="archive-trigger"
+            type="button"
+            id="project-archive-trigger"
+            aria-expanded={archiveOpen}
+            aria-controls="project-archive-content"
+            onClick={() => setArchiveOpen((open) => !open)}
+          >
+            <span className="archive-intro">
+              <span className="eyebrow">The archive</span>
+              <span className="archive-title">Earlier explorations</span>
+              <span className="archive-description">
+                Small experiments, first builds, and lessons along the way.
+              </span>
+            </span>
+            <span className="archive-controls">
+              <span className="archive-count">
+                {archiveProjects.length} projects
+              </span>
+              <span className="archive-toggle" aria-hidden="true" />
+            </span>
+          </button>
+          <motion.div
+            id="project-archive-content"
+            role="region"
+            aria-labelledby="project-archive-trigger"
+            aria-hidden={!archiveOpen}
+            inert={!archiveOpen}
+            initial={false}
+            animate={{
+              height: archiveOpen ? 'auto' : 0,
+              opacity: archiveOpen ? 1 : 0,
+            }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.28,
+              ease: 'easeInOut',
+            }}
+            style={{ overflow: 'hidden' }}
+          >
+            <div className="archive-content">
+              <div className="project-list">
+                {archiveProjects.map((project) => (
+                  <ProjectLink project={project} key={project.id} />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        </div>
       </div>
     </SiteLayout>
   );

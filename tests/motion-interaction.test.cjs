@@ -106,7 +106,7 @@ test('diagonal row arrows bounce and tilt only during interaction', () => {
 test('buttons have hover and pressed feedback without layout changes', () => {
   const hover = findRule('.button:hover,\n.button:focus-visible');
   const iconHover = findRule(
-    '.button:hover svg:not(.send-icon),\n.button:focus-visible svg:not(.send-icon)',
+    '.button:hover svg:not(.send-plane),\n.button:focus-visible svg:not(.send-plane)',
   );
   const pressed = findRule('.button:active');
 
@@ -115,17 +115,63 @@ test('buttons have hover and pressed feedback without layout changes', () => {
   assert.match(declarations(pressed).transform, /scale|translateY/);
 });
 
-test('send icon keeps a slight tilt while bouncing on interaction', () => {
+test('send icon loops inside the button and returns to its starting position', () => {
   const sendIcon = findRule('.button .send-icon');
   const sendHover = findRule(
     '.button:hover .send-icon,\n.button:focus-visible .send-icon',
   );
 
-  assert.equal(declarations(sendIcon).rotate, '-45deg');
-  assert.match(declarations(sendHover).animation, /send-icon-bounce/);
-  assert.match(css, /@keyframes send-icon-bounce[\s\S]*translate\(4px, -4px\)/);
-  assert.match(css, /@keyframes send-icon-bounce[\s\S]*translate\(-1px, 1px\)/);
-  assert.doesNotMatch(declarations(sendHover).animation, /arrow-bounce-tilt/);
+  assert.equal(declarations(sendIcon)['offset-rotate'], 'auto 45deg');
+  assert.match(declarations(sendIcon)['offset-path'], /shape\(/);
+  assert.equal(
+    (declarations(sendIcon)['offset-path'].match(/curve to/g) ?? []).length,
+    4,
+  );
+  assert.equal(
+    declarations(sendHover).animation,
+    'send-icon-flight 2200ms linear',
+  );
+  assert.equal(declarations(findRule('.send-button')).overflow, 'hidden');
+  const flight = root.nodes.find(
+    (node) => node.type === 'atrule' && node.params === 'send-icon-flight',
+  );
+  const frames = flight.nodes.map((node) => declarations(node));
+  assert.deepEqual(frames, [
+    { 'offset-distance': '0%', 'offset-rotate': 'auto 45deg' },
+    { 'offset-rotate': 'auto 0deg' },
+    { 'offset-distance': '100%', 'offset-rotate': 'auto 45deg' },
+  ]);
+  assert.equal(
+    declarations(
+      findRule(
+        '.send-button:hover .send-label,\n.send-button:focus-visible .send-label',
+      ),
+    ).animation,
+    'send-label-hide 2200ms linear',
+  );
+});
+
+test('app launch arrows use the same em size as story arrows', () => {
+  const launch = declarations(findRule('.app-launch-arrow'));
+  const story = declarations(findRule('.directional-arrow svg'));
+  assert.equal(launch.width, story.width);
+  assert.equal(launch.height, story.height);
+});
+
+test('send label glides and fades out and back in without an initial jump', () => {
+  const label = root.nodes.find(
+    (node) => node.type === 'atrule' && node.params === 'send-label-hide',
+  );
+  const frames = label.nodes.map((node) => {
+    const { opacity, transform } = declarations(node);
+    return { opacity, transform };
+  });
+  assert.deepEqual(frames[0], { opacity: '1', transform: 'translateX(0)' });
+  assert.deepEqual(frames.at(-1), frames[0]);
+  assert.deepEqual(frames[1], {
+    opacity: '0',
+    transform: 'translateX(-0.75rem)',
+  });
 });
 
 test('state-changing control icons animate their persistent wrapper', () => {
