@@ -11,7 +11,10 @@ export type AnalyticsEvent =
       destination_kind: 'source' | 'demo' | 'detail';
     }
   | { event: 'resume_download' }
-  | { event: 'contact_click'; channel: 'email' | 'github' | 'linkedin' }
+  | {
+      event: 'contact_click';
+      channel: 'email' | 'github' | 'linkedin' | 'topmate';
+    }
   | { event: 'app_launch'; app_slug: string };
 
 export const CONSENT_STORAGE_KEY = 'portfolio-analytics-consent';
@@ -108,7 +111,8 @@ export function trackEvent(input: AnalyticsEvent): boolean {
       payload = { event: item.event };
       break;
     case 'contact_click':
-      if (!['email', 'github', 'linkedin'].includes(item.channel)) return false;
+      if (!['email', 'github', 'linkedin', 'topmate'].includes(item.channel))
+        return false;
       payload = { event: item.event, channel: item.channel };
       break;
     case 'app_launch':

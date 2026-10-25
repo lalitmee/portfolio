@@ -1,11 +1,13 @@
 import emailjs from '@emailjs/browser';
-import { FormEvent, useRef, useState } from 'react';
+import { FormEvent, useEffect, useRef, useState } from 'react';
 import {
   GithubIcon,
   LinkedinIcon,
   EmailIcon,
   LocationIcon,
   SendIcon,
+  TopmateIcon,
+  CheckIcon,
 } from './icons/AnimatedIcons';
 import DirectionalArrow from './DirectionalArrow';
 import portfolioData from '../data/portfolio.json';
@@ -29,9 +31,18 @@ export default function Contact() {
   const [values, setValues] = useState(emptyForm);
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [status, setStatus] = useState('');
-  const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [toast, setToast] = useState<{ id: number; message: string } | null>(
+    null,
+  );
+  const toastTimeoutRef = useRef<NodeJS.Timeout | null>(null);
   const email = portfolioData.contact.email;
+
+  useEffect(() => {
+    return () => {
+      if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+    };
+  }, []);
 
   function update(name: keyof typeof emptyForm, value: string) {
     setValues((current) => ({ ...current, [name]: value }));
@@ -64,8 +75,12 @@ export default function Contact() {
       await emailjs.sendForm(serviceId, templateId, form.current, publicKey);
       setValues(emptyForm);
       setErrors({});
-      setSubmitted(true);
-      setStatus('Message sent. Thank you for getting in touch.');
+      setStatus('');
+      if (toastTimeoutRef.current) clearTimeout(toastTimeoutRef.current);
+      setToast({ id: Date.now(), message: 'Message sent' });
+      toastTimeoutRef.current = setTimeout(() => {
+        setToast(null);
+      }, 5000);
     } catch {
       setStatus(
         'The message could not be sent. Your message is still here; you can email me instead.',
@@ -170,16 +185,12 @@ export default function Contact() {
             )}
           </div>
           <button
-            className="button button-primary send-button"
+            className={`button button-primary send-button ${submitting ? 'is-submitting' : ''}`.trim()}
             type="submit"
-            disabled={submitting || submitted}
+            disabled={submitting}
           >
             <span className="send-label">
-              {submitting
-                ? 'Sending…'
-                : submitted
-                  ? 'Message sent'
-                  : 'Send message'}
+              {submitting ? 'Sending…' : 'Send message'}
             </span>
             <span className="send-icon" aria-hidden="true">
               <SendIcon className="send-plane" />
@@ -195,6 +206,25 @@ export default function Contact() {
             </a>
           )}
         </form>
+        {toast && (
+          <aside className="contact-toast" role="status" aria-live="polite">
+            <CheckIcon className="toast-icon" aria-hidden="true" />
+            <div className="toast-content">
+              <p className="toast-title">Message sent</p>
+              <p className="toast-body">
+                Thank you for reaching out. I'll get back to you shortly.
+              </p>
+            </div>
+            <button
+              type="button"
+              className="toast-dismiss"
+              onClick={() => setToast(null)}
+              aria-label="Dismiss notification"
+            >
+              ✕
+            </button>
+          </aside>
+        )}
         <aside>
           <h2>Or reach me directly</h2>
           <p>
@@ -209,7 +239,21 @@ export default function Contact() {
           </p>
           <p>
             <a
+              href="https://topmate.io/lalitmee"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() =>
+                trackEvent({ event: 'contact_click', channel: 'topmate' })
+              }
+            >
+              <TopmateIcon aria-hidden="true" /> Topmate
+            </a>
+          </p>
+          <p>
+            <a
               href="https://linkedin.com/in/lalitmee"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() =>
                 trackEvent({ event: 'contact_click', channel: 'linkedin' })
               }
@@ -220,6 +264,8 @@ export default function Contact() {
           <p>
             <a
               href="https://github.com/lalitmee"
+              target="_blank"
+              rel="noopener noreferrer"
               onClick={() =>
                 trackEvent({ event: 'contact_click', channel: 'github' })
               }

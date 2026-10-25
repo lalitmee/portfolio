@@ -29,6 +29,7 @@ test('direct contact destinations keep labels and decorative internal-motion ico
       'lalitkumar.meena.lk@gmail.com',
       'email',
     ],
+    ['https://topmate.io/lalitmee', 'Topmate', 'brand'],
     ['https://github.com/lalitmee', 'GitHub', 'brand'],
     ['https://linkedin.com/in/lalitmee', 'LinkedIn', 'brand'],
   ]) {
@@ -61,4 +62,26 @@ test('direct contact links have touch targets, wrapping, and reduced-motion-safe
     reduced,
     /\.contact-grid aside a svg\s*\{[^}]*animation: none !important/,
   );
+});
+
+test('send button animates continuously while submitting with reduced motion override', () => {
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  assert.match(
+    css,
+    /\.send-button\.is-submitting\s+\.send-icon\s*\{[^}]*animation:\s*send-icon-flight 1600ms linear infinite/s,
+  );
+  const reduced = css.slice(
+    css.lastIndexOf('@media (prefers-reduced-motion: reduce)'),
+  );
+  assert.match(
+    reduced,
+    /\.send-button\.is-submitting\s+\.send-icon[\s\S]*?animation:\s*none !important/,
+  );
+});
+
+test('contact toast styles are defined with accessible positioning and theme tokens', () => {
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  assert.match(css, /\.contact-toast\s*\{[^}]*position:\s*fixed/s);
+  assert.match(css, /\.contact-toast\s*\{[^}]*z-index:\s*60/s);
+  assert.match(css, /\.contact-toast\s*\{[^}]*background:\s*var\(--panel\)/s);
 });

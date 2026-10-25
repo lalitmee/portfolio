@@ -78,7 +78,17 @@ test('reconstructs only allowlisted event fields', () => {
     }),
     true,
   );
-  assert.deepEqual(layer, [{ event: 'contact_click', channel: 'email' }]);
+  assert.equal(
+    analytics.trackEvent({
+      event: 'contact_click',
+      channel: 'topmate',
+    }),
+    true,
+  );
+  assert.deepEqual(layer, [
+    { event: 'contact_click', channel: 'email' },
+    { event: 'contact_click', channel: 'topmate' },
+  ]);
   restore();
 });
 
