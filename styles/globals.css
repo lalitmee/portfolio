@@ -154,7 +154,9 @@ button {
   font-weight: 500;
 }
 
-.mobile-nav a > span::after {
+.mobile-nav a > span::after,
+.site-footer nav a::after,
+.contact-grid aside a::after {
   position: absolute;
   right: 0;
   bottom: 0.25rem;
@@ -163,14 +165,26 @@ button {
   background: var(--blue);
   content: '';
   transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 180ms ease;
+  pointer-events: none;
+  transform-origin: var(--underline-origin, left);
+  transition: transform 180ms ease-out;
 }
 
 .mobile-nav a[aria-current='page'] > span::after,
 .mobile-nav a:hover > span::after,
-.mobile-nav a:focus-visible > span::after {
+.mobile-nav a:focus-visible > span::after,
+.site-footer nav a[aria-current='page']::after,
+.site-footer nav a:hover::after,
+.site-footer nav a:focus-visible::after,
+.contact-grid aside a:hover::after,
+.contact-grid aside a:focus-visible::after {
   transform: scaleX(1);
+}
+
+.mobile-nav a:focus-visible > span::after,
+.site-footer nav a:focus-visible::after,
+.contact-grid aside a:focus-visible::after {
+  transition: none;
 }
 
 .desktop-nav a:hover,
@@ -1574,16 +1588,15 @@ section p + p {
 }
 
 .contact-grid aside a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   gap: 0.55rem;
   min-height: 2.75rem;
   max-width: 100%;
   overflow-wrap: anywhere;
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 0.25rem;
-  transition: color 180ms ease, text-decoration-color 180ms ease;
+  text-decoration: none;
+  transition: color 180ms ease;
 }
 
 .contact-grid aside a:hover,
@@ -1829,16 +1842,15 @@ body:has(.consent-panel) .back-to-top {
 }
 
 .site-footer nav a {
+  position: relative;
   display: inline-flex;
   align-items: center;
   min-height: 2.75rem;
   font-size: 0.9rem;
   font-weight: 500;
   color: var(--ink);
-  text-decoration: underline;
-  text-decoration-color: transparent;
-  text-underline-offset: 0.35rem;
-  transition: color 180ms ease, text-decoration-color 180ms ease;
+  text-decoration: none;
+  transition: color 180ms ease;
 }
 
 .site-footer nav a:hover,
