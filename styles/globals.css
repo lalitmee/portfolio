@@ -1055,7 +1055,7 @@ html:has(.mobile-menu-dialog[open]) {
   width: 0.8em;
   height: 0.8em;
   flex: none;
-  color: var(--muted);
+  color: var(--blue);
 }
 
 .content-page section p,

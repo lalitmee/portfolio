@@ -8,6 +8,21 @@ test('professional case lookup returns a case or undefined for an unknown slug',
   assert.equal(getCaseStudy('not-a-case'), undefined);
 });
 
+test('standard work-detail headings have decorative icons', () => {
+  const page = fs.readFileSync(
+    path.join(__dirname, '../pages/work/[slug].tsx'),
+    'utf8',
+  );
+  for (const [icon, heading] of [
+    ['MdInfoOutline', 'Context'],
+    ['MdConstruction', 'Contribution'],
+    ['MdTune', 'Decisions'],
+    ['MdCheckCircleOutline', 'Outcome'],
+  ]) {
+    assert.match(page, new RegExp(`<${icon} aria-hidden="true" \\/>\\s*${heading}`));
+  }
+});
+
 test('all editorial destinations have route modules', () => {
   for (const route of [
     'work/index.tsx',
