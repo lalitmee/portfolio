@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { MdArrowForward } from 'react-icons/md';
+import DirectionalArrow from '../components/DirectionalArrow';
 import SiteLayout from '../components/SiteLayout';
 
 export default function NotFoundPage() {
@@ -15,7 +15,7 @@ export default function NotFoundPage() {
           The link may be old or the address may have a typo.
         </p>
         <Link className="text-link" href="/">
-          Return home <MdArrowForward aria-hidden="true" />
+          Return home <DirectionalArrow direction="forward" />
         </Link>
       </div>
     </SiteLayout>

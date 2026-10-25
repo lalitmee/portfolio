@@ -14,10 +14,10 @@ test('standard work-detail headings have decorative icons', () => {
     'utf8',
   );
   for (const [icon, heading] of [
-    ['MdInfoOutline', 'Context'],
-    ['MdConstruction', 'Contribution'],
-    ['MdTune', 'Decisions'],
-    ['MdCheckCircleOutline', 'Outcome'],
+    ['InfoIcon', 'Context'],
+    ['ConstructionIcon', 'Contribution'],
+    ['SlidersIcon', 'Decisions'],
+    ['OutcomeIcon', 'Outcome'],
   ]) {
     assert.match(page, new RegExp(`<${icon} aria-hidden="true" \\/>\\s*${heading}`));
   }

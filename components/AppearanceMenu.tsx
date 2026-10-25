@@ -1,6 +1,6 @@
 import { useEffect, useId, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { MdCheck, MdPalette } from 'react-icons/md';
+import { CheckIcon, PaletteIcon } from './icons/AnimatedIcons';
 import { accents } from '../utils/appearance';
 import { animateAppearanceChange } from '../utils/appearance-motion';
 
@@ -66,7 +66,7 @@ export default function AppearanceMenu() {
         aria-controls={id}
         onClick={() => setOpen((value) => !value)}
       >
-        <MdPalette aria-hidden="true" />
+        <PaletteIcon />
       </button>
       <div inert={!open} aria-hidden={!open}>
         <AnimatePresence initial={false}>
@@ -129,7 +129,7 @@ export default function AppearanceMenu() {
                       aria-hidden="true"
                     />
                     <span>{accent.name}</span>
-                    {selected === accent.id && <MdCheck aria-hidden="true" />}
+                    {selected === accent.id && <CheckIcon />}
                   </label>
                 ))}
               </fieldset>

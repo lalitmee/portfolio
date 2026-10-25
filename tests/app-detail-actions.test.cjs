@@ -7,6 +7,8 @@ const test = require('node:test');
 const ts = require('typescript');
 const React = require('react');
 const { featuredApp } = require('../data/apps.ts');
+require('./load-tsx.cjs');
+const { renderToStaticMarkup } = require('react-dom/server');
 
 test('home Explore my work uses the existing iris-fill details button', () => {
   const filename = path.resolve('pages/index.tsx');
@@ -36,6 +38,7 @@ test('app detail distinguishes launch and source actions and preserves external 
     require: (name) => {
       if (name === 'react') return { ...React, useRef: () => ({ current: null }), useState: () => [false, () => {}], useEffect: () => {} };
       if (name === 'framer-motion') return { useReducedMotion: () => false };
+      if (name.includes('/icons/')) return createRequire(filename)(name);
       if (name.includes('/components/')) return () => null;
       return createRequire(filename)(name);
     },
@@ -51,6 +54,11 @@ test('app detail distinguishes launch and source actions and preserves external 
   }
   const fill = links[0].props.children.find((child) => child?.props?.className === 'section-button-fill');
   assert.equal(fill.props['aria-hidden'], 'true');
+  for (const icon of [links[0].props.children[0], fill.props.children[0]]) {
+    const html = renderToStaticMarkup(icon);
+    assert.match(html, /class="animated-icon icon-external-link/);
+    assert.match(html, /aria-hidden="true"/);
+  }
   const origin = {};
   links[0].props.onPointerEnter({
     clientX: 12, clientY: 25,

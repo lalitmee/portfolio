@@ -82,6 +82,11 @@ A high-level overview of the project layout:
 
 ## Deployment
 
+**Release gate:** Complete the [release checklist](docs/release-checklist.md)
+before approving a release. Vercel environment configuration, published GTM/GA4
+tracking, and confirmed EmailJS inbox delivery are mandatory. This is a manual
+sign-off gate; it does not automatically block deployments.
+
 The portfolio is deployed on [Vercel](https://vercel.com/):
 
 - Automatic deployments from the `main` branch

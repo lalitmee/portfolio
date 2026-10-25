@@ -7,6 +7,13 @@ const { renderToStaticMarkup } = require('react-dom/server');
 const test = require('node:test');
 const ts = require('typescript');
 const { ThemeProvider } = require('next-themes');
+require('./load-tsx.cjs');
+
+test('theme toggle uses the selected accent for both icons', () => {
+  const css = fs.readFileSync(path.join(__dirname, '../styles/globals.css'), 'utf8');
+  const toggle = css.match(/\.theme-toggle\s*\{([^}]+)\}/)[1];
+  assert.match(toggle, /color:\s*var\(--blue\)/);
+});
 
 test('theme toggle renders a hydration-safe label before mount', () => {
   const componentPath = path.join(__dirname, '../components/ThemeToggle.tsx');
@@ -36,4 +43,5 @@ test('theme toggle renders a hydration-safe label before mount', () => {
 
   assert.match(markup, /aria-label="Toggle color theme"/);
   assert.doesNotMatch(markup, /aria-pressed=/);
+  assert.match(markup, /animated-icon icon-moon/);
 });

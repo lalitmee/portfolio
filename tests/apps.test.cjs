@@ -91,6 +91,20 @@ test('hovering anywhere on an app card zooms its screenshot', () => {
   );
 });
 
+test('card launch actions use the detail-page button treatment, distinct from story links', () => {
+  for (const file of ['pages/index.tsx', 'pages/apps/index.tsx']) {
+    const page = fs.readFileSync(file, 'utf8');
+    const launch = (page.match(/<a\b[\s\S]*?<\/a>/g) ?? []).find((anchor) =>
+      anchor.includes('app_launch'),
+    );
+    assert.match(launch, /className="button button-outline section-button"/);
+    assert.match(launch, /onPointerEnter=/);
+    assert.match(launch, /<ExternalLinkIcon aria-hidden="true"/);
+    assert.match(launch, /className="section-button-fill" aria-hidden="true"/);
+    assert.match(page, /<Link\s+className="text-link"[\s\S]*?Read the story/);
+  }
+});
+
 test('only external launch anchors track app_launch, never story links', () => {
   for (const file of [
     'pages/index.tsx',
@@ -125,10 +139,10 @@ test('app actions retain decorative arrows and reduced motion', () => {
 test('app detail has section icons and a scroll-revealed action dock', () => {
   const page = fs.readFileSync('pages/apps/[slug].tsx', 'utf8');
   for (const icon of [
-    'MdLightbulbOutline',
-    'MdWidgets',
-    'MdTune',
-    'MdConstruction',
+    'BulbIcon',
+    'WidgetsIcon',
+    'SlidersIcon',
+    'ConstructionIcon',
   ])
     assert.match(page, new RegExp(`<${icon} aria-hidden="true"`));
   assert.match(page, /className="detail-actions app-detail-actions"/);
@@ -140,8 +154,8 @@ test('app detail has section icons and a scroll-revealed action dock', () => {
     /addEventListener\('scroll', syncDock, \{ passive: true \}\)/,
   );
   assert.match(page, /getBoundingClientRect\(\).bottom/);
-  assert.match(page, /<FiExternalLink aria-hidden="true"/);
-  assert.match(page, /<FaGithub aria-hidden="true"/);
+  assert.match(page, /<ExternalLinkIcon aria-hidden="true"/);
+  assert.match(page, /<GithubIcon aria-hidden="true"/);
   assert.match(page, /<AnimatePresence/);
 });
 

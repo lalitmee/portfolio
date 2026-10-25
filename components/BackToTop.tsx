@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { MdArrowUpward } from 'react-icons/md';
+import { UpArrowIcon } from './icons/AnimatedIcons';
 
 export default function BackToTop() {
   const [visible, setVisible] = useState(false);
@@ -30,7 +30,7 @@ export default function BackToTop() {
         window.scrollTo({ top: 0, behavior: 'auto' });
       }}
     >
-      <MdArrowUpward aria-hidden="true" />
+      <UpArrowIcon />
     </button>
   );
 }

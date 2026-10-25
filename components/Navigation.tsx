@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { MdClose, MdMenu } from 'react-icons/md';
+import { CloseIcon, MenuIcon } from './icons/AnimatedIcons';
 import ThemeToggle from './ThemeToggle';
 import AppearanceMenu from './AppearanceMenu';
 
@@ -114,9 +114,9 @@ export default function Navigation() {
           >
             <span className="menu-toggle-icon">
               {menuOpen ? (
-                <MdClose aria-hidden="true" />
+                <CloseIcon />
               ) : (
-                <MdMenu aria-hidden="true" />
+                <MenuIcon />
               )}
             </span>
           </button>
@@ -155,7 +155,7 @@ export default function Navigation() {
               aria-label="Close navigation menu"
               onClick={closeMobileMenu}
             >
-              <MdClose aria-hidden="true" />
+              <CloseIcon />
             </button>
           </div>
         </div>

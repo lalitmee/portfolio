@@ -1,9 +1,6 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
-import {
-  MdCode,
-  MdLightbulbOutline,
-} from 'react-icons/md';
+import { CodeIcon, BulbIcon } from '../../components/icons/AnimatedIcons';
 import SiteLayout from '../../components/SiteLayout';
 import DirectionalArrow from '../../components/DirectionalArrow';
 import TiltedArrow from '../../components/TiltedArrow';
@@ -31,7 +28,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
         {project.highlights.length > 0 && (
           <section>
             <h2>
-              <MdLightbulbOutline aria-hidden="true" /> What it does
+              <BulbIcon aria-hidden="true" /> What it does
             </h2>
             <ul>
               {project.highlights.map((item) => (
@@ -43,7 +40,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
         {project.technologies.length > 0 && (
           <section>
             <h2>
-              <MdCode aria-hidden="true" /> Technologies
+              <CodeIcon aria-hidden="true" /> Technologies
             </h2>
             <p>{project.technologies.join(' · ')}</p>
           </section>
@@ -51,8 +48,13 @@ export default function ProjectDetail({ project }: { project: Project }) {
         <nav className="detail-actions" aria-label="Project links">
           {project.github && (
             <a
-              className="button button-outline"
+              className="button button-outline section-button"
               href={project.github}
+              onPointerEnter={(event) => {
+                const bounds = event.currentTarget.getBoundingClientRect();
+                event.currentTarget.style.setProperty('--reveal-x', `${event.clientX - bounds.left + 1}px`);
+                event.currentTarget.style.setProperty('--reveal-y', `${event.clientY - bounds.top + 1}px`);
+              }}
               target="_blank"
               rel="noreferrer"
               onClick={() =>
@@ -64,6 +66,9 @@ export default function ProjectDetail({ project }: { project: Project }) {
               }
             >
               View source on GitHub <TiltedArrow className="button-arrow" />
+              <span className="section-button-fill" aria-hidden="true">
+                View source on GitHub <TiltedArrow className="button-arrow" />
+              </span>
             </a>
           )}
           {project.demo && (

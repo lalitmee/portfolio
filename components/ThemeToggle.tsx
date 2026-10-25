@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useTheme } from 'next-themes';
-import { MdDarkMode, MdLightMode } from 'react-icons/md';
+import { MoonIcon, SunIcon } from './icons/AnimatedIcons';
 import { animateAppearanceChange } from '../utils/appearance-motion';
 
 export default function ThemeToggle() {
@@ -30,9 +30,9 @@ export default function ThemeToggle() {
     >
       <span className="theme-toggle-icon">
         {mounted && isDark ? (
-          <MdLightMode aria-hidden="true" />
+          <SunIcon />
         ) : (
-          <MdDarkMode aria-hidden="true" />
+          <MoonIcon />
         )}
       </span>
     </button>

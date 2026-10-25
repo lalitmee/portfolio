@@ -9,11 +9,10 @@ test('footer separates Privacy from its primary sitemap', () => {
   assert.match(source, /href="\/privacy\/">Privacy<\/Link>/);
 });
 
-test('back-to-top arrow repeats gently, pauses for interaction, and respects reduced motion', () => {
+test('back-to-top uses finite internal motion without autoplay', () => {
   const css = fs.readFileSync('styles/globals.css', 'utf8');
-  assert.match(css, /\.back-to-top svg\s*\{[^}]*animation: back-to-top-bounce 2\.5s ease-in-out infinite;/);
-  assert.match(css, /\.back-to-top:hover svg,[\s\S]*?animation-play-state: paused;/);
-  assert.match(css, /@keyframes back-to-top-bounce\s*\{[\s\S]*?translateY\(-3px\)/);
-  const reduced = css.slice(css.indexOf('@media (prefers-reduced-motion: reduce)'));
-  assert.match(reduced, /\.back-to-top svg\s*\{[^}]*animation: none/);
+  assert.doesNotMatch(css, /back-to-top-bounce|send-icon-flight|contact-icon-lift|arrow-bounce-tilt/);
+  assert.match(css, /\.up-head\s*\{[^}]*--icon-motion: icon-up/);
+  assert.match(css, /\.animated-icon \.icon-detail\s*\{[^}]*animation: none !important/);
+  assert.match(fs.readFileSync('components/BackToTop.tsx', 'utf8'), /<UpArrowIcon/);
 });

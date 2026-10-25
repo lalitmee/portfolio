@@ -2,6 +2,9 @@ const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const vm = require('node:vm');
 const test = require('node:test');
+require('./load-tsx.cjs');
+const { createRequire } = require('node:module');
+const path = require('node:path');
 
 const { accents, accentInitScript } = require('../utils/appearance.ts');
 
@@ -261,7 +264,7 @@ test('label pointer blur does not dismiss appearance before its radio click', ()
             }
           : name === '../utils/appearance-motion'
             ? { animateAppearanceChange: (_event, update) => update() }
-            : require(name),
+            : createRequire(path.resolve('components/AppearanceMenu.tsx'))(name),
   });
   const menu = module.exports.default();
   const inside = {};

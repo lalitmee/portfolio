@@ -3,14 +3,9 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { FiExternalLink } from 'react-icons/fi';
-import { FaGithub } from 'react-icons/fa';
 import {
-  MdLightbulbOutline,
-  MdWidgets,
-  MdTune,
-  MdConstruction,
-} from 'react-icons/md';
+  ExternalLinkIcon, GithubIcon, BulbIcon, WidgetsIcon, SlidersIcon, ConstructionIcon,
+} from '../../components/icons/AnimatedIcons';
 import SiteLayout from '../../components/SiteLayout';
 import DirectionalArrow from '../../components/DirectionalArrow';
 import { apps, getApp, type App } from '../../data/apps';
@@ -51,10 +46,10 @@ export default function AppDetail({ app }: { app: App }) {
         }}
         onClick={() => trackEvent({ event: 'app_launch', app_slug: app.slug })}
       >
-        <FiExternalLink aria-hidden="true" />{' '}
+        <ExternalLinkIcon aria-hidden="true" />{' '}
         <span className="app-action-label">Open app</span>
         <span className="section-button-fill" aria-hidden="true">
-          <FiExternalLink aria-hidden="true" />{' '}
+          <ExternalLinkIcon aria-hidden="true" />{' '}
           <span className="app-action-label">Open app</span>
         </span>
       </a>
@@ -65,7 +60,7 @@ export default function AppDetail({ app }: { app: App }) {
         target="_blank"
         rel="noreferrer"
       >
-        <FaGithub aria-hidden="true" />{' '}
+        <GithubIcon aria-hidden="true" />{' '}
         <span className="app-action-label">View source</span>
       </a>
     </>
@@ -100,7 +95,7 @@ export default function AppDetail({ app }: { app: App }) {
         {app.motivation && (
           <section>
             <h2 className="app-section-heading">
-              <MdLightbulbOutline aria-hidden="true" /> Why I built it
+              <BulbIcon aria-hidden="true" /> Why I built it
             </h2>
             {app.motivation.split('\n\n').map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -110,7 +105,7 @@ export default function AppDetail({ app }: { app: App }) {
         {app.capabilities.length > 0 && (
           <section>
             <h2 className="app-section-heading">
-              <MdWidgets aria-hidden="true" /> What it does
+              <WidgetsIcon aria-hidden="true" /> What it does
             </h2>
             <ul>
               {app.capabilities.map((item) => (
@@ -122,7 +117,7 @@ export default function AppDetail({ app }: { app: App }) {
         {app.decisions.length > 0 && (
           <section>
             <h2 className="app-section-heading">
-              <MdTune aria-hidden="true" /> Decisions and boundaries
+              <SlidersIcon aria-hidden="true" /> Decisions and boundaries
             </h2>
             <ul>
               {app.decisions.map((item) => (
@@ -133,7 +128,7 @@ export default function AppDetail({ app }: { app: App }) {
         )}
         <section>
           <h2 className="app-section-heading">
-            <MdConstruction aria-hidden="true" /> Still taking shape
+            <ConstructionIcon aria-hidden="true" /> Still taking shape
           </h2>
           <p>
             This is an ongoing project. I’ll keep expanding and refining it as I

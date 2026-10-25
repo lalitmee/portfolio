@@ -1,7 +1,7 @@
 import emailjs from '@emailjs/browser';
 import { FormEvent, useRef, useState } from 'react';
-import { FaGithub, FaLinkedin } from 'react-icons/fa';
-import { MdArrowForward, MdEmail, MdLocationOn, MdSend } from 'react-icons/md';
+import { GithubIcon, LinkedinIcon, EmailIcon, LocationIcon, SendIcon } from './icons/AnimatedIcons';
+import DirectionalArrow from './DirectionalArrow';
 import portfolioData from '../data/portfolio.json';
 import {
   ContactFormErrors,
@@ -176,7 +176,7 @@ export default function Contact() {
                   : 'Send message'}
             </span>
             <span className="send-icon" aria-hidden="true">
-              <MdSend className="send-plane" />
+              <SendIcon className="send-plane" />
             </span>
           </button>
           <p className="form-status" role="status" aria-live="polite">
@@ -185,7 +185,7 @@ export default function Contact() {
           {status.includes('email me instead') && (
             <a className="text-link" href={mailto}>
               Open an email with your message{' '}
-              <MdArrowForward aria-hidden="true" />
+              <DirectionalArrow direction="forward" />
             </a>
           )}
         </form>
@@ -198,7 +198,7 @@ export default function Contact() {
                 trackEvent({ event: 'contact_click', channel: 'email' })
               }
             >
-              <MdEmail aria-hidden="true" /> {email}
+              <EmailIcon aria-hidden="true" /> {email}
             </a>
           </p>
           <p>
@@ -208,7 +208,7 @@ export default function Contact() {
                 trackEvent({ event: 'contact_click', channel: 'linkedin' })
               }
             >
-              <FaLinkedin aria-hidden="true" /> LinkedIn
+              <LinkedinIcon aria-hidden="true" /> LinkedIn
             </a>
           </p>
           <p>
@@ -218,11 +218,11 @@ export default function Contact() {
                 trackEvent({ event: 'contact_click', channel: 'github' })
               }
             >
-              <FaGithub aria-hidden="true" /> GitHub
+              <GithubIcon aria-hidden="true" /> GitHub
             </a>
           </p>
-          <p className="contact-location">
-            <MdLocationOn aria-hidden="true" /> Based in Bengaluru, India.
+          <p className="contact-location icon-label">
+            <LocationIcon aria-hidden="true" /> Based in Bengaluru, India.
           </p>
         </aside>
       </div>

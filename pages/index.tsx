@@ -1,6 +1,7 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { PointerEvent } from 'react';
+import { ExternalLinkIcon } from '../components/icons/AnimatedIcons';
 import DirectionalArrow from '../components/DirectionalArrow';
 import TiltedArrow from '../components/TiltedArrow';
 import SiteLayout from '../components/SiteLayout';
@@ -173,8 +174,9 @@ export default function Home() {
                   Read the story <DirectionalArrow direction="forward" />
                 </Link>
                 <a
-                  className="text-link"
+                  className="button button-outline section-button"
                   href={featuredApp.liveUrl}
+                  onPointerEnter={setButtonRevealOrigin}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`Open ${featuredApp.name} in a new tab`}
@@ -185,8 +187,10 @@ export default function Home() {
                     })
                   }
                 >
-                  Open app{' '}
-                  <TiltedArrow className="app-feature-arrow" />
+                  <ExternalLinkIcon aria-hidden="true" /> Open app
+                  <span className="section-button-fill" aria-hidden="true">
+                    <ExternalLinkIcon aria-hidden="true" /> Open app
+                  </span>
                 </a>
               </div>
             </article>

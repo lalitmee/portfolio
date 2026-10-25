@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SiteLayout from '../../components/SiteLayout';
 import DirectionalArrow from '../../components/DirectionalArrow';
-import TiltedArrow from '../../components/TiltedArrow';
+import { ExternalLinkIcon } from '../../components/icons/AnimatedIcons';
 import { apps } from '../../data/apps';
 import { trackEvent } from '../../utils/analytics';
 
@@ -44,8 +44,13 @@ export default function AppsPage() {
                   Read the story <DirectionalArrow direction="forward" />
                 </Link>
                 <a
-                  className="text-link"
+                  className="button button-outline section-button"
                   href={app.liveUrl}
+                  onPointerEnter={(event) => {
+                    const bounds = event.currentTarget.getBoundingClientRect();
+                    event.currentTarget.style.setProperty('--reveal-x', `${event.clientX - bounds.left + 1}px`);
+                    event.currentTarget.style.setProperty('--reveal-y', `${event.clientY - bounds.top + 1}px`);
+                  }}
                   target="_blank"
                   rel="noreferrer"
                   aria-label={`Open ${app.name} in a new tab`}
@@ -53,8 +58,10 @@ export default function AppsPage() {
                     trackEvent({ event: 'app_launch', app_slug: app.slug })
                   }
                 >
-                  Open app{' '}
-                  <TiltedArrow className="app-launch-arrow" />
+                  <ExternalLinkIcon aria-hidden="true" /> Open app
+                  <span className="section-button-fill" aria-hidden="true">
+                    <ExternalLinkIcon aria-hidden="true" /> Open app
+                  </span>
                 </a>
               </div>
             </div>

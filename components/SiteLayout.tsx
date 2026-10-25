@@ -51,6 +51,7 @@ export default function SiteLayout({
           id="main-content"
           tabIndex={-1}
           onPointerOver={(event) => {
+            if (!window.matchMedia('(hover: hover) and (pointer: fine)').matches) return;
             if (
               event.relatedTarget instanceof Node &&
               event.target instanceof Element &&

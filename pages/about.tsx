@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { MdWorkOutline, MdSchool, MdDescription } from 'react-icons/md';
+import { BriefcaseIcon, EducationIcon, DocumentIcon } from '../components/icons/AnimatedIcons';
 import DirectionalArrow from '../components/DirectionalArrow';
 import SiteLayout from '../components/SiteLayout';
 import portfolioData from '../data/portfolio.json';
@@ -33,7 +33,7 @@ export default function AboutPage() {
         </section>
         <section>
           <h2 className="about-section-heading">
-            <MdWorkOutline aria-hidden="true" /> Career
+            <BriefcaseIcon aria-hidden="true" /> Career
           </h2>
           <ol className="career-timeline">
             {portfolioData.experience.map((job) => (
@@ -59,7 +59,7 @@ export default function AboutPage() {
         </section>
         <section className="education-community">
           <h2 className="about-section-heading">
-            <MdSchool aria-hidden="true" /> Education &amp; community
+            <EducationIcon aria-hidden="true" /> Education &amp; community
           </h2>
           <ul className="education-list">
             {portfolioData.education.map((item) => (
@@ -111,7 +111,7 @@ export default function AboutPage() {
         </section>
         <section className="resume-note">
           <h2 className="about-section-heading">
-            <MdDescription aria-hidden="true" /> Resume
+            <DocumentIcon aria-hidden="true" /> Resume
           </h2>
           <p>The PDF is an older version and may be out of date.</p>
           <div className="resume-actions">

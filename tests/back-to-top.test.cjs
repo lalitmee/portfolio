@@ -4,6 +4,10 @@ const vm = require('node:vm');
 const test = require('node:test');
 const React = require('react');
 const ts = require('typescript');
+const { createRequire } = require('node:module');
+const path = require('node:path');
+require('./load-tsx.cjs');
+const localRequire = createRequire(path.resolve('components/BackToTop.tsx'));
 
 test('back to top follows viewport scroll, returns focus, and cleans up listeners', () => {
   let visible = false;
@@ -31,7 +35,7 @@ test('back to top follows viewport scroll, returns focus, and cleans up listener
       ...React,
       useState: () => [visible, (value) => { visible = value; }],
       useEffect: (callback) => { effect = callback; },
-    } : require(name),
+    } : localRequire(name),
     window,
     document: { getElementById: () => ({ focus: (options) => {
       focused = options.preventScroll;
@@ -45,6 +49,7 @@ test('back to top follows viewport scroll, returns focus, and cleans up listener
   listeners.get('scroll')();
   const button = render();
   assert.equal(button.props['aria-label'], 'Back to top');
+  assert.equal(button.props.children.type.name, 'UpArrowIcon');
   button.props.onClick();
   assert.equal(focused, true);
   assert.equal(scrolled.top, 0);

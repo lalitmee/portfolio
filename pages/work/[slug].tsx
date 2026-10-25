@@ -1,11 +1,8 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import {
-  MdCheckCircleOutline,
-  MdConstruction,
-  MdInfoOutline,
-  MdTune,
-} from 'react-icons/md';
+  OutcomeIcon, ConstructionIcon, InfoIcon, SlidersIcon,
+} from '../../components/icons/AnimatedIcons';
 import SiteLayout from '../../components/SiteLayout';
 import DirectionalArrow from '../../components/DirectionalArrow';
 import {
@@ -70,13 +67,13 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
           <>
             <section>
               <h2>
-                <MdInfoOutline aria-hidden="true" /> Context
+                <InfoIcon aria-hidden="true" /> Context
               </h2>
               <p>{study.context}</p>
             </section>
             <section>
               <h2>
-                <MdConstruction aria-hidden="true" /> Contribution
+                <ConstructionIcon aria-hidden="true" /> Contribution
               </h2>
               <ul>
                 {study.contribution.map((item) => (
@@ -86,7 +83,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
             </section>
             <section>
               <h2>
-                <MdTune aria-hidden="true" /> Decisions
+                <SlidersIcon aria-hidden="true" /> Decisions
               </h2>
               <ul>
                 {study.decisions.map((item) => (
@@ -96,7 +93,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
             </section>
             <section>
               <h2>
-                <MdCheckCircleOutline aria-hidden="true" /> Outcome
+                <OutcomeIcon aria-hidden="true" /> Outcome
               </h2>
               <p>{study.outcome}</p>
             </section>
