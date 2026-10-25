@@ -18,6 +18,15 @@ test('theme toggle uses the selected accent for both icons', () => {
   assert.match(toggle, /color:\s*var\(--blue\)/);
 });
 
+test('menu toggle uses the selected accent for its icon', () => {
+  const css = fs.readFileSync(
+    path.join(__dirname, '../styles/globals.css'),
+    'utf8',
+  );
+  const toggle = css.match(/\.menu-toggle\s*\{([^}]+)\}/)[1];
+  assert.match(toggle, /color:\s*var\(--blue\)/);
+});
+
 test('theme toggle renders a hydration-safe label before mount', () => {
   const componentPath = path.join(__dirname, '../components/ThemeToggle.tsx');
   const { outputText } = ts.transpileModule(

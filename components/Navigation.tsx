@@ -2,7 +2,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
-import { CloseIcon, MenuIcon } from './icons/AnimatedIcons';
+import { MenuIcon } from './icons/AnimatedIcons';
 import ThemeToggle from './ThemeToggle';
 import AppearanceMenu from './AppearanceMenu';
 
@@ -32,7 +32,16 @@ export default function Navigation() {
   useEffect(() => {
     const desktop = window.matchMedia('(min-width: 761px)');
     const closeOnDesktop = () => {
-      if (desktop.matches) setMenuOpen(false);
+      if (desktop.matches) {
+        setMenuOpen(false);
+        if (mobileDialog.current?.open) {
+          if (typeof mobileDialog.current.close === 'function') {
+            mobileDialog.current.close();
+          } else {
+            mobileDialog.current.removeAttribute('open');
+          }
+        }
+      }
     };
 
     desktop.addEventListener('change', closeOnDesktop);
@@ -45,10 +54,22 @@ export default function Navigation() {
 
     if (menuOpen && !dialog.open) {
       restoreMenuFocus.current = true;
-      dialog.showModal();
+      if (typeof dialog.showModal === 'function') {
+        dialog.showModal();
+      } else {
+        dialog.setAttribute('open', '');
+      }
     }
-    if (!menuOpen && dialog.open) {
-      dialog.close();
+  }, [menuOpen]);
+
+  const handleExitComplete = () => {
+    const dialog = mobileDialog.current;
+    if (dialog?.open) {
+      if (typeof dialog.close === 'function') {
+        dialog.close();
+      } else {
+        dialog.removeAttribute('open');
+      }
       if (
         restoreMenuFocus.current &&
         !window.matchMedia('(min-width: 761px)').matches
@@ -57,7 +78,7 @@ export default function Navigation() {
       }
       restoreMenuFocus.current = true;
     }
-  }, [menuOpen]);
+  };
 
   const closeMobileMenu = () => {
     setMenuOpen(false);
@@ -113,7 +134,7 @@ export default function Navigation() {
             onClick={() => setMenuOpen((open) => !open)}
           >
             <span className="menu-toggle-icon">
-              {menuOpen ? <CloseIcon /> : <MenuIcon />}
+              <MenuIcon open={menuOpen} />
             </span>
           </button>
         </div>
@@ -134,55 +155,83 @@ export default function Navigation() {
           if (event.target === mobileDialog.current) closeMobileMenu();
         }}
       >
-        <div className="mobile-menu-topbar">
-          <Link
-            className="site-brand"
-            href="/"
-            aria-label="LK., Lalit Kumar home"
-          >
-            LK<span aria-hidden="true">.</span>
-          </Link>
-          <div className="nav-actions">
-            <AppearanceMenu />
-            <ThemeToggle />
-            <button
-              className="menu-toggle"
-              type="button"
-              aria-label="Close navigation menu"
-              onClick={closeMobileMenu}
+        <AnimatePresence initial={false} onExitComplete={handleExitComplete}>
+          {menuOpen && (
+            <motion.div
+              key="mobile-menu-panel"
+              className="mobile-menu-panel"
+              initial={{
+                opacity: 0,
+                y: shouldReduceMotion ? 0 : -20,
+              }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{
+                opacity: 0,
+                y: shouldReduceMotion ? 0 : -20,
+              }}
+              transition={{
+                duration: shouldReduceMotion ? 0 : 0.28,
+                ease: [0.16, 1, 0.3, 1],
+              }}
             >
-              <CloseIcon />
-            </button>
-          </div>
-        </div>
-        <nav className="mobile-nav" aria-label="Mobile navigation links">
-          <AnimatePresence initial={false}>
-            {menuOpen && (
-              <motion.div className="mobile-nav-links" key="mobile-nav-links">
-                {links.map((link, index) => (
-                  <motion.div
-                    key={link.href}
-                    initial={{ opacity: 0, y: shouldReduceMotion ? 0 : -4 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: shouldReduceMotion ? 0 : -4 }}
-                    transition={{
-                      duration: shouldReduceMotion ? 0 : 0.12,
-                      delay: shouldReduceMotion ? 0 : index * 0.025,
-                    }}
+              <div className="mobile-menu-topbar">
+                <Link
+                  className="site-brand"
+                  href="/"
+                  aria-label="LK., Lalit Kumar home"
+                >
+                  LK<span aria-hidden="true">.</span>
+                </Link>
+                <div className="nav-actions">
+                  <AppearanceMenu />
+                  <ThemeToggle />
+                  <button
+                    className="menu-toggle"
+                    type="button"
+                    aria-expanded={menuOpen}
+                    aria-label="Close navigation menu"
+                    onClick={closeMobileMenu}
                   >
-                    <Link
-                      href={link.href}
-                      aria-current={isCurrent(link.href) ? 'page' : undefined}
-                      onClick={() => setMenuOpen(false)}
+                    <span className="menu-toggle-icon">
+                      <MenuIcon open={menuOpen} />
+                    </span>
+                  </button>
+                </div>
+              </div>
+              <nav className="mobile-nav" aria-label="Mobile navigation links">
+                <div className="mobile-nav-links">
+                  {links.map((link, index) => (
+                    <motion.div
+                      key={link.href}
+                      initial={{
+                        opacity: 0,
+                        y: shouldReduceMotion ? 0 : 20,
+                      }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{
+                        opacity: 0,
+                        y: shouldReduceMotion ? 0 : -10,
+                      }}
+                      transition={{
+                        duration: shouldReduceMotion ? 0 : 0.24,
+                        delay: shouldReduceMotion ? 0 : 0.04 + index * 0.035,
+                        ease: [0.16, 1, 0.3, 1],
+                      }}
                     >
-                      <span>{link.label}</span>
-                    </Link>
-                  </motion.div>
-                ))}
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </nav>
+                      <Link
+                        href={link.href}
+                        aria-current={isCurrent(link.href) ? 'page' : undefined}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        <span>{link.label}</span>
+                      </Link>
+                    </motion.div>
+                  ))}
+                </div>
+              </nav>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </dialog>
     </motion.header>
   );

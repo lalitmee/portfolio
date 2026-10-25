@@ -173,3 +173,30 @@ test('narrow mobile dock uses named icon-only links with touch-sized targets', (
     /@media \(max-width: 359px\)[\s\S]*min-width: 44px;[\s\S]*min-height: 44px;/,
   );
 });
+
+test('mobile view buttons display accent borders by default and preserve inline action grouping with compact spacing', () => {
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  const mobileBlock = css.slice(css.indexOf('@media (max-width: 760px)'));
+  assert.match(
+    mobileBlock,
+    /a\.text-link\s*\{[^}]*border-color:\s*var\(--blue\)/,
+  );
+  assert.match(mobileBlock, /a\.text-link::before\s*\{[^}]*display:\s*none/);
+  assert.match(
+    mobileBlock,
+    /\.button-outline\s*\{[^}]*border-color:\s*var\(--blue\)/,
+  );
+  assert.match(
+    mobileBlock,
+    /\.button,\s*a\.text-link\s*\{[^}]*font-size:\s*0\.875rem/,
+  );
+  assert.match(
+    mobileBlock,
+    /\.app-actions,\s*\.hero-actions,\s*\.resume-actions,\s*\.detail-actions\s*\{[^}]*gap:\s*0\.5rem 0\.65rem/,
+  );
+  const narrowMobile = css.slice(css.indexOf('@media (max-width: 420px)'));
+  assert.doesNotMatch(
+    narrowMobile,
+    /\.hero-actions\s*\{[^}]*flex-direction:\s*column/,
+  );
+});

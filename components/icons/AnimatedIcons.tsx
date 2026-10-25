@@ -211,12 +211,24 @@ export function SendIcon(props: IconProps): JSX.Element {
     </Icon>
   );
 }
-export function MenuIcon(props: IconProps): JSX.Element {
+export interface MenuIconProps extends IconProps {
+  open?: boolean;
+}
+
+export function MenuIcon({
+  open = false,
+  className = '',
+  ...props
+}: MenuIconProps): JSX.Element {
   return (
-    <Icon variant="menu" {...props}>
-      <path className="icon-detail menu-top" d="M3 6h18" />
-      <path d="M3 12h18" />
-      <path className="icon-detail menu-bottom" d="M3 18h18" />
+    <Icon
+      variant="menu"
+      className={`menu-animated-icon ${open ? 'is-open' : ''} ${className}`.trim()}
+      {...props}
+    >
+      <path className="icon-detail menu-bar menu-bar-top" d="M3 6h18" />
+      <path className="icon-detail menu-bar menu-bar-middle" d="M3 12h18" />
+      <path className="icon-detail menu-bar menu-bar-bottom" d="M3 18h18" />
     </Icon>
   );
 }
