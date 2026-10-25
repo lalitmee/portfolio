@@ -47,8 +47,15 @@ export default function Home() {
             software engineering.
           </p>
           <div className="hero-actions">
-            <Link className="button button-primary" href="/work/">
+            <Link
+              className="button button-outline section-button"
+              href="/work/"
+              onPointerEnter={setButtonRevealOrigin}
+            >
               Explore my work <TiltedArrow className="button-arrow" />
+              <span className="section-button-fill" aria-hidden="true">
+                Explore my work <TiltedArrow className="button-arrow" />
+              </span>
             </Link>
             <Link className="text-link" href="/contact/">
               Get in touch <DirectionalArrow direction="forward" />
@@ -104,9 +111,9 @@ export default function Home() {
             ))}
           </div>
           <Link className="button button-outline section-button section-link" href="/work/" onPointerEnter={setButtonRevealOrigin}>
-            All professional work <DirectionalArrow direction="forward" />
+            View work <DirectionalArrow direction="forward" />
             <span className="section-button-fill" aria-hidden="true">
-              All professional work <DirectionalArrow direction="forward" />
+              View work <DirectionalArrow direction="forward" />
             </span>
           </Link>
         </div>
@@ -185,9 +192,9 @@ export default function Home() {
             </article>
           </div>
           <Link className="button button-outline section-button app-feature-browse" href="/apps/" onPointerEnter={setButtonRevealOrigin}>
-            Browse all apps <DirectionalArrow direction="forward" />
+            Browse apps <DirectionalArrow direction="forward" />
             <span className="section-button-fill" aria-hidden="true">
-              Browse all apps <DirectionalArrow direction="forward" />
+              Browse apps <DirectionalArrow direction="forward" />
             </span>
           </Link>
         </div>

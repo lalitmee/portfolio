@@ -1,5 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
+import { MdWorkOutline, MdSchool, MdDescription } from 'react-icons/md';
 import DirectionalArrow from '../components/DirectionalArrow';
 import SiteLayout from '../components/SiteLayout';
 import portfolioData from '../data/portfolio.json';
@@ -31,7 +32,9 @@ export default function AboutPage() {
           />
         </section>
         <section>
-          <h2>Career</h2>
+          <h2 className="about-section-heading">
+            <MdWorkOutline aria-hidden="true" /> Career
+          </h2>
           <ol className="career-timeline">
             {portfolioData.experience.map((job) => (
               <li
@@ -55,7 +58,9 @@ export default function AboutPage() {
           </ol>
         </section>
         <section className="education-community">
-          <h2>Education &amp; community</h2>
+          <h2 className="about-section-heading">
+            <MdSchool aria-hidden="true" /> Education &amp; community
+          </h2>
           <ul className="education-list">
             {portfolioData.education.map((item) => (
               <li
@@ -84,15 +89,30 @@ export default function AboutPage() {
               new technical domains.
             </p>
             <p>
-              <a className="text-link" href="https://github.com/lalitmee">
+              <a
+                className="button button-outline section-button"
+                href="https://github.com/lalitmee"
+                onPointerEnter={(event) => {
+                  const button = event.currentTarget;
+                  const bounds = button.getBoundingClientRect();
+                  button.style.setProperty('--reveal-x', `${event.clientX - bounds.left + 1}px`);
+                  button.style.setProperty('--reveal-y', `${event.clientY - bounds.top + 1}px`);
+                }}
+              >
                 Explore my work on GitHub{' '}
                 <DirectionalArrow direction="forward" />
+                <span className="section-button-fill" aria-hidden="true">
+                  Explore my work on GitHub{' '}
+                  <DirectionalArrow direction="forward" />
+                </span>
               </a>
             </p>
           </div>
         </section>
         <section className="resume-note">
-          <h2>Resume</h2>
+          <h2 className="about-section-heading">
+            <MdDescription aria-hidden="true" /> Resume
+          </h2>
           <p>The PDF is an older version and may be out of date.</p>
           <div className="resume-actions">
             <a

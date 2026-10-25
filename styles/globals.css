@@ -377,7 +377,7 @@ html:has(.mobile-menu-dialog[open]) {
   align-items: center;
   gap: clamp(2rem, 7vw, 7rem);
   min-height: 37rem;
-  padding-block: 5rem 6rem;
+  padding-block: 3rem 6rem;
 }
 
 .hero-copy {
@@ -431,9 +431,15 @@ html:has(.mobile-menu-dialog[open]) {
   margin-top: 2rem;
 }
 
+.button,
+a.text-link {
+  min-height: 3.15rem;
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
 .button {
   display: inline-flex;
-  min-height: 3.15rem;
   align-items: center;
   justify-content: center;
   gap: 0.8rem;
@@ -549,6 +555,35 @@ html:has(.mobile-menu-dialog[open]) {
 .text-link svg {
   display: inline-block;
   transition: transform 160ms ease;
+}
+
+a.text-link {
+  isolation: isolate;
+  justify-content: center;
+  padding: 0.75rem 1rem;
+  border: 1px solid transparent;
+  border-radius: 0.25rem;
+  text-decoration: none;
+}
+
+a.text-link::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  z-index: -1;
+  border: 1px solid var(--blue);
+  border-radius: inherit;
+  pointer-events: none;
+  clip-path: circle(0% at var(--reveal-x, 50%) var(--reveal-y, 50%));
+  transition: clip-path 320ms ease;
+}
+
+a.text-link:hover::before {
+  clip-path: circle(150% at var(--reveal-x, 50%) var(--reveal-y, 50%));
+}
+
+a.text-link:focus-visible::before {
+  clip-path: circle(150% at 50% 50%);
 }
 
 .directional-arrow {
@@ -986,6 +1021,7 @@ html:has(.mobile-menu-dialog[open]) {
 .content-page {
   min-height: 65vh;
   padding-block: clamp(3rem, 8vw, 6.5rem);
+  padding-top: clamp(2rem, 4vw, 3rem);
 }
 
 .content-page > h1 {
@@ -1073,14 +1109,13 @@ html:has(.mobile-menu-dialog[open]) {
 }
 
 .case-detail > section h2 {
-  position: relative;
-  display: block;
+  display: flex;
+  align-items: baseline;
+  gap: 0.6rem;
 }
 
 .case-detail > section h2 svg {
-  position: absolute;
-  left: -1.25em;
-  top: 0.175em;
+  align-self: center;
   width: 0.8em;
   height: 0.8em;
   flex: none;
@@ -1136,7 +1171,7 @@ section p + p {
 }
 
 .case-detail > .eyebrow {
-  margin-top: 3rem;
+  margin-top: 1.5rem;
 }
 
 .case-detail > section ul {
@@ -1634,17 +1669,13 @@ section p + p {
   gap: 0.5rem;
 }
 
-.app-dock-links .button {
-  border-radius: 0.65rem;
-  padding: 0.7rem 1rem;
-}
-
 @media (max-width: 359px) {
   .app-dock-links .app-action-label {
     display: none;
   }
 
-  .app-action-dock .app-dock-links .button {
+  .app-action-dock .app-dock-links .button,
+  .app-action-dock .app-dock-links .text-link {
     min-width: 44px;
     min-height: 44px;
     padding: 0.65rem;
@@ -1656,12 +1687,14 @@ section p + p {
   }
 }
 
+.about-section-heading,
 .app-section-heading {
   display: flex;
   align-items: baseline;
   gap: 0.6rem;
 }
 
+.about-section-heading svg,
 .app-section-heading svg {
   flex: 0 0 1em;
   align-self: center;
@@ -1849,14 +1882,6 @@ body:has(.consent-panel) .back-to-top {
     gap: 0 1rem;
   }
 
-  .case-detail > section {
-    padding-left: 2rem;
-  }
-
-  .case-detail > section h2 svg {
-    left: -2rem;
-  }
-
   .app-detail-actions {
     gap: 0.5rem;
   }
@@ -1870,7 +1895,8 @@ body:has(.consent-panel) .back-to-top {
     margin-inline: auto;
   }
 
-  .app-dock-links .button {
+  .app-dock-links .button,
+  .app-dock-links .text-link {
     padding: 0.65rem 0.8rem;
     font-size: 0.85rem;
   }
@@ -1945,7 +1971,7 @@ body:has(.consent-panel) .back-to-top {
     grid-template-columns: 1fr;
     gap: 3rem;
     min-height: auto;
-    padding-block: 3.5rem 5rem;
+    padding-block: 2rem 5rem;
   }
 
   .hero-portrait {

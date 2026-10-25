@@ -39,18 +39,27 @@ export default function AppDetail({ app }: { app: App }) {
   const actions = (
     <>
       <a
-        className="button button-primary"
+        className="button button-outline section-button"
         aria-label="Open app"
         href={app.liveUrl}
         target="_blank"
         rel="noreferrer"
+        onPointerEnter={(event) => {
+          const bounds = event.currentTarget.getBoundingClientRect();
+          event.currentTarget.style.setProperty('--reveal-x', `${event.clientX - bounds.left + 1}px`);
+          event.currentTarget.style.setProperty('--reveal-y', `${event.clientY - bounds.top + 1}px`);
+        }}
         onClick={() => trackEvent({ event: 'app_launch', app_slug: app.slug })}
       >
         <FiExternalLink aria-hidden="true" />{' '}
         <span className="app-action-label">Open app</span>
+        <span className="section-button-fill" aria-hidden="true">
+          <FiExternalLink aria-hidden="true" />{' '}
+          <span className="app-action-label">Open app</span>
+        </span>
       </a>
       <a
-        className="button button-outline"
+        className="text-link"
         aria-label="View source"
         href={app.sourceUrl}
         target="_blank"
