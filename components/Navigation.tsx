@@ -113,11 +113,7 @@ export default function Navigation() {
             onClick={() => setMenuOpen((open) => !open)}
           >
             <span className="menu-toggle-icon">
-              {menuOpen ? (
-                <CloseIcon />
-              ) : (
-                <MenuIcon />
-              )}
+              {menuOpen ? <CloseIcon /> : <MenuIcon />}
             </span>
           </button>
         </div>

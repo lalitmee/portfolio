@@ -22,5 +22,9 @@ test('starts finite stretch animations for both arrow types', () => {
 
 test('reduced motion never starts an arrow animation', () => {
   global.window = { matchMedia: () => ({ matches: true }) };
-  animateArrows({ querySelectorAll: () => { throw new Error('must not animate'); } });
+  animateArrows({
+    querySelectorAll: () => {
+      throw new Error('must not animate');
+    },
+  });
 });

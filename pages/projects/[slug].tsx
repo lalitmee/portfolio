@@ -52,8 +52,14 @@ export default function ProjectDetail({ project }: { project: Project }) {
               href={project.github}
               onPointerEnter={(event) => {
                 const bounds = event.currentTarget.getBoundingClientRect();
-                event.currentTarget.style.setProperty('--reveal-x', `${event.clientX - bounds.left + 1}px`);
-                event.currentTarget.style.setProperty('--reveal-y', `${event.clientY - bounds.top + 1}px`);
+                event.currentTarget.style.setProperty(
+                  '--reveal-x',
+                  `${event.clientX - bounds.left + 1}px`,
+                );
+                event.currentTarget.style.setProperty(
+                  '--reveal-y',
+                  `${event.clientY - bounds.top + 1}px`,
+                );
               }}
               target="_blank"
               rel="noreferrer"

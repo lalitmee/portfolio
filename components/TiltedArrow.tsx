@@ -1,8 +1,4 @@
-export default function TiltedArrow({
-  className,
-}: {
-  className: string;
-}) {
+export default function TiltedArrow({ className }: { className: string }) {
   return (
     <svg
       className={`tilted-arrow ${className}`}

@@ -24,7 +24,10 @@ const selectedProjects = [
 function setButtonRevealOrigin(event: PointerEvent<HTMLAnchorElement>) {
   const button = event.currentTarget;
   const bounds = button.getBoundingClientRect();
-  button.style.setProperty('--reveal-x', `${event.clientX - bounds.left + 1}px`);
+  button.style.setProperty(
+    '--reveal-x',
+    `${event.clientX - bounds.left + 1}px`,
+  );
   button.style.setProperty('--reveal-y', `${event.clientY - bounds.top + 1}px`);
 }
 
@@ -111,7 +114,11 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          <Link className="button button-outline section-button section-link" href="/work/" onPointerEnter={setButtonRevealOrigin}>
+          <Link
+            className="button button-outline section-button section-link"
+            href="/work/"
+            onPointerEnter={setButtonRevealOrigin}
+          >
             View work <DirectionalArrow direction="forward" />
             <span className="section-button-fill" aria-hidden="true">
               View work <DirectionalArrow direction="forward" />
@@ -144,7 +151,11 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          <Link className="button button-outline section-button section-link" href="/projects/" onPointerEnter={setButtonRevealOrigin}>
+          <Link
+            className="button button-outline section-button section-link"
+            href="/projects/"
+            onPointerEnter={setButtonRevealOrigin}
+          >
             Browse projects <DirectionalArrow direction="forward" />
             <span className="section-button-fill" aria-hidden="true">
               Browse projects <DirectionalArrow direction="forward" />
@@ -195,7 +206,11 @@ export default function Home() {
               </div>
             </article>
           </div>
-          <Link className="button button-outline section-button app-feature-browse" href="/apps/" onPointerEnter={setButtonRevealOrigin}>
+          <Link
+            className="button button-outline section-button app-feature-browse"
+            href="/apps/"
+            onPointerEnter={setButtonRevealOrigin}
+          >
             Browse apps <DirectionalArrow direction="forward" />
             <span className="section-button-fill" aria-hidden="true">
               Browse apps <DirectionalArrow direction="forward" />
@@ -214,7 +229,11 @@ export default function Home() {
             <h2 id="career-title">Eight years across product teams.</h2>
           </div>
           <p>Nykaa · Quartic.ai · KoineArth · Cognitive Clouds</p>
-          <Link className="button button-outline section-button" href="/about/" onPointerEnter={setButtonRevealOrigin}>
+          <Link
+            className="button button-outline section-button"
+            href="/about/"
+            onPointerEnter={setButtonRevealOrigin}
+          >
             Career and background <DirectionalArrow direction="forward" />
             <span className="section-button-fill" aria-hidden="true">
               Career and background <DirectionalArrow direction="forward" />

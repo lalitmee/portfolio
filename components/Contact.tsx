@@ -1,6 +1,12 @@
 import emailjs from '@emailjs/browser';
 import { FormEvent, useRef, useState } from 'react';
-import { GithubIcon, LinkedinIcon, EmailIcon, LocationIcon, SendIcon } from './icons/AnimatedIcons';
+import {
+  GithubIcon,
+  LinkedinIcon,
+  EmailIcon,
+  LocationIcon,
+  SendIcon,
+} from './icons/AnimatedIcons';
 import DirectionalArrow from './DirectionalArrow';
 import portfolioData from '../data/portfolio.json';
 import {

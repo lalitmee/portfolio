@@ -19,7 +19,10 @@ test('standard work-detail headings have decorative icons', () => {
     ['SlidersIcon', 'Decisions'],
     ['OutcomeIcon', 'Outcome'],
   ]) {
-    assert.match(page, new RegExp(`<${icon} aria-hidden="true" \\/>\\s*${heading}`));
+    assert.match(
+      page,
+      new RegExp(`<${icon} aria-hidden="true" \\/>\\s*${heading}`),
+    );
   }
 });
 

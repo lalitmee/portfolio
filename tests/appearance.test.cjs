@@ -264,7 +264,9 @@ test('label pointer blur does not dismiss appearance before its radio click', ()
             }
           : name === '../utils/appearance-motion'
             ? { animateAppearanceChange: (_event, update) => update() }
-            : createRequire(path.resolve('components/AppearanceMenu.tsx'))(name),
+            : createRequire(path.resolve('components/AppearanceMenu.tsx'))(
+                name,
+              ),
   });
   const menu = module.exports.default();
   const inside = {};

@@ -1,6 +1,10 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { BriefcaseIcon, EducationIcon, DocumentIcon } from '../components/icons/AnimatedIcons';
+import {
+  BriefcaseIcon,
+  EducationIcon,
+  DocumentIcon,
+} from '../components/icons/AnimatedIcons';
 import DirectionalArrow from '../components/DirectionalArrow';
 import SiteLayout from '../components/SiteLayout';
 import portfolioData from '../data/portfolio.json';
@@ -95,8 +99,14 @@ export default function AboutPage() {
                 onPointerEnter={(event) => {
                   const button = event.currentTarget;
                   const bounds = button.getBoundingClientRect();
-                  button.style.setProperty('--reveal-x', `${event.clientX - bounds.left + 1}px`);
-                  button.style.setProperty('--reveal-y', `${event.clientY - bounds.top + 1}px`);
+                  button.style.setProperty(
+                    '--reveal-x',
+                    `${event.clientX - bounds.left + 1}px`,
+                  );
+                  button.style.setProperty(
+                    '--reveal-y',
+                    `${event.clientY - bounds.top + 1}px`,
+                  );
                 }}
               >
                 Explore my work on GitHub{' '}

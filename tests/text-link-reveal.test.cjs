@@ -10,15 +10,29 @@ test('action iris starts at entry coordinates and does not restart over its chil
     getBoundingClientRect: () => ({ left: 100, top: 50 }),
     style: { setProperty: (name, value) => properties.set(name, value) },
   };
-  const target = { closest: (selector) => {
-    assert.equal(selector, 'a.text-link');
-    return link;
-  } };
-  setTextLinkRevealOrigin({ target, relatedTarget: null, clientX: 102, clientY: 70 });
+  const target = {
+    closest: (selector) => {
+      assert.equal(selector, 'a.text-link');
+      return link;
+    },
+  };
+  setTextLinkRevealOrigin({
+    target,
+    relatedTarget: null,
+    clientX: 102,
+    clientY: 70,
+  });
   assert.equal(properties.get('--reveal-x'), '2px');
   assert.equal(properties.get('--reveal-y'), '20px');
-  setTextLinkRevealOrigin({ target, relatedTarget: child, clientX: 140, clientY: 80 });
+  setTextLinkRevealOrigin({
+    target,
+    relatedTarget: child,
+    clientX: 140,
+    clientY: 80,
+  });
   assert.equal(properties.get('--reveal-x'), '2px');
   assert.equal(properties.get('--reveal-y'), '20px');
-  assert.doesNotThrow(() => setTextLinkRevealOrigin({ target: { closest: () => null } }));
+  assert.doesNotThrow(() =>
+    setTextLinkRevealOrigin({ target: { closest: () => null } }),
+  );
 });

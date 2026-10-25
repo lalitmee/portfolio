@@ -61,7 +61,8 @@ export default function PrivacyPage() {
             contact message, email me at{' '}
             <a href={`mailto:${portfolioData.contact.email}`}>
               {portfolioData.contact.email}
-            </a>.
+            </a>
+            .
           </p>
         </section>
       </article>

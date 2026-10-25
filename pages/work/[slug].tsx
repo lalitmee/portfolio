@@ -1,7 +1,10 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import {
-  OutcomeIcon, ConstructionIcon, InfoIcon, SlidersIcon,
+  OutcomeIcon,
+  ConstructionIcon,
+  InfoIcon,
+  SlidersIcon,
 } from '../../components/icons/AnimatedIcons';
 import SiteLayout from '../../components/SiteLayout';
 import DirectionalArrow from '../../components/DirectionalArrow';

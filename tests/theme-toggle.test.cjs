@@ -10,7 +10,10 @@ const { ThemeProvider } = require('next-themes');
 require('./load-tsx.cjs');
 
 test('theme toggle uses the selected accent for both icons', () => {
-  const css = fs.readFileSync(path.join(__dirname, '../styles/globals.css'), 'utf8');
+  const css = fs.readFileSync(
+    path.join(__dirname, '../styles/globals.css'),
+    'utf8',
+  );
   const toggle = css.match(/\.theme-toggle\s*\{([^}]+)\}/)[1];
   assert.match(toggle, /color:\s*var\(--blue\)/);
 });

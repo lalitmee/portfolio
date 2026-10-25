@@ -48,8 +48,14 @@ export default function AppsPage() {
                   href={app.liveUrl}
                   onPointerEnter={(event) => {
                     const bounds = event.currentTarget.getBoundingClientRect();
-                    event.currentTarget.style.setProperty('--reveal-x', `${event.clientX - bounds.left + 1}px`);
-                    event.currentTarget.style.setProperty('--reveal-y', `${event.clientY - bounds.top + 1}px`);
+                    event.currentTarget.style.setProperty(
+                      '--reveal-x',
+                      `${event.clientX - bounds.left + 1}px`,
+                    );
+                    event.currentTarget.style.setProperty(
+                      '--reveal-y',
+                      `${event.clientY - bounds.top + 1}px`,
+                    );
                   }}
                   target="_blank"
                   rel="noreferrer"

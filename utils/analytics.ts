@@ -58,12 +58,9 @@ export function setAnalyticsConsent(choice: Consent): void {
 
 function validConfig(): boolean {
   return (
-    /^GTM-[A-Z0-9]+$/.test(
-      process.env.NEXT_PUBLIC_GTM_ID || DEFAULT_GTM_ID,
-    ) &&
+    /^GTM-[A-Z0-9]+$/.test(process.env.NEXT_PUBLIC_GTM_ID || DEFAULT_GTM_ID) &&
     /^G-[A-Z0-9]+$/.test(
-      process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID ||
-        DEFAULT_GA4_MEASUREMENT_ID,
+      process.env.NEXT_PUBLIC_GA4_MEASUREMENT_ID || DEFAULT_GA4_MEASUREMENT_ID,
     )
   );
 }

@@ -23,24 +23,45 @@ test('back to top follows viewport scroll, returns focus, and cleans up listener
       assert.equal(listeners.get(name), handler);
       listeners.delete(name);
     },
-    scrollTo: (options) => { scrolled = options; },
+    scrollTo: (options) => {
+      scrolled = options;
+    },
   };
   const exports = {};
-  vm.runInNewContext(ts.transpileModule(
-    fs.readFileSync('components/BackToTop.tsx', 'utf8'),
-    { compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX } },
-  ).outputText, {
-    exports,
-    require: (name) => name === 'react' ? {
-      ...React,
-      useState: () => [visible, (value) => { visible = value; }],
-      useEffect: (callback) => { effect = callback; },
-    } : localRequire(name),
-    window,
-    document: { getElementById: () => ({ focus: (options) => {
-      focused = options.preventScroll;
-    } }) },
-  });
+  vm.runInNewContext(
+    ts.transpileModule(fs.readFileSync('components/BackToTop.tsx', 'utf8'), {
+      compilerOptions: {
+        module: ts.ModuleKind.CommonJS,
+        jsx: ts.JsxEmit.ReactJSX,
+      },
+    }).outputText,
+    {
+      exports,
+      require: (name) =>
+        name === 'react'
+          ? {
+              ...React,
+              useState: () => [
+                visible,
+                (value) => {
+                  visible = value;
+                },
+              ],
+              useEffect: (callback) => {
+                effect = callback;
+              },
+            }
+          : localRequire(name),
+      window,
+      document: {
+        getElementById: () => ({
+          focus: (options) => {
+            focused = options.preventScroll;
+          },
+        }),
+      },
+    },
+  );
   const render = exports.default;
   assert.equal(render(), null);
   const cleanup = effect();

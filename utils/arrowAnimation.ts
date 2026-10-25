@@ -20,10 +20,7 @@ const animations = [
     '.directional-arrow .arrow-head',
     ['scaleX(1)', 'translateX(50%) scaleX(2)', 'scaleX(1)'],
   ],
-  [
-    '.directional-arrow .arrow-shaft',
-    ['scaleX(1)', 'scaleX(2)', 'scaleX(1)'],
-  ],
+  ['.directional-arrow .arrow-shaft', ['scaleX(1)', 'scaleX(2)', 'scaleX(1)']],
 ] as const;
 
 export function animateArrows(element: Element) {

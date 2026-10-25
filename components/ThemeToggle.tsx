@@ -29,11 +29,7 @@ export default function ThemeToggle() {
       }
     >
       <span className="theme-toggle-icon">
-        {mounted && isDark ? (
-          <SunIcon />
-        ) : (
-          <MoonIcon />
-        )}
+        {mounted && isDark ? <SunIcon /> : <MoonIcon />}
       </span>
     </button>
   );

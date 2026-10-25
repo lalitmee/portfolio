@@ -20,12 +20,30 @@ test('underline follows entry and exit sides without restarting between children
     ['pointerover', 120, 'left'],
     ['pointerover', 160, 'right'],
   ]) {
-    setUnderlineOrigin({ target, type, clientX, relatedTarget: null, pointerType: 'mouse' });
+    setUnderlineOrigin({
+      target,
+      type,
+      clientX,
+      relatedTarget: null,
+      pointerType: 'mouse',
+    });
     assert.equal(properties.get('--underline-origin'), side);
   }
-  setUnderlineOrigin({ target, clientX: 101, relatedTarget: child, pointerType: 'mouse' });
+  setUnderlineOrigin({
+    target,
+    clientX: 101,
+    relatedTarget: child,
+    pointerType: 'mouse',
+  });
   assert.equal(properties.get('--underline-origin'), 'right');
-  setUnderlineOrigin({ target, clientX: 101, relatedTarget: null, pointerType: 'touch' });
+  setUnderlineOrigin({
+    target,
+    clientX: 101,
+    relatedTarget: null,
+    pointerType: 'touch',
+  });
   assert.equal(properties.get('--underline-origin'), 'right');
-  assert.doesNotThrow(() => setUnderlineOrigin({ target: { closest: () => null } }));
+  assert.doesNotThrow(() =>
+    setUnderlineOrigin({ target: { closest: () => null } }),
+  );
 });

@@ -1,27 +1,19 @@
 import { ThemeProvider } from 'next-themes';
 import type { AppProps } from 'next/app';
 import { Outfit } from 'next/font/google';
-import { useRouter } from 'next/router';
-import { useEffect, useRef } from 'react';
 import AnalyticsConsent from '../components/AnalyticsConsent';
 import BackToTop from '../components/BackToTop';
 import Navigation from '../components/Navigation';
-import { setTextLinkRevealOrigin, setUnderlineOrigin } from '../utils/textLinkReveal';
+import PageTransition from '../components/PageTransition';
+import {
+  setTextLinkRevealOrigin,
+  setUnderlineOrigin,
+} from '../utils/textLinkReveal';
 import '../styles/globals.css';
 
 const outfit = Outfit({ subsets: ['latin'], variable: '--font-outfit' });
 
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-  const previousPath = useRef(router.asPath);
-
-  useEffect(() => {
-    if (previousPath.current !== router.asPath) {
-      previousPath.current = router.asPath;
-      document.getElementById('main-content')?.focus({ preventScroll: true });
-    }
-  }, [router.asPath]);
-
   return (
     <ThemeProvider attribute="class" defaultTheme="light" enableSystem={false}>
       <div
@@ -36,7 +28,9 @@ export default function App({ Component, pageProps }: AppProps) {
           Skip to content
         </a>
         <Navigation />
-        <Component {...pageProps} />
+        <PageTransition>
+          <Component {...pageProps} />
+        </PageTransition>
         <BackToTop />
         <AnalyticsConsent />
       </div>

@@ -45,6 +45,7 @@
 **Files:** Create `components/icons/AnimatedIcons.tsx`, `tests/icon-motion.test.cjs`; modify `styles/globals.css`.
 
 **Interfaces:**
+
 - Each named export accepts `IconProps = Omit<React.SVGProps<SVGSVGElement>, 'children'>` and returns `React.JSX.Element`.
 - Exports: `BulbIcon`, `SlidersIcon`, `WidgetsIcon`, `ConstructionIcon`, `BriefcaseIcon`, `EducationIcon`, `DocumentIcon`, `CodeIcon`, `InfoIcon`, `OutcomeIcon`, `ExternalLinkIcon`, `EmailIcon`, `LocationIcon`, `SendIcon`, `MenuIcon`, `CloseIcon`, `SunIcon`, `MoonIcon`, `PaletteIcon`, `CheckIcon`, `GithubIcon`, `LinkedinIcon`, `UpArrowIcon`.
 - Root SVG: `animated-icon` plus a variant class, 24-unit viewBox, 1em dimensions, currentColor, aria-hidden="true", focusable="false". Merge caller classes; retain caller sizing. Fixed aria-hidden/focusable values cannot be overridden.

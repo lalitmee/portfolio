@@ -4,7 +4,12 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
-  ExternalLinkIcon, GithubIcon, BulbIcon, WidgetsIcon, SlidersIcon, ConstructionIcon,
+  ExternalLinkIcon,
+  GithubIcon,
+  BulbIcon,
+  WidgetsIcon,
+  SlidersIcon,
+  ConstructionIcon,
 } from '../../components/icons/AnimatedIcons';
 import SiteLayout from '../../components/SiteLayout';
 import DirectionalArrow from '../../components/DirectionalArrow';
@@ -41,8 +46,14 @@ export default function AppDetail({ app }: { app: App }) {
         rel="noreferrer"
         onPointerEnter={(event) => {
           const bounds = event.currentTarget.getBoundingClientRect();
-          event.currentTarget.style.setProperty('--reveal-x', `${event.clientX - bounds.left + 1}px`);
-          event.currentTarget.style.setProperty('--reveal-y', `${event.clientY - bounds.top + 1}px`);
+          event.currentTarget.style.setProperty(
+            '--reveal-x',
+            `${event.clientX - bounds.left + 1}px`,
+          );
+          event.currentTarget.style.setProperty(
+            '--reveal-y',
+            `${event.clientY - bounds.top + 1}px`,
+          );
         }}
         onClick={() => trackEvent({ event: 'app_launch', app_slug: app.slug })}
       >
