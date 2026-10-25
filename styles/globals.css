@@ -1350,11 +1350,17 @@ section p + p {
   height: 100%;
   min-height: 14rem;
   object-fit: cover;
+  transition: transform 240ms ease;
 }
 
 .app-listing-preview-frame {
   min-height: 14rem;
   overflow: hidden;
+}
+
+.app-listing:hover .app-listing-preview,
+.app-listing:focus-within .app-listing-preview {
+  transform: scale(1.05);
 }
 
 .app-actions {
@@ -1892,6 +1898,11 @@ section p + p {
   .app-actions a:hover .app-launch-arrow,
   .app-actions a:focus-visible .app-launch-arrow {
     animation: none !important;
+    transform: none !important;
+  }
+
+  .app-listing:hover .app-listing-preview,
+  .app-listing:focus-within .app-listing-preview {
     transform: none !important;
   }
 

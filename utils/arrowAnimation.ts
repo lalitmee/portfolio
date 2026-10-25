@@ -18,11 +18,11 @@ const animations = [
   ],
   [
     '.directional-arrow .arrow-head',
-    ['scaleX(1)', 'translateX(50%) scaleX(1.5)', 'scaleX(1)'],
+    ['scaleX(1)', 'translateX(100%) scaleX(2.5)', 'scaleX(1)'],
   ],
   [
     '.directional-arrow .arrow-shaft',
-    ['scaleX(1)', 'scaleX(1.8)', 'scaleX(1)'],
+    ['scaleX(1)', 'scaleX(2.8)', 'scaleX(1)'],
   ],
 ] as const;
 

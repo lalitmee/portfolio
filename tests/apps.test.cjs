@@ -80,6 +80,17 @@ test('directory renders separate story and launch actions from shared records', 
   assert.doesNotMatch(page, /keep your files and data in your browser/);
 });
 
+test('hovering anywhere on an app card zooms its screenshot', () => {
+  const styles = fs.readFileSync(
+    path.join(__dirname, '../styles/globals.css'),
+    'utf8',
+  );
+  assert.match(
+    styles,
+    /\.app-listing:hover \.app-listing-preview,[\s\S]*?transform:\s*scale\(1\.05\)/,
+  );
+});
+
 test('only external launch anchors track app_launch, never story links', () => {
   for (const file of [
     'pages/index.tsx',
