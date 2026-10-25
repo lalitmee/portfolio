@@ -4,6 +4,7 @@ import { Outfit } from 'next/font/google';
 import { useRouter } from 'next/router';
 import { useEffect, useRef } from 'react';
 import AnalyticsConsent from '../components/AnalyticsConsent';
+import BackToTop from '../components/BackToTop';
 import Navigation from '../components/Navigation';
 import '../styles/globals.css';
 
@@ -28,6 +29,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </a>
         <Navigation />
         <Component {...pageProps} />
+        <BackToTop />
         <AnalyticsConsent />
       </div>
     </ThemeProvider>

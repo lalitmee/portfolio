@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 const links = [
   ['Work', '/work/'],
@@ -6,10 +7,12 @@ const links = [
   ['Apps', '/apps/'],
   ['About', '/about/'],
   ['Contact', '/contact/'],
-  ['Privacy', '/privacy/'],
 ];
 
 export default function Footer() {
+  const { asPath } = useRouter();
+  const pathname = asPath.split(/[?#]/, 1)[0].replace(/\/?$/, '/');
+
   return (
     <footer className="site-footer">
       <div className="footer-inner">
@@ -19,12 +22,19 @@ export default function Footer() {
         <p>Product engineering, independent tools, and open-source work.</p>
         <nav aria-label="Footer navigation">
           {links.map(([label, href]) => (
-            <Link key={href} href={href}>
+            <Link
+              key={href}
+              href={href}
+              aria-current={pathname.startsWith(href) ? 'page' : undefined}
+            >
               {label}
             </Link>
           ))}
         </nav>
-        <small>© {new Date().getFullYear()} Lalit Kumar</small>
+        <div className="footer-meta">
+          <small>© {new Date().getFullYear()} Lalit Kumar</small>
+          <Link href="/privacy/">Privacy</Link>
+        </div>
       </div>
     </footer>
   );
