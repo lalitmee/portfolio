@@ -12,7 +12,7 @@ const animations = [
     '.tilted-arrow .arrow-shaft',
     [
       'rotate(-45deg) scaleX(1) rotate(45deg)',
-      'rotate(-45deg) scaleX(1.6) rotate(45deg)',
+      'rotate(-45deg) scaleX(1.8) rotate(45deg)',
       'rotate(-45deg) scaleX(1) rotate(45deg)',
     ],
   ],
