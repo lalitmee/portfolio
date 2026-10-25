@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import type { ReactNode } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
 import Footer from './Footer';
+import { animateArrows } from '../utils/arrowAnimation';
 
 const siteUrl = 'https://www.lalitmee.com';
 
@@ -20,6 +21,13 @@ export default function SiteLayout({
   const path = router.asPath.split(/[?#]/, 1)[0] || '/';
   const canonicalPath = path.endsWith('/') ? path : `${path}/`;
   const canonicalUrl = `${siteUrl}${canonicalPath}`;
+
+  function animateInteractiveArrows(target: EventTarget | null) {
+    if (!(target instanceof Element)) return;
+
+    const link = target.closest('a, button');
+    if (link) animateArrows(link);
+  }
 
   return (
     <>
@@ -39,7 +47,25 @@ export default function SiteLayout({
         <meta name="twitter:card" content="summary_large_image" />
       </Head>
       <div className="site-page">
-        <main id="main-content" tabIndex={-1}>
+        <main
+          id="main-content"
+          tabIndex={-1}
+          onPointerOver={(event) => {
+            if (
+              event.relatedTarget instanceof Node &&
+              event.target instanceof Element &&
+              event.target.closest('a, button')?.contains(event.relatedTarget)
+            ) {
+              return;
+            }
+            animateInteractiveArrows(event.target);
+          }}
+          onFocus={(event) => {
+            if (event.target.matches(':focus-visible')) {
+              animateInteractiveArrows(event.target);
+            }
+          }}
+        >
           <motion.div
             key={path}
             initial={{

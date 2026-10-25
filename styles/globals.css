@@ -434,16 +434,6 @@ html:has(.mobile-menu-dialog[open]) {
   animation: arrow-bounce-tilt 520ms cubic-bezier(0.22, 0.8, 0.3, 1);
 }
 
-.button:hover .tilted-arrow .arrow-head,
-.button:focus-visible .tilted-arrow .arrow-head {
-  animation: tilted-arrow-head-stretch 320ms ease-in-out;
-}
-
-.button:hover .tilted-arrow .arrow-shaft,
-.button:focus-visible .tilted-arrow .arrow-shaft {
-  animation: tilted-arrow-shaft-stretch 320ms ease-in-out;
-}
-
 .send-button {
   position: relative;
   overflow: hidden;
@@ -575,40 +565,6 @@ html:has(.mobile-menu-dialog[open]) {
 .tilted-arrow .arrow-shaft {
   transform-box: view-box;
   transform-origin: 6.4px 19px;
-}
-
-.text-link:hover .directional-arrow .arrow-head,
-.text-link:focus-visible .directional-arrow .arrow-head,
-.section-button:hover .directional-arrow .arrow-head,
-.section-button:focus-visible .directional-arrow .arrow-head {
-  animation: directional-arrow-head-stretch 320ms ease-in-out;
-}
-
-.text-link:hover .directional-arrow .arrow-shaft,
-.text-link:focus-visible .directional-arrow .arrow-shaft,
-.section-button:hover .directional-arrow .arrow-shaft,
-.section-button:focus-visible .directional-arrow .arrow-shaft {
-  animation: directional-arrow-shaft-stretch 320ms ease-in-out;
-}
-
-@keyframes directional-arrow-head-stretch {
-  0%,
-  100% {
-    transform: scaleX(1);
-  }
-  50% {
-    transform: translateX(50%) scaleX(1.5);
-  }
-}
-
-@keyframes directional-arrow-shaft-stretch {
-  0%,
-  100% {
-    transform: scaleX(1);
-  }
-  50% {
-    transform: scaleX(1.8);
-  }
 }
 
 .text-link:hover,
@@ -767,28 +723,6 @@ html:has(.mobile-menu-dialog[open]) {
   animation: arrow-bounce-tilt 520ms cubic-bezier(0.22, 0.8, 0.3, 1);
 }
 
-.case-row:hover .row-arrow .arrow-head,
-.case-row:focus-visible .row-arrow .arrow-head,
-.project-link:hover .row-arrow .arrow-head,
-.project-link:focus-visible .row-arrow .arrow-head,
-.app-actions a:hover .app-feature-arrow .arrow-head,
-.app-actions a:focus-visible .app-feature-arrow .arrow-head,
-.app-listing:hover .app-launch-arrow .arrow-head,
-.app-listing:focus-within .app-launch-arrow .arrow-head {
-  animation: tilted-arrow-head-stretch 320ms ease-in-out;
-}
-
-.case-row:hover .row-arrow .arrow-shaft,
-.case-row:focus-visible .row-arrow .arrow-shaft,
-.project-link:hover .row-arrow .arrow-shaft,
-.project-link:focus-visible .row-arrow .arrow-shaft,
-.app-actions a:hover .app-feature-arrow .arrow-shaft,
-.app-actions a:focus-visible .app-feature-arrow .arrow-shaft,
-.app-listing:hover .app-launch-arrow .arrow-shaft,
-.app-listing:focus-within .app-launch-arrow .arrow-shaft {
-  animation: tilted-arrow-shaft-stretch 320ms ease-in-out;
-}
-
 .case-row .row-arrow {
   align-self: center;
 }
@@ -805,26 +739,6 @@ html:has(.mobile-menu-dialog[open]) {
   }
   100% {
     transform: translate(0, 0) rotate(0);
-  }
-}
-
-@keyframes tilted-arrow-head-stretch {
-  0%,
-  100% {
-    transform: rotate(-45deg) scaleX(1) rotate(45deg);
-  }
-  50% {
-    transform: rotate(-45deg) translateX(50%) scaleX(1.2) rotate(45deg);
-  }
-}
-
-@keyframes tilted-arrow-shaft-stretch {
-  0%,
-  100% {
-    transform: rotate(-45deg) scaleX(1) rotate(45deg);
-  }
-  50% {
-    transform: rotate(-45deg) scaleX(1.8) rotate(45deg);
   }
 }
 
@@ -1436,17 +1350,11 @@ section p + p {
   height: 100%;
   min-height: 14rem;
   object-fit: cover;
-  transition: transform 240ms ease;
 }
 
 .app-listing-preview-frame {
   min-height: 14rem;
   overflow: hidden;
-}
-
-.app-listing-preview-frame:hover .app-listing-preview,
-.app-listing:focus-within .app-listing-preview {
-  transform: scale(1.05);
 }
 
 .app-actions {
@@ -1470,8 +1378,8 @@ section p + p {
   height: 1em;
 }
 
-.app-listing:hover .app-launch-arrow,
-.app-listing:focus-within .app-launch-arrow {
+.app-actions a:hover .app-launch-arrow,
+.app-actions a:focus-visible .app-launch-arrow {
   animation: arrow-bounce-tilt 520ms cubic-bezier(0.22, 0.8, 0.3, 1);
 }
 
@@ -1979,13 +1887,10 @@ section p + p {
     animation: none !important;
   }
 
-  .app-listing:hover .app-launch-arrow,
-  .app-listing:focus-within .app-launch-arrow,
-  .app-listing-preview-frame:hover .app-listing-preview,
-  .app-listing:focus-within .app-listing-preview,
   .app-actions a:hover .app-feature-arrow,
   .app-actions a:focus-visible .app-feature-arrow,
-  .app-listing-preview {
+  .app-actions a:hover .app-launch-arrow,
+  .app-actions a:focus-visible .app-launch-arrow {
     animation: none !important;
     transform: none !important;
   }

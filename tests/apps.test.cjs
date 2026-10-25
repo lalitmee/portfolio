@@ -104,7 +104,7 @@ test('app actions retain decorative arrows and reduced motion', () => {
     'utf8',
   );
   assert.match(styles, /\.app-detail-preview\s*\{[^}]*height:\s*auto/s);
-  assert.match(styles, /\.app-listing:focus-within \.app-launch-arrow/);
+  assert.match(styles, /\.app-actions a:focus-visible \.app-launch-arrow/);
   assert.match(
     styles.slice(styles.indexOf('@media (prefers-reduced-motion: reduce)')),
     /animation:\s*none !important/,
