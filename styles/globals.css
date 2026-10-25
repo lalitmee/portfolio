@@ -434,6 +434,16 @@ html:has(.mobile-menu-dialog[open]) {
   animation: arrow-bounce-tilt 520ms cubic-bezier(0.22, 0.8, 0.3, 1);
 }
 
+.button:hover .tilted-arrow .arrow-head,
+.button:focus-visible .tilted-arrow .arrow-head {
+  animation: tilted-arrow-head-stretch 320ms ease-in-out;
+}
+
+.button:hover .tilted-arrow .arrow-shaft,
+.button:focus-visible .tilted-arrow .arrow-shaft {
+  animation: tilted-arrow-shaft-stretch 320ms ease-in-out;
+}
+
 .send-button {
   position: relative;
   overflow: hidden;
@@ -524,9 +534,9 @@ html:has(.mobile-menu-dialog[open]) {
 .directional-arrow {
   position: relative;
   display: inline-block;
-  width: 1.15em;
+  width: 1.5em;
   height: 1em;
-  overflow: hidden;
+  overflow: visible;
   vertical-align: middle;
 }
 
@@ -536,73 +546,74 @@ html:has(.mobile-menu-dialog[open]) {
   width: 1em;
   height: 1em;
   margin: 0;
+  overflow: visible;
 }
 
-.directional-arrow .arrow-next {
-  opacity: 0;
+.directional-arrow .arrow-head {
+  transform-box: view-box;
+  transform-origin: 67.375% 50%;
+}
+
+.directional-arrow .arrow-shaft {
+  transform-box: view-box;
+  transform-origin: 16.667% 50%;
+}
+
+.tilted-arrow {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  overflow: visible;
+  vertical-align: middle;
+}
+
+.tilted-arrow .arrow-head {
+  transform-box: view-box;
+  transform-origin: 16px 9.4px;
+}
+
+.tilted-arrow .arrow-shaft {
+  transform-box: view-box;
+  transform-origin: 6.4px 19px;
+}
+
+.text-link:hover .directional-arrow .arrow-head,
+.text-link:focus-visible .directional-arrow .arrow-head,
+.section-button:hover .directional-arrow .arrow-head,
+.section-button:focus-visible .directional-arrow .arrow-head {
+  animation: directional-arrow-head-stretch 320ms ease-in-out;
+}
+
+.text-link:hover .directional-arrow .arrow-shaft,
+.text-link:focus-visible .directional-arrow .arrow-shaft,
+.section-button:hover .directional-arrow .arrow-shaft,
+.section-button:focus-visible .directional-arrow .arrow-shaft {
+  animation: directional-arrow-shaft-stretch 320ms ease-in-out;
+}
+
+@keyframes directional-arrow-head-stretch {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: translateX(50%) scaleX(1.5);
+  }
+}
+
+@keyframes directional-arrow-shaft-stretch {
+  0%,
+  100% {
+    transform: scaleX(1);
+  }
+  50% {
+    transform: scaleX(1.8);
+  }
 }
 
 .text-link:hover,
 .text-link:focus-visible {
   text-decoration-color: currentColor;
-}
-
-.text-link:hover .directional-arrow-forward .arrow-current,
-.text-link:focus-visible .directional-arrow-forward .arrow-current {
-  animation: arrow-relay-forward 600ms ease-in-out infinite;
-}
-
-.text-link:hover .directional-arrow-forward .arrow-next,
-.text-link:focus-visible .directional-arrow-forward .arrow-next {
-  animation: arrow-relay-forward-next 600ms ease-in-out infinite;
-}
-
-.text-link:hover .directional-arrow-back .arrow-current,
-.text-link:focus-visible .directional-arrow-back .arrow-current {
-  animation: arrow-relay-back 600ms ease-in-out infinite;
-}
-
-.text-link:hover .directional-arrow-back .arrow-next,
-.text-link:focus-visible .directional-arrow-back .arrow-next {
-  animation: arrow-relay-back-next 600ms ease-in-out infinite;
-}
-
-@keyframes arrow-relay-forward {
-  to {
-    opacity: 0;
-    transform: translateX(1.25em);
-  }
-}
-
-@keyframes arrow-relay-forward-next {
-  0%,
-  30% {
-    opacity: 0;
-    transform: translateX(-1.25em);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes arrow-relay-back {
-  to {
-    opacity: 0;
-    transform: translateX(-1.25em);
-  }
-}
-
-@keyframes arrow-relay-back-next {
-  0%,
-  30% {
-    opacity: 0;
-    transform: translateX(1.25em);
-  }
-  100% {
-    opacity: 1;
-    transform: translateX(0);
-  }
 }
 
 .text-link:active svg {
@@ -756,6 +767,28 @@ html:has(.mobile-menu-dialog[open]) {
   animation: arrow-bounce-tilt 520ms cubic-bezier(0.22, 0.8, 0.3, 1);
 }
 
+.case-row:hover .row-arrow .arrow-head,
+.case-row:focus-visible .row-arrow .arrow-head,
+.project-link:hover .row-arrow .arrow-head,
+.project-link:focus-visible .row-arrow .arrow-head,
+.app-actions a:hover .app-feature-arrow .arrow-head,
+.app-actions a:focus-visible .app-feature-arrow .arrow-head,
+.app-listing:hover .app-launch-arrow .arrow-head,
+.app-listing:focus-within .app-launch-arrow .arrow-head {
+  animation: tilted-arrow-head-stretch 320ms ease-in-out;
+}
+
+.case-row:hover .row-arrow .arrow-shaft,
+.case-row:focus-visible .row-arrow .arrow-shaft,
+.project-link:hover .row-arrow .arrow-shaft,
+.project-link:focus-visible .row-arrow .arrow-shaft,
+.app-actions a:hover .app-feature-arrow .arrow-shaft,
+.app-actions a:focus-visible .app-feature-arrow .arrow-shaft,
+.app-listing:hover .app-launch-arrow .arrow-shaft,
+.app-listing:focus-within .app-launch-arrow .arrow-shaft {
+  animation: tilted-arrow-shaft-stretch 320ms ease-in-out;
+}
+
 .case-row .row-arrow {
   align-self: center;
 }
@@ -772,6 +805,26 @@ html:has(.mobile-menu-dialog[open]) {
   }
   100% {
     transform: translate(0, 0) rotate(0);
+  }
+}
+
+@keyframes tilted-arrow-head-stretch {
+  0%,
+  100% {
+    transform: rotate(-45deg) scaleX(1) rotate(45deg);
+  }
+  50% {
+    transform: rotate(-45deg) translateX(50%) scaleX(1.2) rotate(45deg);
+  }
+}
+
+@keyframes tilted-arrow-shaft-stretch {
+  0%,
+  100% {
+    transform: rotate(-45deg) scaleX(1) rotate(45deg);
+  }
+  50% {
+    transform: rotate(-45deg) scaleX(1.8) rotate(45deg);
   }
 }
 
@@ -814,15 +867,59 @@ html:has(.mobile-menu-dialog[open]) {
 }
 
 .section-link {
-  display: inline-block;
   margin-top: 1.5rem;
 }
 
-.section-heading-inline {
+.section-button {
+  position: relative;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: background-color 160ms ease;
+}
+
+.section-button-fill {
+  position: absolute;
+  inset: -1px;
   display: flex;
-  justify-content: space-between;
-  align-items: end;
-  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+  gap: inherit;
+  padding: inherit;
+  border: 1px solid var(--blue);
+  border-radius: inherit;
+  background: var(--blue);
+  color: #fff;
+  pointer-events: none;
+  clip-path: circle(0% at var(--reveal-x, 50%) var(--reveal-y, 50%));
+  transition: clip-path 320ms ease;
+}
+
+.dark .section-button-fill {
+  color: #121923;
+}
+
+.section-button:hover .section-button-fill,
+.section-button:focus-visible .section-button-fill {
+  clip-path: circle(150% at var(--reveal-x, 50%) var(--reveal-y, 50%));
+}
+
+.section-button:focus-visible .section-button-fill {
+  clip-path: circle(150% at 50% 50%);
+}
+
+.section-button:hover,
+.section-button:focus-visible {
+  transform: none;
+  filter: none;
+}
+
+.button.section-button:hover svg,
+.button.section-button:focus-visible svg {
+  animation: none;
+}
+
+.section-button .directional-arrow {
+  flex: none;
 }
 
 .project-list {
@@ -922,8 +1019,8 @@ html:has(.mobile-menu-dialog[open]) {
   color: inherit;
 }
 
-.app-feature-row:hover .app-feature-arrow,
-.app-feature-row:focus-within .app-feature-arrow {
+.app-actions a:hover .app-feature-arrow,
+.app-actions a:focus-visible .app-feature-arrow {
   animation: arrow-bounce-tilt 520ms cubic-bezier(0.22, 0.8, 0.3, 1);
 }
 
@@ -1771,11 +1868,6 @@ section p + p {
     inset: 0.65rem -0.65rem -0.65rem 0.65rem;
   }
 
-  .section-heading-inline {
-    align-items: start;
-    flex-direction: column;
-  }
-
   .career-strip {
     grid-template-columns: 1fr;
     gap: 1rem;
@@ -1845,6 +1937,10 @@ section p + p {
   .text-link:hover svg,
   .text-link:focus-visible svg,
   .text-link:active svg,
+  .text-link:hover .directional-arrow .arrow-head,
+  .text-link:focus-visible .directional-arrow .arrow-head,
+  .text-link:hover .directional-arrow .arrow-shaft,
+  .text-link:focus-visible .directional-arrow .arrow-shaft,
   .case-row:hover .row-arrow,
   .case-row:focus-visible .row-arrow,
   .case-row:active .row-arrow,
@@ -1856,6 +1952,10 @@ section p + p {
   .button:hover svg,
   .button:focus-visible svg,
   .button:active,
+  .section-button:hover .directional-arrow .arrow-head,
+  .section-button:focus-visible .directional-arrow .arrow-head,
+  .section-button:hover .directional-arrow .arrow-shaft,
+  .section-button:focus-visible .directional-arrow .arrow-shaft,
   .theme-toggle[aria-pressed='true'] .theme-toggle-icon,
   .menu-toggle[aria-expanded='true'] .menu-toggle-icon {
     transform: none !important;
@@ -1866,6 +1966,14 @@ section p + p {
   .button:focus-visible svg,
   .button:hover .send-icon,
   .button:focus-visible .send-icon,
+  .text-link:hover .directional-arrow .arrow-head,
+  .text-link:focus-visible .directional-arrow .arrow-head,
+  .text-link:hover .directional-arrow .arrow-shaft,
+  .text-link:focus-visible .directional-arrow .arrow-shaft,
+  .section-button:hover .directional-arrow .arrow-head,
+  .section-button:focus-visible .directional-arrow .arrow-head,
+  .section-button:hover .directional-arrow .arrow-shaft,
+  .section-button:focus-visible .directional-arrow .arrow-shaft,
   .send-button:hover .send-label,
   .send-button:focus-visible .send-label {
     animation: none !important;
@@ -1875,8 +1983,8 @@ section p + p {
   .app-listing:focus-within .app-launch-arrow,
   .app-listing-preview-frame:hover .app-listing-preview,
   .app-listing:focus-within .app-listing-preview,
-  .app-feature-row:hover .app-feature-arrow,
-  .app-feature-row:focus-within .app-feature-arrow,
+  .app-actions a:hover .app-feature-arrow,
+  .app-actions a:focus-visible .app-feature-arrow,
   .app-listing-preview {
     animation: none !important;
     transform: none !important;
@@ -1887,14 +1995,11 @@ section p + p {
     color: var(--blue);
   }
 
-  .directional-arrow .arrow-current {
-    opacity: 1 !important;
+  .directional-arrow .arrow-head,
+  .directional-arrow .arrow-shaft,
+  .tilted-arrow .arrow-head,
+  .tilted-arrow .arrow-shaft {
     transform: none !important;
-    animation: none !important;
-  }
-
-  .directional-arrow .arrow-next {
-    display: none;
     animation: none !important;
   }
 

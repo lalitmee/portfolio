@@ -1,8 +1,8 @@
 import Link from 'next/link';
 import Image from 'next/image';
-import { MdArrowOutward } from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
 import DirectionalArrow from '../../components/DirectionalArrow';
+import TiltedArrow from '../../components/TiltedArrow';
 import { apps } from '../../data/apps';
 import { trackEvent } from '../../utils/analytics';
 
@@ -54,10 +54,7 @@ export default function AppsPage() {
                   }
                 >
                   Open app{' '}
-                  <MdArrowOutward
-                    className="app-launch-arrow"
-                    aria-hidden="true"
-                  />
+                  <TiltedArrow className="app-launch-arrow" />
                 </a>
               </div>
             </div>

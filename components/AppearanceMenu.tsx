@@ -119,7 +119,7 @@ export default function AppearanceMenu() {
                           } catch {}
                           window.dispatchEvent(new Event('accent-change'));
                           setOpen(false);
-                          trigger.current?.focus();
+                          trigger.current?.focus({ preventScroll: true });
                         });
                       }}
                     />

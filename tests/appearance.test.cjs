@@ -218,6 +218,7 @@ test('label pointer blur does not dismiss appearance before its radio click', ()
   const ts = require('typescript');
   const updates = [];
   let focused = false;
+  let focusOptions;
   const module = { exports: {} };
   const { outputText } = ts.transpileModule(
     fs.readFileSync('components/AppearanceMenu.tsx', 'utf8'),
@@ -240,8 +241,9 @@ test('label pointer blur does not dismiss appearance before its radio click', ()
             useId: () => 'appearance-test',
             useRef: () => ({
               current: {
-                focus: () => {
+                focus: (options) => {
                   focused = true;
+                  focusOptions = options;
                 },
               },
             }),
@@ -285,4 +287,5 @@ test('label pointer blur does not dismiss appearance before its radio click', ()
   });
   assert.deepEqual(updates, [false], 'selection closes the menu');
   assert.equal(focused, true, 'selection returns focus to the trigger');
+  assert.equal(focusOptions?.preventScroll, true);
 });

@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import Link from 'next/link';
-import { MdArrowOutward } from 'react-icons/md';
+import type { PointerEvent } from 'react';
 import DirectionalArrow from '../components/DirectionalArrow';
+import TiltedArrow from '../components/TiltedArrow';
 import SiteLayout from '../components/SiteLayout';
 import { caseStudies } from '../data/caseStudies';
 import { featuredApp } from '../data/apps';
@@ -18,6 +19,13 @@ const selectedProjects = [
 ].map(
   (title) => portfolio.projects.find((project) => project.title === title)!,
 );
+
+function setButtonRevealOrigin(event: PointerEvent<HTMLAnchorElement>) {
+  const button = event.currentTarget;
+  const bounds = button.getBoundingClientRect();
+  button.style.setProperty('--reveal-x', `${event.clientX - bounds.left + 1}px`);
+  button.style.setProperty('--reveal-y', `${event.clientY - bounds.top + 1}px`);
+}
 
 export default function Home() {
   return (
@@ -40,7 +48,7 @@ export default function Home() {
           </p>
           <div className="hero-actions">
             <Link className="button button-primary" href="/work/">
-              Explore my work <MdArrowOutward aria-hidden="true" />
+              Explore my work <TiltedArrow className="button-arrow" />
             </Link>
             <Link className="text-link" href="/contact/">
               Get in touch <DirectionalArrow direction="forward" />
@@ -91,12 +99,15 @@ export default function Home() {
                   <h3>{study.title}</h3>
                   <p>{study.summary}</p>
                 </div>
-                <MdArrowOutward className="row-arrow" aria-hidden="true" />
+                <TiltedArrow className="row-arrow" />
               </Link>
             ))}
           </div>
-          <Link className="text-link section-link" href="/work/">
+          <Link className="button button-outline section-button section-link" href="/work/" onPointerEnter={setButtonRevealOrigin}>
             All professional work <DirectionalArrow direction="forward" />
+            <span className="section-button-fill" aria-hidden="true">
+              All professional work <DirectionalArrow direction="forward" />
+            </span>
           </Link>
         </div>
       </section>
@@ -106,14 +117,11 @@ export default function Home() {
         aria-labelledby="projects-title"
       >
         <div className="page-width">
-          <div className="section-heading section-heading-inline">
+          <div className="section-heading">
             <div>
               <p className="eyebrow">02 / Independent work</p>
               <h2 id="projects-title">Tools shaped by daily use.</h2>
             </div>
-            <Link className="text-link" href="/projects/">
-              Browse projects <DirectionalArrow direction="forward" />
-            </Link>
           </div>
           <div className="project-list">
             {selectedProjects.map((project) => (
@@ -124,10 +132,16 @@ export default function Home() {
               >
                 <span>{project.category}</span>
                 <strong>{project.title}</strong>
-                <MdArrowOutward className="row-arrow" aria-hidden="true" />
+                <TiltedArrow className="row-arrow" />
               </Link>
             ))}
           </div>
+          <Link className="button button-outline section-button section-link" href="/projects/" onPointerEnter={setButtonRevealOrigin}>
+            Browse projects <DirectionalArrow direction="forward" />
+            <span className="section-button-fill" aria-hidden="true">
+              Browse projects <DirectionalArrow direction="forward" />
+            </span>
+          </Link>
         </div>
       </section>
 
@@ -165,16 +179,16 @@ export default function Home() {
                   }
                 >
                   Open app{' '}
-                  <MdArrowOutward
-                    className="app-feature-arrow"
-                    aria-hidden="true"
-                  />
+                  <TiltedArrow className="app-feature-arrow" />
                 </a>
               </div>
             </article>
           </div>
-          <Link className="text-link app-feature-browse" href="/apps/">
+          <Link className="button button-outline section-button app-feature-browse" href="/apps/" onPointerEnter={setButtonRevealOrigin}>
             Browse all apps <DirectionalArrow direction="forward" />
+            <span className="section-button-fill" aria-hidden="true">
+              Browse all apps <DirectionalArrow direction="forward" />
+            </span>
           </Link>
         </div>
       </section>
@@ -189,8 +203,11 @@ export default function Home() {
             <h2 id="career-title">Eight years across product teams.</h2>
           </div>
           <p>Nykaa · Quartic.ai · KoineArth · Cognitive Clouds</p>
-          <Link className="text-link" href="/about/">
+          <Link className="button button-outline section-button" href="/about/" onPointerEnter={setButtonRevealOrigin}>
             Career and background <DirectionalArrow direction="forward" />
+            <span className="section-button-fill" aria-hidden="true">
+              Career and background <DirectionalArrow direction="forward" />
+            </span>
           </Link>
         </div>
       </section>

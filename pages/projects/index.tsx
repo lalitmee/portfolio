@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import { useState } from 'react';
 import { motion, useReducedMotion } from 'framer-motion';
-import { MdArrowOutward } from 'react-icons/md';
+import TiltedArrow from '../../components/TiltedArrow';
 import SiteLayout from '../../components/SiteLayout';
 import portfolioData from '../../data/portfolio.json';
 import { trackEvent } from '../../utils/analytics';
@@ -40,7 +40,7 @@ function ProjectLink({
     >
       <span>{project.category}</span>
       <strong>{project.title}</strong>
-      <MdArrowOutward className="row-arrow" aria-hidden="true" />
+      <TiltedArrow className="row-arrow" />
     </Link>
   );
 }

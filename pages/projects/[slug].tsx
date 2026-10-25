@@ -1,12 +1,12 @@
 import type { GetStaticPaths, GetStaticProps } from 'next';
 import Link from 'next/link';
 import {
-  MdArrowOutward,
   MdCode,
   MdLightbulbOutline,
 } from 'react-icons/md';
 import SiteLayout from '../../components/SiteLayout';
 import DirectionalArrow from '../../components/DirectionalArrow';
+import TiltedArrow from '../../components/TiltedArrow';
 import portfolioData from '../../data/portfolio.json';
 import { trackEvent } from '../../utils/analytics';
 import { generateSlug } from '../../utils/slug';
@@ -63,7 +63,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                 })
               }
             >
-              View source on GitHub <MdArrowOutward aria-hidden="true" />
+              View source on GitHub <TiltedArrow className="button-arrow" />
             </a>
           )}
           {project.demo && (
@@ -80,7 +80,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
                 })
               }
             >
-              Open project <MdArrowOutward aria-hidden="true" />
+              Open project <TiltedArrow className="button-arrow" />
             </a>
           )}
         </nav>

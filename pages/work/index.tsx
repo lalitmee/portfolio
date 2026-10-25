@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { MdArrowOutward } from 'react-icons/md';
+import TiltedArrow from '../../components/TiltedArrow';
 import SiteLayout from '../../components/SiteLayout';
 import { caseStudies } from '../../data/caseStudies';
 
@@ -31,7 +31,7 @@ export default function WorkPage() {
                 <h2>{study.title}</h2>
                 <p>{study.summary}</p>
               </div>
-              <MdArrowOutward className="row-arrow" aria-hidden="true" />
+              <TiltedArrow className="row-arrow" />
             </Link>
           ))}
         </div>
