@@ -82,7 +82,7 @@ test('mobile appearance modal is presented as a bottom sheet with a handle', () 
     /\.appearance-colors\s*\{[^}]*grid-template-columns:\s*minmax\(0, 1fr\)/,
   );
   assert.match(
-    css,
-    /\.appearance-font-group\s*\{[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/,
+    mobileMedia,
+    /\.appearance-font-group\s*\{[^}]*grid-template-columns:\s*minmax\(0, 1fr\)/,
   );
 });

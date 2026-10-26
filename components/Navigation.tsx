@@ -13,7 +13,6 @@ const links = [
   { href: '/apps/', label: 'Apps' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
-  { href: '/playground/', label: 'Playground' },
 ];
 
 export default function Navigation() {

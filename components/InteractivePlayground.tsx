@@ -107,7 +107,11 @@ function CloseIcon({ className }: { className?: string }) {
   );
 }
 
-export default function InteractivePlayground() {
+export default function InteractivePlayground({
+  onExit,
+}: {
+  onExit?: () => void;
+}) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const shouldReduceMotion = useReducedMotion();
@@ -129,8 +133,12 @@ export default function InteractivePlayground() {
     settingsRef.current = { mode, force, density, showLines };
   }, [mode, force, density, showLines]);
 
-  const triggerShockwaveRef = useRef<((x?: number, y?: number) => void) | null>(null);
-  const triggerImpulseRef = useRef<((type: 'disperse' | 'gather' | 'reset') => void) | null>(null);
+  const triggerShockwaveRef = useRef<((x?: number, y?: number) => void) | null>(
+    null,
+  );
+  const triggerImpulseRef = useRef<
+    ((type: 'disperse' | 'gather' | 'reset') => void) | null
+  >(null);
 
   // Toggle fullscreen mode
   const toggleFullscreen = () => {
@@ -157,8 +165,10 @@ export default function InteractivePlayground() {
     const onFullscreenChange = () => {
       setIsFullscreen(Boolean(document.fullscreenElement));
     };
+    onFullscreenChange();
     document.addEventListener('fullscreenchange', onFullscreenChange);
-    return () => document.removeEventListener('fullscreenchange', onFullscreenChange);
+    return () =>
+      document.removeEventListener('fullscreenchange', onFullscreenChange);
   }, []);
 
   // Close modal on Escape key
@@ -214,7 +224,9 @@ export default function InteractivePlayground() {
     const resize = () => {
       const rect = container.getBoundingClientRect();
       width = rect.width;
-      height = isFullscreen ? window.innerHeight : Math.max(380, Math.min(620, rect.height || 520));
+      height = isFullscreen
+        ? window.innerHeight
+        : Math.max(380, Math.min(620, rect.height || 520));
       dpr = Math.min(window.devicePixelRatio || 1, 2);
 
       canvas.width = width * dpr;
@@ -484,17 +496,35 @@ export default function InteractivePlayground() {
             onClick={() => triggerShockwaveRef.current?.()}
           >
             <span>⚡ Pulse</span>
-            {pulseCount > 0 && <span className="pulse-badge">{pulseCount}</span>}
+            {pulseCount > 0 && (
+              <span className="pulse-badge">{pulseCount}</span>
+            )}
           </button>
 
           <button
             type="button"
             className="canvas-action-btn"
-            aria-label={isFullscreen ? 'Exit full screen' : 'Enter full screen'}
-            title={isFullscreen ? 'Exit full screen' : 'Full screen'}
-            onClick={toggleFullscreen}
+            aria-label={
+              onExit
+                ? 'Exit Playground'
+                : isFullscreen
+                  ? 'Exit full screen'
+                  : 'Enter full screen'
+            }
+            title={
+              onExit
+                ? 'Exit Playground'
+                : isFullscreen
+                  ? 'Exit full screen'
+                  : 'Full screen'
+            }
+            onClick={onExit ?? toggleFullscreen}
           >
-            {isFullscreen ? <FullscreenExitIcon /> : <FullscreenIcon />}
+            {onExit || isFullscreen ? (
+              <FullscreenExitIcon />
+            ) : (
+              <FullscreenIcon />
+            )}
           </button>
 
           <button
@@ -532,11 +562,15 @@ export default function InteractivePlayground() {
             >
               <div className="playground-modal-header">
                 <div>
-                  <h2 id="playground-settings-title" className="playground-modal-title">
+                  <h2
+                    id="playground-settings-title"
+                    className="playground-modal-title"
+                  >
                     Sandbox Controls
                   </h2>
                   <p className="playground-modal-desc">
-                    Customize physics dynamics, pointer interaction, and particle density.
+                    Customize physics dynamics, pointer interaction, and
+                    particle density.
                   </p>
                 </div>
                 <button
@@ -555,31 +589,44 @@ export default function InteractivePlayground() {
                   <div className="control-header">
                     <span className="control-name">Simulation Mode</span>
                     <span className="control-desc">
-                      {mode === 'constellation' && 'Nodes freely drift and connect via proximity springs.'}
-                      {mode === 'vortex' && 'Particles spiral in a gravitational orbital vortex.'}
-                      {mode === 'matrix' && 'Continuous downward cascading kinetic streams.'}
+                      {mode === 'constellation' &&
+                        'Nodes freely drift and connect via proximity springs.'}
+                      {mode === 'vortex' &&
+                        'Particles spiral in a gravitational orbital vortex.'}
+                      {mode === 'matrix' &&
+                        'Continuous downward cascading kinetic streams.'}
                     </span>
                   </div>
-                  <div className="segmented-toggle" role="group" aria-label="Simulation Mode">
-                    {(['constellation', 'vortex', 'matrix'] as const).map((m) => (
-                      <button
-                        key={m}
-                        type="button"
-                        className={`segmented-opt ${mode === m ? 'is-active' : ''}`}
-                        onClick={() => setMode(m)}
-                      >
-                        {mode === m && (
-                          <motion.span
-                            className="segmented-active-pill"
-                            layoutId="mode-pill"
-                            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
-                          />
-                        )}
-                        <span className="segmented-text">
-                          {m.charAt(0).toUpperCase() + m.slice(1)}
-                        </span>
-                      </button>
-                    ))}
+                  <div
+                    className="segmented-toggle"
+                    role="group"
+                    aria-label="Simulation Mode"
+                  >
+                    {(['constellation', 'vortex', 'matrix'] as const).map(
+                      (m) => (
+                        <button
+                          key={m}
+                          type="button"
+                          className={`segmented-opt ${mode === m ? 'is-active' : ''}`}
+                          onClick={() => setMode(m)}
+                        >
+                          {mode === m && (
+                            <motion.span
+                              className="segmented-active-pill"
+                              layoutId="mode-pill"
+                              transition={{
+                                type: 'spring',
+                                stiffness: 500,
+                                damping: 35,
+                              }}
+                            />
+                          )}
+                          <span className="segmented-text">
+                            {m.charAt(0).toUpperCase() + m.slice(1)}
+                          </span>
+                        </button>
+                      ),
+                    )}
                   </div>
                 </div>
 
@@ -593,7 +640,11 @@ export default function InteractivePlayground() {
                         : 'Gravitational attraction: particles are drawn toward the cursor.'}
                     </span>
                   </div>
-                  <div className="segmented-toggle" role="group" aria-label="Pointer Force">
+                  <div
+                    className="segmented-toggle"
+                    role="group"
+                    aria-label="Pointer Force"
+                  >
                     {(['repel', 'attract'] as const).map((f) => (
                       <button
                         key={f}
@@ -605,11 +656,17 @@ export default function InteractivePlayground() {
                           <motion.span
                             className="segmented-active-pill"
                             layoutId="force-pill"
-                            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                            transition={{
+                              type: 'spring',
+                              stiffness: 500,
+                              damping: 35,
+                            }}
                           />
                         )}
                         <span className="segmented-text">
-                          {f === 'repel' ? 'Repel (Deflect)' : 'Attract (Gravity)'}
+                          {f === 'repel'
+                            ? 'Repel (Deflect)'
+                            : 'Attract (Gravity)'}
                         </span>
                       </button>
                     ))}
@@ -624,7 +681,11 @@ export default function InteractivePlayground() {
                       Adjust active node count ({density} particles simulated).
                     </span>
                   </div>
-                  <div className="segmented-toggle" role="group" aria-label="Particle Density">
+                  <div
+                    className="segmented-toggle"
+                    role="group"
+                    aria-label="Particle Density"
+                  >
                     {[30, 60, 90].map((d) => (
                       <button
                         key={d}
@@ -636,11 +697,19 @@ export default function InteractivePlayground() {
                           <motion.span
                             className="segmented-active-pill"
                             layoutId="density-pill"
-                            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                            transition={{
+                              type: 'spring',
+                              stiffness: 500,
+                              damping: 35,
+                            }}
                           />
                         )}
                         <span className="segmented-text">
-                          {d === 30 ? 'Low (30)' : d === 60 ? 'Medium (60)' : 'High (90)'}
+                          {d === 30
+                            ? 'Low (30)'
+                            : d === 60
+                              ? 'Medium (60)'
+                              : 'High (90)'}
                         </span>
                       </button>
                     ))}
@@ -655,7 +724,11 @@ export default function InteractivePlayground() {
                       Render faint spring lines between nearby nodes.
                     </span>
                   </div>
-                  <div className="segmented-toggle" role="group" aria-label="Connection Web">
+                  <div
+                    className="segmented-toggle"
+                    role="group"
+                    aria-label="Connection Web"
+                  >
                     {[true, false].map((v) => (
                       <button
                         key={String(v)}
@@ -667,7 +740,11 @@ export default function InteractivePlayground() {
                           <motion.span
                             className="segmented-active-pill"
                             layoutId="lines-pill"
-                            transition={{ type: 'spring', stiffness: 500, damping: 35 }}
+                            transition={{
+                              type: 'spring',
+                              stiffness: 500,
+                              damping: 35,
+                            }}
                           />
                         )}
                         <span className="segmented-text">
@@ -682,7 +759,9 @@ export default function InteractivePlayground() {
                 <div className="control-item">
                   <div className="control-header">
                     <span className="control-name">Impulses & Actions</span>
-                    <span className="control-desc">Trigger instant physics waves or reset state.</span>
+                    <span className="control-desc">
+                      Trigger instant physics waves or reset state.
+                    </span>
                   </div>
                   <div className="modal-actions-row">
                     <button

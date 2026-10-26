@@ -49,7 +49,7 @@ test('InteractivePlayground styles are defined with responsive height, fullscree
   assert.match(reducedMotion, /\.playground-frame/);
 });
 
-test('Dedicated playground page features InteractivePlayground and navigation links to it', () => {
+test('playground page stays available through an accessible footer easter egg', () => {
   const page = fs.readFileSync(
     path.join(__dirname, '../pages/playground.tsx'),
     'utf8',
@@ -58,11 +58,106 @@ test('Dedicated playground page features InteractivePlayground and navigation li
     page,
     /import InteractivePlayground from '\.\.\/components\/InteractivePlayground'/,
   );
-  assert.match(page, /<InteractivePlayground\s*\/>/);
+  assert.match(
+    page,
+    /<InteractivePlayground\s+onExit=\{exitPlayground\}\s*\/>/,
+  );
 
   const nav = fs.readFileSync(
     path.join(__dirname, '../components/Navigation.tsx'),
     'utf8',
   );
-  assert.match(nav, /href:\s*['"]\/playground\/['"]/);
+  assert.doesNotMatch(nav, /href:\s*['"]\/playground\/['"]/);
+
+  const footer = fs.readFileSync(
+    path.join(__dirname, '../components/Footer.tsx'),
+    'utf8',
+  );
+  const footerLinks = footer.match(/const links = \[[\s\S]*?\];/)[0];
+  assert.doesNotMatch(footerLinks, /Playground/);
+  assert.match(footer, /new IntersectionObserver/);
+  assert.match(footer, /aria-hidden={!playgroundVisible}/);
+  assert.match(footer, /tabIndex={playgroundVisible \? 0 : -1}/);
+  assert.match(footer, /href="\/playground\/"/);
+  assert.match(footer, /className="playground-constellation"/);
+  assert.doesNotMatch(footer, /▶/);
+  assert.match(footer, /className="playground-tab-label"[^>]*>\s*PLAY\s*</);
+  assert.match(
+    footer,
+    /className="playground-tab-full-label"[^>]*>\s*Playground\s*</,
+  );
+
+  const css = fs.readFileSync(
+    path.join(__dirname, '../styles/globals.css'),
+    'utf8',
+  );
+  assert.match(css, /\.playground-easter-egg\.is-visible\s*\{/);
+  assert.match(css, /\.playground-easter-egg\s*\{[^}]*visibility: hidden/);
+  const tabStyles = css.match(/\.playground-easter-egg\s*\{([^}]+)\}/)[1];
+  assert.match(tabStyles, /left: 50%/);
+  assert.match(tabStyles, /transform: translate\(-50%, calc\(100% \+ 1rem\)\)/);
+  assert.match(tabStyles, /transform 420ms cubic-bezier\(0\.22, 1, 0\.36, 1\)/);
+  assert.match(tabStyles, /width 320ms cubic-bezier\(0\.22, 1, 0\.36, 1\)/);
+  const visibleTab = css.match(
+    /\.playground-easter-egg\.is-visible\s*\{([^}]+)\}/,
+  )[1];
+  assert.match(visibleTab, /transform: translate\(-50%, 0\)/);
+  assert.match(
+    css,
+    /\.playground-easter-egg:hover \.playground-tab-full-label/,
+  );
+  assert.match(css, /\.playground-constellation-node/);
+  assert.match(css, /@keyframes playground-constellation-pulse/);
+  assert.match(css, /\.playground-easter-egg:hover \.playground-constellation/);
+});
+
+test('Play opens an immersive playground and requests fullscreen from the click', () => {
+  const footer = fs.readFileSync(
+    path.join(__dirname, '../components/Footer.tsx'),
+    'utf8',
+  );
+  assert.match(footer, /onClick=\{\(event\) =>/);
+  assert.match(footer, /document\.documentElement\.requestFullscreen/);
+
+  const page = fs.readFileSync(
+    path.join(__dirname, '../pages/playground.tsx'),
+    'utf8',
+  );
+  assert.match(
+    page,
+    /className="page-width content-page playground-immersive"/,
+  );
+
+  const playground = fs.readFileSync(
+    path.join(__dirname, '../components/InteractivePlayground.tsx'),
+    'utf8',
+  );
+  assert.match(
+    playground,
+    /setIsFullscreen\(Boolean\(document\.fullscreenElement\)\)/,
+  );
+  assert.match(playground, /onExit\?: \(\) => void/);
+  assert.match(playground, /aria-label=\{\s*onExit\s*\?\s*'Exit Playground'/s);
+
+  const pageSource = fs.readFileSync(
+    path.join(__dirname, '../pages/playground.tsx'),
+    'utf8',
+  );
+  assert.match(pageSource, /router\.back\(\)/);
+  assert.match(pageSource, /router\.push\('\/'\)/);
+  assert.match(pageSource, /document\.exitFullscreen/);
+
+  const css = fs.readFileSync(
+    path.join(__dirname, '../styles/globals.css'),
+    'utf8',
+  );
+  assert.match(css, /body:has\(\.playground-immersive\) \.site-header/);
+  const immersiveStyles = css.match(
+    /\.content-page\.playground-immersive\s*\{([^}]+)\}/,
+  );
+  assert.ok(immersiveStyles);
+  assert.match(immersiveStyles[1], /min-height:\s*100dvh/);
+  assert.match(immersiveStyles[1], /padding:\s*0/);
+  assert.match(css, /\.playground-immersive \.playground-frame\s*\{/);
+  assert.match(css, /@keyframes playground-stage-enter/);
 });

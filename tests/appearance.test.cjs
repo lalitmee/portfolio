@@ -352,6 +352,23 @@ test('appearance panel uses responsive entry and exit motion without leaving clo
   assert.match(menu, /inert=\{!open\} aria-hidden=\{!open\}/);
 });
 
+test('global scrollbars use a narrow accent thumb on a transparent track', () => {
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  assert.match(
+    css,
+    /\*\s*\{[^}]*scrollbar-color:\s*var\(--blue\) transparent[^}]*scrollbar-width:\s*thin/,
+  );
+  assert.match(css, /::-webkit-scrollbar\s*\{[^}]*width:\s*5px/);
+  assert.match(
+    css,
+    /::-webkit-scrollbar-thumb\s*\{[^}]*background:\s*var\(--blue\)/,
+  );
+  assert.match(
+    css,
+    /::-webkit-scrollbar-thumb:hover\s*\{[^}]*color-mix\(in srgb, var\(--blue\)/,
+  );
+});
+
 test('appearance modal tabs, accent selection, and close behavior remain interactive', () => {
   const ts = require('typescript');
   const updates = [];

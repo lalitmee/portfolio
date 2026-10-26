@@ -316,6 +316,29 @@ html {
   scroll-padding-top: 5rem;
 }
 
+* {
+  scrollbar-color: var(--blue) transparent;
+  scrollbar-width: thin;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 999px;
+  background: var(--blue);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: color-mix(in srgb, var(--blue) 82%, var(--ink));
+}
+
 body {
   margin: 0;
   background: var(--paper);
@@ -734,8 +757,6 @@ button {
   margin-top: 1.5rem;
   overflow-y: auto;
   overscroll-behavior: contain;
-  scrollbar-color: var(--line) transparent;
-  scrollbar-width: thin;
 }
 
 .appearance-tab-panel[hidden] {
@@ -1720,6 +1741,42 @@ a.text-link:focus-visible::before {
   border: none !important;
   z-index: 1000 !important;
   margin: 0 !important;
+}
+
+body:has(.playground-immersive) .site-header,
+body:has(.playground-immersive) .site-footer,
+body:has(.playground-immersive) .back-to-top {
+  display: none !important;
+}
+
+body:has(.playground-immersive) .site-page {
+  min-height: 100dvh;
+}
+
+.content-page.playground-immersive {
+  width: 100%;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+}
+
+.playground-immersive .playground-frame {
+  height: 100dvh;
+  min-height: 100dvh;
+  border: 0;
+  border-radius: 0;
+  animation: playground-stage-enter 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes playground-stage-enter {
+  from {
+    opacity: 0;
+    transform: scale(1.035);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 .playground-canvas {
@@ -2842,6 +2899,126 @@ body:has(.consent-panel) .back-to-top {
   padding-block: 2.5rem;
 }
 
+.playground-easter-egg {
+  position: fixed;
+  left: 50%;
+  bottom: calc(1rem + env(safe-area-inset-bottom));
+  z-index: 30;
+  display: flex;
+  width: 7.25rem;
+  height: 3.25rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55rem;
+  padding-inline: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--blue);
+  color: var(--paper);
+  text-decoration: none;
+  box-shadow: 0 2px 8px #0002;
+  transform: translate(-50%, calc(100% + 1rem));
+  visibility: hidden;
+  opacity: 0;
+  transition:
+    transform 420ms cubic-bezier(0.22, 1, 0.36, 1),
+    opacity 320ms ease,
+    width 320ms cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 420ms;
+}
+
+.playground-constellation {
+  width: 1.5rem;
+  height: 1.25rem;
+  flex: none;
+  overflow: visible;
+  transition: transform 220ms ease;
+}
+
+.playground-constellation-lines {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1;
+  opacity: 0.65;
+}
+
+.playground-constellation-node {
+  fill: currentColor;
+  transform-box: fill-box;
+  transform-origin: center;
+}
+
+.playground-easter-egg.is-visible .playground-constellation-node {
+  animation: playground-constellation-pulse 700ms cubic-bezier(0.22, 1, 0.36, 1)
+    both;
+}
+
+.playground-constellation-node:nth-of-type(2) {
+  animation-delay: 70ms;
+}
+
+.playground-constellation-node:nth-of-type(3) {
+  animation-delay: 140ms;
+}
+
+.playground-constellation-node:nth-of-type(4) {
+  animation-delay: 210ms;
+}
+
+@keyframes playground-constellation-pulse {
+  0% {
+    opacity: 0.55;
+    transform: scale(0.7);
+  }
+  65% {
+    opacity: 1;
+    transform: scale(1.3);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.playground-tab-label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.playground-tab-full-label {
+  display: none;
+  white-space: nowrap;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.playground-easter-egg.is-visible {
+  transform: translate(-50%, 0);
+  visibility: visible;
+  opacity: 1;
+}
+
+.playground-easter-egg:hover,
+.playground-easter-egg:focus-visible {
+  width: 10rem;
+}
+
+.playground-easter-egg:hover .playground-constellation,
+.playground-easter-egg:focus-visible .playground-constellation {
+  transform: scale(1.15);
+}
+
+.playground-easter-egg:hover .playground-tab-label,
+.playground-easter-egg:focus-visible .playground-tab-label {
+  display: none;
+}
+
+.playground-easter-egg:hover .playground-tab-full-label,
+.playground-easter-egg:focus-visible .playground-tab-full-label {
+  display: inline;
+}
+
 .footer-inner {
   display: grid;
   grid-template-columns: 1fr auto;
@@ -3059,6 +3236,10 @@ body:has(.consent-panel) .back-to-top {
   .appearance-colors {
     grid-template-columns: minmax(0, 1fr);
     row-gap: 0.75rem;
+  }
+
+  .appearance-font-group {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .appearance-option {
