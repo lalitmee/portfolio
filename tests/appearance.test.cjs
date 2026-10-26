@@ -278,15 +278,16 @@ test('appearance controls are present beside both theme toggles with native keyb
   assert.match(menu, /aria-modal="true"/);
   assert.match(menu, /role="tablist"/);
   assert.match(menu, /layoutId=\{`\$\{id\}-tab-selection`\}/);
-  assert.match(menu, /<legend>Accent color<\/legend>/);
+  assert.match(menu, /<strong>Accent color<\/strong>/);
+  assert.match(menu, /Choose the accent used for highlights and\s+controls/);
   assert.match(menu, /<strong>Headings<\/strong>/);
   assert.match(menu, /<strong>Body text<\/strong>/);
   assert.match(menu, /type="radio"/);
   assert.match(menu, /event.key === 'Escape'/);
   assert.match(menu, /stopPropagation\(\)/);
   assert.match(menu, /trigger.current\?\.focus\(\{ preventScroll: true \}\)/);
-  assert.match(menu, /localStorage.setItem\('body-font', font.id\)/);
-  assert.match(menu, /localStorage.setItem\('heading-font', font.id\)/);
+  assert.match(menu, /localStorage.setItem\(\s*'body-font',\s*font.id/);
+  assert.match(menu, /localStorage.setItem\(\s*'heading-font',\s*font.id/);
   assert.match(menu, /root\.dataset\.bodyFont = font\.id/);
   assert.match(menu, /root\.dataset\.headingFont = font\.id/);
   assert.match(menu, /window.dispatchEvent\(new Event\('font-change'\)\)/);
@@ -296,6 +297,13 @@ test('appearance controls are present beside both theme toggles with native keyb
   assert.match(menu, /layoutId=\{`\$\{id\}-accent-selection`\}/);
   assert.match(menu, /layoutId=\{`\$\{id\}-body-font-selection`\}/);
   assert.match(menu, /layoutId=\{`\$\{id\}-heading-font-selection`\}/);
+  assert.match(menu, /<AnimatePresence mode="wait" initial=\{false\}>/);
+  assert.match(menu, /key=\{activeTab\}/);
+  assert.match(
+    menu,
+    /const tabInitial = shouldReduceMotion \? false : \{ opacity: 0, y: 6 \}/,
+  );
+  assert.match(menu, /const tabExit = \{/);
   assert.match(menu, /--option-accent-light/);
   assert.match(menu, /--option-accent-dark/);
   assert.match(menu, /className="font-sample font-heading-sample"/);
@@ -320,15 +328,15 @@ test('appearance controls are present beside both theme toggles with native keyb
     /\.appearance-color-selection\s*\{[^}]*border-color:\s*color-mix/,
   );
   assert.match(css, /\.appearance-option\s*\{[^}]*padding:\s*0\.75rem 1rem/);
+  assert.match(css, /\.appearance-option\s*\{[^}]*min-height:\s*4\.75rem/);
+  assert.match(css, /\.appearance-section-legend\s+strong/);
+  assert.match(css, /\.appearance-section-legend\s+span/);
   assert.match(
     css,
     /@media \(min-width: 761px\)[\s\S]*?\.appearance-panel\s*\{[^}]*height:\s*min\(40rem, calc\(100dvh - 3rem\)\)/,
   );
   assert.match(css, /\.appearance-option > span:not\(\.appearance-selection\)/);
-  assert.match(
-    css,
-    /\.appearance-font-panel\s*\{[^}]*padding-right:\s*0\.5rem/,
-  );
+  assert.match(css, /\.appearance-tab-panel\s*\{[^}]*padding-right:\s*0\.5rem/);
   assert.match(
     css,
     /\.appearance-font-group\s*\{[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/,
@@ -462,19 +470,20 @@ test('appearance modal tabs, accent selection, and close behavior remain interac
     ),
     ['Colors', 'Heading font', 'Body font'],
   );
-  const [colorsPanel, headingFontPanel, bodyFontPanel] =
-    panel.props.children.slice(2, 5);
+  const tabPanel = panel.props.children[2];
+  const colorsPanel = tabPanel.props.children.props.children;
   assert.deepEqual(
     Array.from(tabButtons, ({ props }) => props['aria-controls']),
-    [colorsPanel.props.id, headingFontPanel.props.id, bodyFontPanel.props.id],
-  );
-  assert.deepEqual(
     [
-      colorsPanel.props.hidden,
-      headingFontPanel.props.hidden,
-      bodyFontPanel.props.hidden,
+      'appearance-test-colors-panel',
+      'appearance-test-heading-font-panel',
+      'appearance-test-body-font-panel',
     ],
-    [false, true, true],
+  );
+  assert.equal(colorsPanel.props.role, 'tabpanel');
+  assert.equal(
+    colorsPanel.props['aria-labelledby'],
+    'appearance-test-colors-tab',
   );
   tabButtons[1].props.onClick();
   tabButtons[2].props.onClick();
@@ -498,7 +507,9 @@ test('appearance modal tabs, accent selection, and close behavior remain interac
   updates.length = 0;
   tabButtons[1].props.onClick();
   assert.deepEqual(updates, ['heading-font'], 'heading tab is selectable');
-  const fieldset = colorsPanel.props.children;
+  const fieldset = colorsPanel.props.children.find(
+    (child) => child?.props?.className === 'appearance-colors',
+  );
   const violet = fieldset.props.children[1][2];
   violet.props.children
     .find((child) => child?.props?.type === 'radio')
@@ -511,7 +522,7 @@ test('appearance modal tabs, accent selection, and close behavior remain interac
     ['heading-font'],
     'accent selection does not dismiss the modal',
   );
-  const footer = panel.props.children[5];
+  const footer = panel.props.children[3];
   footer.props.children[1].props.onClick({
     currentTarget: {},
     nativeEvent: {},

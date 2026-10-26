@@ -174,6 +174,17 @@ export default function AppearanceMenu() {
           scale: 0.985,
           transition: { duration: 0.16, ease: [0.4, 0, 1, 1] as const },
         };
+  const tabInitial = shouldReduceMotion ? false : { opacity: 0, y: 6 };
+  const tabAnimate = {
+    opacity: 1,
+    y: 0,
+    transition: { duration: shouldReduceMotion ? 0 : 0.18 },
+  };
+  const tabExit = {
+    opacity: 0,
+    y: shouldReduceMotion ? 0 : -6,
+    transition: { duration: shouldReduceMotion ? 0 : 0.12 },
+  };
 
   return (
     <div
@@ -308,203 +319,231 @@ export default function AppearanceMenu() {
                         </button>
                       ))}
                     </div>
-                    <div
-                      className="appearance-tab-panel appearance-colors-panel"
-                      role="tabpanel"
-                      id={`${id}-colors-panel`}
-                      aria-labelledby={`${id}-colors-tab`}
-                      hidden={activeTab !== 'colors'}
-                    >
-                      <fieldset className="appearance-colors">
-                        <legend>Accent color</legend>
-                        {accents.map((accent) => (
-                          <label
-                            key={accent.id}
-                            className="appearance-option appearance-color-option"
-                            style={
-                              {
-                                '--option-accent-light': accent.light,
-                                '--option-accent-dark': accent.dark,
-                              } as CSSProperties
-                            }
-                            onClickCapture={(event) => {
-                              if (event.detail > 0)
-                                pointerOrigin.current = event.nativeEvent;
-                            }}
-                          >
-                            {selectedAccent === accent.id && (
-                              <motion.span
-                                className="appearance-selection appearance-color-selection"
-                                layoutId={`${id}-accent-selection`}
-                                transition={{
-                                  type: 'spring',
-                                  stiffness: 500,
-                                  damping: 35,
-                                }}
-                              />
-                            )}
-                            <input
-                              type="radio"
-                              name={`${id}-accent`}
-                              value={accent.id}
-                              checked={selectedAccent === accent.id}
-                              onChange={(event) => {
-                                const origin = {
-                                  currentTarget: event.currentTarget,
-                                  nativeEvent:
-                                    pointerOrigin.current || event.nativeEvent,
-                                };
-                                pointerOrigin.current = null;
-                                animateAppearanceChange(origin, () => {
-                                  const root = document.documentElement;
-                                  root.dataset.accent = accent.id;
-                                  root.style.setProperty(
-                                    '--accent-light',
-                                    accent.light,
-                                  );
-                                  root.style.setProperty(
-                                    '--accent-dark',
-                                    accent.dark,
-                                  );
-                                  try {
-                                    localStorage.setItem('accent', accent.id);
-                                  } catch {}
-                                  window.dispatchEvent(
-                                    new Event('accent-change'),
-                                  );
-                                });
-                              }}
-                            />
-                            <span
-                              className="accent-swatch"
-                              style={{ background: accent.light }}
-                              aria-hidden="true"
-                            />
-                            <span className="appearance-option-name">
-                              {accent.name}
-                            </span>
-                            <span className="appearance-option-status">
-                              {selectedAccent === accent.id && <CheckIcon />}
-                            </span>
-                          </label>
-                        ))}
-                      </fieldset>
-                    </div>
-                    <div
-                      className="appearance-tab-panel appearance-font-panel"
-                      role="tabpanel"
-                      id={`${id}-heading-font-panel`}
-                      aria-labelledby={`${id}-heading-font-tab`}
-                      hidden={activeTab !== 'heading-font'}
-                    >
-                      <fieldset className="appearance-font-group">
-                        <legend>
-                          <strong>Headings</strong>
-                          <span>Page titles and section headings</span>
-                        </legend>
-                        {headingFonts.map((font) => (
-                          <label
-                            key={font.id}
-                            className="appearance-option appearance-font-option appearance-heading-font-option"
-                          >
-                            {headingFont === font.id && (
-                              <motion.span
-                                className="appearance-selection appearance-font-selection"
-                                layoutId={`${id}-heading-font-selection`}
-                                transition={{
-                                  type: 'spring',
-                                  stiffness: 500,
-                                  damping: 35,
-                                }}
-                              />
-                            )}
-                            <input
-                              type="radio"
-                              name={`${id}-heading-font`}
-                              value={font.id}
-                              checked={headingFont === font.id}
-                              onChange={() => {
-                                const root = document.documentElement;
-                                root.dataset.headingFont = font.id;
-                                try {
-                                  localStorage.setItem('heading-font', font.id);
-                                } catch {}
-                                window.dispatchEvent(new Event('font-change'));
-                              }}
-                            />
-                            <span className="font-option-copy">
-                              <span
-                                className="font-sample font-heading-sample"
-                                style={{ fontFamily: fontFamily(font.id) }}
-                              >
-                                {font.sample}
-                              </span>
-                              <span className="font-name">{font.name}</span>
-                            </span>
-                            <span className="appearance-option-status">
-                              {headingFont === font.id && <CheckIcon />}
-                            </span>
-                          </label>
-                        ))}
-                      </fieldset>
-                    </div>
-                    <div
-                      className="appearance-tab-panel appearance-font-panel"
-                      role="tabpanel"
-                      id={`${id}-body-font-panel`}
-                      aria-labelledby={`${id}-body-font-tab`}
-                      hidden={activeTab !== 'body-font'}
-                    >
-                      <fieldset className="appearance-font-group">
-                        <legend>
-                          <strong>Body text</strong>
-                          <span>Navigation, descriptions, and controls</span>
-                        </legend>
-                        {fonts.map((font) => (
-                          <label
-                            key={font.id}
-                            className="appearance-option appearance-font-option appearance-body-font-option"
-                          >
-                            {bodyFont === font.id && (
-                              <motion.span
-                                className="appearance-selection appearance-font-selection"
-                                layoutId={`${id}-body-font-selection`}
-                                transition={{
-                                  type: 'spring',
-                                  stiffness: 500,
-                                  damping: 35,
-                                }}
-                              />
-                            )}
-                            <input
-                              type="radio"
-                              name={`${id}-body-font`}
-                              value={font.id}
-                              checked={bodyFont === font.id}
-                              onChange={() => {
-                                const root = document.documentElement;
-                                root.dataset.bodyFont = font.id;
-                                try {
-                                  localStorage.setItem('body-font', font.id);
-                                } catch {}
-                                window.dispatchEvent(new Event('font-change'));
-                              }}
-                            />
-                            <span className="font-option-copy">
-                              <span
-                                className="font-sample font-body-sample"
-                                style={{ fontFamily: fontFamily(font.id) }}
-                              >
-                                {font.sample}
-                              </span>
-                              <span className="font-name">{font.name}</span>
-                            </span>
-                            <span className="appearance-option-status">
-                              {bodyFont === font.id && <CheckIcon />}
-                            </span>
-                          </label>
-                        ))}
-                      </fieldset>
+                    <div className="appearance-tab-panel">
+                      <AnimatePresence mode="wait" initial={false}>
+                        <motion.div
+                          key={activeTab}
+                          role="tabpanel"
+                          id={`${id}-${activeTab}-panel`}
+                          aria-labelledby={`${id}-${activeTab}-tab`}
+                          initial={tabInitial}
+                          animate={tabAnimate}
+                          exit={tabExit}
+                        >
+                          {activeTab === 'colors' && (
+                            <fieldset className="appearance-colors">
+                              <legend className="appearance-section-legend">
+                                <strong>Accent color</strong>
+                                <span>
+                                  Choose the accent used for highlights and
+                                  controls
+                                </span>
+                              </legend>
+                              {accents.map((accent) => (
+                                <label
+                                  key={accent.id}
+                                  className="appearance-option appearance-color-option"
+                                  style={
+                                    {
+                                      '--option-accent-light': accent.light,
+                                      '--option-accent-dark': accent.dark,
+                                    } as CSSProperties
+                                  }
+                                  onClickCapture={(event) => {
+                                    if (event.detail > 0)
+                                      pointerOrigin.current = event.nativeEvent;
+                                  }}
+                                >
+                                  {selectedAccent === accent.id && (
+                                    <motion.span
+                                      className="appearance-selection appearance-color-selection"
+                                      layoutId={`${id}-accent-selection`}
+                                      transition={{
+                                        type: 'spring',
+                                        stiffness: 500,
+                                        damping: 35,
+                                      }}
+                                    />
+                                  )}
+                                  <input
+                                    type="radio"
+                                    name={`${id}-accent`}
+                                    value={accent.id}
+                                    checked={selectedAccent === accent.id}
+                                    onChange={(event) => {
+                                      const origin = {
+                                        currentTarget: event.currentTarget,
+                                        nativeEvent:
+                                          pointerOrigin.current ||
+                                          event.nativeEvent,
+                                      };
+                                      pointerOrigin.current = null;
+                                      animateAppearanceChange(origin, () => {
+                                        const root = document.documentElement;
+                                        root.dataset.accent = accent.id;
+                                        root.style.setProperty(
+                                          '--accent-light',
+                                          accent.light,
+                                        );
+                                        root.style.setProperty(
+                                          '--accent-dark',
+                                          accent.dark,
+                                        );
+                                        try {
+                                          localStorage.setItem(
+                                            'accent',
+                                            accent.id,
+                                          );
+                                        } catch {}
+                                        window.dispatchEvent(
+                                          new Event('accent-change'),
+                                        );
+                                      });
+                                    }}
+                                  />
+                                  <span
+                                    className="accent-swatch"
+                                    style={{ background: accent.light }}
+                                    aria-hidden="true"
+                                  />
+                                  <span className="appearance-option-name">
+                                    {accent.name}
+                                  </span>
+                                  <span className="appearance-option-status">
+                                    {selectedAccent === accent.id && (
+                                      <CheckIcon />
+                                    )}
+                                  </span>
+                                </label>
+                              ))}
+                            </fieldset>
+                          )}
+                          {activeTab === 'heading-font' && (
+                            <fieldset className="appearance-font-group">
+                              <legend className="appearance-section-legend">
+                                <strong>Headings</strong>
+                                <span>Page titles and section headings</span>
+                              </legend>
+                              {headingFonts.map((font) => (
+                                <label
+                                  key={font.id}
+                                  className="appearance-option appearance-font-option appearance-heading-font-option"
+                                >
+                                  {headingFont === font.id && (
+                                    <motion.span
+                                      className="appearance-selection appearance-font-selection"
+                                      layoutId={`${id}-heading-font-selection`}
+                                      transition={{
+                                        type: 'spring',
+                                        stiffness: 500,
+                                        damping: 35,
+                                      }}
+                                    />
+                                  )}
+                                  <input
+                                    type="radio"
+                                    name={`${id}-heading-font`}
+                                    value={font.id}
+                                    checked={headingFont === font.id}
+                                    onChange={() => {
+                                      const root = document.documentElement;
+                                      root.dataset.headingFont = font.id;
+                                      try {
+                                        localStorage.setItem(
+                                          'heading-font',
+                                          font.id,
+                                        );
+                                      } catch {}
+                                      window.dispatchEvent(
+                                        new Event('font-change'),
+                                      );
+                                    }}
+                                  />
+                                  <span className="font-option-copy">
+                                    <span
+                                      className="font-sample font-heading-sample"
+                                      style={{
+                                        fontFamily: fontFamily(font.id),
+                                      }}
+                                    >
+                                      {font.sample}
+                                    </span>
+                                    <span className="font-name">
+                                      {font.name}
+                                    </span>
+                                  </span>
+                                  <span className="appearance-option-status">
+                                    {headingFont === font.id && <CheckIcon />}
+                                  </span>
+                                </label>
+                              ))}
+                            </fieldset>
+                          )}
+                          {activeTab === 'body-font' && (
+                            <fieldset className="appearance-font-group">
+                              <legend className="appearance-section-legend">
+                                <strong>Body text</strong>
+                                <span>
+                                  Navigation, descriptions, and controls
+                                </span>
+                              </legend>
+                              {fonts.map((font) => (
+                                <label
+                                  key={font.id}
+                                  className="appearance-option appearance-font-option appearance-body-font-option"
+                                >
+                                  {bodyFont === font.id && (
+                                    <motion.span
+                                      className="appearance-selection appearance-font-selection"
+                                      layoutId={`${id}-body-font-selection`}
+                                      transition={{
+                                        type: 'spring',
+                                        stiffness: 500,
+                                        damping: 35,
+                                      }}
+                                    />
+                                  )}
+                                  <input
+                                    type="radio"
+                                    name={`${id}-body-font`}
+                                    value={font.id}
+                                    checked={bodyFont === font.id}
+                                    onChange={() => {
+                                      const root = document.documentElement;
+                                      root.dataset.bodyFont = font.id;
+                                      try {
+                                        localStorage.setItem(
+                                          'body-font',
+                                          font.id,
+                                        );
+                                      } catch {}
+                                      window.dispatchEvent(
+                                        new Event('font-change'),
+                                      );
+                                    }}
+                                  />
+                                  <span className="font-option-copy">
+                                    <span
+                                      className="font-sample font-body-sample"
+                                      style={{
+                                        fontFamily: fontFamily(font.id),
+                                      }}
+                                    >
+                                      {font.sample}
+                                    </span>
+                                    <span className="font-name">
+                                      {font.name}
+                                    </span>
+                                  </span>
+                                  <span className="appearance-option-status">
+                                    {bodyFont === font.id && <CheckIcon />}
+                                  </span>
+                                </label>
+                              ))}
+                            </fieldset>
+                          )}
+                        </motion.div>
+                      </AnimatePresence>
                     </div>
                     <div className="appearance-footer">
                       <span>Defaults: Dark · Blue · Georgia · Outfit</span>

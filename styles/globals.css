@@ -755,6 +755,7 @@ button {
 .appearance-tab-panel {
   min-height: 0;
   margin-top: 1.5rem;
+  padding-right: 0.5rem;
   overflow-y: auto;
   overscroll-behavior: contain;
 }
@@ -774,10 +775,6 @@ button {
   grid-column: 1 / -1;
 }
 
-.appearance-font-panel {
-  padding-right: 0.5rem;
-}
-
 .appearance-font-group {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -785,19 +782,19 @@ button {
   gap: 0.75rem;
 }
 
-.appearance-font-group legend {
+.appearance-section-legend {
   display: grid;
   grid-column: 1 / -1;
   gap: 0.2rem;
   margin-bottom: 0.35rem;
 }
 
-.appearance-font-group legend strong {
+.appearance-section-legend strong {
   color: var(--ink);
   font-size: 0.95rem;
 }
 
-.appearance-font-group legend span {
+.appearance-section-legend span {
   color: var(--muted);
   font-size: 0.78rem;
   font-weight: 400;
@@ -815,7 +812,7 @@ button {
   display: flex;
   align-items: center;
   gap: 0.75rem;
-  min-height: 3.5rem;
+  min-height: 4.75rem;
   padding: 0.75rem 1rem;
   border: 1px solid var(--line);
   border-radius: 0.65rem;
@@ -836,7 +833,6 @@ button {
 }
 
 .appearance-font-option {
-  min-height: 4.75rem;
   background: color-mix(in srgb, var(--panel) 72%, transparent);
 }
 
@@ -3243,14 +3239,10 @@ body:has(.consent-panel) .back-to-top {
   }
 
   .appearance-option {
-    min-height: 3.5rem;
+    min-height: 4.5rem;
     padding: 0.75rem 0.875rem;
     font-size: 0.95rem;
     border-radius: 0.65rem;
-  }
-
-  .appearance-font-option {
-    min-height: 4.5rem;
   }
 
   .appearance-footer {
