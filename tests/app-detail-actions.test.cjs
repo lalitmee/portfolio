@@ -69,6 +69,7 @@ test('app detail distinguishes launch and source actions and preserves external 
           };
         if (name === 'framer-motion') return { useReducedMotion: () => false };
         if (name.includes('/icons/')) return createRequire(filename)(name);
+        if (name.includes('TiltedArrow')) return createRequire(filename)(name);
         if (name.includes('/components/')) return () => null;
         return createRequire(filename)(name);
       },
@@ -93,9 +94,17 @@ test('app detail distinguishes launch and source actions and preserves external 
     (child) => child?.props?.className === 'section-button-fill',
   );
   assert.equal(fill.props['aria-hidden'], 'true');
-  for (const icon of [links[0].props.children[0], fill.props.children[0]]) {
+  const launchIcons = [
+    links[0].props.children.find(
+      (child) => child?.props?.className === 'button-arrow',
+    ),
+    fill.props.children.find(
+      (child) => child?.props?.className === 'button-arrow',
+    ),
+  ];
+  for (const icon of launchIcons) {
     const html = renderToStaticMarkup(icon);
-    assert.match(html, /class="animated-icon icon-external-link/);
+    assert.match(html, /class="tilted-arrow button-arrow/);
     assert.match(html, /aria-hidden="true"/);
   }
   const origin = {};

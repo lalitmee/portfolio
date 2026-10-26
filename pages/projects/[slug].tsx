@@ -17,7 +17,7 @@ export default function ProjectDetail({ project }: { project: Project }) {
       description={project.description}
     >
       <article className="page-width content-page case-detail">
-        <Link className="text-link" href="/projects/">
+        <Link className="back-link" href="/projects/">
           <DirectionalArrow direction="back" /> All projects
         </Link>
         <p className="eyebrow">

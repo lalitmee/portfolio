@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import type { PointerEvent } from 'react';
-import { ExternalLinkIcon } from '../components/icons/AnimatedIcons';
 import DirectionalArrow from '../components/DirectionalArrow';
 import TiltedArrow from '../components/TiltedArrow';
+import Magnetic from '../components/Magnetic';
 import SiteLayout from '../components/SiteLayout';
 import { caseStudies } from '../data/caseStudies';
 import { featuredApp } from '../data/apps';
@@ -69,17 +69,19 @@ export default function Home() {
             Currently building commerce experiences at Nykaa.
           </p>
         </div>
-        <div className="hero-portrait">
-          <Image
-            src="/images/profile_v3.png"
-            alt="Lalit Kumar"
-            width={440}
-            height={440}
-            priority
-            sizes="(max-width: 760px) 72vw, 34vw"
-          />
-          <span className="portrait-caption">Bengaluru, India</span>
-        </div>
+        <Magnetic maxDistance={14} className="hero-portrait-magnetic">
+          <div className="hero-portrait">
+            <Image
+              src="/images/profile_v3.png"
+              alt="Lalit Kumar"
+              width={440}
+              height={440}
+              priority
+              sizes="(max-width: 760px) 72vw, 34vw"
+            />
+            <span className="portrait-caption">Bengaluru, India</span>
+          </div>
+        </Magnetic>
       </section>
 
       <section
@@ -87,13 +89,25 @@ export default function Home() {
         aria-labelledby="work-title"
       >
         <div className="page-width">
-          <div className="section-heading">
-            <p className="eyebrow">01 / Selected work</p>
-            <h2 id="work-title">Problems worth working through.</h2>
-            <p>
-              Product details, measurement systems, and dense interfaces—built
-              with the people using them in mind.
-            </p>
+          <div className="section-header">
+            <div className="section-heading">
+              <p className="eyebrow">01 / Selected work</p>
+              <h2 id="work-title">Problems worth working through.</h2>
+              <p>
+                Product details, measurement systems, and dense interfaces—built
+                with the people using them in mind.
+              </p>
+            </div>
+            <Link
+              className="button button-outline section-button"
+              href="/work/"
+              onPointerEnter={setButtonRevealOrigin}
+            >
+              View work <DirectionalArrow direction="forward" />
+              <span className="section-button-fill" aria-hidden="true">
+                View work <DirectionalArrow direction="forward" />
+              </span>
+            </Link>
           </div>
           <div className="case-list">
             {caseStudies.map((study, index) => (
@@ -114,16 +128,6 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          <Link
-            className="button button-outline section-button section-link"
-            href="/work/"
-            onPointerEnter={setButtonRevealOrigin}
-          >
-            View work <DirectionalArrow direction="forward" />
-            <span className="section-button-fill" aria-hidden="true">
-              View work <DirectionalArrow direction="forward" />
-            </span>
-          </Link>
         </div>
       </section>
 
@@ -132,11 +136,21 @@ export default function Home() {
         aria-labelledby="projects-title"
       >
         <div className="page-width">
-          <div className="section-heading">
-            <div>
+          <div className="section-header">
+            <div className="section-heading">
               <p className="eyebrow">02 / Independent work</p>
               <h2 id="projects-title">Tools shaped by daily use.</h2>
             </div>
+            <Link
+              className="button button-outline section-button"
+              href="/projects/"
+              onPointerEnter={setButtonRevealOrigin}
+            >
+              Browse projects <DirectionalArrow direction="forward" />
+              <span className="section-button-fill" aria-hidden="true">
+                Browse projects <DirectionalArrow direction="forward" />
+              </span>
+            </Link>
           </div>
           <div className="project-list">
             {selectedProjects.map((project) => (
@@ -151,16 +165,6 @@ export default function Home() {
               </Link>
             ))}
           </div>
-          <Link
-            className="button button-outline section-button section-link"
-            href="/projects/"
-            onPointerEnter={setButtonRevealOrigin}
-          >
-            Browse projects <DirectionalArrow direction="forward" />
-            <span className="section-button-fill" aria-hidden="true">
-              Browse projects <DirectionalArrow direction="forward" />
-            </span>
-          </Link>
         </div>
       </section>
 
@@ -169,11 +173,25 @@ export default function Home() {
         aria-labelledby="apps-title"
       >
         <div className="page-width app-feature-inner">
-          <p className="eyebrow">03 / Useful apps</p>
-          <h2 id="apps-title">A more comfortable place to read.</h2>
-          <p className="app-feature-intro">
-            A featured app, still evolving through everyday use.
-          </p>
+          <div className="section-header">
+            <div className="section-heading">
+              <p className="eyebrow">03 / Useful apps</p>
+              <h2 id="apps-title">A more comfortable place to read.</h2>
+              <p className="app-feature-intro">
+                A featured app, still evolving through everyday use.
+              </p>
+            </div>
+            <Link
+              className="button button-outline section-button"
+              href="/apps/"
+              onPointerEnter={setButtonRevealOrigin}
+            >
+              Browse apps <DirectionalArrow direction="forward" />
+              <span className="section-button-fill" aria-hidden="true">
+                Browse apps <DirectionalArrow direction="forward" />
+              </span>
+            </Link>
+          </div>
           <div className="app-feature-list">
             <article className="app-feature-row">
               <div>
@@ -198,24 +216,14 @@ export default function Home() {
                     })
                   }
                 >
-                  <ExternalLinkIcon aria-hidden="true" /> Open app
+                  Open app <TiltedArrow className="button-arrow" />
                   <span className="section-button-fill" aria-hidden="true">
-                    <ExternalLinkIcon aria-hidden="true" /> Open app
+                    Open app <TiltedArrow className="button-arrow" />
                   </span>
                 </a>
               </div>
             </article>
           </div>
-          <Link
-            className="button button-outline section-button app-feature-browse"
-            href="/apps/"
-            onPointerEnter={setButtonRevealOrigin}
-          >
-            Browse apps <DirectionalArrow direction="forward" />
-            <span className="section-button-fill" aria-hidden="true">
-              Browse apps <DirectionalArrow direction="forward" />
-            </span>
-          </Link>
         </div>
       </section>
 

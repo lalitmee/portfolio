@@ -21,7 +21,7 @@ export default function CaseStudyPage({ study }: { study: CaseStudy }) {
       description={study.summary}
     >
       <article className="page-width content-page case-detail">
-        <Link className="text-link" href="/work/">
+        <Link className="back-link" href="/work/">
           <DirectionalArrow direction="back" /> All selected work
         </Link>
         <p className="eyebrow">

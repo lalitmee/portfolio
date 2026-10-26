@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import SiteLayout from '../../components/SiteLayout';
 import DirectionalArrow from '../../components/DirectionalArrow';
-import { ExternalLinkIcon } from '../../components/icons/AnimatedIcons';
+import TiltedArrow from '../../components/TiltedArrow';
 import { apps } from '../../data/apps';
 import { trackEvent } from '../../utils/analytics';
 
@@ -64,9 +64,9 @@ export default function AppsPage() {
                     trackEvent({ event: 'app_launch', app_slug: app.slug })
                   }
                 >
-                  <ExternalLinkIcon aria-hidden="true" /> Open app
+                  Open app <TiltedArrow className="button-arrow" />
                   <span className="section-button-fill" aria-hidden="true">
-                    <ExternalLinkIcon aria-hidden="true" /> Open app
+                    Open app <TiltedArrow className="button-arrow" />
                   </span>
                 </a>
               </div>

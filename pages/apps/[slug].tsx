@@ -4,7 +4,6 @@ import Link from 'next/link';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import {
-  ExternalLinkIcon,
   GithubIcon,
   BulbIcon,
   WidgetsIcon,
@@ -13,6 +12,7 @@ import {
 } from '../../components/icons/AnimatedIcons';
 import SiteLayout from '../../components/SiteLayout';
 import DirectionalArrow from '../../components/DirectionalArrow';
+import TiltedArrow from '../../components/TiltedArrow';
 import { apps, getApp, type App } from '../../data/apps';
 import { trackEvent } from '../../utils/analytics';
 
@@ -57,11 +57,11 @@ export default function AppDetail({ app }: { app: App }) {
         }}
         onClick={() => trackEvent({ event: 'app_launch', app_slug: app.slug })}
       >
-        <ExternalLinkIcon aria-hidden="true" />{' '}
-        <span className="app-action-label">Open app</span>
+        <span className="app-action-label">Open app</span>{' '}
+        <TiltedArrow className="button-arrow" />
         <span className="section-button-fill" aria-hidden="true">
-          <ExternalLinkIcon aria-hidden="true" />{' '}
-          <span className="app-action-label">Open app</span>
+          <span className="app-action-label">Open app</span>{' '}
+          <TiltedArrow className="button-arrow" />
         </span>
       </a>
       <a
@@ -71,8 +71,8 @@ export default function AppDetail({ app }: { app: App }) {
         target="_blank"
         rel="noreferrer"
       >
-        <GithubIcon aria-hidden="true" />{' '}
-        <span className="app-action-label">View source</span>
+        <span className="app-action-label">View source</span>{' '}
+        <GithubIcon aria-hidden="true" />
       </a>
     </>
   );
@@ -82,7 +82,7 @@ export default function AppDetail({ app }: { app: App }) {
       description={app.description}
     >
       <article className="page-width content-page case-detail">
-        <Link className="text-link" href="/apps/">
+        <Link className="back-link" href="/apps/">
           <DirectionalArrow direction="back" /> All apps
         </Link>
         <p className="eyebrow">

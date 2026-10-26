@@ -7,6 +7,7 @@ const links = [
   ['Apps', '/apps/'],
   ['About', '/about/'],
   ['Contact', '/contact/'],
+  ['Playground', '/playground/'],
 ];
 
 export default function Footer() {

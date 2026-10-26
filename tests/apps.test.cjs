@@ -99,7 +99,7 @@ test('card launch actions use the detail-page button treatment, distinct from st
     );
     assert.match(launch, /className="button button-outline section-button"/);
     assert.match(launch, /onPointerEnter=/);
-    assert.match(launch, /<ExternalLinkIcon aria-hidden="true"/);
+    assert.match(launch, /<TiltedArrow className="button-arrow"/);
     assert.match(launch, /className="section-button-fill" aria-hidden="true"/);
     assert.match(page, /<Link\s+className="text-link"[\s\S]*?Read the story/);
   }
@@ -154,7 +154,7 @@ test('app detail has section icons and a scroll-revealed action dock', () => {
     /addEventListener\('scroll', syncDock, \{ passive: true \}\)/,
   );
   assert.match(page, /getBoundingClientRect\(\).bottom/);
-  assert.match(page, /<ExternalLinkIcon aria-hidden="true"/);
+  assert.match(page, /<TiltedArrow className="button-arrow"/);
   assert.match(page, /<GithubIcon aria-hidden="true"/);
   assert.match(page, /<AnimatePresence/);
 });
@@ -199,4 +199,20 @@ test('mobile view buttons display accent borders by default and preserve inline 
     narrowMobile,
     /\.hero-actions\s*\{[^}]*flex-direction:\s*column/,
   );
+});
+
+test('case detail back navigation uses theme-aware breadcrumb chip styling', () => {
+  for (const file of [
+    'pages/apps/[slug].tsx',
+    'pages/projects/[slug].tsx',
+    'pages/work/[slug].tsx',
+  ]) {
+    const page = fs.readFileSync(file, 'utf8');
+    assert.match(page, /<Link\s+className="back-link"/);
+  }
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  assert.match(css, /\.back-link\s*\{[^}]*font-size:\s*0\.8125rem/);
+  assert.match(css, /\.back-link\s*\{[^}]*border-radius:\s*9999px/);
+  assert.match(css, /\.back-link \.directional-arrow\s*\{[^}]*color:\s*var\(--blue\)/);
+  assert.match(css, /\.back-link:hover \.directional-arrow/);
 });

@@ -13,6 +13,7 @@ const links = [
   { href: '/apps/', label: 'Apps' },
   { href: '/about/', label: 'About' },
   { href: '/contact/', label: 'Contact' },
+  { href: '/playground/', label: 'Playground' },
 ];
 
 export default function Navigation() {
@@ -35,11 +36,7 @@ export default function Navigation() {
       if (desktop.matches) {
         setMenuOpen(false);
         if (mobileDialog.current?.open) {
-          if (typeof mobileDialog.current.close === 'function') {
-            mobileDialog.current.close();
-          } else {
-            mobileDialog.current.removeAttribute('open');
-          }
+          mobileDialog.current.removeAttribute('open');
         }
       }
     };
@@ -54,22 +51,25 @@ export default function Navigation() {
 
     if (menuOpen && !dialog.open) {
       restoreMenuFocus.current = true;
-      if (typeof dialog.showModal === 'function') {
-        dialog.showModal();
-      } else {
-        dialog.setAttribute('open', '');
-      }
+      dialog.setAttribute('open', '');
     }
+  }, [menuOpen]);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
   }, [menuOpen]);
 
   const handleExitComplete = () => {
     const dialog = mobileDialog.current;
     if (dialog?.open) {
-      if (typeof dialog.close === 'function') {
-        dialog.close();
-      } else {
-        dialog.removeAttribute('open');
-      }
+      dialog.removeAttribute('open');
       if (
         restoreMenuFocus.current &&
         !window.matchMedia('(min-width: 761px)').matches
@@ -174,29 +174,12 @@ export default function Navigation() {
                 ease: [0.16, 1, 0.3, 1],
               }}
             >
-              <div className="mobile-menu-topbar">
-                <Link
-                  className="site-brand"
-                  href="/"
-                  aria-label="LK., Lalit Kumar home"
-                >
-                  LK<span aria-hidden="true">.</span>
-                </Link>
-                <div className="nav-actions">
-                  <AppearanceMenu />
-                  <ThemeToggle />
-                  <button
-                    className="menu-toggle"
-                    type="button"
-                    aria-expanded={menuOpen}
-                    aria-label="Close navigation menu"
-                    onClick={closeMobileMenu}
-                  >
-                    <span className="menu-toggle-icon">
-                      <MenuIcon open={menuOpen} />
-                    </span>
-                  </button>
-                </div>
+              <div
+                className="mobile-menu-topbar"
+                style={{ display: 'none' }}
+                aria-hidden="true"
+              >
+                <AppearanceMenu />
               </div>
               <nav className="mobile-nav" aria-label="Mobile navigation links">
                 <div className="mobile-nav-links">

@@ -6,7 +6,13 @@ require('./load-tsx.cjs');
 const { createRequire } = require('node:module');
 const path = require('node:path');
 
-const { accents, accentInitScript } = require('../utils/appearance.ts');
+const {
+  accents,
+  defaultAppearance,
+  fonts,
+  headingFonts,
+  accentInitScript,
+} = require('../utils/appearance.ts');
 
 test('Iris adds a new-color edge synchronized with its reveal and removes it', async () => {
   const ts = require('typescript');
@@ -152,10 +158,16 @@ function luminance(hex) {
   return values[0] * 0.2126 + values[1] * 0.7152 + values[2] * 0.0722;
 }
 
-test('five named accent presets restore before rendering with safe blue fallback', () => {
+test('appearance preferences restore before rendering with safe defaults', () => {
+  assert.deepEqual(defaultAppearance, {
+    theme: 'dark',
+    accent: 'blue',
+    headingFont: 'georgia',
+    bodyFont: 'outfit',
+  });
   assert.deepEqual(
     accents.map(({ name }) => name),
-    ['Blue', 'Teal', 'Violet', 'Terracotta', 'Berry'],
+    ['Blue', 'Teal', 'Violet', 'Terracotta', 'Berry', 'Amber'],
   );
   for (const accent of accents) {
     const { root, properties } = initialize(accent.id);
@@ -167,8 +179,75 @@ test('five named accent presets restore before rendering with safe blue fallback
     assert.equal(initialize(value).root.dataset.accent, 'blue');
   }
   assert.equal(initialize(null, true).root.dataset.accent, 'blue');
+  assert.deepEqual(
+    fonts.map(({ name }) => name),
+    ['Outfit', 'Inter', 'Geist Sans', 'IBM Plex Sans', 'System', 'Manrope'],
+  );
+  assert.deepEqual(
+    headingFonts.map(({ name }) => name),
+    [
+      'Georgia',
+      'Playfair Display',
+      'DM Serif Display',
+      'Lora',
+      'Libre Baskerville',
+      'Cormorant Garamond',
+    ],
+  );
+  for (const font of fonts) {
+    assert.equal(initialize(font.id).root.dataset.bodyFont, font.id);
+  }
+  for (const font of headingFonts) {
+    assert.equal(initialize(font.id).root.dataset.headingFont, font.id);
+  }
+  for (const value of [null, '', 'invalid', 'constructor']) {
+    assert.equal(initialize(value).root.dataset.bodyFont, 'outfit');
+    assert.equal(initialize(value).root.dataset.headingFont, 'georgia');
+  }
   const document = fs.readFileSync('pages/_document.tsx', 'utf8');
   assert.match(document, /<Head>[\s\S]*accentInitScript[\s\S]*<body>/);
+  const app = fs.readFileSync('pages/_app.tsx', 'utf8');
+  assert.match(app, /defaultTheme="dark"/);
+});
+
+test('selected application fonts also control large display and section headings', () => {
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  assert.match(
+    css,
+    /\.home-hero h1,[\s\S]*?font-family: var\(--font-heading\)/,
+  );
+  assert.match(
+    css,
+    /\.content-page > h1 \{[\s\S]*?font-family: var\(--font-heading\)/,
+  );
+  assert.match(
+    css,
+    /\.content-page section h2,[\s\S]*?font-family: var\(--font-heading\)/,
+  );
+  assert.match(
+    css,
+    /data-heading-font='georgia'[\s\S]*?Georgia, 'Times New Roman', serif/,
+  );
+  assert.match(
+    css,
+    /data-body-font='outfit'[\s\S]*?font-family: var\(--font-outfit\)/,
+  );
+  for (const variable of [
+    '--font-playfair-display',
+    '--font-dm-serif-display',
+    '--font-lora',
+    '--font-libre-baskerville',
+    '--font-cormorant-garamond',
+    '--font-manrope',
+  ]) {
+    assert.match(css, new RegExp(variable));
+  }
+  const app = fs.readFileSync('pages/_app.tsx', 'utf8');
+  assert.match(app, /Playfair_Display/);
+  assert.match(app, /DM_Serif_Display/);
+  assert.match(app, /Libre_Baskerville/);
+  assert.match(app, /Cormorant_Garamond/);
+  assert.match(app, /Manrope/);
 });
 
 test('accent text meets AA contrast on both theme surfaces', () => {
@@ -195,33 +274,93 @@ test('appearance controls are present beside both theme toggles with native keyb
   assert.equal((navigation.match(/<AppearanceMenu \/>/g) || []).length, 2);
   const menu = fs.readFileSync('components/AppearanceMenu.tsx', 'utf8');
   assert.match(menu, /aria-expanded=/);
+  assert.match(menu, /role="dialog"/);
+  assert.match(menu, /aria-modal="true"/);
+  assert.match(menu, /role="tablist"/);
+  assert.match(menu, /layoutId=\{`\$\{id\}-tab-selection`\}/);
   assert.match(menu, /<legend>Accent color<\/legend>/);
+  assert.match(menu, /<strong>Headings<\/strong>/);
+  assert.match(menu, /<strong>Body text<\/strong>/);
   assert.match(menu, /type="radio"/);
   assert.match(menu, /event.key === 'Escape'/);
   assert.match(menu, /stopPropagation\(\)/);
-  assert.match(menu, /trigger.current\?\.focus\(\)/);
+  assert.match(menu, /trigger.current\?\.focus\(\{ preventScroll: true \}\)/);
+  assert.match(menu, /localStorage.setItem\('body-font', font.id\)/);
+  assert.match(menu, /localStorage.setItem\('heading-font', font.id\)/);
+  assert.match(menu, /root\.dataset\.bodyFont = font\.id/);
+  assert.match(menu, /root\.dataset\.headingFont = font\.id/);
+  assert.match(menu, /window.dispatchEvent\(new Event\('font-change'\)\)/);
+  assert.match(menu, /Reset defaults/);
+  assert.match(menu, /setTheme\(defaultAppearance\.theme\)/);
+  assert.match(menu, /localStorage\.removeItem\(key\)/);
+  assert.match(menu, /layoutId=\{`\$\{id\}-accent-selection`\}/);
+  assert.match(menu, /layoutId=\{`\$\{id\}-body-font-selection`\}/);
+  assert.match(menu, /layoutId=\{`\$\{id\}-heading-font-selection`\}/);
+  assert.match(menu, /--option-accent-light/);
+  assert.match(menu, /--option-accent-dark/);
+  assert.match(menu, /className="font-sample font-heading-sample"/);
+  assert.match(menu, /className="font-sample font-body-sample"/);
+  assert.doesNotMatch(
+    fs.readFileSync('utils/appearance.ts', 'utf8'),
+    /headingFonts[\s\S]*\.\.\.fonts/,
+  );
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  assert.match(css, /\.appearance-overlay\s*\{[^}]*place-items:\s*center/);
+  assert.match(
+    css,
+    /\.appearance-tabs\s*\{[^}]*grid-template-columns:\s*repeat\(3,/,
+  );
+  assert.match(
+    css,
+    /\.appearance-tab-selection\s*\{[^}]*background:\s*color-mix/,
+  );
+  assert.match(css, /\.appearance-color-option\s*\{[^}]*--option-accent:/);
+  assert.match(
+    css,
+    /\.appearance-color-selection\s*\{[^}]*border-color:\s*color-mix/,
+  );
+  assert.match(css, /\.appearance-option\s*\{[^}]*padding:\s*0\.75rem 1rem/);
+  assert.match(
+    css,
+    /@media \(min-width: 761px\)[\s\S]*?\.appearance-panel\s*\{[^}]*height:\s*min\(40rem, calc\(100dvh - 3rem\)\)/,
+  );
+  assert.match(css, /\.appearance-option > span:not\(\.appearance-selection\)/);
+  assert.match(
+    css,
+    /\.appearance-font-panel\s*\{[^}]*padding-right:\s*0\.5rem/,
+  );
+  assert.match(
+    css,
+    /\.appearance-font-group\s*\{[^}]*grid-template-columns:\s*repeat\(2, minmax\(0, 1fr\)\)/,
+  );
+  assert.match(
+    css,
+    /\.appearance-footer\s*\{[^}]*justify-content:\s*space-between[^}]*border-top:\s*1px solid var\(--line\)/,
+  );
 });
 
-test('appearance panel animates entry and exit without leaving closing options interactive', () => {
+test('appearance panel uses responsive entry and exit motion without leaving closing options interactive', () => {
   const menu = fs.readFileSync('components/AppearanceMenu.tsx', 'utf8');
-  assert.match(menu, /<AnimatePresence initial=\{false\}>/);
-  assert.match(
-    menu,
-    /initial=\{\{ opacity: 0, y: shouldReduceMotion \? 0 : -6 \}\}/,
-  );
-  assert.match(
-    menu,
-    /exit=\{\{ opacity: 0, y: shouldReduceMotion \? 0 : -6 \}\}/,
-  );
-  assert.match(menu, /duration: shouldReduceMotion \? 0 : 0\.15/);
+  assert.match(menu, /window\.matchMedia\('\(max-width: 760px\)'\)/);
+  assert.match(menu, /isMobile[\s\S]*?\{ opacity: 0, y: '100%' \}/);
+  assert.match(menu, /\{ opacity: 0, y: 16, scale: 0\.975 \}/);
+  assert.match(menu, /type: 'spring' as const/);
+  assert.match(menu, /stiffness: isMobile \? 360 : 420/);
+  assert.match(menu, /y: '100%'[\s\S]*?duration: 0\.24/);
+  assert.match(menu, /scale: 0\.985/);
+  assert.match(menu, /onExitComplete=/);
   assert.match(menu, /inert=\{!open\} aria-hidden=\{!open\}/);
 });
 
-test('label pointer blur does not dismiss appearance before its radio click', () => {
+test('appearance modal tabs, accent selection, and close behavior remain interactive', () => {
   const ts = require('typescript');
   const updates = [];
   let focused = false;
   let focusOptions;
+  let focusedTab;
+  let resetTheme;
+  const removedPreferences = [];
+  const root = { dataset: {}, style: { setProperty() {} } };
   const module = { exports: {} };
   const { outputText } = ts.transpileModule(
     fs.readFileSync('components/AppearanceMenu.tsx', 'utf8'),
@@ -234,63 +373,152 @@ test('label pointer blur does not dismiss appearance before its radio click', ()
   );
   vm.runInNewContext(outputText, {
     exports: module.exports,
-    document: { documentElement: { dataset: {}, style: { setProperty() {} } } },
-    localStorage: { setItem() {} },
+    document: { documentElement: root },
+    localStorage: {
+      setItem() {},
+      removeItem: (key) => removedPreferences.push(key),
+    },
     window: { dispatchEvent() {} },
     Event,
     require: (name) =>
-      name === 'react'
-        ? {
-            useId: () => 'appearance-test',
-            useRef: () => ({
-              current: {
-                focus: (options) => {
-                  focused = true;
-                  focusOptions = options;
-                },
-              },
-            }),
-            useState: (initial) => [
-              initial === false ? true : initial,
-              (value) => updates.push(value),
-            ],
-            useEffect: () => {},
-          }
-        : name === 'framer-motion'
+      name === 'react-dom'
+        ? { createPortal: (children) => children }
+        : name === 'react'
           ? {
-              motion: { div: 'div' },
-              AnimatePresence: 'presence',
-              useReducedMotion: () => false,
+              useId: () => 'appearance-test',
+              useRef: () => ({
+                current: {
+                  contains: () => false,
+                  querySelector: (selector) => ({
+                    focus: () => (focusedTab = selector),
+                  }),
+                  focus: (options) => {
+                    focused = true;
+                    focusOptions = options;
+                  },
+                },
+              }),
+              useState: (initial) => [
+                initial === false ? true : initial,
+                (value) => updates.push(value),
+              ],
+              useEffect: () => {},
             }
-          : name === '../utils/appearance-motion'
-            ? { animateAppearanceChange: (_event, update) => update() }
-            : createRequire(path.resolve('components/AppearanceMenu.tsx'))(
-                name,
-              ),
+          : name === 'next-themes'
+            ? {
+                useTheme: () => ({ setTheme: (theme) => (resetTheme = theme) }),
+              }
+            : name === 'framer-motion'
+              ? {
+                  motion: { div: 'div', span: 'span' },
+                  AnimatePresence: 'presence',
+                  useReducedMotion: () => false,
+                }
+              : name === '../utils/appearance-motion'
+                ? { animateAppearanceChange: (_event, update) => update() }
+                : createRequire(path.resolve('components/AppearanceMenu.tsx'))(
+                    name,
+                  ),
   });
   const menu = module.exports.default();
-  const inside = {};
-  const currentTarget = { contains: (target) => target === inside };
-  // Chrome emits relatedTarget=null when pressing a non-focusable label span.
-  menu.props.onBlur({ currentTarget, relatedTarget: null });
-  assert.deepEqual(updates, []);
-  menu.props.onBlur({ currentTarget, relatedTarget: inside });
-  assert.deepEqual(updates, []);
-  menu.props.onBlur({ currentTarget, relatedTarget: {} });
+  const presence = menu.props.children[1].props.children;
+  const panel = presence.props.children.props.children;
+  assert.equal(panel.props.role, 'dialog');
+  assert.equal(panel.props['aria-modal'], 'true');
+  const tabs = panel.props.children[1];
+  const tabButtons = tabs.props.children;
+  assert.deepEqual(
+    Array.from(tabButtons, ({ props }) => props.id),
+    [
+      'appearance-test-colors-tab',
+      'appearance-test-heading-font-tab',
+      'appearance-test-body-font-tab',
+    ],
+  );
+  assert.deepEqual(
+    Array.from(
+      tabButtons,
+      ({ props }) =>
+        props.children.find(
+          (child) => child?.props?.className === 'appearance-tab-label',
+        ).props.children,
+    ),
+    ['Colors', 'Heading font', 'Body font'],
+  );
+  const [colorsPanel, headingFontPanel, bodyFontPanel] =
+    panel.props.children.slice(2, 5);
+  assert.deepEqual(
+    Array.from(tabButtons, ({ props }) => props['aria-controls']),
+    [colorsPanel.props.id, headingFontPanel.props.id, bodyFontPanel.props.id],
+  );
+  assert.deepEqual(
+    [
+      colorsPanel.props.hidden,
+      headingFontPanel.props.hidden,
+      bodyFontPanel.props.hidden,
+    ],
+    [false, true, true],
+  );
+  tabButtons[1].props.onClick();
+  tabButtons[2].props.onClick();
+  assert.deepEqual(updates, ['heading-font', 'body-font']);
+  let prevented = false;
+  tabButtons[0].props.onKeyDown({
+    key: 'ArrowLeft',
+    preventDefault: () => (prevented = true),
+  });
+  assert.equal(prevented, true);
+  assert.deepEqual(updates, ['heading-font', 'body-font', 'body-font']);
+  assert.equal(focusedTab, '[id="appearance-test-body-font-tab"]');
+  tabButtons[0].props.onKeyDown({ key: 'ArrowRight', preventDefault() {} });
+  assert.deepEqual(updates, [
+    'heading-font',
+    'body-font',
+    'body-font',
+    'heading-font',
+  ]);
+  assert.equal(focusedTab, '[id="appearance-test-heading-font-tab"]');
+  updates.length = 0;
+  tabButtons[1].props.onClick();
+  assert.deepEqual(updates, ['heading-font'], 'heading tab is selectable');
+  const fieldset = colorsPanel.props.children;
+  const violet = fieldset.props.children[1][2];
+  violet.props.children
+    .find((child) => child?.props?.type === 'radio')
+    .props.onChange({
+      currentTarget: {},
+      nativeEvent: {},
+    });
   assert.deepEqual(
     updates,
-    [false],
-    'Tab to an outside control still dismisses',
+    ['heading-font'],
+    'accent selection does not dismiss the modal',
   );
-  updates.length = 0;
-  const panel = menu.props.children[1].props.children.props.children;
-  const fieldset = panel.props.children[1];
-  const violet = fieldset.props.children[1][2];
-  violet.props.children[0].props.onChange({
+  const footer = panel.props.children[5];
+  footer.props.children[1].props.onClick({
     currentTarget: {},
     nativeEvent: {},
   });
-  assert.deepEqual(updates, [false], 'selection closes the menu');
-  assert.equal(focused, true, 'selection returns focus to the trigger');
+  assert.equal(resetTheme, 'dark');
+  assert.equal(root.dataset.accent, 'blue');
+  assert.equal(root.dataset.bodyFont, 'outfit');
+  assert.equal(root.dataset.headingFont, 'georgia');
+  assert.deepEqual(removedPreferences, [
+    'theme',
+    'accent',
+    'font',
+    'body-font',
+    'heading-font',
+  ]);
+  const panelHeader = panel.props.children[0];
+  panelHeader.props.children[1].props.onClick();
+  assert.deepEqual(
+    updates,
+    ['heading-font', false],
+    'close dismisses the modal',
+  );
+  assert.equal(focused, false, 'focus waits for the exit animation');
+  presence.props.onExitComplete();
+  assert.equal(focused, true, 'focus returns after the exit animation');
   assert.equal(focusOptions?.preventScroll, true);
 });
