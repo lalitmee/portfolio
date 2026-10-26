@@ -104,7 +104,18 @@ test('playground page stays available through an accessible footer easter egg', 
   assert.match(visibleTab, /transform: translate\(-50%, 0\)/);
   assert.match(
     css,
-    /\.playground-easter-egg:hover \.playground-tab-full-label/,
+    /\.playground-easter-egg::after[\s\S]*?playground-glint-sweep/,
+  );
+  assert.match(css, /\.playground-tab-label[\s\S]*?opacity: 0/);
+  assert.match(css, /\.playground-tab-full-label[\s\S]*?opacity: 0/);
+  assert.match(
+    css,
+    /animation: playground-glint-sweep 3\.6s ease-in-out infinite/,
+  );
+  assert.match(css, /@keyframes playground-glint-sweep/);
+  assert.match(
+    css,
+    /@media \(prefers-reduced-motion: reduce\)[\s\S]*?\.playground-easter-egg::after[\s\S]*?animation: none/,
   );
   assert.match(css, /\.playground-constellation-node/);
   assert.match(css, /@keyframes playground-constellation-pulse/);

@@ -105,11 +105,9 @@ export default function Footer() {
             r="2.5"
           />
         </svg>
-        <span className="playground-tab-label" aria-hidden="true">
-          PLAY
-        </span>
-        <span className="playground-tab-full-label" aria-hidden="true">
-          Playground
+        <span className="playground-label-stage" aria-hidden="true">
+          <span className="playground-tab-label">PLAY</span>
+          <span className="playground-tab-full-label">Playground</span>
         </span>
       </Link>
     </footer>

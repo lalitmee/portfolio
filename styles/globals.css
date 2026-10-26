@@ -2897,6 +2897,7 @@ body:has(.consent-panel) .back-to-top {
 
 .playground-easter-egg {
   position: fixed;
+  overflow: hidden;
   left: 50%;
   bottom: calc(1rem + env(safe-area-inset-bottom));
   z-index: 30;
@@ -2921,6 +2922,35 @@ body:has(.consent-panel) .back-to-top {
     opacity 320ms ease,
     width 320ms cubic-bezier(0.22, 1, 0.36, 1),
     visibility 420ms;
+}
+
+.playground-easter-egg::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(
+    110deg,
+    transparent 35%,
+    rgb(255 255 255 / 30%) 50%,
+    transparent 65%
+  );
+  content: '';
+  pointer-events: none;
+  transform: translateX(-110%);
+}
+
+.playground-easter-egg.is-visible::after {
+  animation: playground-glint-sweep 3.6s ease-in-out infinite;
+}
+
+@keyframes playground-glint-sweep {
+  0%,
+  76% {
+    transform: translateX(-110%);
+  }
+  100% {
+    transform: translateX(110%);
+  }
 }
 
 .playground-constellation {
@@ -2976,6 +3006,27 @@ body:has(.consent-panel) .back-to-top {
   }
 }
 
+.playground-label-stage {
+  position: relative;
+  width: 2.15rem;
+  height: 1.25rem;
+  flex: none;
+  transition: width 320ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.playground-tab-label,
+.playground-tab-full-label {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  align-items: center;
+  justify-items: center;
+  white-space: nowrap;
+  transition:
+    opacity 180ms ease,
+    transform 180ms ease;
+}
+
 .playground-tab-label {
   font-size: 0.7rem;
   font-weight: 700;
@@ -2983,8 +3034,8 @@ body:has(.consent-panel) .back-to-top {
 }
 
 .playground-tab-full-label {
-  display: none;
-  white-space: nowrap;
+  opacity: 0;
+  transform: translateY(0.25rem);
   font-size: 0.9rem;
   font-weight: 600;
 }
@@ -3005,14 +3056,21 @@ body:has(.consent-panel) .back-to-top {
   transform: scale(1.15);
 }
 
+.playground-easter-egg:hover .playground-label-stage,
+.playground-easter-egg:focus-visible .playground-label-stage {
+  width: 5rem;
+}
+
 .playground-easter-egg:hover .playground-tab-label,
 .playground-easter-egg:focus-visible .playground-tab-label {
-  display: none;
+  opacity: 0;
+  transform: translateY(-0.25rem);
 }
 
 .playground-easter-egg:hover .playground-tab-full-label,
 .playground-easter-egg:focus-visible .playground-tab-full-label {
-  display: inline;
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .footer-inner {
@@ -3389,6 +3447,10 @@ body:has(.consent-panel) .back-to-top {
 @media (prefers-reduced-motion: reduce) {
   .ambient-glow {
     display: none !important;
+  }
+
+  .playground-easter-egg::after {
+    animation: none;
   }
 
   .playground-frame {
