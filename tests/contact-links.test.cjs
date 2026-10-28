@@ -10,7 +10,10 @@ test('send button restores a finite flight and label fade with reduced motion fa
   assert.match(css, /animation: send-icon-flight 2200ms linear/);
   assert.match(css, /animation: send-label-hide 2200ms linear/);
   assert.match(css, /@keyframes send-icon-flight/);
-  assert.match(css, /\.send-button:focus-visible:not\(:disabled\) \.send-icon/);
+  assert.match(
+    css,
+    /\.send-button:focus-visible:not\(:disabled\):not\(\.is-sent\) \.send-icon/,
+  );
   const reduced = css.slice(
     css.lastIndexOf('@media (prefers-reduced-motion: reduce)'),
   );
@@ -64,12 +67,22 @@ test('direct contact links have touch targets, wrapping, and reduced-motion-safe
   );
 });
 
-test('send button animates continuously while submitting with reduced motion override', () => {
+test('send button loops the hover flight while pending and finishes the current loop on success', () => {
   const css = fs.readFileSync('styles/globals.css', 'utf8');
+  const contact = fs.readFileSync('components/Contact.tsx', 'utf8');
   assert.match(
     css,
-    /\.send-button\.is-submitting\s+\.send-icon\s*\{[^}]*animation:\s*send-icon-flight 1600ms linear infinite/s,
+    /\.send-button\.is-submitting\s+\.send-icon\s*\{[^}]*animation:\s*send-icon-flight 2200ms linear infinite/s,
   );
+  assert.match(
+    css,
+    /\.send-button:hover:not\(:disabled\):not\(\.is-sent\) \.send-icon/,
+  );
+  assert.match(
+    contact,
+    /onAnimationIteration=\{\(\) => \{\s*if \(finishing\) setFinishing\(false\)/,
+  );
+  assert.match(contact, /onMouseLeave=\{\(\) => setSent\(false\)\}/);
   const reduced = css.slice(
     css.lastIndexOf('@media (prefers-reduced-motion: reduce)'),
   );

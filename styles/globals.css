@@ -1208,21 +1208,21 @@ a.text-link {
 }
 
 @media (hover: hover) and (pointer: fine) {
-  .send-button:hover:not(:disabled) .send-icon {
+  .send-button:hover:not(:disabled):not(.is-sent) .send-icon {
     animation: send-icon-flight 2200ms linear;
   }
-  .send-button:hover:not(:disabled) .send-label {
+  .send-button:hover:not(:disabled):not(.is-sent) .send-label {
     animation: send-label-hide 2200ms linear;
   }
 }
-.send-button:focus-visible:not(:disabled) .send-icon {
+.send-button:focus-visible:not(:disabled):not(.is-sent) .send-icon {
   animation: send-icon-flight 2200ms linear;
 }
-.send-button:focus-visible:not(:disabled) .send-label {
+.send-button:focus-visible:not(:disabled):not(.is-sent) .send-label {
   animation: send-label-hide 2200ms linear;
 }
 .send-button.is-submitting .send-icon {
-  animation: send-icon-flight 1600ms linear infinite;
+  animation: send-icon-flight 2200ms linear infinite;
 }
 .send-button.is-submitting .send-label {
   opacity: 0.85;

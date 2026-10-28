@@ -32,6 +32,8 @@ export default function Contact() {
   const [errors, setErrors] = useState<ContactFormErrors>({});
   const [status, setStatus] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [finishing, setFinishing] = useState(false);
+  const [sent, setSent] = useState(false);
   const [toast, setToast] = useState<{ id: number; message: string } | null>(
     null,
   );
@@ -73,6 +75,11 @@ export default function Contact() {
     setStatus('Sending your message…');
     try {
       await emailjs.sendForm(serviceId, templateId, form.current, publicKey);
+      const shouldFinishFlight = !window.matchMedia(
+        '(prefers-reduced-motion: reduce)',
+      ).matches;
+      setFinishing(shouldFinishFlight);
+      setSent(shouldFinishFlight);
       setValues(emptyForm);
       setErrors({});
       setStatus('');
@@ -185,14 +192,22 @@ export default function Contact() {
             )}
           </div>
           <button
-            className={`button button-primary send-button ${submitting ? 'is-submitting' : ''}`.trim()}
+            className={`button button-primary send-button ${submitting || finishing ? 'is-submitting' : ''} ${sent ? 'is-sent' : ''}`.trim()}
             type="submit"
-            disabled={submitting}
+            disabled={submitting || finishing}
+            onMouseLeave={() => setSent(false)}
+            onBlur={() => setSent(false)}
           >
             <span className="send-label">
-              {submitting ? 'Sending…' : 'Send message'}
+              {submitting ? 'Sending…' : finishing ? 'Sent' : 'Send message'}
             </span>
-            <span className="send-icon" aria-hidden="true">
+            <span
+              className="send-icon"
+              aria-hidden="true"
+              onAnimationIteration={() => {
+                if (finishing) setFinishing(false);
+              }}
+            >
               <SendIcon className="send-plane" />
             </span>
           </button>

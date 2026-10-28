@@ -56,7 +56,7 @@ function () {
 | `case_study_view` | `case_slug`                                                     |
 | `project_open`    | `project_slug`, `destination_kind` (`source`, `demo`, `detail`) |
 | `resume_download` | none                                                            |
-| `contact_click`   | `channel` (`email`, `github`, `linkedin`)                       |
+| `contact_click`   | `channel` (`email`, `github`, `linkedin`, `topmate`)             |
 | `app_launch`      | `app_slug`                                                      |
 
 The runtime reconstructs event objects from this allowlist; extra fields are
