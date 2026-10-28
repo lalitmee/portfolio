@@ -335,6 +335,47 @@ test('appearance controls are present beside both theme toggles with native keyb
     css,
     /@media \(min-width: 761px\)[\s\S]*?\.appearance-panel\s*\{[^}]*height:\s*min\(40rem, calc\(100dvh - 3rem\)\)/,
   );
+  const sharedAppearanceStyles = css.slice(
+    0,
+    css.indexOf('@media (max-width: 760px)'),
+  );
+  assert.match(
+    sharedAppearanceStyles,
+    /\.appearance-tabs\s*\{[^}]*border-radius:\s*999px/,
+  );
+  assert.match(
+    sharedAppearanceStyles,
+    /\.appearance-tabs button\[aria-selected='true'\]\s*\{[^}]*border-radius:\s*999px/,
+  );
+  const mobileStyles = css.slice(css.indexOf('@media (max-width: 760px)'));
+  assert.match(
+    mobileStyles,
+    /\.appearance-panel\s*\{[^}]*height:\s*min\(90svh, 48rem\)[^}]*overflow:\s*hidden/,
+  );
+  assert.match(
+    mobileStyles,
+    /\.appearance-tab-panel\s*\{[^}]*flex:\s*1[^}]*min-height:\s*0/,
+  );
+  assert.match(
+    mobileStyles,
+    /\.appearance-tabs button\s*\{[^}]*font-size:\s*0\.9rem/,
+  );
+  assert.match(
+    mobileStyles,
+    /\.appearance-tabs button\s*\{[^}]*min-height:\s*2\.5rem[^}]*padding-block:\s*0\.5rem/,
+  );
+  assert.match(
+    mobileStyles,
+    /\.appearance-reset\s*\{[^}]*border-color:\s*var\(--blue\)[^}]*background:\s*transparent[^}]*color:\s*var\(--blue\)/,
+  );
+  assert.match(
+    mobileStyles,
+    /\.appearance-footer\s*\{[^}]*padding:\s*0\.75rem 1\.25rem 0\.5rem/,
+  );
+  assert.doesNotMatch(
+    mobileStyles,
+    /\.appearance-footer\s*\{[^}]*position:\s*sticky/,
+  );
   assert.match(css, /\.appearance-option > span:not\(\.appearance-selection\)/);
   assert.match(css, /\.appearance-tab-panel\s*\{[^}]*padding-right:\s*0\.5rem/);
   assert.match(

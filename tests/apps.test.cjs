@@ -103,6 +103,11 @@ test('card launch actions use the detail-page button treatment, distinct from st
     assert.match(launch, /className="section-button-fill" aria-hidden="true"/);
     assert.match(page, /<Link\s+className="text-link"[\s\S]*?Read the story/);
   }
+  const styles = fs.readFileSync('styles/globals.css', 'utf8');
+  assert.match(
+    styles,
+    /@media \(max-width: 760px\)[\s\S]*?\.section-button \.section-button-fill\s*\{[^}]*clip-path:\s*circle\(150% at 50% 50%\)/,
+  );
 });
 
 test('only external launch anchors track app_launch, never story links', () => {
@@ -213,6 +218,9 @@ test('case detail back navigation uses theme-aware breadcrumb chip styling', () 
   const css = fs.readFileSync('styles/globals.css', 'utf8');
   assert.match(css, /\.back-link\s*\{[^}]*font-size:\s*0\.8125rem/);
   assert.match(css, /\.back-link\s*\{[^}]*border-radius:\s*9999px/);
-  assert.match(css, /\.back-link \.directional-arrow\s*\{[^}]*color:\s*var\(--blue\)/);
+  assert.match(
+    css,
+    /\.back-link \.directional-arrow\s*\{[^}]*color:\s*var\(--blue\)/,
+  );
   assert.match(css, /\.back-link:hover \.directional-arrow/);
 });

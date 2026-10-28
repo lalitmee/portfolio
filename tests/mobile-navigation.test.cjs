@@ -59,6 +59,10 @@ test('mobile navigation uses the shared button arrow', () => {
   assert.match(nav, /<TiltedArrow className="mobile-nav-arrow" \/>/);
   assert.doesNotMatch(css, /\.mobile-nav a::after\s*\{/);
   assert.match(css, /\.mobile-nav a:focus-visible \.mobile-nav-arrow/);
+  assert.match(
+    css,
+    /\.mobile-nav-arrow\s*\{[^}]*transition:[^}]*opacity 220ms cubic-bezier\(0\.22, 1, 0\.36, 1\)[^}]*transform 220ms cubic-bezier\(0\.22, 1, 0\.36, 1\)/,
+  );
 });
 
 test('mobile header maintains z-index stacking above navigation overlay', () => {
