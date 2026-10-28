@@ -576,10 +576,11 @@ button {
   color: var(--blue);
 }
 
-.mobile-nav a::after {
-  content: '↗';
+.mobile-nav-arrow {
+  width: 0.65em;
+  height: 0.65em;
+  flex: none;
   color: var(--blue);
-  font-size: 0.65em;
   opacity: 0;
   transform: translate(-0.25rem, 0.25rem);
   transition:
@@ -587,8 +588,8 @@ button {
     transform 180ms ease;
 }
 
-.mobile-nav a:hover::after,
-.mobile-nav a:focus-visible::after {
+.mobile-nav a:hover .mobile-nav-arrow,
+.mobile-nav a:focus-visible .mobile-nav-arrow {
   opacity: 1;
   transform: none;
 }
@@ -3534,7 +3535,7 @@ body:has(.consent-panel) .back-to-top {
     transform: none !important;
   }
 
-  .mobile-nav a::after {
+  .mobile-nav-arrow {
     transform: none;
   }
 

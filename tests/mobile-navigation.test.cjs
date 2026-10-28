@@ -47,6 +47,20 @@ test('mobile navigation uses animated panel with entrance and exit orchestration
   assert.match(nav, /<MenuIcon open=\{menuOpen\} \/>/);
 });
 
+test('mobile navigation uses the shared button arrow', () => {
+  const nav = fs.readFileSync(
+    path.join(__dirname, '../components/Navigation.tsx'),
+    'utf8',
+  );
+  const css = fs.readFileSync(
+    path.join(__dirname, '../styles/globals.css'),
+    'utf8',
+  );
+  assert.match(nav, /<TiltedArrow className="mobile-nav-arrow" \/>/);
+  assert.doesNotMatch(css, /\.mobile-nav a::after\s*\{/);
+  assert.match(css, /\.mobile-nav a:focus-visible \.mobile-nav-arrow/);
+});
+
 test('mobile header maintains z-index stacking above navigation overlay', () => {
   const css = fs.readFileSync(
     path.join(__dirname, '../styles/globals.css'),

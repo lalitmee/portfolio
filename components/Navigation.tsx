@@ -3,6 +3,7 @@ import { useRouter } from 'next/router';
 import { useEffect, useRef, useState } from 'react';
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion';
 import { MenuIcon } from './icons/AnimatedIcons';
+import TiltedArrow from './TiltedArrow';
 import ThemeToggle from './ThemeToggle';
 import AppearanceMenu from './AppearanceMenu';
 
@@ -206,6 +207,7 @@ export default function Navigation() {
                         onClick={() => setMenuOpen(false)}
                       >
                         <span>{link.label}</span>
+                        <TiltedArrow className="mobile-nav-arrow" />
                       </Link>
                     </motion.div>
                   ))}
