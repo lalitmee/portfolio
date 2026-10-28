@@ -1,0 +1,100 @@
+const assert = require('node:assert/strict');
+const fs = require('node:fs');
+const test = require('node:test');
+require('./load-tsx.cjs');
+const React = require('react');
+const { renderToStaticMarkup } = require('react-dom/server');
+
+test('send button restores a finite flight and label fade with reduced motion fallback', () => {
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  assert.match(css, /animation: send-icon-flight 2200ms linear/);
+  assert.match(css, /animation: send-label-hide 2200ms linear/);
+  assert.match(css, /@keyframes send-icon-flight/);
+  assert.match(
+    css,
+    /\.send-button:focus-visible:not\(:disabled\):not\(\.is-sent\) \.send-icon/,
+  );
+  const reduced = css.slice(
+    css.lastIndexOf('@media (prefers-reduced-motion: reduce)'),
+  );
+  assert.match(
+    reduced,
+    /\.button:focus-visible \.send-icon[\s\S]*?animation: none !important/,
+  );
+});
+
+test('direct contact destinations keep labels and decorative internal-motion icons', () => {
+  const Contact = require('../components/Contact.tsx').default;
+  const html = renderToStaticMarkup(React.createElement(Contact));
+  for (const [url, label, variant] of [
+    [
+      'mailto:lalitkumar.meena.lk@gmail.com',
+      'lalitkumar.meena.lk@gmail.com',
+      'email',
+    ],
+    ['https://topmate.io/lalitmee', 'Topmate', 'brand'],
+    ['https://github.com/lalitmee', 'GitHub', 'brand'],
+    ['https://linkedin.com/in/lalitmee', 'LinkedIn', 'brand'],
+  ]) {
+    const anchor = [
+      ...html.matchAll(/<a\b[^>]*href="([^"]+)"[^>]*>([\s\S]*?)<\/a>/g),
+    ].find((match) => match[1] === url);
+    assert.ok(anchor);
+    assert.match(anchor[2], new RegExp(`class="animated-icon icon-${variant}`));
+    assert.match(anchor[2], /aria-hidden="true"/);
+    if (label) assert.ok(anchor[2].includes(label));
+  }
+});
+
+test('direct contact links have touch targets, wrapping, and reduced-motion-safe feedback', () => {
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  const grid = css.match(/\.contact-grid\s*\{([^}]+)\}/)[1];
+  assert.match(grid, /minmax\(22\.5rem, 0\.8fr\)/);
+  const links = css.match(/\.contact-grid aside a\s*\{([^}]+)\}/)[1];
+  assert.match(links, /min-height: 2.75rem/);
+  assert.match(links, /overflow-wrap: anywhere/);
+  assert.match(
+    css,
+    /\.contact-grid aside a:focus-visible\s*\{[^}]*color: var\(--blue\)/,
+  );
+  assert.doesNotMatch(css, /animation: contact-icon-lift/);
+  const reduced = css.slice(
+    css.indexOf('@media (prefers-reduced-motion: reduce)'),
+  );
+  assert.match(
+    reduced,
+    /\.contact-grid aside a svg\s*\{[^}]*animation: none !important/,
+  );
+});
+
+test('send button loops the hover flight while pending and finishes the current loop on success', () => {
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  const contact = fs.readFileSync('components/Contact.tsx', 'utf8');
+  assert.match(
+    css,
+    /\.send-button\.is-submitting\s+\.send-icon\s*\{[^}]*animation:\s*send-icon-flight 2200ms linear infinite/s,
+  );
+  assert.match(
+    css,
+    /\.send-button:hover:not\(:disabled\):not\(\.is-sent\) \.send-icon/,
+  );
+  assert.match(
+    contact,
+    /onAnimationIteration=\{\(\) => \{\s*if \(finishing\) setFinishing\(false\)/,
+  );
+  assert.match(contact, /onMouseLeave=\{\(\) => setSent\(false\)\}/);
+  const reduced = css.slice(
+    css.lastIndexOf('@media (prefers-reduced-motion: reduce)'),
+  );
+  assert.match(
+    reduced,
+    /\.send-button\.is-submitting\s+\.send-icon[\s\S]*?animation:\s*none !important/,
+  );
+});
+
+test('contact toast styles are defined with accessible positioning and theme tokens', () => {
+  const css = fs.readFileSync('styles/globals.css', 'utf8');
+  assert.match(css, /\.contact-toast\s*\{[^}]*position:\s*fixed/s);
+  assert.match(css, /\.contact-toast\s*\{[^}]*z-index:\s*60/s);
+  assert.match(css, /\.contact-toast\s*\{[^}]*background:\s*var\(--panel\)/s);
+});

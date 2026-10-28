@@ -3,7 +3,11 @@ import React from 'react';
 import portfolioData from '../data/portfolio.json';
 
 const Testimonials: React.FC = () => {
-  const testimonials = portfolioData.testimonials;
+  const testimonials = portfolioData.testimonials as {
+    content: string;
+    name: string;
+    role: string;
+  }[];
 
   return (
     <section className="py-16 bg-gray-50" id="testimonials">

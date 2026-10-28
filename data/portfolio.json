@@ -3,16 +3,15 @@
     "name": "Lalit Kumar",
     "title": "Senior Software Engineer",
     "subtitle": "Product-Minded Senior Engineer",
-    "yearsOfExperience": "7+",
+    "yearsOfExperience": "8+",
     "email": "lalitkumar.meena.lk@gmail.com",
     "phone": "+91 97-1261-8438",
-    "website": "https://lalitmee.github.io/portfolio",
-    "bio": "Senior Software Engineer @Nykaa | Neovim Enthusiast | Open Source Advocate. Pioneering Agentic Coding workflows and building high-performance web applications. Focused on productivity and developer experience.",
+    "website": "https://www.lalitmee.com/",
+    "bio": "Senior Software Engineer building product experiences and developer tools. Currently at Nykaa.",
     "profileImage": "/images/profile_v3.png",
     "resume": "/Lalit_Kumar_Resume.pdf",
     "availability": {
-      "status": "available",
-      "message": "Available for opportunities"
+      "message": ""
     }
   },
   "contact": {
@@ -55,20 +54,20 @@
   },
   "stats": {
     "experience": {
-      "value": "7+",
+      "value": "8+",
       "label": "Years Experience"
     },
     "projects": {
-      "value": "20+",
-      "label": "Projects Delivered"
+      "value": "",
+      "label": ""
     },
     "technologies": {
-      "value": "15+",
-      "label": "Technologies"
+      "value": "",
+      "label": ""
     },
     "teamMembers": {
-      "value": "6+",
-      "label": "Team Members Led"
+      "value": "",
+      "label": ""
     }
   },
   "skills": {
@@ -260,7 +259,7 @@
       "achievements": [
         "Spearheading the development of nysaa.com, managing end-to-end integration",
         "Significantly increasing application performance and user experience",
-        "Led Martech integration (GTM, GA4, Meta, etc.) resulting in 3x daily orders",
+        "Integrated marketing measurement tools including GTM, GA4, and Meta",
         "Designed attribution system using BigQuery and Looker Studio",
         "Revamped cart operations and implemented cart merging feature"
       ],
@@ -272,8 +271,7 @@
         "GA4",
         "BigQuery"
       ],
-      "teamSize": "Cross-functional",
-      "impact": "10x Daily Orders"
+      "teamSize": "Cross-functional"
     },
     {
       "id": 2,
@@ -482,7 +480,7 @@
     {
       "id": 2,
       "title": "cobalt2.nvim",
-      "description": "Cobalt2 theme for Neovim in Lua using colorbuddy.",
+      "description": "A Lua adaptation of Wes Bos’s Cobalt2 color scheme for Neovim, using colorbuddy.",
       "image": "/images/projects/cobalt2-nvim.png",
       "technologies": ["Lua", "Neovim", "Colorbuddy"],
       "category": "Featured",
@@ -643,25 +641,41 @@
       "github": "https://github.com/lalitmee/ud-portfolio",
       "demo": "https://lalitmee.github.io/ud-portfolio/",
       "highlights": ["Responsive layout", "Grid system", "Custom styling"]
-    }
-  ],
-  "testimonials": [
-    {
-      "name": "John Doe",
-      "role": "Tech Lead at XYZ Corp",
-      "content": "Lalit is an exceptional developer with deep knowledge in frontend and backend technologies. His work on our CI/CD pipelines saved us countless hours."
     },
     {
-      "name": "Jane Smith",
-      "role": "Marketing Director at ABC Inc",
-      "content": "His expertise in digital marketing tools helped us optimize our campaigns effectively. Highly recommend for any tech and marketing projects."
+      "id": 14,
+      "title": "codecompanion-spinners.nvim",
+      "description": "State-aware status feedback for CodeCompanion, with distinct indicators for thinking, tool use, and review.",
+      "image": "",
+      "technologies": ["Lua", "Neovim", "CodeCompanion"],
+      "category": "Developer Tools",
+      "status": "active",
+      "featured": true,
+      "github": "https://github.com/lalitmee/codecompanion-spinners.nvim",
+      "highlights": [
+        "Thinking and tool states",
+        "Review feedback",
+        "CodeCompanion integration"
+      ]
     },
     {
-      "name": "Mike Johnson",
-      "role": "CTO at Startup Co",
-      "content": "Lalit's cloud architecture skills on AWS and GCP are top-notch. He delivered scalable solutions that met all our requirements."
+      "id": 15,
+      "title": "markdown-previewer",
+      "description": "A local-first Markdown previewer with file browsing, Mermaid diagrams, and editable tables.",
+      "image": "",
+      "technologies": ["TypeScript", "React", "Markdown"],
+      "category": "Independent Tools",
+      "status": "active",
+      "featured": true,
+      "github": "https://github.com/lalitmee/markdown-previewer",
+      "highlights": [
+        "Local file and folder browsing",
+        "Mermaid diagrams",
+        "Resizable and collapsible tables"
+      ]
     }
   ],
+  "testimonials": [],
   "settings": {
     "theme": "dark",
     "layout": "single-page",
@@ -673,40 +687,21 @@
     "downloadResumeEnabled": true,
     "themeSelector": "dropdown"
   },
-  "professionalImpact": [
-    {
-      "icon": "🚀",
-      "title": "Performance Optimization",
-      "description": "Improved application performance by 60% through advanced optimization techniques and modern architecture patterns",
-      "metric": "60% faster"
-    },
-    {
-      "icon": "👥",
-      "title": "Team Leadership",
-      "description": "Led cross-functional teams of 10+ developers, delivering complex projects on time with exceptional quality",
-      "metric": "10+ developers"
-    },
-    {
-      "icon": "🏗️",
-      "title": "Architecture Design",
-      "description": "Designed scalable microservices architecture serving 1M+ users with 99.9% uptime and reliability",
-      "metric": "99.9% uptime"
-    }
-  ],
+  "professionalImpact": [],
   "sections": {
     "hero": {
       "prefix": "Building the",
       "highlight": "Future",
       "suffix": "of Web",
       "descriptionPrefix": "with",
-      "descriptionSuffix": "of experience crafting exceptional digital experiences using cutting-edge technologies and AI-driven solutions.",
+      "descriptionSuffix": "of experience building product experiences and developer tools.",
       "ctaPrimary": "Explore My Work",
       "ctaSecondary": "Let's Connect"
     },
     "about": {
       "title": "About",
       "highlight": "Me",
-      "description": "I'm a passionate Senior Software Engineer with over 7 years of experience building scalable web applications and leading high-performing teams. I specialize in modern JavaScript frameworks, cloud architecture, and creating exceptional user experiences that drive business growth.",
+      "description": "I'm a Senior Software Engineer with 8+ years of experience building web products, commerce experiences, and developer tools. My work spans frontend product engineering, data-rich interfaces, and open-source projects.",
       "cards": {
         "innovation": {
           "icon": "🚀",
@@ -732,7 +727,7 @@
     "skills": {
       "title": "Technical Expertise",
       "heading": "Skills & Technologies",
-      "description": "Mastering cutting-edge technologies to build scalable, performant, and innovative solutions",
+      "description": "Tools and technologies used across product engineering and independent projects",
       "professionalImpactTitle": "Professional Impact"
     },
     "projects": {

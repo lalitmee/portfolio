@@ -1,28 +1,36 @@
-import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
-import { FaMoon, FaSun } from 'react-icons/fa';
-import IconButton from './ui/IconButton';
+import { useTheme } from 'next-themes';
+import { MoonIcon, SunIcon } from './icons/AnimatedIcons';
+import { animateAppearanceChange } from '../utils/appearance-motion';
 
-const ThemeToggle = () => {
+export default function ThemeToggle() {
+  const { resolvedTheme, setTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const isDark = resolvedTheme === 'dark';
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
-  if (!mounted) {
-    return null;
-  }
+  useEffect(() => setMounted(true), []);
 
   return (
-    <IconButton
-      onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-      ariaLabel="Toggle theme"
+    <button
+      className="theme-toggle"
+      type="button"
+      aria-label={
+        mounted
+          ? `Switch to ${isDark ? 'light' : 'dark'} mode`
+          : 'Toggle color theme'
+      }
+      aria-pressed={mounted ? isDark : undefined}
+      onClick={(event) =>
+        animateAppearanceChange(
+          event,
+          () => setTheme(isDark ? 'light' : 'dark'),
+          'theme',
+        )
+      }
     >
-      {theme === 'dark' ? <FaSun size={18} /> : <FaMoon size={18} />}
-    </IconButton>
+      <span className="theme-toggle-icon">
+        {mounted && isDark ? <SunIcon /> : <MoonIcon />}
+      </span>
+    </button>
   );
-};
-
-export default ThemeToggle;
+}

@@ -7,7 +7,7 @@ import BottomSheet from './ui/BottomSheet';
 import IconButton from './ui/IconButton';
 
 const themes = [
-  { name: 'default', label: 'Default', color: '#14b8a6' },
+  { name: 'default', label: 'Default', color: '#8b5cf6' },
   { name: 'cobalt2', label: 'Cobalt2', color: '#ffc600' },
   { name: 'terminal', label: 'Terminal', color: '#4ade80' },
   { name: 'catppuccin', label: 'Catppuccin', color: '#cba6f7' },
