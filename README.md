@@ -38,20 +38,16 @@ git clone git@github.com:lalitmee/portfolio.git
 cd portfolio
 ```
 
-Install dependencies (using your preferred package manager):
+Install dependencies:
 
 ```bash
-npm install
-# or
 pnpm install
-# or
-yarn install
 ```
 
 Run the development server:
 
 ```bash
-npm run dev
+pnpm dev
 ```
 
 Open `http://localhost:3000` in your browser to view the site.
@@ -60,11 +56,11 @@ Open `http://localhost:3000` in your browser to view the site.
 
 Commonly used scripts are defined in `package.json`:
 
-- `npm run dev` – Start the local development server
-- `npm run build` – Create an optimized production build
-- `npm run start` – Start the production server
-- `npm run lint` – Run linting via Next.js and ESLint
-- `npm run type-check` – Run TypeScript type checking
+- `pnpm dev` – Start the local development server
+- `pnpm build` – Create an optimized production build
+- `pnpm start` – Start the production server
+- `pnpm lint` – Run linting via Next.js and ESLint
+- `pnpm type-check` – Run TypeScript type checking
 
 ## Project Structure
 
@@ -98,7 +94,7 @@ To deploy your own fork:
 1. Create a new project on Vercel.
 2. Import your GitHub repository.
 3. Use the default Next.js build settings:
-   - Build command: `npm run build`
+   - Build command: `pnpm build`
    - Output directory: `.next`
 4. Set any required environment variables (for example, for EmailJS).
 5. Trigger a deployment from the Vercel dashboard or by pushing to your default branch.
